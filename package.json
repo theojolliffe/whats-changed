@@ -1,7 +1,7 @@
 {
-  "name": "svelte-app",
+  "name": "whats-changed",
   "version": "1.0.0",
-  "homepage": "https://theojolliffe.github.io/whats-changed/",
+  "homepage": "http://theojolliffe.github.io/whats-changed",
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -c -w",
