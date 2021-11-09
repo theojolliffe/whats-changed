@@ -11,7 +11,7 @@ mixin standfirst2
     | #[+value(topic[s[1][0]+"_"+s[1][3]].subject)], 
     | #[+value(topic[s[2][0]+"_"+s[2][3]].subject)]
     | and 
-    | #[+value(topic[s[3][0]+"_"+s[3][3]].subject)]
+    // | #[+value(topic[s[3][0]+"_"+s[3][3]].subject)]
     | .
 
 mixin subhead(i)
