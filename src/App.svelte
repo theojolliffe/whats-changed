@@ -1,7 +1,7 @@
 <script>
 	import { getData, uncap1, regionThe } from "./utils";
     import string from './strings.js';
-	import topic from './topicLookup.js';
+	import topic from './topicLookup.json';
 
 	let defaultLoc = 'Manchester';
 
@@ -12,7 +12,7 @@
 		rgn: {name: 'Region', pl: 'Regions'},
 		ctry: {name: 'Country', pl: 'Countries'}
 	};
-	let options, selected, place, quartiles;
+	var options, selected, place, quartiles, eng, rgncode, rgn;
 
 	let load = false
     const onRosaeNlgLoad = () => { load = true }
@@ -28,27 +28,35 @@
 		loadArea(selected.code)
 	});
 	function loadArea(code) {
-		fetch("https://raw.githubusercontent.com/theojolliffe/census-data/main/json/place/" + code + '.json')
+		fetch("https://raw.githubusercontent.com/theojolliffe/census-data/main/json/place/" + code + ".json")
 		.then(res => res.json())
 		.then(json => {
 			json.children = options.filter(d => d.parent == code);
 			json.siblings = options.filter(d => d.parent == json['parents'][0]['code']);
 			quartiles = null;
 			place = json;
+			rgncode = place.parents[0].code
 			console.log("Place", place)
+			fetch("https://raw.githubusercontent.com/theojolliffe/census-data/main/json/place/" + rgncode + ".json")
+			.then(res => res.json())
+			.then(json => {
+				json.children = options.filter(d => d.parent == code);
+				json.siblings = options.filter(d => d.parent == json['parents'][0]['code']);
+				quartiles = null;
+				rgn = json;
+			})
+		})
+		fetch("https://raw.githubusercontent.com/theojolliffe/census-data/main/json/place/E92000001.json")
+		.then(res => res.json())
+		.then(json => {
+			json.children = options.filter(d => d.parent == code);
+			json.siblings = options.filter(d => d.parent == json['parents'][0]['code']);
+			quartiles = null;
+			eng = json;
 		})
 	}
+	
 
-	let triples = [['population_all', 'value_change', 28.08],
- ['population_all', 'value_change_localRank', 1],
- ['health_good', 'perc_change', 15.87],
- ['health_good', 'perc_change_localRank', 1],
- ['ethnicity_white', 'perc_change', -14.33],
- ['ethnicity_white', 'perc_change_localRank', -1],
- ['agemed_all', 'value_change', -5.88],
- ['agemed_all', 'value_change_localRank', -1],
- ['economic_student', 'perc_change', 2.67],
- ['economic_student', 'perc_change_localRank', 1]]
 
 	let grewSyn = {
 		1: "ballooned",
@@ -57,43 +65,155 @@
 		4: "shrunk",
 		5: "fell sharply"
 	}
-	let num_words = {'one in two': 0.5, 'one in three': 0.333, 'one in four': 0.25, 'one in five': 0.2, 'one in six': 0.167, 'one in seven': 0.143, 'one in eight': 0.125, 'one in nine': 0.111, '1 in 10': 0.1,'1 in 11' : 0.09, '1 in 12' : 0.083, '1 in 13' : 0.077, '1 in 14' : 0.071, '1 in 15' : 0.067, '1 in 16' : 0.063, '1 in 17' : 0.059, '1 in 18' : 0.056, '1 in 19' : 0.053 ,'1 in 20': 0.05, '2 in 10': 0.2, '3 in 10': 0.3, '4 in 10': 0.4, '6 in 10': 0.6, '7 in 10': 0.7, '8 in 10': 0.8, '9 in 10': 0.9, 'all': 1.0, 'quarter of a million': 250000, 'half a million': 500000, 'three quarters of a million': 750000}
-	function get_word(fraction) {
+	let num_word = {'one': 1, 'quarter of a million': 250000, 'half a million': 500000, 'three quarters of a million': 750000};
+
+	let frac_word = {'one in two': 0.5, 'one in three': 0.333, 'one in four': 0.25, 'one in five': 0.2, 'one in six': 0.167, 'one in seven': 0.143, 'one in eight': 0.125, 'one in nine': 0.111, '1 in 10': 0.1,'1 in 11' : 0.09, '1 in 12' : 0.083, '1 in 13' : 0.077, '1 in 14' : 0.071, '1 in 15' : 0.067, '1 in 16' : 0.063, '1 in 17' : 0.059, '1 in 18' : 0.056, '1 in 19' : 0.053 ,'1 in 20': 0.05, '2 in 10': 0.2, '3 in 10': 0.3, '4 in 10': 0.4, '6 in 10': 0.6, '7 in 10': 0.7, '8 in 10': 0.8, '9 in 10': 0.9, 'all': 1.0};
+
+	function get_word(num, dict) {
+		if (dict == "frac") {
+			dict = frac_word
+		} else if (dict == "num") {
+			dict = num_word
+		}
 		let OverUnder;
 		let lowest = 2000000;
 		let lowest_label;
-		for (const label in num_words) {
-			if (Math.abs(fraction-num_words[label])<lowest) {
-				lowest = Math.abs(fraction-num_words[label]) 
+		for (const label in dict) {
+			if (Math.abs(num-dict[label])<lowest) {
+				lowest = Math.abs(num-dict[label]) 
 				lowest_label = label
-				if (fraction-num_words[label]==0) {
-					OverUnder = 0; 
+				if (num-dict[label]==0) {
+					OverUnder = "about"; 
 				}
-				else if (fraction-num_words[label]>0) {
-					OverUnder = 1;
+				else if (num-dict[label]>0) {
+					OverUnder = "just over";
 				}
-				else if (fraction-num_words[label]<0) {
-					OverUnder = -1;
+				else if (num-dict[label]<0) {
+					OverUnder = "just under";
 				} } }
 		return [OverUnder, lowest_label]
 	}
+	function figs(x) {
+		let sigfig = Number.parseFloat(Number.parseFloat(x).toPrecision(2))
+		let text;
+		if (x-sigfig<-x/100) {
+			text = "under "
+		}	
+		if (x-sigfig<-x/200) {
+			if (Math.round(Math.random())==1) {
+				text = "almost "
+			} else {
+				text = "just under "
+			}
+		}
+		else if (x-sigfig>x/100) {
+			text = "over "
+		}
+		else if (x-sigfig>x/200) {
+			text = "just over "
+		}
+		else {
+			text = "about "
+		}
+		return [text, sigfig];
+	}
+	let chains = {
+		'good': ['bad', 'fair'],
+		'white': ['black', 'asian'],
+		'rented_private': ['rented_social', 'owned']
+	}
 
 	function results(place) {
-		let s = place.stories.map(d => d.label.split("_"))
+		var s = place.stories.map(d => d.label.split("_"))
+		s.forEach(e => {
+			if (e.length>4) {
+				e[3] = e[3]+"_"+e[4]
+				e.pop()
+			}
+		});
 		console.log('s', s)
+
+		function otherEst(i, hiLo, type) {
+			if (typeof hiLo==="number" & hiLo<0) {
+				hiLo = "highest"
+			} else if (typeof hiLo==="number") {
+				hiLo = "lowest"
+			}
+			console.log("I", i)
+			console.log('typaaae', type)
+			console.log('typeee', place.data[s[i][0]][s[i][1]+'_rank_local'])
+			console.log("type", place.data[s[i][0]][s[i][1]+'_rank_local'][type])
+			let optAr = Object.assign({}, place.data[s[i][0]][s[i][1]+'_rank_local'][type]);
+			console.log('optarrrr', optAr)
+			let l = new Set(chains[s[i][3]])
+			for (let prop of Object.keys(optAr)) {
+				if (!l.has(prop)) {
+					delete optAr[prop];
+				}
+			}
+			let optArKey
+			if (hiLo=='lowest') {
+				for (let [k, v] of Object.entries(optAr)) {
+					if (v > 0) {
+						delete optAr[k];
+					}
+				}
+				optArKey = Object.keys(optAr).reduce((a, b) => optAr[a] > optAr[b] ? a : b);
+			}
+			if (hiLo=='highest') {
+				for (let [k, v] of Object.entries(optAr)) {
+					if (v < 0) {
+						delete optAr[k];
+					}
+				}
+				optArKey = Object.keys(optAr).reduce((a, b) => optAr[a] < optAr[b] ? a : b);
+			}
+			console.log("optArKey", optArKey)
+			return optArKey
+		}
+
+		function cur(i, type) {
+			if (type=="rl") {
+				type = "_rank_local"
+			} else if (type=="r") {
+				type = "_rank"
+			} else {
+				type = ""
+			}
+			return place.data[s[i][0]][s[i][1]+type][2011][s[i][3]]
+		}
+		function cha(i, type) {
+			if (type=="rl") {
+				type = "_rank_local"
+			} else if (type=="r") {
+				type = "_rank"
+			} else {
+				type = ""
+			}
+			return place.data[s[i][0]][s[i][1]+type]['change'][s[i][3]]
+		}
+
+
 		let locRank = s.map(d => parseInt(place.data[d[0]][d[1]+"_rank_local"][d[2]][d[3]]))
-		console.log('locrank', locRank)
 		return rosaenlg_en_US.render(string, {
 			language: 'en_UK',
 			place: place,
 			data: place.data,
+			eng: eng,
+			rgn: rgn,
 			parent: uncap1(regionThe(place.parents[0].name)),
 			s: s,
 			priorities: place.Priorities,
 			grewSyn: grewSyn,
 			locRank: locRank,
 			topic: topic,
-			get_word: get_word
+			chains: chains,
+			country: "England",
+			get_word: get_word,
+			figs: figs,
+			otherEst: otherEst,
+			cur: cur,
+			cha: cha
 		})
 	}
 </script>
@@ -104,10 +224,14 @@
 
 {#if place}
 	{#if load}
-		<main>
-			<h1>{place.name}: What's changed</h1>
-			{@html results(place)}
-		</main>
+		{#if eng}	
+			{#if rgn}	
+				<main>
+					<h1>{place.name}: What's changed</h1>
+					{@html results(place)}
+				</main>
+			{/if}
+		{/if}
 	{/if}
 {/if}
 
