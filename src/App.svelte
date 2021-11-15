@@ -1,7 +1,7 @@
 <script>
 	import { getData, uncap1, regionThe } from "./utils";
     import string from './strings.js';
-	import topic from './topicLookup.json';
+	import topics from './topicLookup.json';
 
 	let defaultLoc = 'Manchester';
 
@@ -65,6 +65,8 @@
 		4: "shrunk",
 		5: "fell sharply"
 	}
+	let gssLookup = {"E09": "London borough", "E08": "metropolitan district", "E07": "district", "E06": "unitary authority"};
+
 	let num_word = {'one': 1, 'quarter of a million': 250000, 'half a million': 500000, 'three quarters of a million': 750000};
 
 	let frac_word = {'one in two': 0.5, 'one in three': 0.333, 'one in four': 0.25, 'one in five': 0.2, 'one in six': 0.167, 'one in seven': 0.143, 'one in eight': 0.125, 'one in nine': 0.111, '1 in 10': 0.1,'1 in 11' : 0.09, '1 in 12' : 0.083, '1 in 13' : 0.077, '1 in 14' : 0.071, '1 in 15' : 0.067, '1 in 16' : 0.063, '1 in 17' : 0.059, '1 in 18' : 0.056, '1 in 19' : 0.053 ,'1 in 20': 0.05, '2 in 10': 0.2, '3 in 10': 0.3, '4 in 10': 0.4, '6 in 10': 0.6, '7 in 10': 0.7, '8 in 10': 0.8, '9 in 10': 0.9, 'all': 1.0};
@@ -120,7 +122,10 @@
 	let chains = {
 		'good': ['bad', 'fair'],
 		'white': ['black', 'asian'],
-		'rented_private': ['rented_social', 'owned']
+		'rented_private': ['rented_social', 'owned'],
+		'inactive': ['employee', 'unemployed', 'self-employed'],
+		'car_van': ['bus', 'train_metro', 'foot', 'home'],
+		'OnePerson': ['MarriedWKids', 'MarriedNKids', 'LoneWKids']
 	}
 
 	function results(place) {
@@ -132,6 +137,15 @@
 			}
 		});
 		console.log('s', s)
+		function topic(i, top) {
+			let ttop
+			if (top) {
+				ttop = top
+			} else {
+				ttop = s[i][3]
+			}
+			return topics[s[i][0]+"_"+ttop]
+		}
 
 		function otherEst(i, hiLo, type) {
 			if (typeof hiLo==="number" & hiLo<0) {
@@ -139,12 +153,7 @@
 			} else if (typeof hiLo==="number") {
 				hiLo = "lowest"
 			}
-			console.log("I", i)
-			console.log('typaaae', type)
-			console.log('typeee', place.data[s[i][0]][s[i][1]+'_rank_local'])
-			console.log("type", place.data[s[i][0]][s[i][1]+'_rank_local'][type])
 			let optAr = Object.assign({}, place.data[s[i][0]][s[i][1]+'_rank_local'][type]);
-			console.log('optarrrr', optAr)
 			let l = new Set(chains[s[i][3]])
 			for (let prop of Object.keys(optAr)) {
 				if (!l.has(prop)) {
@@ -168,7 +177,6 @@
 				}
 				optArKey = Object.keys(optAr).reduce((a, b) => optAr[a] < optAr[b] ? a : b);
 			}
-			console.log("optArKey", optArKey)
 			return optArKey
 		}
 
@@ -193,8 +201,11 @@
 			return place.data[s[i][0]][s[i][1]+type]['change'][s[i][3]]
 		}
 
+		let locRankCha = s.map(d => parseInt(place.data[d[0]][d[1]+"_rank_local"][d[2]][d[3]]))
+		let natRankCha = s.map(d => parseInt(place.data[d[0]][d[1]+"_rank"][d[2]][d[3]]))
+		let locRankCur = s.map(d => parseInt(place.data[d[0]][d[1]+"_rank_local"]['2011'][d[3]]))
+		let natRankCur = s.map(d => parseInt(place.data[d[0]][d[1]+"_rank"]['2011'][d[3]]))
 
-		let locRank = s.map(d => parseInt(place.data[d[0]][d[1]+"_rank_local"][d[2]][d[3]]))
 		return rosaenlg_en_US.render(string, {
 			language: 'en_UK',
 			place: place,
@@ -205,7 +216,11 @@
 			s: s,
 			priorities: place.Priorities,
 			grewSyn: grewSyn,
-			locRank: locRank,
+			locRankCha: locRankCha,
+			natRankCha: natRankCha,
+			locRankCur: locRankCur,
+			natRankCur: natRankCur,
+			hiRank: place.hiRank,
 			topic: topic,
 			chains: chains,
 			country: "England",
@@ -213,7 +228,8 @@
 			figs: figs,
 			otherEst: otherEst,
 			cur: cur,
-			cha: cha
+			cha: cha,
+			gssLookup: gssLookup
 		})
 	}
 </script>
