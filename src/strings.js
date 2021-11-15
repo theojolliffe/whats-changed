@@ -305,7 +305,7 @@ mixin nowHasReg(i)
         if (data[s[i][0]][s[i][1]+'_rank_local']['2011'][otherEst(i, 'lowest', '2011')]==-1)
             | and the 
             | lowest proportion of
-            | #[+value(topic[s[i][0]+"_"+otherEst(i, 'lowest', '2011')].adj_noun)]
+            | #[+value(topic(i, otherEst(i, 'lowest', '2011')).adj_noun)]
     | .
 
 // The considerable improvement has brought health in Manchester close to the national average (about 81% in England described their health as good in 2021).
@@ -408,8 +408,16 @@ p Standfirst placeholder
 | #[+para(0)]
 | #[+para(1)]
 | #[+para(2)]
-| #[+para(3)]
-| #[+para(4)]
-| #[+para(5)]
-| #[+para(6)]
+if (s.length>3)
+    | #[+para(3)]
+if (s.length>4)
+    | #[+para(4)]
+if (s.length>5)
+    | #[+para(5)]
+if (s.length>6)
+    | #[+para(6)]
+if (s.length>7)
+    | #[+para(7)]
+if (s.length>8)
+    | #[+para(8)]
 `

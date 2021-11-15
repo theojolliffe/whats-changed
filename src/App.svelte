@@ -2,8 +2,10 @@
 	import { getData, uncap1, regionThe } from "./utils";
     import string from './strings.js';
 	import topics from './topicLookup.json';
+	import Select from "./ui/Select.svelte";
+	import Warning from "./ui/Warning.svelte";
 
-	let defaultLoc = 'Manchester';
+	let defaultLoc = 'Barnet';
 
 	const types = {
 		ew: {name: '', pl: ''},
@@ -23,6 +25,8 @@
 			d.typepl = types[d.type].pl;
 			d.typenm = types[d.type].name;
 		});
+		res = res.filter(d => d['type']=='lad')
+		console.log("RES", res)
 		options = res.sort((a, b) => a.name.localeCompare(b.name));
 		selected = options.find(d => d.name == defaultLoc);
 		loadArea(selected.code)
@@ -121,11 +125,15 @@
 	}
 	let chains = {
 		'good': ['bad', 'fair'],
+		'bad': ['good', 'fair'],
 		'white': ['black', 'asian'],
 		'rented_private': ['rented_social', 'owned'],
 		'inactive': ['employee', 'unemployed', 'self-employed'],
+		'self-employed': ['employee', 'unemployed', 'inactive'],
+		'employee': ['inactive', 'unemployed', 'self-employed'],'unemployed': ['employee', 'inactive', 'self-employed'],
 		'car_van': ['bus', 'train_metro', 'foot', 'home'],
-		'OnePerson': ['MarriedWKids', 'MarriedNKids', 'LoneWKids']
+		'OnePerson': ['MarriedWKids', 'MarriedNKids', 'LoneWKids'],
+		'Christian': ['Muslim', 'No religion']
 	}
 
 	function results(place) {
@@ -237,19 +245,26 @@
 <svelte:head>
 	<script src="https://unpkg.com/rosaenlg@3.0.1/dist/rollup/rosaenlg_tiny_en_US_3.0.1_comp.js" on:load="{onRosaeNlgLoad}"></script>
 </svelte:head>
-
-{#if place}
-	{#if load}
-		{#if eng}	
-			{#if rgn}	
-				<main>
-					<h1>{place.name}: What's changed</h1>
-					{@html results(place)}
-				</main>
+<Warning/>
+<div>
+	<div style="width: 640px; margin: 50px auto;">
+		<Select {options} bind:selected group="typenm" search={true} on:select="{() => { if (selected) { loadArea(selected.code) }}}"/>
+	</div>
+</div>
+<div>
+	{#if place}
+		{#if load}
+			{#if eng}	
+				{#if rgn}	
+					<main>
+						<h1>{place.name}: What's changed</h1>
+						{@html results(place)}
+					</main>
+				{/if}
 			{/if}
 		{/if}
 	{/if}
-{/if}
+</div>
 
 <style>
 	main {
