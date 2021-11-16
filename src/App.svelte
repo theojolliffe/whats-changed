@@ -6,7 +6,7 @@
 	import { onMount } from 'svelte';
 	import robojournalist from 'robojournalist';
 
-	let defaultLoc = 'Manchester';
+	let defaultLoc = 'Manchester'; // Basingstoke and Deane
 	
     var topics;
     fetch("./archie.aml")
@@ -178,29 +178,81 @@
 	}
 
 	function cur(i, type) {
-			if (type=="rl") {
-				type = "_rank_local"
-			} else if (type=="r") {
-				type = "_rank"
-			} else {
-				type = ""
-			}
-			return place.data[s[i][0]][s[i][1]+type][2011][s[i][3]]
+		if (type=="rl") {
+			type = "_rank_local"
+		} else if (type=="r") {
+			type = "_rank"
+		} else {
+			type = ""
 		}
-		function cha(i, type) {
-			if (type=="rl") {
-				type = "_rank_local"
-			} else if (type=="r") {
-				type = "_rank"
-			} else {
-				type = ""
-			}
-			return place.data[s[i][0]][s[i][1]+type]['change'][s[i][3]]
+		return place.data[s[i][0]][s[i][1]+type][2011][s[i][3]]
+	}
+
+	function cha(i, type) {
+		if (type=="rl") {
+			type = "_rank_local"
+		} else if (type=="r") {
+			type = "_rank"
+		} else {
+			type = ""
 		}
-		function qui(n) {
-			return Math.ceil(5*n/331)
+		return place.data[s[i][0]][s[i][1]+type]['change'][s[i][3]]
+	}
+
+	function qui(n) {
+		return Math.ceil(5*n/331)
+	}
+
+	function otherEst(i, hiLo, type) {
+		if (typeof hiLo==="number" & hiLo<0) {
+			hiLo = "highest"
+		} else if (typeof hiLo==="number") {
+			hiLo = "lowest"
 		}
 		
+		let optAr = Object.assign({}, place.data[s[i][0]][s[i][1]+'_rank_local'][type]);
+		let l = new Set(chains[s[i][3]])
+
+		for (let prop of Object.keys(optAr)) {
+			if (!l.has(prop)) {
+				delete optAr[prop];
+			}
+		}
+		let optArKey
+		if (Object.keys(optAr).length>1) {
+			if (hiLo=='lowest') {
+				for (let [k, v] of Object.entries(optAr)) {
+					if (v > 0) {
+						delete optAr[k];
+					}
+				}
+				optArKey = Object.keys(optAr).reduce((a, b) => optAr[a] > optAr[b] ? a : b);
+			}
+			if (hiLo=='highest') {
+				for (let [k, v] of Object.entries(optAr)) {
+					if (v < 0) {
+						delete optAr[k];
+					}
+				}
+				optArKey = Object.keys(optAr).reduce((a, b) => optAr[a] < optAr[b] ? a : b);
+			}
+		} else {
+			optArKey = Object.keys(optAr)
+		}
+		return optArKey
+	}
+
+	function otherRank(i, t) {
+		return place.data[s[i][0]][s[i][1]+'_rank_local']['change'][otherEst(i, cha(i, "rl"), 'change')]
+	}
+
+	function ud(n, w1, w2) { if (n<0) { return w2 } else { return w1 } }
+	var city
+	if (parent=="London") {
+		city = "city"
+	} else {
+		city = "region"
+	}
 
 	function standfirst(place) {
 		let sf = []
@@ -235,49 +287,6 @@
 			})
 		}
 		iterate(topics)
-
-		function otherEst(i, hiLo, type) {
-			
-			if (typeof hiLo==="number" & hiLo<0) {
-				hiLo = "highest"
-			} else if (typeof hiLo==="number") {
-				hiLo = "lowest"
-			}
-			
-			let optAr = Object.assign({}, place.data[s[i][0]][s[i][1]+'_rank_local'][type]);
-			let l = new Set(chains[s[i][3]])
-
-			for (let prop of Object.keys(optAr)) {
-				if (!l.has(prop)) {
-					delete optAr[prop];
-				}
-			}
-			let optArKey
-			if (Object.keys(optAr).length>1) {
-				if (hiLo=='lowest') {
-					for (let [k, v] of Object.entries(optAr)) {
-						if (v > 0) {
-							delete optAr[k];
-						}
-					}
-					optArKey = Object.keys(optAr).reduce((a, b) => optAr[a] > optAr[b] ? a : b);
-				}
-				if (hiLo=='highest') {
-					for (let [k, v] of Object.entries(optAr)) {
-						if (v < 0) {
-							delete optAr[k];
-						}
-					}
-					optArKey = Object.keys(optAr).reduce((a, b) => optAr[a] < optAr[b] ? a : b);
-				}
-			} else {
-				optArKey = Object.keys(optAr)
-			}
-			return optArKey
-		}
-
-
-
 
 		console.log('topics', topics)
 		function topic(i, top) {
@@ -318,7 +327,10 @@
 			cur: cur,
 			cha: cha,
 			qui: qui,
-			cap,cap
+			cap,cap,
+			otherRank: otherRank,
+			ud: ud,
+			city: city
 		})
 	}
 	function goTop() {
@@ -336,7 +348,7 @@
 			font-size: 3rem;
 			font-weight: 600;
 			margin-bottom: 80px;`)
-		}, 600)
+		}, 1000)
 	})
 </script>
 

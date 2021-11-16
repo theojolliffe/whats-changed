@@ -201,49 +201,50 @@ mixin inRegion
         syn
             | anywhere else in
 
+mixin topRank(i)
+    if (cha(i, "r")<0)
+        | decreasing
+    else
+        | increasing
+    | faster here than #[+inRegion] #[+value(country)]
+    if (Math.abs(cur(i, "r"))<11)
+        | #[+nowHasCou(i)]
+    else
+        | #[+considImprov(i)]
+
+mixin topRankLoc(i)
+    if (cha(i, "rl")<0)
+        | decreasing
+    else
+        | increasing
+    | faster here than #[+inRegion] #[+value(parent)]
+    // Does another subtopic rank first for size of change?
+    if ((Math.abs(otherRank(i))==1)&(!hasSaid('OtherChange')))
+        | , while the percentage of 
+        | #[+value(topic(i, otherEst(i, cha(i, "rl"), 'change')).adj_noun)] is 
+        | #[+value(ud(otherRank(i), 'falling', 'growing'))]
+        | faster than anywhere else in the #[+value(city)]
+        if ((i!=hiRank.rankIn)&(s[i][0]!='health'))
+            p #[+nowHasReg(i)] 
+        recordSaid('OtherChange')
+    else
+        | .
+        if (Math.abs(cur(i, "rl"))<6)
+            | As a result, #[+nowHasReg(i)]
+            if ((i!=hiRank.rankIn)&(s[i][0]!='health'))
+                p #[+nextHighest(i)]
+        else
+                | #[+considImprov(i)]
+
 // The percentage of healthy residents is increasing faster here than in any other local authority district across England.
 mixin sent3Perc(i)
-    | The percentage of 
-    | #[+value(topic(i).adj_noun)] 
-    | is 
-    if (Math.abs(cha(i, "rl"))==1)
-        if (cha(i, "rl")<0)
-            | decreasing
-        else
-            | increasing 
-        | faster here than #[+inRegion]
-        if (cha(i, "r")==1) 
-            | #[+value(country)]
-            | .
-            if (Math.abs(cur(i, "r"))<11)
-                | #[+nowHasCou(i)]
-            else
-                | #[+considImprov(i)]
-        else
-            | #[+value(parent)]
-            if ((Math.abs(data[s[i][0]][s[i][1]+'_rank_local']['change'][otherEst(i, cha(i, "rl"), 'change')])==1)&(!hasSaid('OtherChange')))
-                | , while the percentage of 
-                | #[+value(topic(i, otherEst(i, cha(i, "rl"), 'change')).adj_noun)] is
-                if (data[s[i][0]][s[i][1]+'_rank_local']['change'][otherEst(i, cha(i, "rl"), 'change')]<0)
-                    | falling
-                else 
-                    | growing 
-                | faster than anywhere in 
-                if (parent=="London")
-                    | the city.
-                else
-                    | the region.
-                if ((i!=hiRank.rankIn)&(s[i][0]!='health'))
-                    p #[+nowHasReg(i)] 
-                recordSaid('OtherChange')
-            else
-                | .
-                if (Math.abs(cur(i, "rl"))<6)
-                    | As a result, #[+nowHasReg(i)]
-                    if ((i!=hiRank.rankIn)&(s[i][0]!='health'))
-                        p #[+nextHighest(i)]
-                else
-                    | #[+considImprov(i)]
+    | The percentage of #[+value(topic(i).adj_noun)] is 
+    if (Math.abs(cha(i, "r"))==1)
+        | #[+topRank(i)]
+    else if (Math.abs(cha(i, "rl"))==1)
+        | #[+topRankLoc(i)] 
+    else
+        | This area isn't ranked first in this region
 
 // Blackburn with Darwen has the region's next lowest proportion of residents from a White ethnic group (69.2%), while 90.1% in nearby Salford are from a White ethnic group.
 mixin nextHighest(i)
@@ -390,35 +391,35 @@ mixin para(i)
         if (s[i][0]=='health')
             p #[+healthExplain]
 
-| #[+para(0)]
-h4 This is a placeholder title for the chart that will be placed below
-div#visph Data visualisation placeholder
-| #[+para(1)]
-h4 This is a placeholder title for the chart that will be placed below
-div#visph Data visualisation placeholder
-| #[+para(2)]
-h4 This is a placeholder title for the chart that will be placed below
-div#visph Data visualisation placeholder
-if (s.length>3)
-    | #[+para(3)]
-    h4 This is a placeholder title for the chart that will be placed below
-    div#visph Data visualisation placeholder
-if (s.length>4)
-    | #[+para(4)]
-    h4 This is a placeholder title for the chart that will be placed below
-    div#visph Data visualisation placeholder
-if (s.length>5)
-    | #[+para(5)]
-    h4 This is a placeholder title for the chart that will be placed below
-    div#visph Data visualisation placeholder
-if (s.length>6)
-    | #[+para(6)]
-    h4 This is a placeholder title for the chart that will be placed below
-    div#visph Data visualisation placeholder
-if (s.length>7)
-    | #[+para(7)]
-    h4 This is a placeholder title for the chart that will be placed below
-    div#visph Data visualisation placeholder
+//- | #[+para(0)]
+//- h4 This is a placeholder title for the chart that will be placed below
+//- div#visph Data visualisation placeholder
+//- | #[+para(1)]
+//- h4 This is a placeholder title for the chart that will be placed below
+//- div#visph Data visualisation placeholder
+//- | #[+para(2)]
+//- h4 This is a placeholder title for the chart that will be placed below
+//- div#visph Data visualisation placeholder
+//- if (s.length>3)
+//-     | #[+para(3)]
+//-     h4 This is a placeholder title for the chart that will be placed below
+//-     div#visph Data visualisation placeholder
+//- if (s.length>4)
+//-     | #[+para(4)]
+//-     h4 This is a placeholder title for the chart that will be placed below
+//-     div#visph Data visualisation placeholder
+//- if (s.length>5)
+//-     | #[+para(5)]
+//-     h4 This is a placeholder title for the chart that will be placed below
+//-     div#visph Data visualisation placeholder
+//- if (s.length>6)
+//-     | #[+para(6)]
+//-     h4 This is a placeholder title for the chart that will be placed below
+//-     div#visph Data visualisation placeholder
+//- if (s.length>7)
+//-     | #[+para(7)]
+//-     h4 This is a placeholder title for the chart that will be placed below
+//-     div#visph Data visualisation placeholder
 if (s.length>8)
     | #[+para(8)]
     h4 This is a placeholder title for the chart that will be placed below
