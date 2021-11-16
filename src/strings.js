@@ -1,12 +1,25 @@
 export default`
-// mixin standfirst1
-//     | #[+value(place.name)]'s 
-//     | #[+value(topic[s[0][0]+"_"+s[0][3]].subject)]
-//     | #[+value(grewSyn[Math.ceil((5*locRank[0])/336)])]
-//     | in the 10 years following the 2011 Census.
-
-// mixin standfirst2
-//     | Here are some of Amber Valley’s most notable changes.
+mixin standfirst1
+    // | #[+value(topic[s[0][0]+"_"+s[0][3]].subject)]
+    // | #[+value(grewSyn[Math.ceil((5*locRank[0])/336)])]
+    // | in the 10 years following the 2011 Census.
+    p 
+        | #[+value(place.name)]'s
+        | #[+value(topic(0).subject)]
+        | #[+value(grewSyn[qui(natRankCha[0])])] 
+        | in the 10 years leading up to the most recent Census. 
+        | This coincided with a 
+        if (changeMag>30)
+            | remarkable 
+        else if (changeMag>20)
+            | considerable
+        | transformation of the 
+        | #[+value(place.classification)]'s 
+        eachz sfi in sf.slice(1,) with { separator: ',', last_separator: 'and' }
+            | #{topics[sfi[0]].general}
+        | .
+    p Here are some of the most notable changes from across the 
+        | #[+value(place.gss)].
 
 // Population passes half a million
 mixin subheadVal(i)
@@ -346,7 +359,7 @@ mixin considImprov(i)
 mixin overtake(i)
     | During this period, 
     | the 
-    | #[+value(gssLookup[place.code.slice(0,3)])] 
+    | #[+value(place.gss)] 
     | overtook 
     if (data[s[i][0]][s[i][1]+'_rank_local']['overtake'][s[i][3]].length<4)
         eachz item in data[s[i][0]][s[i][1]+'_rank_local']['overtake'][s[i][3]] with { separator: ',', last_separator: 'and' }
@@ -400,24 +413,20 @@ mixin para(i)
         if (s[i][0]=='health')
             p #[+healthExplain]
 
-// p
-//     | #[+standfirst1]
-// p
-//     | #[+standfirst2]
-p Standfirst placeholder
+| #[+standfirst1]
 | #[+para(0)]
 | #[+para(1)]
 | #[+para(2)]
-if (s.length>3)
-    | #[+para(3)]
-if (s.length>4)
-    | #[+para(4)]
-if (s.length>5)
-    | #[+para(5)]
-if (s.length>6)
-    | #[+para(6)]
-if (s.length>7)
-    | #[+para(7)]
-if (s.length>8)
-    | #[+para(8)]
+// if (s.length>3)
+//     | #[+para(3)]
+// if (s.length>4)
+//     | #[+para(4)]
+// if (s.length>5)
+//     | #[+para(5)]
+// if (s.length>6)
+//     | #[+para(6)]
+// if (s.length>7)
+//     | #[+para(7)]
+// if (s.length>8)
+//     | #[+para(8)]
 `
