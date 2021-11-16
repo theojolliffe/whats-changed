@@ -1,0 +1,232 @@
+// This coincided with a remarkable transformation of the city’s health, housing and ethnic makeup.
+tenure.general: housing
+health.general: health
+ethnicity.general: ethnic makeup
+economic.general: jobs
+travel.general: transport
+household.general: housing
+religion.general: religion
+care.general: health
+children.general: families
+hoursworked.general: jobs
+marital.general: families
+population.general: population
+agemed.general: average age
+
+// Giving it the greatest ***headcount*** of any local authority area in the North West of England.
+tenure.synonym: housing
+health.synonym: health
+ethnicity.synonym: ethnic makeup
+economic.synonym: jobs
+travel.synonym: transport
+household.synonym: housing
+religion.synonym: religion
+care.synonym: health
+children.synonym: families
+hoursworked.synonym: jobs
+marital.synonym: families
+population.all.synonym: headcount
+
+// In the 10 years leading up to the last census, the percentage of ***Manchester residents that rent privately*** increased from about 16% to over 28%.
+// The proportion of employed people in Manchester working long hours increased from from about 16% to over 28%.
+
+children.Kids.clausal_modifier: households in {plcname} with children
+children.NoKids.clausal_modifier: households in {plcname} without children
+children.NonDepKids.clausal_modifier: households in {plcname} with with only non-dependent children
+
+care.1to19hoursWeek.clausal_modifier: {plcname} residents that provide up to 19 hours of weekly care
+care.20to49hoursWeek.clausal_modifier: {plcname} residents that provide between 20 and 49 hours of weekly care
+care.40PlushoursWeek.clausal_modifier: {plcname} residents that provide at least 50 hours of weekly care
+
+marital.Single.clausal_modifier: single people in {plcname}
+marital.Married.clausal_modifier: people in {plcname} that are married
+marital.Seperated.clausal_modifier: people in {plcname} that have seperated from a married partner
+
+tenure.rented_private.clausal_modifier: people living in {plcname} that rent privately
+tenure.rented_social.clausal_modifier: people living in {plcname} residents that live in social housing
+tenure.owned.clausal_modifier: people living in {plcname} residents that own their home
+
+health.good.clausal_modifier: {plcname} residents that describe their health as good
+health.fair.clausal_modifier: {plcname} residents that describe their health as fair
+health.bad.clausal_modifier: {plcname} residents that describe their health as bad
+
+ethnicity.white.clausal_modifier: {plcname} residents from one of the White ethnic groups
+ethnicity.black.clausal_modifier: {plcname} residents from one of the Black ethnic groups
+ethnicity.asian.clausal_modifier: {plcname} residents from one of the Asian ethnic groups
+
+economic.employee.clausal_modifier: {plcname} residents that are in employment
+economic.inactive.clausal_modifier: {plcname} residents that are economically inactive
+economic.self-employed.clausal_modifier: {plcname} residents that are self-employed
+economic.unemployed.clausal_modifier: {plcname} residents that are unemployment
+economic.student.clausal_modifier: {plcname} residents that are studying
+
+travel.car_van.clausal_modifier: {plcname} residents that travel to work by car or van
+travel.bus.clausal_modifier: {plcname} residents that travel to work by bus
+travel.train_metro.clausal_modifier: {plcname} residents that travel to work by train
+travel.foot.clausal_modifier: {plcname} residents that walk to work
+travel.home.clausal_modifier: {plcname} residents that work from home
+
+household.Cohabiting.clausal_modifier: households {plcname} comprising a cohabiting couple
+household.LoneParent.clausal_modifier: households {plcname} comprising a single parent
+household.OnePerson.clausal_modifier: households {plcname} comprising a single person
+household.Married.clausal_modifier: households {plcname} comprising a married couple (with or without children)
+
+religion.Christian.clausal_modifier: {plcname} residents that describe themselves as Christian
+religion.Buddhist.clausal_modifier: {plcname} residents that describe themselves as Buddhist
+religion.Hindu.clausal_modifier: {plcname} residents that describe themselves as Hindu
+religion.Jewish.clausal_modifier: {plcname} residents that describe themselves as Jewish
+religion.Muslim.clausal_modifier: {plcname} residents that describe themselves as Muslim
+religion.Noreligion.clausal_modifier: {plcname} residents that have no religion
+
+hoursworked.Female1-15.clausal_modifier: employees that had worked less than 16 hours
+hoursworked.Female49plus.clausal_modifier: employees that had worked over 49 hours
+hoursworked.Male1-15.clausal_modifier: employed people in {plcname} working long hours
+hoursworked.Male49plus.clausal_modifier: employees that had worked over 49 hours 
+
+// Just over 3 in 10 (32%) ***said they live in social housing*** in 2021, compared with about 39% in 2011
+
+children.Kids.verb_past: households had at least one dependent child
+children.NoKids.verb_past: households had no children
+children.NonDepKids.verb_past: households had only non-dependent children (one or more)
+
+care.1to19hoursWeek.verb_past: reported providing up to 19 hours of unpaid care each week
+care.20to49hoursWeek.verb_past: reported providing between 20 and 49 hours of unpaid care each week
+care.40PlushoursWeek.verb_past: reported providing at least 50 hours of unpaid care each week
+
+marital.Single.verb_past: said they were single
+marital.Married.verb_past: said they were married
+marital.Seperated.verb_past: said they had divorced or broken up with their partner
+
+tenure.rented_private.verb_past: said they rent privately
+tenure.rented_social.verb_past: said they live in social housing"
+tenure.owned.verb_past: said they own their home
+
+health.good.verb_past: said their health was good
+health.fair.verb_past: said their health was fair
+health.bad.verb_past: said their health was bad
+
+ethnicity.white.verb_past: said they were from a White ethnic group
+ethnicity.black.verb_past: said they were from a Black ethnic group
+ethnicity.asian.verb_past: said they were from an Asian ethnic group
+
+economic.employee.verb_past: said they were employed
+economic.inactive.verb_past: said they were economically inactive
+economic.self-employed.verb_past: said they were self-employed
+economic.unemployed.verb_past: said they were unemployed
+economic.student.verb_past: said they were students
+
+travel.car_van.verb_past: said they commute by car or van
+travel.bus.verb_past: said they commute by bus
+travel.train_metro.verb_past: said they commute by train
+travel.foot.verb_past: said they walk to work
+travel.home.verb_past: said they work from home
+
+household.Cohabiting.verb_past: were cohabiting households
+household.LoneParent.verb_past: were single parent households
+household.OnePerson.verb_past: were single person households
+household.Married.verb_past: were married households
+
+religion.Christian.verb_past: said they were Christian
+religion.Buddhist.verb_past: said they were Buddhist
+religion.Hindu.verb_past: said they wereHindu
+religion.Jewish.verb_past: said they were Jewish
+religion.Muslim.verb_past: said they were Muslim
+religion.Noreligion.verb_past: said they had no religion
+
+hoursworked.Female1-15.verb_past: said they had worked less than 16 hours
+hoursworked.Female49plus.verb_past: said they had worked over 49 hours
+hoursworked.Male1-15.verb_past: said they had worked less than 16 hours
+hoursworked.Male49plus.verb_past: said they had worked over 49 hours 
+
+// The percentage of ***healthy residents*** is increasing faster here than in any other local authority district across England.
+
+children.Kids.adj_noun: homes with children
+children.NoKids.adj_noun: homes without children
+children.NonDepKids.adj_noun: homes with non-dependent children
+
+care.1to19hoursWeek.adj_noun: people providing up to 19 hours of weekly care
+care.20to49hoursWeek.adj_noun: people providing between 20 and 49 hours of weekly care
+care.40PlushoursWeek.adj_noun: people providing 50 hours, or more, of weekly care
+
+marital.Single.adj_noun: single people
+marital.Married.adj_noun: married people
+marital.Seperated.adj_noun: people who have seperated
+
+tenure.rented_private.adj_noun: private renters
+tenure.rented_social.adj_noun: people living in social housing
+tenure.owned.adj_noun: homeowners
+
+health.good.adj_noun: healthy residents
+health.fair.adj_noun: fairly healthy residents
+health.bad.adj_noun: unhealthy residents
+
+ethnicity.white.adj_noun: residents from a White ethnic group
+ethnicity.black.adj_noun: residents from a Black ethnic group
+ethnicity.asian.adj_noun: residents from an Asian ethnic group
+
+economic.employee.adj_noun: employed people
+economic.inactive.adj_noun: people who are economically inactive
+economic.self-employed.adj_noun: self-employed people
+economic.unemployed.adj_noun: unemployed people
+economic.student.adj_noun: students
+
+travel.car_van.adj_noun: car commuters
+travel.bus.adj_noun: bus commuters
+travel.train_metro.adj_noun: train commuters
+travel.foot.adj_noun: people that walk to work
+travel.home.adj_noun: homeworkers
+
+household.Cohabiting.adj_noun: households with an unmarried couple
+household.LoneParent.adj_noun: single parent households
+household.OnePerson.adj_noun: single person households
+household.Married.adj_noun: households with a married couple
+
+religion.Christian.adj_noun: Christian people
+religion.Buddhist.adj_noun: Buddhist people
+religion.Hindu.adj_noun: Hindu people
+religion.Jewish.adj_noun: Jewish people
+religion.Muslim.adj_noun: Muslim people
+religion.Noreligion.adj_noun: athiests
+
+hoursworked.Female1-15.adj_noun: said they had worked less than 16 hours
+hoursworked.Female49plus.adj_noun: said they had worked over 49 hours
+hoursworked.Male1-15.adj_noun: said they had worked less than 16 hours
+hoursworked.Male49plus.adj_noun: said they had worked over 49 hours 
+
+// Higher rate of ***economic inactivity***
+
+tenure.rented_private.topic: private renters
+tenure.rented_social.topic: people living in social housing
+tenure.owned.topic: homeowners
+
+health.good.topic: are from a White ethnic group
+health.fair.topic: fairly healthy residents
+health.bad.topic: unhealthy residents
+
+ethnicity.white.topic: are from a White ethnic group
+ethnicity.black.topic: are from a Black ethnic group
+ethnicity.asian.topic: are from an Asian ethnic group
+
+economic.employee.topic: employment
+economic.inactive.topic: economic inactivity
+economic.self-employed.topic: self-employment
+economic.unemployed.topic: unemployment
+economic.student.topic: students
+
+travel.car_van.topic: car commuters
+travel.bus.topic: bus commuters
+travel.train_metro.topic: train commuters
+travel.foot.topic: people that walk to work
+travel.home.topic: homeworkers
+
+household.Cohabiting.verb_past: were cohabiting households
+household.LoneParent.verb_past: were single parent households
+household.OnePerson.verb_past: were single person households
+household.Married.verb_past: were married households
+
+religion.Christian.topic: that describe themselves as Christian
+religion.Buddhist.topic: that describe themselves as Buddhist
+religion.Hindu.topic: that describe themselves as Hindu
+religion.Jewish.topic: that describe themselves as Jewish
+religion.Muslim.topic: that describe themselves as Muslim
+religion.Noreligion.topic: that have no religion

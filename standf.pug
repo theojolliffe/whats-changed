@@ -1,0 +1,21 @@
+mixin standfirst1
+    // | #[+value(topic[s[0][0]+"_"+s[0][3]].subject)]
+    // | #[+value(grewSyn[Math.ceil((5*locRank[0])/336)])]
+    // | in the 10 years following the 2011 Census.
+    p 
+        | #[+value(place.name)]'s
+        | #[+value(topics[s[0][0]].general)]
+        | #[+value(grewSyn[qui(natRankCha[0])])] 
+        | in the 10 years leading up to the most recent Census. 
+        | This coincided with a 
+        if (changeMag>30)
+            | remarkable 
+        else if (changeMag>20)
+            | considerable
+        | transformation of the 
+        | #[+value(place.classification)]'s 
+        eachz sfi in sf.slice(1,) with { separator: ',', last_separator: 'and' }
+            | #{topics[sfi[0]].general}
+        | .
+
+div#sf #[+standfirst1]
