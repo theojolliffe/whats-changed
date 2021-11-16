@@ -341,7 +341,7 @@
 </script>
 
 <svelte:head>
-	<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+	<script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
 	<script src="https://unpkg.com/rosaenlg@3.0.1/dist/rollup/rosaenlg_tiny_en_US_3.0.1_comp.js" on:load="{onRosaeNlgLoad}"></script>
 </svelte:head>
 <Warning/>
