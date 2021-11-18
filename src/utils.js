@@ -7,7 +7,7 @@ async function getData(url) {
   return data;
 }
 
-let array = ['South East', 'South West', 'East', 'West Midlands', 'East Midlands', 'North East', 'North West', 'Yorkshire and The Humber']
+let array = ['South East', 'South West', 'East', 'West Midlands', 'East Midlands', 'North East', 'North West']
 let regionThe = place => !array.includes(place) ? place : 'The ' + place;
 
 function uncap1(string) {

@@ -1,11 +1,23 @@
+
 // Population passes half a million
 mixin subheadVal(i)
-    | #[+value(cap(topics[s[i][0]].general))]
-    if (get_word(data[s[i][0]][s[i][1]]['2011'][s[i][3]], "num")[0]<1)
-        | nears 
+    if ([250000, 500000, 1000000].includes(Number.parseFloat(Number.parseFloat(cur(i)).toPrecision(2))))
+        | #[+value(cap(topics[s[i][0]].general))]
+        if (get_word(data[s[i][0]][s[i][1]]['2011'][s[i][3]], "num")[0]=="just under")
+            | nears 
+        else
+            | passes
+        | #[+value(get_word(data[s[i][0]][s[i][1]]['2011'][s[i][3]], "num")[1])]
     else
-        | passes
-    | #[+value(get_word(data[s[i][0]][s[i][1]]['2011'][s[i][3]], "num")[1])]
+        | Population
+        if ((cur(i)<(Number.parseFloat(Number.parseFloat(cur(i)).toPrecision(2)))))
+            | nears
+        else if (cur(i)>(Number.parseFloat(Number.parseFloat(cur(i))).toPrecision(2)))
+            | passes
+        else 
+            | reaches
+        |  #[+value(Number.parseFloat(Number.parseFloat(cur(i)).toPrecision(2)))]
+
 
 // A younger Manchester
 mixin subheadAge(i)
@@ -15,9 +27,9 @@ mixin subheadAge(i)
 mixin tenYears
   synz {mode:'sequence'}
     syn
-      | between the last two censuses
-    syn
       | in the decade to 2021
+    syn
+      | between the last two censuses
     syn
       | in the 10 years leading up to 2021
     syn
@@ -28,7 +40,7 @@ mixin tenYears
 // Between the last two censuses, the average age in Manchester fell by two years, from 34 to 32 years of age.
 mixin sent1Age(i)
     if (i==1)
-        | Census 2021 data also shows a shift in the local population's well-being.
+        | Census 2021 data also shows a shift in the local population's #[+value(synonym)].
     else
         | #[+tenYears],
     | the #[+value(topics[s[i][0]].general)] 
@@ -47,16 +59,13 @@ mixin sent3Age(i)
     | The drop in age was largely driven by an increase of nearly 50,000 people between the ages of 20 and 29 years, while the population over the age of 70 years decreased by almost two thousand.
 
 // In the decade to 2021, the population of Manchester rose by over 28% from 391,221 to 503,127, giving it the greatest headcount of any local authority area in the North West of England.
-mixin sent1Val(i)
-    if (i==1)
-        | Census 2021 data also shows a shift in the local population's well-being.
-    else
-        | #[+tenYears],    
+mixin sent1pop(i)
+    | #[+tenYears],
     | the #[+value(topics[s[0][0]].general)]
     | of #[+value(place.name)] 
     | rose 
     | #[+value(figs(place.stories[i].value)[0])]
-    | #[+value((figs(place.stories[i].value)[1])/100, {'FORMAT': '0[.]0%'})] 
+    | #[+value((figs(place.stories[i].value)[1])/100, {'FORMAT': '0.0%'})] 
     | from #[+value(figs(data[s[i][0]][s[i][1]][2001][s[i][3]])[0])]
     | #[+value(figs(data[s[i][0]][s[i][1]][2001][s[i][3]])[1])]
     | to #[+value(figs(data[s[i][0]][s[i][1]][2011][s[i][3]])[0])]
@@ -65,11 +74,11 @@ mixin sent1Val(i)
     if (data[s[i][0]][s[i][1]+'_rank_local'][2011][s[i][3]]>1)
         | #[+value(data[s[i][0]][s[i][1]+'_rank_local'][2011][s[i][3]], {'ORDINAL_TEXTUAL':true})]
     | greatest 
-    | #[+value(topics[s[i][0]][s[i][3]].synonym)] 
-    | of any local authority area in #[+value(parent)].
+    | #[+value(topics[s[i][0]].synonym)] 
+    | of any #[+value(place.gss.short)] in #[+value(parent)].
 
 // The addition of over 100,000 people means Manchester's population is also the fastest-growing in the North West and the second-fastest-growing across England. Only Tower Hamlets in London, with an increase of almost 30%, has a faster-growing population.
-mixin sent2Val(i)
+mixin sent2pop(i)
     | The 
     if (data[s[i][0]][s[i][1]][2011][s[i][3]]-data[s[i][0]][s[i][1]][2001][s[i][3]]<0)
         | loss
@@ -78,49 +87,54 @@ mixin sent2Val(i)
     | of 
     | #[+value(figs(data[s[i][0]][s[i][1]][2011][s[i][3]]-data[s[i][0]][s[i][1]][2001][s[i][3]], "num")[0])] 
     | #[+value(figs(data[s[i][0]][s[i][1]][2011][s[i][3]]-data[s[i][0]][s[i][1]][2001][s[i][3]], "num")[1])]
-    | people 
-    | means
-    | #[+value(place.name)]'s 
-    | population 
-    | is also the
+    | people means
+    | #[+value(place.name)]'s population  is the
     if (Math.abs(data[s[i][0]][s[i][1]+'_rank_local']['change'][s[i][3]])>1)
-        | #[+value(data[s[i][0]][s[i][1]+'_rank_local']['change'][s[i][3]], {'ORDINAL_TEXTUAL':true})]
+        | #[+value(Math.abs(data[s[i][0]][s[i][1]+'_rank_local']['change'][s[i][3]]), {'ORDINAL_TEXTUAL':true})]
     | fastest-growing 
-    | in the #[+value(parent)] 
-    | and the 
-    if (Math.abs(data[s[i][0]][s[i][1]+'_rank']['change'][s[i][3]])>1)
-        | #[+value(data[s[i][0]][s[i][1]+'_rank']['change'][s[i][3]], {'ORDINAL_TEXTUAL':true})]
-    | fastest-growing 
-    | across 
-    | #[+value(country)]. 
-    | Only 
-    | #[+value(Object.keys(data[s[i][0]][s[i][1]+'_rank']['top_bottom'][s[i][3]]['1.0']))]
-    | in London 
-    | , with an increase of almost 
-    | #[+value((figs(Object.values(data[s[i][0]][s[i][1]+'_rank']['top_bottom'][s[i][3]]['1.0']))[1])/100, {'FORMAT': '0[.]0%'})]
-    | , has a 
-    | faster-growing 
-    | population.
+    | in the #[+value(city)] 
+    if (Math.abs(data[s[i][0]][s[i][1]+'_rank']['change'][s[i][3]])<20)
+        if (Math.abs(data[s[i][0]][s[i][1]+'_rank']['change'][s[i][3]])>1)
+            | and the #[+value(Math.abs(data[s[i][0]][s[i][1]+'_rank']['change'][s[i][3]]), {'ORDINAL_TEXTUAL':true})]
+        | fastest-growing 
+        | across 
+        | #[+value(country)].
+    else
+        if (place.stories[i].value<(eng.data[s[i][0]][s[i][1]]['change'][s[i][3]]-1))
+            | but increasing at a slower rate than the total population of 
+        else if (place.stories[i].value>(eng.data[s[i][0]][s[i][1]]['change'][s[i][3]]+1))
+            | and increasing faster than the rate of population growth across 
+        else
+            | and increasing at a similar rate to the total population of
+        | #[+value(country)] (up #[+value((eng.data[s[i][0]][s[i][1]]['change'][s[i][3]])/100, {'FORMAT': '0.0%'} )] since the 2011 census).
+    //- | Only 
+    //- | #[+value(Object.keys(data[s[i][0]][s[i][1]+'_rank']['top_bottom'][s[i][3]]['1.0']))]
+    //- | in London 
+    //- | , with an increase of almost 
+    //- | #[+value((figs(Object.values(data[s[i][0]][s[i][1]+'_rank']['top_bottom'][s[i][3]]['1.0']))[1])/100, {'FORMAT': '0.0%'})]
+    //- | , has a 
+    //- | faster-growing 
+    //- | population.
 
 // For each football pitch-sized piece of land (about 7,140 square metres), Manchester is now home to, on average, about 31 people, compared to 24 in 2011.
-mixin density
-    | For each football pitch sized piece of land (about #[+value(7140)] square metres), #[+value(place.name)] is now home to, on average, about 
-    | #[+value(figs(0.714*data.density.value[2011].all)[1])] 
-    | people, compared to 
-    | #[+value(figs(0.714*data.density.value[2001].all)[1])] in 2011.
+mixin density 
+    | #[+value(place.name)] is now home to, on average, 
+    | #[+value(Number.parseFloat(Number.parseFloat(0.714*data.density.value[2011].all).toPrecision(2)))]
+    | people per football pitch-sized piece of land (about #[+value(7140)] square metres), compared to 
+    | #[+value(Number.parseFloat(Number.parseFloat(0.714*data.density.value[2001].all).toPrecision(2)))] in 2011.
 
 // Between 2011 and 2021, Manchester overtook Wiltshire and Liverpool to become England's eighth-most populated local authority.
-mixin sent4Val(i)
-    | Between 2011 and 2021, #[+value(place.name)] 
-    | overtook 
-    | #[+value(data[s[i][0]][s[i][1]+'_rank'].overtake[s[i][3]][0])] 
-    | and 
-    | #[+value(data[s[i][0]][s[i][1]+'_rank'].overtake[s[i][3]][1])] 
-    | to become #[+value(country)]'s
-    | #[+value(data.population.value_rank[2011].all, {'ORDINAL_TEXTUAL':true})]
-    | most 
-    | populated 
-    | local authority.
+mixin sent4Pop(i)
+    | Between 2011 and 2021, this #[+value(place.gss.short)] overtook 
+    if (data['density'][s[i][1]+'_rank']['overtake'][s[i][3]].length<4)
+        eachz item in data['density'][s[i][1]+'_rank']['overtake'][s[i][3]] with { separator: ',', last_separator: 'and' }
+            | #{item}
+    else if (data['density'][s[i][1]+'_rank']['overtake'][s[i][3]].length>3)
+        | #[+value(data['density'][s[i][1]+'_rank']['overtake'][s[i][3]].length)] areas, 
+        | including #[+value(data['density'][s[i][1]+'_rank']['overtake'][s[i][3]][0])] 
+        | and #[+value(data['density'][s[i][1]+'_rank']['overtake'][s[i][3]][1])]
+    | to become England's #[+value(Math.abs(data.population.value_rank[2011].all), {'ORDINAL_TEXTUAL':true})]
+    | most densely populated local authority.
 
 // Increasing ethnic diversity
 mixin subheadIncreasing(i)
@@ -129,7 +143,7 @@ mixin subheadIncreasing(i)
 // Health improves
 mixin subheadMore(i)
     | More 
-    | #[+value(topic(i).adj_noun)]
+    | #[+value(topic(i).subhead)]
 
 // Health improves
 mixin subheadEcon(i)
@@ -138,7 +152,11 @@ mixin subheadEcon(i)
 
 // Health improves
 mixin subheadPerc(i)
-    | Health improves
+    | Health 
+    if (cha(i)<0)
+        | deteriorates 
+    else
+        | improves
 
 //- mixin percOfRes(place)
 //-     synz {mode:'sequence'}
@@ -150,7 +168,7 @@ mixin subheadPerc(i)
 // In the 10 years leading up to the last census, the percentage of Manchester residents describing their health as good increased from just over 66% to about 80%.
 mixin sent1Perc(i)
     if (i==1)
-        | Census 2021 data also shows a shift in the local population's well-being.
+        | Census 2021 data also shows a shift in the local population's #[+value(topics[s[i][0]].synonym)].
     | the percentage of
     | #[+value(topic(i).clausal_modifier)] 
     if (cha(i)<0)
@@ -159,12 +177,12 @@ mixin sent1Perc(i)
         | increased 
     | from 
     | #[+value(figs(data[s[i][0]][s[i][1]][2001][s[i][3]])[0])]
-    | #[+value((figs(data[s[i][0]][s[i][1]][2001][s[i][3]])[1])/100, {'FORMAT': '0[.]0%'})]
+    | #[+value((figs(data[s[i][0]][s[i][1]][2001][s[i][3]])[1])/100, {'FORMAT': '0.0%'})]
     if (i==1)
         | in 2011
     | to 
     | #[+value(figs(cur(i))[0])]
-    | #[+value((figs(cur(i))[1])/100, {'FORMAT': '0[.]0%'})]
+    | #[+value((figs(cur(i))[1])/100, {'FORMAT': '0.0%'})]
     if (i!=1)
         | #[+tenYears]
     | .
@@ -173,14 +191,14 @@ mixin sent1Perc(i)
 mixin sent2Perc(i)
     | #[+value(get_word((data[s[i][0]][s[i][1]][2011][chains[s[i][3]][0]])/100, 'frac')[0])]
     | #[+value(get_word((data[s[i][0]][s[i][1]][2011][chains[s[i][3]][0]])/100, 'frac')[1])]
-    | (#[+value((figs(data[s[i][0]][s[i][1]][2011][chains[s[i][3]][0]])[1])/100, {'FORMAT': '0[.]0%'})])  
+    | (#[+value((figs(data[s[i][0]][s[i][1]][2011][chains[s[i][3]][0]])[1])/100, {'FORMAT': '0.0%'})])  
     | #[+value(topic(i, chains[s[i][3]][0]).verb_past)]
     | in 2021,
     | compared with
     | #[+value(figs(data[s[i][0]][s[i][1]][2001][chains[s[i][3]][0]])[0])]
-    | #[+value((figs(data[s[i][0]][s[i][1]][2001][chains[s[i][3]][0]])[1])/100, {'FORMAT': '0[.]0%'})]
+    | #[+value((figs(data[s[i][0]][s[i][1]][2001][chains[s[i][3]][0]])[1])/100, {'FORMAT': '0.0%'})]
     | in 2011. 
-    | The percentage 
+    | The percentage of
     | #[+value(topic(i, chains[s[i][3]][1]).clausal_modifier)] 
     if (data[s[i][0]][s[i][1]][2001][chains[s[i][3]][1]]>data[s[i][0]][s[i][1]][2011][chains[s[i][3]][1]])
         | decreased 
@@ -188,10 +206,10 @@ mixin sent2Perc(i)
         | increased
     | from 
     | #[+value(figs(data[s[i][0]][s[i][1]][2001][chains[s[i][3]][1]])[0])]
-    | #[+value((figs(data[s[i][0]][s[i][1]][2001][chains[s[i][3]][1]])[1])/100, {'FORMAT': '0[.]0%'})]
+    | #[+value((figs(data[s[i][0]][s[i][1]][2001][chains[s[i][3]][1]])[1])/100, {'FORMAT': '0.0%'})]
     | to 
     | #[+value(figs(data[s[i][0]][s[i][1]][2011][chains[s[i][3]][1]])[0])]
-    | #[+value((figs(data[s[i][0]][s[i][1]][2011][chains[s[i][3]][1]])[1])/100, {'FORMAT': '0[.]0%'})]
+    | #[+value((figs(data[s[i][0]][s[i][1]][2011][chains[s[i][3]][1]])[1])/100, {'FORMAT': '0.0%'})]
     | .
 
 mixin inRegion
@@ -201,28 +219,43 @@ mixin inRegion
         syn
             | anywhere else in
 
-mixin topRank(i)
-    if (cha(i, "r")<0)
-        | decreasing
-    else
-        | increasing
-    | faster here than #[+inRegion] #[+value(country)]
-    if (Math.abs(cur(i, "r"))<11)
-        | #[+nowHasCou(i)]
-    else
-        | #[+considImprov(i)]
+// The proportion of healthy residents in Manchester is growing at the third fastest rate of all local authority disricts across England.
+// The population of Manchester is becoming more healthy at the third fastest of all local authority districts across England.
 
+mixin topRank(i)
+    | The proportion of #[+value(topic(i).adj_noun)] is 
+    | #[+value(ud(cha(i, "r"), 'growing', 'falling'))]
+    if (Math.abs(cha(i, "r"))==1)
+        | faster here than #[+inRegion] #[+value(country)]
+    else 
+        | at the third fastest rate of all local authority districts across #[+value(country)]
+    if ((Math.abs(otherRank(i, 'cou'))==1)&(!hasSaid('OtherChange')))
+        | , while the percentage of 
+        | #[+value(topic(i, otherEst(i, cha(i, "r"), 'change')).adj_noun)] is 
+        | #[+value(ud(otherRank(i, 'cou'), 'increasing', 'decreasing'))]
+        | faster than anywhere else in the #[+value(city)].
+        if ((i!=hiRank.rankIn)&(s[i][0]!='health'))
+            p #[+nowHasReg(i)] 
+        recordSaid('OtherChange')
+    else
+        | .
+        if (Math.abs(cur(i, "r"))<11)
+            | #[+nowHasCou(i)]
+        else
+            | #[+considImprov(i)]
+
+// The proportion of healthy residents is increasing faster here than in any other local authority district across the region.
 mixin topRankLoc(i)
+    | The proportion of #[+value(topic(i).adj_noun)] is 
     if (cha(i, "rl")<0)
         | decreasing
     else
         | increasing
     | faster here than #[+inRegion] #[+value(parent)]
-    // Does another subtopic rank first for size of change?
-    if ((Math.abs(otherRank(i))==1)&(!hasSaid('OtherChange')))
+    if ((Math.abs(otherRank(i, "rl"))==1)&(!hasSaid('OtherChange')))
         | , while the percentage of 
         | #[+value(topic(i, otherEst(i, cha(i, "rl"), 'change')).adj_noun)] is 
-        | #[+value(ud(otherRank(i), 'falling', 'growing'))]
+        | #[+value(ud(otherRank(i, "rl"), 'growing', 'falling'))]
         | faster than anywhere else in the #[+value(city)]
         if ((i!=hiRank.rankIn)&(s[i][0]!='health'))
             p #[+nowHasReg(i)] 
@@ -236,15 +269,26 @@ mixin topRankLoc(i)
         else
                 | #[+considImprov(i)]
 
-// The percentage of healthy residents is increasing faster here than in any other local authority district across England.
+// This mixin determines how the rest of the section will be generated
 mixin sent3Perc(i)
-    | The percentage of #[+value(topic(i).adj_noun)] is 
-    if (Math.abs(cha(i, "r"))==1)
+    if (Math.abs(cha(i, "r"))<4)
         | #[+topRank(i)]
     else if (Math.abs(cha(i, "rl"))==1)
         | #[+topRankLoc(i)] 
     else
-        | This area isn't ranked first in this region
+        | The proportion of  #[+value(topic(i).adj_noun)] has been
+        | #[+value(ud(cha(i), 'growing', 'falling'))]
+        - console.log('Loc Change', Math.abs(cha(i)))
+        - console.log('Nat Change', eng.data[s[i][0]][s[i][1]]['change'][s[i][3]])
+        | #[+value(ud((Math.abs(cha(i)) - rgn.data[s[i][0]][s[i][1]]['change'][s[i][3]]), 'faster', 'at a slower rate'))]
+        | here than the average
+        | across #[+value(parent)]
+        | (from #[+value((rgn.data[s[i][0]][s[i][1]][2001][s[i][3]])/100, {'FORMAT': '0.0%'})] in 2011 to 
+        | #[+value((rgn.data[s[i][0]][s[i][1]][2011][s[i][3]])/100, {'FORMAT': '0.0%'})]) 
+        | and the average across 
+        | #[+value(country)] 
+        | (from #[+value((eng.data[s[i][0]][s[i][1]][2001][s[i][3]])/100, {'FORMAT': '0.0%'})] to 
+        | #[+value((eng.data[s[i][0]][s[i][1]][2011][s[i][3]])/100, {'FORMAT': '0.0%'})]).
 
 // Blackburn with Darwen has the region's next lowest proportion of residents from a White ethnic group (69.2%), while 90.1% in nearby Salford are from a White ethnic group.
 mixin nextHighest(i)
@@ -252,14 +296,14 @@ mixin nextHighest(i)
         | #[+value(data[s[i][0]][s[i][1]+"_rank_local"]['above_below'][s[i][3]].above.name)] 
         | has the region's next lowest proportion of 
         | #[+value(topic(i).adj_noun)]
-        | (#[+value((data[s[i][0]][s[i][1]+"_rank_local"]['above_below'][s[i][3]].above.value)/100, {'FORMAT': '0[.]0%'})]), 
+        | (#[+value((data[s[i][0]][s[i][1]+"_rank_local"]['above_below'][s[i][3]].above.value)/100, {'FORMAT': '0.0%'})]), 
     else
         | #[+value(data[s[i][0]][s[i][1]+"_rank_local"]['above_below'][s[i][3]].below.name)] 
         | has the region's next highest proportion of 
         | #[+value(topic(i).adj_noun)]
-        | (#[+value((data[s[i][0]][s[i][1]+"_rank_local"]['above_below'][s[i][3]].below.value)/100, {'FORMAT': '0[.]0%'})]),
+        | (#[+value((data[s[i][0]][s[i][1]+"_rank_local"]['above_below'][s[i][3]].below.value)/100, {'FORMAT': '0.0%'})]),
     | while the proportion is
-    | #[+value((place.nearSimilar.nearTops.data[s[i][0]][s[i][1]][2011][s[i][3]])/100, {'FORMAT': '0[.]0%'})]
+    | #[+value((place.nearSimilar.nearTops.data[s[i][0]][s[i][1]][2011][s[i][3]])/100, {'FORMAT': '0.0%'})]
     | in nearby #[+value(place.nearSimilar.nearTops.name)].
 
 // As a result, this area now has the country's highest proportion of private renters and the lowest proportion of homeowners.
@@ -284,7 +328,7 @@ mixin nowHasReg(i)
     else
         | the region’s 
     if (Math.abs(data[s[i][0]][s[i][1]+'_rank_local']['2011'][s[i][3]])!=1)
-        | #[+value(data[s[i][0]][s[i][1]+'_rank_local']['2011'][s[i][3]], {'ORDINAL_TEXTUAL':true})]
+        | #[+value(Math.abs(data[s[i][0]][s[i][1]+'_rank_local']['2011'][s[i][3]]), {'ORDINAL_TEXTUAL':true})]
     if (data[s[i][0]][s[i][1]+'_rank_local']['2011'][s[i][3]]<0)
         | lowest proportion of #[+value(topic(i).adj_noun)]
         if (data[s[i][0]][s[i][1]+'_rank_local']['2011'][otherEst(i, 'highest', '2011')]==1)
@@ -315,7 +359,7 @@ mixin considImprov(i)
             | #[+value(place.name)] close to 
         | the national average
         | (#[+value(figs(eng.data[s[i][0]][s[i][1]][2011][s[i][3]])[0])]
-        | #[+value((figs(eng.data[s[i][0]][s[i][1]][2011][s[i][3]])[1])/100, {'FORMAT': '0[.]0%'})]
+        | #[+value((figs(eng.data[s[i][0]][s[i][1]][2011][s[i][3]])[1])/100, {'FORMAT': '0.0%'})]
         | in #[+value(country)] described their health as good in 2021).
     else
         if (data[s[i][0]][s[i][1]][2011][s[i][3]]<(eng.data[s[i][0]][s[i][1]][2011][s[i][3]]-2))
@@ -331,24 +375,31 @@ mixin considImprov(i)
             | #[+value(place.name)] close to 
         | the regional average
         | (#[+value(figs(rgn.data[s[i][0]][s[i][1]][2011][s[i][3]])[0])]
-        | #[+value((figs(rgn.data[s[i][0]][s[i][1]][2011][s[i][3]])[1])/100, {'FORMAT': '0[.]0%'})]
+        | #[+value((figs(rgn.data[s[i][0]][s[i][1]][2011][s[i][3]])[1])/100, {'FORMAT': '0.0%'})]
         | in #[+value(parent)] described their health as good in 2021).
 
 mixin overtake(i)
-    | During this period, 
-    | the 
-    | #[+value(place.gss)] 
-    | overtook 
+    | During this period, the #[+value(place.gss.long)] overtook 
     if (data[s[i][0]][s[i][1]+'_rank_local']['overtake'][s[i][3]].length<4)
         eachz item in data[s[i][0]][s[i][1]+'_rank_local']['overtake'][s[i][3]] with { separator: ',', last_separator: 'and' }
             | #{item}
     else if (overtake.length<10)
         | #[+value(data[s[i][0]][s[i][1]+'_rank_local']['overtake'][s[i][3]].length)] areas, including #[+value(data[s[i][0]][s[i][1]+'_rank_local']['overtake'][s[i][3]][0])] and #[+value(data[s[i][0]][s[i][1]+'_rank_local']['overtake'][s[i][3]][1])]
-    | , giving it the region's 
-    if (Math.abs(locRankCur[i])>1)
-        | #[+value(locRankCur[i], {'ORDINAL_TEXTUAL':true})]
-    | highest proportion of 
-    | #[+value(topic(i).adj_noun)]
+    if (s[i[1]]=="perc")
+        | , giving it the region's 
+        if (Math.abs(locRankCur[i])>1)
+            | #[+value(Math.abs(locRankCur[i]), {'ORDINAL_TEXTUAL':true})]
+        | highest proportion of 
+        | #[+value(topic(i).adj_noun)]
+    else if (s[i[1]]=="value")
+        | , making it the
+        if (Math.abs(locRankCur[i])>1)
+            | #[+value(Math.abs(locRankCur[i]), {'ORDINAL_TEXTUAL':true})]
+        if (locRankCur[i]<0)
+            | #[+value(topics[s[i][0]].adj['low'])]
+        else
+            | #[+value(topics[s[i][0]].adj['high'])]
+        | district in the region
     if (Math.abs(locRankCur[i])>1)
         | , behind only Cambridge with 8.2%
     | .
@@ -357,6 +408,9 @@ mixin healthExplain
     | These data are people’s own opinions in describing their overall health. They may be inconsistent with other measures of health, such as NHS records.
 
 mixin para(i)
+    - console.log("I", i)
+    - console.log("I", s[i])
+    - console.log("I", chains[s[i][3]])
     if (s[i][1] == 'value')
         if (s[i][0] == 'agemed')
             h2 #[+subheadAge(i)]
@@ -365,12 +419,12 @@ mixin para(i)
             p #[+sent3Age(i)]
         else
             h2 #[+subheadVal(i)]
-            p #[+sent1Val(i)]
-            p #[+sent2Val(i)]
+            p #[+sent1pop(i)]
+            p #[+sent2pop(i)]
             if (s[i][0]=='population')
                 p #[+density]
-            p #[+sent4Val(i)]
-
+            if (data[s[i][0]][s[i][1]+'_rank'].overtake[s[i][3]].length>0)
+                p #[+sent4Pop(i)]
     if (s[i][1] == 'perc')
         if (s[i][0] == 'ethnicity')
             h2 #[+subheadIncreasing(i)]
@@ -391,52 +445,52 @@ mixin para(i)
         if (s[i][0]=='health')
             p #[+healthExplain]
 
-//- | #[+para(0)]
-//- h4 This is a placeholder title for the chart that will be placed below
-//- div#visph Data visualisation placeholder
-//- | #[+para(1)]
-//- h4 This is a placeholder title for the chart that will be placed below
-//- div#visph Data visualisation placeholder
-//- | #[+para(2)]
-//- h4 This is a placeholder title for the chart that will be placed below
-//- div#visph Data visualisation placeholder
-//- if (s.length>3)
-//-     | #[+para(3)]
-//-     h4 This is a placeholder title for the chart that will be placed below
-//-     div#visph Data visualisation placeholder
-//- if (s.length>4)
-//-     | #[+para(4)]
-//-     h4 This is a placeholder title for the chart that will be placed below
-//-     div#visph Data visualisation placeholder
-//- if (s.length>5)
-//-     | #[+para(5)]
-//-     h4 This is a placeholder title for the chart that will be placed below
-//-     div#visph Data visualisation placeholder
+| #[+para(0)]
+h4 This is a placeholder title for a chart that will be placed below
+div#visph Data visualisation placeholder
+| #[+para(1)]
+h4 This is a placeholder title for a chart that will be placed below
+div#visph Data visualisation placeholder
+| #[+para(2)]
+h4 This is a placeholder title for a chart that will be placed below
+div#visph Data visualisation placeholder
+if (s.length>3)
+    | #[+para(3)]
+    h4 This is a placeholder title for a chart that will be placed below
+    div#visph Data visualisation placeholder
+if (s.length>4)
+    | #[+para(4)]
+    h4 This is a placeholder title for a chart that will be placed below
+    div#visph Data visualisation placeholder
+if (s.length>5)
+    | #[+para(5)]
+    h4 This is a placeholder title for a chart that will be placed below
+    div#visph Data visualisation placeholder
 //- if (s.length>6)
 //-     | #[+para(6)]
-//-     h4 This is a placeholder title for the chart that will be placed below
+//-     h4 This is a placeholder title for a chart that will be placed below
 //-     div#visph Data visualisation placeholder
 //- if (s.length>7)
 //-     | #[+para(7)]
-//-     h4 This is a placeholder title for the chart that will be placed below
+//-     h4 This is a placeholder title for a chart that will be placed below
 //-     div#visph Data visualisation placeholder
-if (s.length>8)
-    | #[+para(8)]
-    h4 This is a placeholder title for the chart that will be placed below
-    div#visph Data visualisation placeholder
-if (s.length>9)
-    | #[+para(9)]
-    h4 This is a placeholder title for the chart that will be placed below
-    div#visph Data visualisation placeholder
-if (s.length>10)
-    | #[+para(10)]
-    h4 This is a placeholder title for the chart that will be placed below
-    div#visph Data visualisation placeholder
-if (s.length>11)
-    | #[+para(11)]
-    h4 This is a placeholder title for the chart that will be placed below
-    div#visph Data visualisation placeholder
-if (s.length>12)
-    | #[+para(12)]
-    h4 This is a placeholder title for the chart that will be placed below
-    div#visph Data visualisation placeholder
+//- if (s.length>8)
+//-     | #[+para(8)]
+//-     h4 This is a placeholder title for a chart that will be placed below
+//-     div#visph Data visualisation placeholder
+//- if (s.length>9)
+//-     | #[+para(9)]
+//-     h4 This is a placeholder title for a chart that will be placed below
+//-     div#visph Data visualisation placeholder
+//- if (s.length>10)
+//-     | #[+para(10)]
+//-     h4 This is a placeholder title for a chart that will be placed below
+//-     div#visph Data visualisation placeholder
+//- if (s.length>11)
+//-     | #[+para(11)]
+//-     h4 This is a placeholder title for a chart that will be placed below
+//-     div#visph Data visualisation placeholder
+//- if (s.length>12)
+//-     | #[+para(12)]
+//-     h4 This is a placeholder title for a chart that will be placed below
+//-     div#visph Data visualisation placeholder

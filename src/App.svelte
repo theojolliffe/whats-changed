@@ -6,8 +6,10 @@
 	import { onMount } from 'svelte';
 	import robojournalist from 'robojournalist';
 
-	let defaultLoc = 'Manchester'; // Basingstoke and Deane
-	
+	let defaultLoc = 'Barnet'; // Basingstoke and Deane // Test valley
+	var options, selected, place, quartiles, locRankCha, locRankCur, eng, rgncode, rgn, s, natRankCha, natRankCur, topics;
+
+
     var topics;
     fetch("./archie.aml")
         .then((res) => res.text())
@@ -30,7 +32,6 @@
 		rgn: {name: 'Region', pl: 'Regions'},
 		ctry: {name: 'Country', pl: 'Countries'}
 	};
-	var options, selected, place, quartiles, locRankCha, locRankCur, eng, rgncode, rgn, s, natRankCha, natRankCur;
 
 	let loaded = false
     const onRosaeNlgLoad = () => { loaded = true }
@@ -43,7 +44,10 @@
 		});
 		res = res.filter(d => d['type']=='lad')
 		options = res.sort((a, b) => a.name.localeCompare(b.name));
+		defaultLoc = options[Math.round(336*Math.random())]['name']
+		console.log("defaultLoc", defaultLoc)
 		selected = options.find(d => d.name == defaultLoc);
+		console.log("selected.code", selected.code)
 		loadArea(selected.code)
 	});
 	function loadArea(code) {
@@ -61,9 +65,9 @@
 					e.pop()
 				}
 			});
-			console.log('s', s)
 			rgncode = place.parents[0].code
 			console.log("Place", place)
+			console.log('s', s)
 			locRankCha = s.map(d => parseInt(place.data[d[0]][d[1]+"_rank_local"][d[2]][d[3]]))
 			natRankCha = s.map(d => parseInt(place.data[d[0]][d[1]+"_rank"][d[2]][d[3]]))
 			locRankCur = s.map(d => parseInt(place.data[d[0]][d[1]+"_rank_local"]['2011'][d[3]]))
@@ -95,7 +99,7 @@
 		4: "shrunk",
 		5: "fell sharply"
 	};
-	let num_word = {'one': 1, 'quarter of a million': 250000, 'half a million': 500000, 'three quarters of a million': 750000};
+	let num_word = {'quarter of a million': 250000, 'half a million': 500000, 'three quarters of a million': 750000, 'one million': 1000000};
 
 	let frac_word = {'one in two': 0.5, 'one in three': 0.333, 'one in four': 0.25, 'one in five': 0.2, 'one in six': 0.167, 'one in seven': 0.143, 'one in eight': 0.125, 'one in nine': 0.111, '1 in 10': 0.1,'1 in 11' : 0.09, '1 in 12' : 0.083, '1 in 13' : 0.077, '1 in 14' : 0.071, '1 in 15' : 0.067, '1 in 16' : 0.063, '1 in 17' : 0.059, '1 in 18' : 0.056, '1 in 19' : 0.053 ,'1 in 20': 0.05, '2 in 10': 0.2, '3 in 10': 0.3, '4 in 10': 0.4, '6 in 10': 0.6, '7 in 10': 0.7, '8 in 10': 0.8, '9 in 10': 0.9, 'all': 1.0};
 
@@ -125,12 +129,12 @@
 		return [OverUnder, lowest_label]
 	}
 	function figs(x) {
-		let sigfig = Number.parseFloat(Number.parseFloat(x).toPrecision(2))
+		let sigfig = Number.parseFloat(Number.parseFloat(x).toPrecision(3))
 		let text;
 		if (x-sigfig<-x/100) {
 			text = "under "
 		}	
-		if (x-sigfig<-x/200) {
+		if (x-sigfig<-x/800) {
 			if (Math.round(Math.random())==1) {
 				text = "almost "
 			} else {
@@ -140,11 +144,11 @@
 		else if (x-sigfig>x/100) {
 			text = " just over "
 		}
-		else if (x-sigfig>x/200) {
+		else if (x-sigfig>x/800) {
 			text = "just over "
 		}
 		else {
-			text = "about "
+			text = ""
 		}
 		return [text, sigfig];
 	}
@@ -152,18 +156,30 @@
 		'good': ['bad', 'fair'],
 		'bad': ['good', 'fair'],
 		'white': ['black', 'asian'],
+		'black': ['white', 'asian'],
+		'asian': ['white', 'black'],
 		'rented_private': ['rented_social', 'owned'],
-		'inactive': ['employee', 'unemployed', 'self-employed'],
-		'self-employed': ['employee', 'unemployed', 'inactive'],
-		'employee': ['inactive', 'unemployed', 'self-employed'],
-		'unemployed': ['employee', 'inactive', 'self-employed'],
+		'rented_social': ['rented_private', 'owned'],
+		'owned': ['rented_private', 'rented_social'],
+		'student': ['employee', 'unemployed', 'self-employed'],
+		'self-employed': ['employee', 'unemployed', 'student'],
+		'employee': ['unemployed', 'self-employed', 'student',],
+		'unemployed': ['employee', 'self-employed', 'student'],
 		'car_van': ['bus', 'train_metro', 'foot', 'home'],
 		'bus': ['car_van', 'train_metro', 'foot', 'home'],
 		'train_metro': ['bus', 'car_van', 'foot', 'home'],
 		'foot': ['bus', 'train_metro', 'car_van', 'home'],
 		'home': ['bus', 'train_metro', 'foot', 'car_van'],
-		'OnePerson': ['Married', 'LoneParent', 'Cohabiting'],
+		'OnePerson': ['Cohabiting', 'Married'],
+		'Cohabiting': ['OnePerson', 'Married'],
+		'LoneParent': ['Married', 'Cohabiting'],
 		'Christian': ['Muslim', 'Noreligion'],
+		'Muslim': ['Christian', 'Noreligion'],
+		'Noreligion': ['Christian', 'Muslim'],
+		'Buddhist': ['Hindu', 'Sikh'],
+		'Hindu': ['Sikh', 'Buddhist'],
+		'Jewish': ['Christian', 'Muslim'],
+		'Sikh': ['Hindu', 'Buddhist'],
 		'Single': ['Married', 'Seperated'],
 		'Married': ['Single', 'Seperated'],
 		'Seperated': ['Married', 'Single'],
@@ -174,7 +190,9 @@
 		'NoKids': ['Kids', 'NonDepKids'],
 		'NonDepKids': ['Kids', 'NoKids'],
 		'Male1-15': ['Male49plus'],
-		'Male49plus': ['Male1-15']
+		'Male49plus': ['Male1-15'],
+		'Female1-15': ['Female49plus'],
+		'Female49plus': ['Female1-15']
 	}
 
 	function cur(i, type) {
@@ -226,7 +244,12 @@
 						delete optAr[k];
 					}
 				}
-				optArKey = Object.keys(optAr).reduce((a, b) => optAr[a] > optAr[b] ? a : b);
+				if (optAr.length>0) {
+					optArKey = Object.keys(optAr).reduce((a, b) => optAr[a] > optAr[b] ? a : b);
+				} else {
+					optArKey = undefined
+				}
+				
 			}
 			if (hiLo=='highest') {
 				for (let [k, v] of Object.entries(optAr)) {
@@ -234,7 +257,11 @@
 						delete optAr[k];
 					}
 				}
-				optArKey = Object.keys(optAr).reduce((a, b) => optAr[a] < optAr[b] ? a : b);
+				if (optAr.length>0) {
+					optArKey = Object.keys(optAr).reduce((a, b) => optAr[a] < optAr[b] ? a : b);
+				} else {
+					optArKey = undefined
+				}
 			}
 		} else {
 			optArKey = Object.keys(optAr)
@@ -242,8 +269,12 @@
 		return optArKey
 	}
 
-	function otherRank(i, t) {
-		return place.data[s[i][0]][s[i][1]+'_rank_local']['change'][otherEst(i, cha(i, "rl"), 'change')]
+	function otherRank(i, t="r") {
+		let locExt = ""
+		if (t=="rl") {
+			locExt = "_local"
+		}
+		return place.data[s[i][0]][s[i][1]+'_rank'+locExt]['change'][otherEst(i, cha(i, t), 'change')]
 	}
 
 	function ud(n, w1, w2) { if (n<0) { return w2 } else { return w1 } }
@@ -255,6 +286,7 @@
 	}
 
 	function standfirst(place) {
+
 		let sf = []
 		let changeMag = 0
 		place.stories.forEach(e => {
@@ -271,24 +303,30 @@
 			sf: sf,
 			grewSyn: grewSyn,
 			qui: qui,
-			natRankCha: natRankCha
+			natRankCha: natRankCha,
 		})
-	}
+	}	
 
 	function results(place) {
-		const iterate = (obj) => {
+		
+		function iterate(obj, pname) {
 			Object.keys(obj).forEach(key => {
 				if (typeof obj[key] === 'object') {
 					iterate(obj[key])
 				} else {
-					obj[key] = robojournalist(obj[key], {plcname: place.name})
+					obj[key] = robojournalist(obj[key], {plcname: pname})
 					// console.log(`key: ${key}, value: ${obj[key]}`)
 				}
 			})
 		}
-		iterate(topics)
+		function ito(i, pname) {
+			let o = Object.assign({}, i);
+			iterate(o, pname);
+			return o;
+		}
+		console.log("topics", topics)
+		
 
-		console.log('topics', topics)
 		function topic(i, top) {
 			let ttop
 			if (top) {
@@ -301,7 +339,6 @@
 		function cap(string) {
 			return string.charAt(0).toUpperCase() + string.slice(1);
 		}
-
 		return rosaenlg_en_US.render(puggy, {
 			language: 'en_UK',
 			place: place,
@@ -318,7 +355,7 @@
 			natRankCur: natRankCur,
 			hiRank: place.hiRank,
 			topic: topic,
-			topics: topics,
+			topics: ito(topics, place.name),
 			chains: chains,
 			country: "England",
 			get_word: get_word,
@@ -330,7 +367,7 @@
 			cap,cap,
 			otherRank: otherRank,
 			ud: ud,
-			city: city
+			city: city,
 		})
 	}
 	function goTop() {
@@ -339,13 +376,13 @@
 	}
 
 	onMount(() => {
-		setTimeout(function(){
+		setInterval(function(){
 		d3.selectAll('div#visph').attr('style', `
 			background-color: #f6f6f6; 
 			color: #e1e7ea; 
 			height: 240px;
 			padding: 80px;
-			font-size: 3rem;
+			font-size: 2.8rem;
 			font-weight: 600;
 			margin-bottom: 80px;`)
 		}, 1000)
@@ -371,7 +408,7 @@
 								</div>
 							</div>
 							{@html standfirst(place)}
-							<p>Here are some of the <span class="back-to-top" on:click={goTop}>most notable changes</span> from across the {place.gss}.</p>
+							<p>Here are some of the <span class="back-to-top" on:click={goTop}>most notable changes</span> from across the {(place.gss.long)?place.gss.long:"local authority district"}.</p>
 						</div>
 					</div>
 					<main>
@@ -395,7 +432,7 @@
 	@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
 	:global(body) {
 		font-family: 'Open Sans', sans-serif;
-		padding: 20px;
+		padding: 0px;
 		line-height: 2;
 		color: #323132;
 	}
@@ -436,4 +473,5 @@
 		padding: 15px;
 		font-size: 1.2rem;
 	}
+
 </style>

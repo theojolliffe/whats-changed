@@ -7,15 +7,21 @@ travel.general: transport
 household.general: housing
 religion.general: religion
 care.general: health
-children.general: families
+children.general: family life
 hoursworked.general: jobs
-marital.general: families
+marital.general: family life
 population.general: population
 agemed.general: average age
 
+// , making it the third ***most densely populated*** district in the region
+population.adj.high: most densely populated
+population.adj.low: least densely populated
+agemed.adj.high: oldest
+agemed.adj.low: youngest
+
 // Giving it the greatest ***headcount*** of any local authority area in the North West of England.
 tenure.synonym: housing
-health.synonym: health
+health.synonym: well-being
 ethnicity.synonym: ethnic makeup
 economic.synonym: jobs
 travel.synonym: transport
@@ -25,7 +31,22 @@ care.synonym: health
 children.synonym: families
 hoursworked.synonym: jobs
 marital.synonym: families
-population.all.synonym: headcount
+population.synonym: headcount
+
+// The religious profile of Torbay changed considerably in the 10 years leading up to the last census
+// Health improved considerably in Torbay in the 10 years leading up to the last census
+tenure.profile: housing
+health.profile: well-being
+ethnicity.profile: ethnic makeup
+economic.profile: jobs
+travel.profile: way many people here commute
+household.profile: housing
+religion.profile: the religious profile of {plcname}
+care.profile: health
+children.profile: families
+hoursworked.profile: jobs
+marital.profile: families
+population.profile: headcount
 
 // In the 10 years leading up to the last census, the percentage of ***Manchester residents that rent privately*** increased from about 16% to over 28%.
 // The proportion of employed people in Manchester working long hours increased from from about 16% to over 28%.
@@ -71,12 +92,13 @@ household.LoneParent.clausal_modifier: households {plcname} comprising a single 
 household.OnePerson.clausal_modifier: households {plcname} comprising a single person
 household.Married.clausal_modifier: households {plcname} comprising a married couple (with or without children)
 
-religion.Christian.clausal_modifier: {plcname} residents that describe themselves as Christian
-religion.Buddhist.clausal_modifier: {plcname} residents that describe themselves as Buddhist
-religion.Hindu.clausal_modifier: {plcname} residents that describe themselves as Hindu
-religion.Jewish.clausal_modifier: {plcname} residents that describe themselves as Jewish
-religion.Muslim.clausal_modifier: {plcname} residents that describe themselves as Muslim
-religion.Noreligion.clausal_modifier: {plcname} residents that have no religion
+religion.Christian.clausal_modifier: people in {plcname} that describe themselves as Christian
+religion.Buddhist.clausal_modifier: people in {plcname} that describe themselves as Buddhist
+religion.Hindu.clausal_modifier: people in {plcname} that describe themselves as Hindu
+religion.Sikh.clausal_modifier: people in {plcname} that describe themselves as Sikh
+religion.Jewish.clausal_modifier: people in {plcname} that describe themselves as Jewish
+religion.Muslim.clausal_modifier: people in {plcname} that describe themselves as Muslim
+religion.Noreligion.clausal_modifier: people in {plcname} that have no religion
 
 hoursworked.Female1-15.clausal_modifier: employees that had worked less than 16 hours
 hoursworked.Female49plus.clausal_modifier: employees that had worked over 49 hours
@@ -128,7 +150,8 @@ household.Married.verb_past: were married households
 
 religion.Christian.verb_past: said they were Christian
 religion.Buddhist.verb_past: said they were Buddhist
-religion.Hindu.verb_past: said they wereHindu
+religion.Hindu.verb_past: said they were Hindu
+religion.Sikh.verb_past: said they were Sikh
 religion.Jewish.verb_past: said they were Jewish
 religion.Muslim.verb_past: said they were Muslim
 religion.Noreligion.verb_past: said they had no religion
@@ -157,7 +180,7 @@ tenure.rented_social.adj_noun: people living in social housing
 tenure.owned.adj_noun: homeowners
 
 health.good.adj_noun: healthy residents
-health.fair.adj_noun: fairly healthy residents
+health.fair.adj_noun: people that described their health as fair
 health.bad.adj_noun: unhealthy residents
 
 ethnicity.white.adj_noun: residents from a White ethnic group
@@ -184,6 +207,7 @@ household.Married.adj_noun: households with a married couple
 religion.Christian.adj_noun: Christian people
 religion.Buddhist.adj_noun: Buddhist people
 religion.Hindu.adj_noun: Hindu people
+religion.Sikh.adj_noun: Sikh people
 religion.Jewish.adj_noun: Jewish people
 religion.Muslim.adj_noun: Muslim people
 religion.Noreligion.adj_noun: athiests
@@ -192,6 +216,62 @@ hoursworked.Female1-15.adj_noun: said they had worked less than 16 hours
 hoursworked.Female49plus.adj_noun: said they had worked over 49 hours
 hoursworked.Male1-15.adj_noun: said they had worked less than 16 hours
 hoursworked.Male49plus.adj_noun: said they had worked over 49 hours 
+
+// The percentage of ***healthy residents*** is increasing faster here than in any other local authority district across England.
+
+children.Kids.subhead: homes with children
+children.NoKids.subhead: homes without children
+children.NonDepKids.subhead: homes with non-dependent children
+
+care.1to19hoursWeek.subhead: people providing up to 19 hours of weekly care
+care.20to49hoursWeek.subhead: people providing between 20 and 49 hours of weekly care
+care.40PlushoursWeek.subhead: people providing 50 hours, or more, of weekly care
+
+marital.Single.subhead: single people
+marital.Married.subhead: married people
+marital.Seperated.subhead: people who have seperated
+
+tenure.rented_private.subhead: private renters
+tenure.rented_social.subhead: people living in social housing
+tenure.owned.subhead: homeowners
+
+health.good.subhead: healthy residents
+health.fair.subhead: people that described their health as fair
+health.bad.subhead: unhealthy residents
+
+ethnicity.white.subhead: residents from a White ethnic group
+ethnicity.black.subhead: residents from a Black ethnic group
+ethnicity.asian.subhead: residents from an Asian ethnic group
+
+economic.employee.subhead: employed people
+economic.inactive.subhead: people who are economically inactive
+economic.self-employed.subhead: self-employed people
+economic.unemployed.subhead: unemployed people
+economic.student.subhead: students
+
+travel.car_van.subhead: car commuters
+travel.bus.subhead: bus commuters
+travel.train_metro.subhead: train commuters
+travel.foot.subhead: people that walk to work
+travel.home.subhead: homeworkers
+
+household.Cohabiting.subhead: households with an unmarried couple
+household.LoneParent.subhead: single parent households
+household.OnePerson.subhead: single person households
+household.Married.subhead: households with a married couple
+
+religion.Christian.subhead: Christian people
+religion.Buddhist.subhead: Buddhist people
+religion.Hindu.subhead: Hindu people
+religion.Sikh.subhead: Sikh people
+religion.Jewish.subhead: Jewish people
+religion.Muslim.subhead: Muslim people
+religion.Noreligion.subhead: athiests
+
+hoursworked.Female1-15.subhead: people working fewer hours
+hoursworked.Female49plus.subhead: people working longer hours
+hoursworked.Male1-15.subhead: people working fewer hours
+hoursworked.Male49plus.subhead: people working longer hours
 
 // Higher rate of ***economic inactivity***
 
@@ -227,6 +307,7 @@ household.Married.verb_past: were married households
 religion.Christian.topic: that describe themselves as Christian
 religion.Buddhist.topic: that describe themselves as Buddhist
 religion.Hindu.topic: that describe themselves as Hindu
+religion.Sikh.topic: said they were Sikh
 religion.Jewish.topic: that describe themselves as Jewish
 religion.Muslim.topic: that describe themselves as Muslim
 religion.Noreligion.topic: that have no religion
