@@ -1,21 +1,55 @@
-mixin standfirst1
-    // | #[+value(topic[s[0][0]+"_"+s[0][3]].subject)]
-    // | #[+value(grewSyn[Math.ceil((5*locRank[0])/336)])]
-    // | in the 10 years following the 2011 Census.
-    p 
-        | #[+value(place.name)]'s
-        | #[+value(topics[s[0][0]].general)]
-        | #[+value(grewSyn[qui(natRankCha[0])])] 
-        | in the 10 years leading up to the most recent Census. 
-        | This coincided with a 
-        if (changeMag>30)
-            | remarkable 
-        else if (changeMag>20)
-            | considerable
-        | transformation of the 
-        | #[+value(place.classification)]'s 
-        eachz sfi in sf.slice(1,) with { separator: ',', last_separator: 'and' }
-            | #{topics[sfi[0]].general}
-        | .
+mixin tenYears
+  synz
+    syn
+      | between the last two censuses
+    syn
+      | in the decade to 2021
+    syn
+      | in the 10 years leading up to 2021
+    syn
+      | in the decade leading up to the the most recent census
+    syn
+      | in the 10 years leading up to the last census
 
-div#sf #[+standfirst1]
+
+mixin coincide
+    synz 
+        syn
+            | This coincided with a 
+        syn 
+            | At the same time there was a
+    if (changeMag>30)
+        | remarkable transformation of the
+    else if (changeMag>20)
+        | considerable transformation of the
+    else 
+        synz 
+            syn
+                | shift in the
+            syn 
+                | change in the
+
+mixin standfirst1
+    - console.log('sf', sf)
+    p
+        if (sf[0][0]=='population')
+            | #[+value(place.name)]'s
+            | #[+value(topics[s[0][0]].general)]
+            | #[+value(grewSyn[qui(Math.abs(natRankCha[0]))])] 
+            | #[+tenYears].
+            | #[+coincide]
+            if (place.classification)
+                | #[+value(place.classification)]'s 
+            else
+                | area's
+            eachz sfi in sf.slice(1,) with { separator: ',', last_separator: 'and' }
+                | #[+value(topics[sfi[0]].general)]
+            | .
+        else
+            | #[+value(topics[sf[0][0]].general)] improved considerably in #[+value(place.name)] 
+            | #[+tenYears]. 
+            | #[+coincide]
+            | way many people here commute.
+
+p 
+    | #[+standfirst1]
