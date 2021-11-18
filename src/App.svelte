@@ -6,7 +6,7 @@
 	import { onMount } from 'svelte';
 	import robojournalist from 'robojournalist';
 
-	let defaultLoc = 'Barnet'; // Basingstoke and Deane // Test valley
+	let defaultLoc = 'Camden'; // Basingstoke and Deane // Test valley
 	var options, selected, place, quartiles, locRankCha, locRankCur, eng, rgncode, rgn, s, natRankCha, natRankCur, topics;
 
 
@@ -94,10 +94,10 @@
 
 	let grewSyn = {
 		1: "ballooned",
-		2: "grew",
-		3: "remained relatively stable",
-		4: "shrunk",
-		5: "fell sharply"
+		2: "grew rapidly",
+		3: "grew",
+		4: "remained relatively stable",
+		5: "fell"
 	};
 	let num_word = {'quarter of a million': 250000, 'half a million': 500000, 'three quarters of a million': 750000, 'one million': 1000000};
 
@@ -307,25 +307,23 @@
 		})
 	}	
 
-	function results(place) {
+	function iterate(obj, pname) {
+		Object.keys(obj).forEach(key => {
+			if (typeof obj[key] === 'object') {
+				iterate(obj[key], pname)
+			} else {
+				obj[key] = robojournalist(obj[key], {plcname: pname})
+			}
+		})
+	}
+
+	function results(place, topicsIn) {
 		
-		function iterate(obj, pname) {
-			Object.keys(obj).forEach(key => {
-				if (typeof obj[key] === 'object') {
-					iterate(obj[key])
-				} else {
-					obj[key] = robojournalist(obj[key], {plcname: pname})
-					// console.log(`key: ${key}, value: ${obj[key]}`)
-				}
-			})
-		}
-		function ito(i, pname) {
-			let o = Object.assign({}, i);
-			iterate(o, pname);
-			return o;
-		}
-		console.log("topics", topics)
-		
+		var o = JSON.parse(JSON.stringify(topicsIn));
+
+		console.log("topics", o)
+		console.log("et ", place.name)
+		iterate(o, place.name)
 
 		function topic(i, top) {
 			let ttop
@@ -334,11 +332,13 @@
 			} else {
 				ttop = s[i][3]
 			}
-			return topics[s[i][0]][ttop]
+			return o[s[i][0]][ttop]
 		}
+
 		function cap(string) {
 			return string.charAt(0).toUpperCase() + string.slice(1);
 		}
+		
 		return rosaenlg_en_US.render(puggy, {
 			language: 'en_UK',
 			place: place,
@@ -355,7 +355,7 @@
 			natRankCur: natRankCur,
 			hiRank: place.hiRank,
 			topic: topic,
-			topics: ito(topics, place.name),
+			topics: o,
 			chains: chains,
 			country: "England",
 			get_word: get_word,
@@ -369,6 +369,7 @@
 			ud: ud,
 			city: city,
 		})
+
 	}
 	function goTop() {
 		let creation = document.getElementById('create')
@@ -412,7 +413,7 @@
 						</div>
 					</div>
 					<main>
-						{@html results(place)}
+						{@html results(place, topics)}
 
 						<hr style="width: 40%; margin: 60px auto 30px auto;"/>
 						<h2 id="create">Creating this article</h2>
