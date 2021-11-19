@@ -18,38 +18,39 @@ mixin coincide
             | This coincided with a 
         syn 
             | At the same time there was a
-    if (changeMag>30)
+    if (changeMag>40)
         | remarkable transformation of the
-    else if (changeMag>20)
-        | considerable transformation of the
+    else if (changeMag>35)
+        | transformation of the
     else 
         synz 
             syn
                 | shift in the
             syn 
                 | change in the
+    synz
+        syn
+            | area's
+        syn
+            if (place.gss)
+                | #[+value(place.gss.short)]'s
+            else
+                | area's
+        syn 
+            if (place.classification)
+                | #[+value(place.classification)]'s
+            else
+                | area's
 
 mixin standfirst1
     - console.log('sf', sf)
     p
-        if (sf[0][0]=='population')
-            | #[+value(place.name)]'s
-            | #[+value(topics[s[0][0]].general)]
-            | #[+value(grewSyn[qui(Math.abs(natRankCha[0]))])] 
-            | #[+tenYears].
-            | #[+coincide]
-            if (place.classification)
-                | #[+value(place.classification)]'s 
-            else
-                | area's
-            eachz sfi in sf.slice(1,) with { separator: ',', last_separator: 'and' }
-                | #[+value(topics[sfi[0]].general)]
-            | .
-        else
-            | #[+value(topics[sf[0][0]].general)] improved considerably in #[+value(place.name)] 
-            | #[+tenYears]. 
-            | #[+coincide]
-            | way many people here commute.
+        | #[+value(topics[sf[0][0]].profile)]         
+        | #[+tenYears].
+        | #[+coincide]
+        eachz sfi in sf.slice(1,) with { separator: ',', last_separator: 'and' }
+            | #[+value(topics[sfi[0]].general)]
+        | .
 
 p 
     | #[+standfirst1]

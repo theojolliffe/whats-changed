@@ -36,6 +36,15 @@
 	let loaded = false
     const onRosaeNlgLoad = () => { loaded = true }
 
+	var expand
+	var health
+	var child
+	var wochild
+	var ndchild
+	var single
+	var married
+	var married
+
 	// Data load functions
 	getData("https://raw.githubusercontent.com/theojolliffe/census-data/main/csv/lists/places_2020.csv").then(res => {
 		res.forEach(d => {
@@ -58,6 +67,54 @@
 			json.siblings = options.filter(d => d.parent == json['parents'][0]['code']);
 			quartiles = null;
 			place = json;
+
+			if (place.data.marital.perc.change.Single<0) {
+				single="decline"
+			} else {
+				single="rise"
+			}
+
+
+			if (place.data.marital.perc.change.Single<0) {
+				single="decline"
+			} else {
+				single="rise"
+			}
+			if (place.data.marital.perc.change.Married<0) {
+				married="decline"
+			} else {
+				married="rise"
+			}
+			if (place.data.children.perc.change.NonDepKids<0) {
+				ndchild="fewer"
+			} else {
+				ndchild="more"
+			}
+			if (place.data.children.perc.change.Kids<0) {
+				child="fewer"
+			} else {
+				child="more"
+			}
+			if (place.data.children.perc.change.NoKids>0) {
+				wochild="fewer"
+			} else {
+				wochild="more"
+			}
+			if (place.data.population.value.change.all>8) {
+				expand = "expanded"
+			} else if (place.data.population.value.change.all>3) {
+				expand = "grew"
+			} else if (place.data.population.value.change.all>0) {
+				expand = "did not change much"
+			} else {
+				expand = "shrunk"
+			} 
+			if (place.data.health.perc.change.good>0) {
+				health = "improved"
+			} else if (place.data.health.perc.change.good<0) {
+				health = "deteriorated"
+			}
+
 			s = place.stories.map(d => d.label.split("_"))
 			s.forEach(e => {
 				if (e.length>4) {
@@ -81,6 +138,8 @@
 				quartiles = null;
 				rgn = json;
 			})
+
+
 		})
 		fetch("https://raw.githubusercontent.com/theojolliffe/census-data/main/json/place/E92000001.json")
 		.then(res => res.json())
@@ -93,12 +152,13 @@
 	}
 
 	let grewSyn = {
-		1: "ballooned",
-		2: "grew rapidly",
+		1: "expanded",
+		2: "grew",
 		3: "grew",
 		4: "remained relatively stable",
 		5: "fell"
 	};
+	
 	let num_word = {'quarter of a million': 250000, 'half a million': 500000, 'three quarters of a million': 750000, 'one million': 1000000};
 
 	let frac_word = {'one in two': 0.5, 'one in three': 0.333, 'one in four': 0.25, 'one in five': 0.2, 'one in six': 0.167, 'one in seven': 0.143, 'one in eight': 0.125, 'one in nine': 0.111, '1 in 10': 0.1,'1 in 11' : 0.09, '1 in 12' : 0.083, '1 in 13' : 0.077, '1 in 14' : 0.071, '1 in 15' : 0.067, '1 in 16' : 0.063, '1 in 17' : 0.059, '1 in 18' : 0.056, '1 in 19' : 0.053 ,'1 in 20': 0.05, '2 in 10': 0.2, '3 in 10': 0.3, '4 in 10': 0.4, '6 in 10': 0.6, '7 in 10': 0.7, '8 in 10': 0.8, '9 in 10': 0.9, 'all': 1.0};
@@ -285,12 +345,35 @@
 		city = "region"
 	}
 
-	function standfirst(place) {
+	function iterate(obj, pname) {
+		Object.keys(obj).forEach(key => {
+			if (typeof obj[key] === 'object') {
+				iterate(obj[key], pname)
+			} else {
+				obj[key] = robojournalist(obj[key], {
+					plcname: pname,
+					expanded: expand,
+					health: health,
+					child: child,
+					wochild: wochild,
+					ndchild: ndchild,
+					single: single,
+					married: married
+				})
+			}
+		})
+	}
+
+
+	function standfirst(place, topicsIn) {
+
+		var o = JSON.parse(JSON.stringify(topicsIn));
+		iterate(o, place.name)
 
 		let sf = []
 		let changeMag = 0
 		place.stories.forEach(e => {
-			if ((sf.length<4)&(Math.abs(e['value'])>4)) {
+			if ((sf.length<4)&(Math.abs(e['value'])>3)) {
 				sf.push(e['label'].split("_"))
 				changeMag = changeMag+Math.abs(e['value'])
 			}
@@ -298,24 +381,17 @@
 		return rosaenlg_en_US.render(stand, {
 			language: 'en_UK',
 			place: place,
-			topics: topics,
+			topics: o,
 			s: s,
 			sf: sf,
+			changeMag: changeMag,
 			grewSyn: grewSyn,
 			qui: qui,
 			natRankCha: natRankCha,
 		})
 	}	
 
-	function iterate(obj, pname) {
-		Object.keys(obj).forEach(key => {
-			if (typeof obj[key] === 'object') {
-				iterate(obj[key], pname)
-			} else {
-				obj[key] = robojournalist(obj[key], {plcname: pname})
-			}
-		})
-	}
+
 
 	function results(place, topicsIn) {
 		
@@ -346,6 +422,7 @@
 			eng: eng,
 			rgn: rgn,
 			parent: uncap1(regionThe(place.parents[0].name)),
+			parentNT: uncap1(regionThe(place.parents[0].name, "NT")),
 			s: s,
 			priorities: place.Priorities,
 			grewSyn: grewSyn,
@@ -402,14 +479,14 @@
 				{#if rgn}
 					<div id="sf">
 						<div style="width: 640px; margin:0 auto;">
-							<h1>{place.name}: What's changed</h1>
+							<h1>{place.name}: <span style="font-weight: 400;">What's changed</span></h1>
 							<div>
 								<div style="width: 640px; margin: 50px auto;">
 									<Select {options} bind:selected group="typenm" search={true} on:select="{() => { if (selected) { loadArea(selected.code) }}}"/>
 								</div>
 							</div>
-							{@html standfirst(place)}
-							<p>Here are some of the <span class="back-to-top" on:click={goTop}>most notable changes</span> from across the {(place.gss.long)?place.gss.long:"local authority district"}.</p>
+							{@html standfirst(place, topics)}
+							<p>Here are some of the <span class="back-to-top" on:click={goTop}>most notable changes</span> from across the {(place.gss)?place.gss.long:"local authority district"}.</p>
 						</div>
 					</div>
 					<main>
