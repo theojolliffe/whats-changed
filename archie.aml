@@ -32,21 +32,22 @@ children.synonym: families
 hoursworked.synonym: jobs
 marital.synonym: families
 population.synonym: headcount
+agemed.synonym: age
 
 // The religious profile of Torbay changed considerably in the 10 years leading up to the last census
 // Health improved considerably in Torbay in the 10 years leading up to the last census
-tenure.profile: housing
-health.profile: well-being
-ethnicity.profile: ethnic makeup
-economic.profile: jobs
-travel.profile: way many people here commute
+tenure.profile: housing in {plcname} changed considerably
+health.profile: health {health} considerably in {plcname}
+ethnicity.profile: ethnic makeup of {plcname} changed substantially 
+economic.profile: work life changed for many in {plcname}
+travel.profile: There was a change in the way many people in {plcname} commute
 household.profile: housing
-religion.profile: the religious profile of {plcname}
+religion.profile: the religious profile of changed considerably
 care.profile: health
-children.profile: families
-hoursworked.profile: jobs
-marital.profile: families
-population.profile: headcount
+children.profile: family life changed for many in {plcname}
+hoursworked.profile: work life changed for many in {plcname}
+marital.profile: family life changed for many in {plcname}
+population.profile: {plcname}'s population {expanded}
 
 // In the 10 years leading up to the last census, the percentage of ***Manchester residents that rent privately*** increased from about 16% to over 28%.
 // The proportion of employed people in Manchester working long hours increased from from about 16% to over 28%.
@@ -219,21 +220,21 @@ hoursworked.Male49plus.adj_noun: said they had worked over 49 hours
 
 // The percentage of ***healthy residents*** is increasing faster here than in any other local authority district across England.
 
-children.Kids.subhead: homes with children
-children.NoKids.subhead: homes without children
-children.NonDepKids.subhead: homes with non-dependent children
+children.Kids.subhead: {child} homes with children
+children.NoKids.subhead: {wochild} homes with children
+children.NonDepKids.subhead: {ndchild} homes with non-dependent children
 
-care.1to19hoursWeek.subhead: people providing up to 19 hours of weekly care
-care.20to49hoursWeek.subhead: people providing between 20 and 49 hours of weekly care
-care.40PlushoursWeek.subhead: people providing 50 hours, or more, of weekly care
+care.1to19hoursWeek.subhead: Increase in care provision
+care.20to49hoursWeek.subhead: Increase in care provision
+care.40PlushoursWeek.subhead: Increase in care provision
 
-marital.Single.subhead: single people
-marital.Married.subhead: married people
-marital.Seperated.subhead: people who have seperated
+marital.Single.subhead: Single people on the {single}
+marital.Married.subhead: Married couples on the {married} 
+marital.Seperated.subhead: A decade of breakups
 
-tenure.rented_private.subhead: private renters
-tenure.rented_social.subhead: people living in social housing
-tenure.owned.subhead: homeowners
+tenure.rented_private.subhead: Private renting increases 
+tenure.rented_social.subhead: Social renting increases
+tenure.owned.subhead: Homeownership on the rise
 
 health.good.subhead: healthy residents
 health.fair.subhead: people that described their health as fair
@@ -249,24 +250,24 @@ economic.self-employed.subhead: self-employed people
 economic.unemployed.subhead: unemployed people
 economic.student.subhead: students
 
-travel.car_van.subhead: car commuters
-travel.bus.subhead: bus commuters
-travel.train_metro.subhead: train commuters
-travel.foot.subhead: people that walk to work
-travel.home.subhead: homeworkers
+travel.car_van.subhead: More people driving to work
+travel.bus.subhead: bus use goes up
+travel.train_metro.subhead: Train commutes increase
+travel.foot.subhead: More people walking to work
+travel.home.subhead: homeworking rises
 
-household.Cohabiting.subhead: households with an unmarried couple
-household.LoneParent.subhead: single parent households
-household.OnePerson.subhead: single person households
-household.Married.subhead: households with a married couple
+household.Cohabiting.subhead: Cohabiting increases
+household.LoneParent.subhead: More single parents
+household.OnePerson.subhead: More people living alone
+household.Married.subhead: More married households 
 
-religion.Christian.subhead: Christian people
-religion.Buddhist.subhead: Buddhist people
-religion.Hindu.subhead: Hindu people
-religion.Sikh.subhead: Sikh people
-religion.Jewish.subhead: Jewish people
-religion.Muslim.subhead: Muslim people
-religion.Noreligion.subhead: athiests
+religion.Christian.subhead: Changing beliefs
+religion.Buddhist.subhead: Changing beliefs
+religion.Hindu.subhead: Changing beliefs
+religion.Sikh.subhead: Changing beliefs
+religion.Jewish.subhead: Changing beliefs
+religion.Muslim.subhead: Changing beliefs
+religion.Noreligion.subhead: Changing beliefs
 
 hoursworked.Female1-15.subhead: people working fewer hours
 hoursworked.Female49plus.subhead: people working longer hours
@@ -299,10 +300,10 @@ travel.train_metro.topic: train commuters
 travel.foot.topic: people that walk to work
 travel.home.topic: homeworkers
 
-household.Cohabiting.verb_past: were cohabiting households
-household.LoneParent.verb_past: were single parent households
-household.OnePerson.verb_past: were single person households
-household.Married.verb_past: were married households
+household.Cohabiting.topic: were cohabiting households
+household.LoneParent.topic: were single parent households
+household.OnePerson.topic: were single person households
+household.Married.topic: were married households
 
 religion.Christian.topic: that describe themselves as Christian
 religion.Buddhist.topic: that describe themselves as Buddhist
