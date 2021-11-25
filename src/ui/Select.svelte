@@ -232,7 +232,7 @@
 	<div id="dropdown" bind:this={el} style="top: 0;">
 		<input type="text" placeholder="" bind:value={filter} autocomplete="false" bind:this={input} on:keyup={doKeyup} />
 		<ul>
-			{#if filter.length < 3}
+			{#if filter.length < 0}
 			<li>Type a name...</li>
 			{:else if filtered[0] && group}
 			{#each filtered as option, i}
