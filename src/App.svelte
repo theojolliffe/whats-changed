@@ -5,17 +5,17 @@
 	import { Tabs, TabList, TabPanel, Tab } from './tabs/tabs.js';
 </script>
 <Warning/>
-
+ 
 <Tabs>
 	<TabList>
 		<Tab>Area Reports</Tab>
 		<Tab>Topic QA</Tab>
 	</TabList>
-	<TabPanel>
-		<Topics/>
-	</TabPanel>
 	<TabPanel>	
 		<Reports/>
+	</TabPanel>
+	<TabPanel>
+		<Topics/>
 	</TabPanel>
 </Tabs>
 
