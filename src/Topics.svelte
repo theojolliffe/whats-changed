@@ -217,6 +217,7 @@
 				i = i-1
 			}
 		}
+		placesOb=placesOb.slice(0,6)
 
 		console.log("placesOb", placesOb)
 
