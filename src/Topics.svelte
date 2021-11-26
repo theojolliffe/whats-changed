@@ -1,12 +1,11 @@
 <script>
-	import { getData, uncap1, regionThe } from "./utils";
+	import { getData, uncap1, regionThe, drop } from "./utils";
 	import Select from "./ui/Select.svelte";
 	import { load } from "archieml"; //this is the parser from ArchieML to JSON
 	import { onMount } from 'svelte';
 	import robojournalist from 'robojournalist';
 
 	var options, selected, place1, place2, place3, place4, place5, place6, quartiles, locRankCha, locRankCur, eng, rgncode, rgn, natRankCha, natRankCur, topics, topic;
-	var s1, s2, s3, s4 ,s5, s6
 	let topicOptions = [
 		{"label": "Average age", "value": "agemed_value_change"},
 		{"label": "Care provision", "value": "care_perc_change"},
@@ -22,41 +21,79 @@
 		{"label": "Tenure", "value": "tenure_perc_change"},
 	]
 
+	var places = []
 	fetch("https://raw.githubusercontent.com/theojolliffe/census-data/main/json/place/E07000093.json")
 		.then(res => res.json())
 		.then(json => {
 			quartiles = null;
-			place1 = json;
+			places.push(json);
 		})
 	fetch("https://raw.githubusercontent.com/theojolliffe/census-data/main/json/place/E08000003.json")
 		.then(res => res.json())
 		.then(json => {
 			quartiles = null;
-			place2 = json;
+			places.push(json);
 		})
 	fetch("https://raw.githubusercontent.com/theojolliffe/census-data/main/json/place/E07000032.json")
 		.then(res => res.json())
 		.then(json => {
 			quartiles = null;
-			place3 = json;
+			places.push(json);
 		})
 	fetch("https://raw.githubusercontent.com/theojolliffe/census-data/main/json/place/E09000007.json")
 		.then(res => res.json())
 		.then(json => {
 			quartiles = null;
-			place4 = json;
+			places.push(json);
 		})
 	fetch("https://raw.githubusercontent.com/theojolliffe/census-data/main/json/place/W06000002.json")
 		.then(res => res.json())
 		.then(json => {
 			quartiles = null;
-			place5 = json;
+			places.push(json);
 		})
 	fetch("https://raw.githubusercontent.com/theojolliffe/census-data/main/json/place/E07000113.json")
 		.then(res => res.json())
 		.then(json => {
 			quartiles = null;
-			place6 = json;
+			places.push(json);
+		})
+	fetch("https://raw.githubusercontent.com/theojolliffe/census-data/main/json/place/W06000022.json")
+		.then(res => res.json())
+		.then(json => {
+			quartiles = null;
+			places.push(json);
+		})
+	fetch("https://raw.githubusercontent.com/theojolliffe/census-data/main/json/place/E07000196.json")
+		.then(res => res.json())
+		.then(json => {
+			quartiles = null;
+			places.push(json);
+		})
+	fetch("https://raw.githubusercontent.com/theojolliffe/census-data/main/json/place/E07000087.json")
+		.then(res => res.json())
+		.then(json => {
+			quartiles = null;
+			places.push(json);
+		})
+
+	fetch("https://raw.githubusercontent.com/theojolliffe/census-data/main/json/place/E07000070.json")
+		.then(res => res.json())
+		.then(json => {
+			quartiles = null;
+			places.push(json);
+		})
+	fetch("https://raw.githubusercontent.com/theojolliffe/census-data/main/json/place/E08000021.json")
+		.then(res => res.json())
+		.then(json => {
+			quartiles = null;
+			places.push(json);
+		})
+	fetch("https://raw.githubusercontent.com/theojolliffe/census-data/main/json/place/E07000113.json")
+		.then(res => res.json())
+		.then(json => {
+			quartiles = null;
+			places.push(json);
 		})
 	fetch("https://raw.githubusercontent.com/theojolliffe/census-data/main/json/place/E92000001.json")
 		.then(res => res.json())
@@ -64,7 +101,46 @@
 			quartiles = null;
 			eng = json;
 		})
-	fetch("https://raw.githubusercontent.com/theojolliffe/census-data/main/json/place/E12000005.json")
+	fetch("https://raw.githubusercontent.com/theojolliffe/census-data/main/json/place/E09000005.json")
+		.then(res => res.json())
+		.then(json => {
+			quartiles = null;
+			rgn = json;
+		})
+
+
+	fetch("https://raw.githubusercontent.com/theojolliffe/census-data/main/json/place/E07000209.json")
+		.then(res => res.json())
+		.then(json => {
+			quartiles = null;
+			places.push(json);
+		})
+
+	fetch("https://raw.githubusercontent.com/theojolliffe/census-data/main/json/place/E06000014.json")
+		.then(res => res.json())
+		.then(json => {
+			quartiles = null;
+			places.push(json);
+		})
+	fetch("https://raw.githubusercontent.com/theojolliffe/census-data/main/json/place/W06000006.json")
+		.then(res => res.json())
+		.then(json => {
+			quartiles = null;
+			places.push(json);
+		})
+	fetch("https://raw.githubusercontent.com/theojolliffe/census-data/main/json/place/E07000210.json")
+		.then(res => res.json())
+		.then(json => {
+			quartiles = null;
+			places.push(json);
+		})
+	fetch("https://raw.githubusercontent.com/theojolliffe/census-data/main/json/place/E08000034.json")
+		.then(res => res.json())
+		.then(json => {
+			quartiles = null;
+			eng = json;
+		})
+	fetch("https://raw.githubusercontent.com/theojolliffe/census-data/main/json/place/E06000032.json")
 		.then(res => res.json())
 		.then(json => {
 			quartiles = null;
@@ -112,59 +188,48 @@
 		4: "remained relatively stable",
 		5: "fell"
 	};
+	var placesOb = [];
 
 	function loadTopic(code) {
 		
-		s1 = place1.stories.filter(d => (d.label.split("_")[0]+"_"+d.label.split("_")[1]+"_"+d.label.split("_")[2])=="marital_perc_change")[0].label.split("_")
-		if (s1.length>4) {
-			s1[3] = s1[3]+"_"+s1[4]
-			s1.pop()
+		placesOb = [];
+		
+		for (let i = 0; i < places.length; i++) {
+			let story = places[i].stories.filter(d => (d.label.split("_")[0]+"_"+d.label.split("_")[1]+"_"+d.label.split("_")[2])==code)
+			let s
+			if (story.length>0) {
+				s = story[0].label.split("_")
+				if (s.length>4) {
+					s[3] = s[3]+"_"+s[4]
+					s.pop()
+				}
+			}
+			let tmpOb = {
+				'place': places[i],
+				'story': story,
+				's': [s]
+			}
+			placesOb = [...placesOb, tmpOb]
 		}
-		console.log("S1", s1)
-		s1 = [s1]
+		for (let i = 0; i < placesOb.length; i++) {
+			if (placesOb[i]['story'].length==0) {
+				placesOb.splice(i,1)
+				i = i-1
+			}
+		}
 
-		s2 = place2.stories.filter(d => (d.label.split("_")[0]+"_"+d.label.split("_")[1]+"_"+d.label.split("_")[2])=="marital_perc_change")[0].label.split("_")
-		if (s2.length>4) {
-			s2[3] = s2[3]+"_"+s2[4]
-			s2.pop()
-		}
-		s2 = [s2]
+		console.log("placesOb", placesOb)
 
-		s3 = place3.stories.filter(d => (d.label.split("_")[0]+"_"+d.label.split("_")[1]+"_"+d.label.split("_")[2])=="marital_perc_change")[0].label.split("_")
-		if (s3.length>4) {
-			s3[3] = s3[3]+"_"+s3[4]
-			s3.pop()
-		}
-		s3 = [s3]
-
-		s4 = place4.stories.filter(d => (d.label.split("_")[0]+"_"+d.label.split("_")[1]+"_"+d.label.split("_")[2])=="marital_perc_change")[0].label.split("_")
-		if (s4.length>4) {
-			s4[3] = s4[3]+"_"+s4[4]
-			s4.pop()
-		}
-		s4 = [s4]
-
-		s5 = place5.stories.filter(d => (d.label.split("_")[0]+"_"+d.label.split("_")[1]+"_"+d.label.split("_")[2])=="marital_perc_change")[0].label.split("_")
-		if (s5.length>4) {
-			s5[3] = s5[3]+"_"+s5[4]
-			s5.pop()
-		}
-		s5 = [s5]
-
-		s6 = place6.stories.filter(d => (d.label.split("_")[0]+"_"+d.label.split("_")[1]+"_"+d.label.split("_")[2])=="marital_perc_change")[0].label.split("_")
-		if (s6.length>4) {
-			s6[3] = s6[3]+"_"+s6[4]
-			s6.pop()
-		}
-		s6 = [s6]
 
 		topic = true
-
-		console.log('coooddee', code)
-		console.log('s1', s1)
-
 	}
-	
+
+
+
+
+
+
+
 	let num_word = {'quarter of a million': 250000, 'half a million': 500000, 'three quarters of a million': 750000, 'one million': 1000000};
 
 	let frac_word = {'one in two': 0.5, 'one in three': 0.333, 'one in four': 0.25, 'one in five': 0.2, 'one in six': 0.167, 'one in seven': 0.143, 'one in eight': 0.125, 'one in nine': 0.111, '1 in 10': 0.1,'1 in 11' : 0.09, '1 in 12' : 0.083, '1 in 13' : 0.077, '1 in 14' : 0.071, '1 in 15' : 0.067, '1 in 16' : 0.063, '1 in 17' : 0.059, '1 in 18' : 0.056, '1 in 19' : 0.053 ,'1 in 20': 0.05, '2 in 10': 0.2, '3 in 10': 0.3, '4 in 10': 0.4, '6 in 10': 0.6, '7 in 10': 0.7, '8 in 10': 0.8, '9 in 10': 0.9, 'all': 1.0};
@@ -335,12 +400,12 @@
 		return optArKey
 	}
 
-	function otherRank(i, t="r") {
+	function otherRank(s, place, i, t="r") {
 		let locExt = ""
 		if (t=="rl") {
 			locExt = "_local"
 		}
-		return place.data[s[i][0]][s[i][1]+'_rank'+locExt]['change'][otherEst(i, cha(i, t), 'change')]
+		return place.data[s[i][0]][s[i][1]+'_rank'+locExt]['change'][otherEst(s, place, i, cha(s, place, i, t), 'change')]
 	}
 
 	function ud(n, w1, w2) { if (n<0) { return w2 } else { return w1 } }
@@ -370,41 +435,10 @@
 		})
 	}
 
-
-	function standfirst(place, topicsIn) {
-
-		var o = JSON.parse(JSON.stringify(topicsIn));
-		iterate(o, place.name)
-
-		let sf = []
-		let changeMag = 0
-		place.stories.forEach(e => {
-			if ((sf.length<4)&(Math.abs(e['value'])>3)) {
-				sf.push(e['label'].split("_"))
-				changeMag = changeMag+Math.abs(e['value'])
-			}
-		});
-		return rosaenlg_en_US.render(stand, {
-			language: 'en_UK',
-			place: place,
-			topics: o,
-			s: s,
-			sf: sf,
-			changeMag: changeMag,
-			grewSyn: grewSyn,
-			qui: qui,
-			natRankCha: natRankCha,
-		})
-	}	
-
-
-
-	function results(place, topicsIn, s){
+	function results(place, topicsIn, s, story) {
 		
 		var o = JSON.parse(JSON.stringify(topicsIn));
 
-		console.log("topics", o)
-		console.log("et ", place.name)
 		iterate(o, place.name)
 
 		function topic(i, top) {
@@ -430,6 +464,7 @@
 			parent: uncap1(regionThe(place.parents[0].name)),
 			parentNT: uncap1(regionThe(place.parents[0].name, "NT")),
 			s: s,
+			stories: story,
 			priorities: place.Priorities,
 			grewSyn: grewSyn,
 			locRankCha: locRankCha,
@@ -451,6 +486,7 @@
 			otherRank: otherRank,
 			ud: ud,
 			city: city,
+			drop, drop,
 		})
 
 	}
@@ -493,18 +529,10 @@
 						<h1>{selected.label}</h1>
 					</div>
 					<main>
-						<h2 style="text-decoration: underline;">{place1.name}</h2>
-						{@html results(place1, topics, s1)}
-						<h2 style="text-decoration: underline;">{place2.name}</h2>
-						{@html results(place2, topics, s2)}
-						<h2 style="text-decoration: underline;">{place3.name}</h2>
-						{@html results(place3, topics, s3)}
-						<h2 style="text-decoration: underline;">{place4.name}</h2>
-						{@html results(place4, topics, s4)}
-						<h2 style="text-decoration: underline;">{place5.name}</h2>
-						{@html results(place5, topics, s5)}
-						<h2 style="text-decoration: underline;">{place6.name}</h2>
-						{@html results(place6, topics, s6)}
+						{#each placesOb as item, i (i)}
+							<h2 style="text-decoration: underline;">{item['place'].name}</h2>
+							{@html results(item['place'], topics, item['s'], item['story'])}
+						{/each}
 						<hr style="width: 40%; margin: 60px auto 30px auto;"/>
 						<h2 id="create">Creating this article</h2>
 						<p>This article has been generated using a semi-automated system for story selection and data-to-text templating.</p>

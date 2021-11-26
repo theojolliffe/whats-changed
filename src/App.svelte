@@ -11,11 +11,11 @@
 		<Tab>Area Reports</Tab>
 		<Tab>Topic QA</Tab>
 	</TabList>
-	<TabPanel>	
-		<Reports/>
-	</TabPanel>
 	<TabPanel>
 		<Topics/>
+	</TabPanel>
+	<TabPanel>	
+		<Reports/>
 	</TabPanel>
 </Tabs>
 

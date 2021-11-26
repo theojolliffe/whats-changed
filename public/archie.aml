@@ -19,7 +19,7 @@ agemed.adj.high: oldest
 agemed.adj.low: youngest
 
 // Giving it the greatest ***headcount*** of any local authority area in the North West of England.
-// Census 2021 data also shows a shift in ***the hours worked by people here***.
+// Census 2021 data also shows a shift in ***working patterns***.
 tenure.synonym: {plcname} housing
 health.synonym: the local population's well-being
 ethnicity.synonym: ethnic makeup of {plcname}
@@ -28,7 +28,7 @@ household.synonym: family life for many in {plcname}
 religion.synonym: the local population's religious beliefs
 care.synonym: the amount of care provided here
 children.synonym: family life for many in {plcname} 
-hoursworked.synonym: the hours worked by people here
+hoursworked.synonym: working patterns
 marital.synonym: the people of {plcname}'s relationships
 population.synonym: headcount
 agemed.synonym: the local population's average age
@@ -64,7 +64,7 @@ marital.Seperated.clausal_modifier: people in {plcname} that have seperated from
 
 tenure.rented_private.clausal_modifier: people living in {plcname} that rent privately
 tenure.rented_social.clausal_modifier: people living in {plcname} residents that live in social housing
-tenure.owned.clausal_modifier: people living in {plcname} residents that own their home
+tenure.owned.clausal_modifier: {plcname} residents that own their home
 
 health.good.clausal_modifier: {plcname} residents that describe their health as good
 health.fair.clausal_modifier: {plcname} residents that describe their health as fair
@@ -95,8 +95,8 @@ religion.Noreligion.clausal_modifier: people in {plcname} that have no religion
 
 hoursworked.Female1-15.clausal_modifier: employees working less than 16 hours
 hoursworked.Female49plus.clausal_modifier: employees working over 49 hours
-hoursworked.Male1-15.clausal_modifier: employed people in {plcname} working short hours
-hoursworked.Male49plus.clausal_modifier: employed people in {plcname} working long hours
+hoursworked.Male1-15.clausal_modifier: employed people in {plcname} working less than 16 hours
+hoursworked.Male49plus.clausal_modifier: employed people in {plcname} working  over 49 hours
 
 // Just over 3 in 10 (32%) ***said they live in social housing*** in 2021, compared with about 39% in 2011
 
@@ -143,10 +143,10 @@ religion.Jewish.verb_past: said they were Jewish
 religion.Muslim.verb_past: said they were Muslim
 religion.Noreligion.verb_past: said they had no religion
 
-hoursworked.Female1-15.verb_past: said they had worked less than 16 hours
-hoursworked.Female49plus.verb_past: said they had worked over 49 hours
-hoursworked.Male1-15.verb_past: said they had worked less than 16 hours
-hoursworked.Male49plus.verb_past: said they had worked over 49 hours 
+hoursworked.Female1-15.verb_past: said they worked less than 16 hours the previous week
+hoursworked.Female49plus.verb_past: said they worked over 49 hours the previous week
+hoursworked.Male1-15.verb_past: said they worked less than 16 hours the previous week
+hoursworked.Male49plus.verb_past: said they worked over 49 hours the previous week
 
 // The percentage of ***healthy residents*** is increasing faster here than in any other local authority district across England.
 
@@ -193,10 +193,10 @@ religion.Jewish.adj_noun: Jewish people
 religion.Muslim.adj_noun: Muslim people
 religion.Noreligion.adj_noun: athiests
 
-hoursworked.Female1-15.adj_noun: said they had worked less than 16 hours
-hoursworked.Female49plus.adj_noun: said they had worked over 49 hours
-hoursworked.Male1-15.adj_noun: said they had worked less than 16 hours
-hoursworked.Male49plus.adj_noun: said they had worked over 49 hours 
+hoursworked.Female1-15.adj_noun: people working short hours
+hoursworked.Female49plus.adj_noun: people working long hours
+hoursworked.Male1-15.adj_noun: people working short hours
+hoursworked.Male49plus.adj_noun: people working long hours 
 
 // The percentage of ***healthy residents*** is increasing faster here than in any other local authority district across England.
 
@@ -282,11 +282,19 @@ hoursworked.Male1-15.subhead.neg: Fewer people working short hours
 hoursworked.Male49plus.subhead.pos: More working long hours
 hoursworked.Male49plus.subhead.neg: Fewer people working long hours
 
-// Higher rate of ***economic inactivity***
+// ***The rate of homeownership*** in Greenwich rose from 68.1% to 79.6%
 
-tenure.rented_private.topic: private renters
-tenure.rented_social.topic: people living in social housing
-tenure.owned.topic: homeowners
+marital.Single.topic: The proportion of single people
+marital.Married.topic: The proportion of married people
+marital.Seperated.topic: The proportion of seperated people
+
+children.Kids.topic: the proportion of homes with children
+children.NoKids.topic: the proportion of childless homes
+children.NonDepKids.topic: the proportion of homes with only non-dependent children
+
+tenure.rented_private.topic: private renting
+tenure.rented_social.topic: the rate of social housing
+tenure.owned.topic: the rate of homeownership
 
 health.good.topic: are from a White ethnic group
 health.fair.topic: fairly healthy residents
@@ -302,10 +310,10 @@ economic.self-employed.topic: self-employment
 economic.unemployed.topic: unemployment
 economic.student.topic: students
 
-household.Cohabiting.topic: were cohabiting households
-household.LoneParent.topic: were single parent households
-household.OnePerson.topic: were single person households
-household.Married.topic: were married households
+household.Cohabiting.topic: cohabiting households
+household.LoneParent.topic: single parent households
+household.OnePerson.topic: single person households
+household.Married.topic: married households
 
 religion.Christian.topic: that describe themselves as Christian
 religion.Buddhist.topic: that describe themselves as Buddhist

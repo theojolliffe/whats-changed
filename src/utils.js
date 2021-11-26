@@ -19,4 +19,18 @@ function uncap1(string) {
     } else { return string }
 }
 
-export { uncap1, getData, regionThe };
+function suffixer(int) {
+  let mod = Math.round(int) % 10;
+  return mod == 1 ? 'st' : mod == 2 ? 'nd' : mod == 3 ? 'rd' : 'th';
+}
+function drop(x, d, r) {
+  let int = Math.abs(x)
+  let mod = Math.round(int) % 10;
+  let suff = mod == 1 ? 'st' : mod == 2 ? 'nd' : mod == 3 ? 'rd' : 'th';
+  let pos = x < 0 ? d: r
+  let nuLu = {1: 'first', 2: 'second', 3: 'third', 4: 'fourth', 5: 'fifth'}
+  let word = nuLu[int]
+  return word + pos
+}
+
+export { uncap1, getData, regionThe, drop };

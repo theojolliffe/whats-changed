@@ -1,11 +1,11 @@
 <script>
-	import { getData, uncap1, regionThe } from "./utils";
+	import { getData, uncap1, regionThe, drop } from "./utils";
 	import Select from "./ui/Select.svelte";
 	import { load } from "archieml"; //this is the parser from ArchieML to JSON
 	import { onMount } from 'svelte';
 	import robojournalist from 'robojournalist';
 
-	var options, selected, place, quartiles, locRankCha, locRankCur, eng, rgncode, rgn, s, natRankCha, natRankCur, topics;
+	var options, selected, place, quartiles, locRankCha, locRankCur, eng, rgncode, rgn, s, natRankCha, natRankCur, topics, expand;
 
     var topics;
     fetch("./archie.aml")
@@ -42,10 +42,10 @@
 		res = res.filter(d => d['type']=='lad')
 		options = res.sort((a, b) => a.name.localeCompare(b.name));
 		let  defaultLoc = options[Math.round(336*Math.random())]['name']
-		defaultLoc = 'Bridgend'; // Basingstoke and Deane // Test valley
-		console.log("defaultLoc", defaultLoc)
+		// defaultLoc = 'Greenwich'; // Basingstoke and Deane // Test valley
+		console.log(defaultLoc)
 		selected = options.find(d => d.name == defaultLoc);
-		console.log("selected.code", selected.code)
+		console.log(selected.code)
 		loadArea(selected.code)
 	});
 	function loadArea(code) {
@@ -57,6 +57,16 @@
 			quartiles = null;
 			place = json;
 
+			if (place.data.population.value.change.all>8) {
+				expand = "expanded"
+			} else if (place.data.population.value.change.all>3) {
+				expand = "grew"
+			} else if (place.data.population.value.change.all>0) {
+				expand = "did not change much"
+			} else {
+				expand = "shrunk"
+			} 
+
 			s = place.stories.map(d => d.label.split("_"))
 			s.forEach(e => {
 				if (e.length>4) {
@@ -66,6 +76,7 @@
 			});
 			rgncode = place.parents[0].code
 			console.log("Place", place)
+			console.log("Stories", place.stories)
 			console.log('s', s)
 			locRankCha = s.map(d => parseInt(place.data[d[0]][d[1]+"_rank_local"][d[2]][d[3]]))
 			natRankCha = s.map(d => parseInt(place.data[d[0]][d[1]+"_rank"][d[2]][d[3]]))
@@ -293,6 +304,7 @@
 				iterate(obj[key], pname)
 			} else {
 				obj[key] = robojournalist(obj[key], {
+					expanded: expand,
 					plcname: pname,
 				})
 			}
@@ -354,11 +366,13 @@
 			language: 'en_UK',
 			place: place,
 			data: place.data,
+			// replace eng with country data (inc Wales)
 			eng: eng,
 			rgn: rgn,
 			parent: uncap1(regionThe(place.parents[0].name)),
 			parentNT: uncap1(regionThe(place.parents[0].name, "NT")),
 			s: s,
+			stories: place.stories,
 			priorities: place.Priorities,
 			grewSyn: grewSyn,
 			locRankCha: locRankCha,
@@ -380,6 +394,7 @@
 			otherRank: otherRank,
 			ud: ud,
 			city: city,
+			drop, drop,
 		})
 
 	}
