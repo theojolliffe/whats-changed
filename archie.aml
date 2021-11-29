@@ -74,7 +74,7 @@ ethnicity.white.clausal_modifier: {plcname} residents from one of the White ethn
 ethnicity.black.clausal_modifier: {plcname} residents from one of the Black ethnic groups
 ethnicity.asian.clausal_modifier: {plcname} residents from one of the Asian ethnic groups
 
-economic.employee.clausal_modifier: {plcname} residents that are in employment
+economic.employee.clausal_modifier: {plcname} residents that are employed
 economic.inactive.clausal_modifier: {plcname} residents that are economically inactive
 economic.self-employed.clausal_modifier: {plcname} residents that are self-employed
 economic.unemployed.clausal_modifier: {plcname} residents that are unemployment
@@ -185,13 +185,13 @@ household.LoneParent.adj_noun: single parent households
 household.OnePerson.adj_noun: single person households
 household.Married.adj_noun: households with a married couple
 
-religion.Christian.adj_noun: Christian people
-religion.Buddhist.adj_noun: Buddhist people
-religion.Hindu.adj_noun: Hindu people
-religion.Sikh.adj_noun: Sikh people
-religion.Jewish.adj_noun: Jewish people
-religion.Muslim.adj_noun: Muslim people
-religion.Noreligion.adj_noun: athiests
+religion.Christian.adj_noun: people who describe themselves as Christian
+religion.Buddhist.adj_noun: people who describe themselves as Buddhist
+religion.Hindu.adj_noun: people who describe themselves as Hindu
+religion.Sikh.adj_noun: people who describe themselves as Sikh
+religion.Jewish.adj_noun: people who describe themselves as Jewish
+religion.Muslim.adj_noun: people who describe themselves as Muslim
+religion.Noreligion.adj_noun: people who describe themselves as non-religioous
 
 hoursworked.Female1-15.adj_noun: people working short hours
 hoursworked.Female49plus.adj_noun: people working long hours
@@ -243,36 +243,52 @@ ethnicity.asian.subhead.pos: More residents from an Asian ethnic group
 ethnicity.asian.subhead.neg: Fewer residents from an Asian ethnic group
 economic.employee.subhead.pos: Rise in rate of employment
 economic.employee.subhead.neg: Fall in rate of employment
+economic.employee.subhead.neu: Changing work
 economic.inactive.subhead.pos: Rise in rate of economic activity
 economic.inactive.subhead.neg: Fall in rate of economic activity
+economic.inactive.subhead.neu: Changing work life
 economic.self-employed.subhead.pos: Rise in rate of self-employment
 economic.self-employed.subhead.neg: Fall in rate of self-employment
+economic.self-employed.subhead.neu: Changing work life
 economic.unemployed.subhead.pos: Rise in rate of unemployment
 economic.unemployed.subhead.neg: Fall in rate of unemployment
+economic.unemployed.subhead.neu: Changing work life
 economic.student.subhead.pos: More students
 economic.student.subhead.neg: Fewer students
+economic.student.subhead.neu: Changing work life
 household.Cohabiting.subhead.pos: More people cohabiting
 household.Cohabiting.subhead.neg: Fewer people cohabiting
+household.Cohabiting.subhead.neu: Fewer people cohabiting
 household.LoneParent.subhead.pos: More single parents
 household.LoneParent.subhead.neg: Fewer single parents
+household.LoneParent.subhead.neu: Fewer single parents
 household.OnePerson.subhead.pos: More people living alone
 household.OnePerson.subhead.neg: Fewer people living alone
+household.OnePerson.subhead.neu: Fewer people living alone
 household.Married.subhead.pos: Marriage on the up
 household.Married.subhead.neg: Marriage declining 
+household.Married.subhead.neu: Marriage declining 
 religion.Christian.subhead.pos: Changing beliefs
 religion.Christian.subhead.neg: Changing beliefs
+religion.Christian.subhead.neu: Changing beliefs
 religion.Buddhist.subhead.pos: Changing beliefs
 religion.Buddhist.subhead.neg: Changing beliefs
+religion.Buddhist.subhead.neu: Changing beliefs
 religion.Hindu.subhead.pos: Changing beliefs
 religion.Hindu.subhead.neg: Changing beliefs
+religion.Hindu.subhead.neu: Changing beliefs
 religion.Sikh.subhead.pos: Changing beliefs
 religion.Sikh.subhead.neg: Changing beliefs
+religion.Sikh.subhead.neu: Changing beliefs
 religion.Jewish.subhead.pos: Changing beliefs
 religion.Jewish.subhead.neg: Changing beliefs
+religion.Jewish.subhead.neu: Changing beliefs
 religion.Muslim.subhead.pos: Changing beliefs
 religion.Muslim.subhead.neg: Changing beliefs
+religion.Muslim.subhead.neu: Changing beliefs
 religion.Noreligion.subhead.pos: Changing beliefs
 religion.Noreligion.subhead.neg: Changing beliefs
+religion.Noreligion.subhead.neu: Changing beliefs
 hoursworked.Female1-15.subhead.pos: More people working short hours
 hoursworked.Female1-15.subhead.neg: Fewer people working short hours
 hoursworked.Female49plus.subhead.pos: More working long hours
@@ -282,11 +298,11 @@ hoursworked.Male1-15.subhead.neg: Fewer people working short hours
 hoursworked.Male49plus.subhead.pos: More working long hours
 hoursworked.Male49plus.subhead.neg: Fewer people working long hours
 
-// ***The rate of homeownership*** in Greenwich rose from 68.1% to 79.6%
+// **The rate of homeownership*** in Greenwich rose from 68.1% to 79.6%
 
-marital.Single.topic: The proportion of single people
-marital.Married.topic: The proportion of married people
-marital.Seperated.topic: The proportion of seperated people
+marital.Single.topic: the proportion of single people
+marital.Married.topic: the proportion of married people
+marital.Seperated.topic: the proportion of seperated people
 
 children.Kids.topic: the proportion of homes with children
 children.NoKids.topic: the proportion of childless homes
@@ -304,10 +320,10 @@ ethnicity.white.topic: are from a White ethnic group
 ethnicity.black.topic: are from a Black ethnic group
 ethnicity.asian.topic: are from an Asian ethnic group
 
-economic.employee.topic: employment
-economic.inactive.topic: economic inactivity
-economic.self-employed.topic: self-employment
-economic.unemployed.topic: unemployment
+economic.employee.topic: the rate of employment
+economic.inactive.topic: the rate of economic inactivity
+economic.self-employed.topic: the rate of self-employment
+economic.unemployed.topic: the rate of unemployment
 economic.student.topic: students
 
 household.Cohabiting.topic: cohabiting households
@@ -315,10 +331,61 @@ household.LoneParent.topic: single parent households
 household.OnePerson.topic: single person households
 household.Married.topic: married households
 
-religion.Christian.topic: that describe themselves as Christian
-religion.Buddhist.topic: that describe themselves as Buddhist
-religion.Hindu.topic: that describe themselves as Hindu
-religion.Sikh.topic: said they were Sikh
-religion.Jewish.topic: that describe themselves as Jewish
-religion.Muslim.topic: that describe themselves as Muslim
-religion.Noreligion.topic: that have no religion
+religion.Christian.topic: the proportion of Christian people
+religion.Buddhist.topic: the proportion of Buddhist people
+religion.Hindu.topic: the proportion of Hindu people
+religion.Sikh.topic: the proportion of Sikh people
+religion.Jewish.topic: the proportion of Jewish people
+religion.Muslim.topic: the proportion of Muslim people
+religion.Noreligion.topic: the proportion of athiests
+
+hoursworked.Female1-15.topic: short hour working
+hoursworked.Female49plus.topic: long hour working
+hoursworked.Male1-15.topic: short hour working
+hoursworked.Male49plus.topic: long hour working
+
+// the English area with the highest percentage of ***Buddhist people***.
+
+marital.Single.adj_noun_s: single people
+marital.Married.adj_noun_s: married people
+marital.Seperated.adj_noun_s: seperated people
+
+children.Kids.adj_noun_s: homes with children
+children.NoKids.adj_noun_s: childless homes
+children.NonDepKids.adj_noun_s: homes with only non-dependent children
+
+tenure.rented_private.adj_noun_s: private renting
+tenure.rented_social.adj_noun_s: the rate of social housing
+tenure.owned.adj_noun_s: the rate of homeownership
+
+health.good.adj_noun_s: are from a White ethnic group
+health.fair.adj_noun_s: fairly healthy residents
+health.bad.adj_noun_s: unhealthy residents
+
+ethnicity.white.adj_noun_s: are from a White ethnic group
+ethnicity.black.adj_noun_s: are from a Black ethnic group
+ethnicity.asian.adj_noun_s: are from an Asian ethnic group
+
+economic.employee.adj_noun_s: employment
+economic.inactive.adj_noun_s: economic inactivity
+economic.self-employed.adj_noun_s: self-employment
+economic.unemployed.adj_noun_s: unemployment
+economic.student.adj_noun_s: students
+
+household.Cohabiting.adj_noun_s: cohabiting households
+household.LoneParent.adj_noun_s: single parent households
+household.OnePerson.adj_noun_s: single person households
+household.Married.adj_noun_s: married households
+
+religion.Christian.adj_noun_s: Christian people
+religion.Buddhist.adj_noun_s: Buddhist people
+religion.Hindu.adj_noun_s: Hindu people
+religion.Sikh.adj_noun_s: Sikh people
+religion.Jewish.adj_noun_s: Jewish people
+religion.Muslim.adj_noun_s: Muslim people
+religion.Noreligion.adj_noun_s: athiests
+
+hoursworked.Female1-15.adj_noun_s: short hours workers
+hoursworked.Female49plus.adj_noun_s: long hours workers
+hoursworked.Male1-15.adj_noun_s: short hours workers
+hoursworked.Male49plus.adj_noun_s: long hours workers
