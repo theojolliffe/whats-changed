@@ -1,12 +1,12 @@
 <script>
-	import { ageBandLU, ord, uncap1, getData, regionThe, drop, iterate, ud, otherRank, otherEst, qui, cha, cur, figs, get_word, city, chains } from "./utils";
+	import { eq, ageBandLU, ord, uncap1, getData, regionThe, drop, ud, otherRank, otherEst, qui, cha, cur, figs, get_word, city, chains } from "./utils";
 	import Select from "./ui/Select.svelte";
 	import { load } from "archieml"; //this is the parser from ArchieML to JSON
 	import { onMount } from 'svelte';
 	import robojournalist from 'robojournalist';
 
 	var options, selected, place, quartiles, locRankCha, locRankCur, eng, rgncode, rgn, s, natRankCha, natRankCur, topics;
-	var expand;
+	var health, expand;
 
     var topics;
     fetch("./archie.aml")
@@ -34,6 +34,8 @@
 	let loaded = false
     const onRosaeNlgLoad = () => { loaded = true }
 
+
+
 	// Data load functions
 	getData("https://raw.githubusercontent.com/theojolliffe/census-data/main/csv/lists/places_2020.csv").then(res => {
 		res.forEach(d => {
@@ -43,7 +45,7 @@
 		res = res.filter(d => d['type']=='lad')
 		options = res.sort((a, b) => a.name.localeCompare(b.name));
 		let  defaultLoc = options[Math.round(336*Math.random())]['name']
-		// defaultLoc = 'Darlington'; // Basingstoke and Deane // Test valley
+		defaultLoc = 'Three Rivers';
 		console.log(defaultLoc)
 		selected = options.find(d => d.name == defaultLoc);
 		console.log(selected.code)
@@ -58,6 +60,8 @@
 			quartiles = null;
 			place = json;
 
+
+			// Define the word to describe population change in standfirst
 			if (place.data.population.value.change.all>8) {
 				expand = "expanded"
 			} else if (place.data.population.value.change.all>3) {
@@ -67,6 +71,13 @@
 			} else {
 				expand = "shrunk"
 			} 
+			// Define the word to describe health change in standfirst
+			if (place.data.health.perc.change.good>0) {
+				health = "improved"
+			} else if (place.data.health.perc.change.good<0) {
+				health = "deteriorated"
+			}
+
 
 			s = place.stories.map(d => d.label.split("_"))
 			s.forEach(e => {
@@ -76,9 +87,6 @@
 				}
 			});
 			rgncode = place.parents[0].code
-			console.log("Place", place)
-			console.log("Stories", place.stories)
-			console.log('s', s)
 			locRankCha = s.map(d => parseInt(place.data[d[0]][d[1]+"_rank_local"][d[2]][d[3]]))
 			natRankCha = s.map(d => parseInt(place.data[d[0]][d[1]+"_rank"][d[2]][d[3]]))
 			locRankCur = s.map(d => parseInt(place.data[d[0]][d[1]+"_rank_local"]['2011'][d[3]]))
@@ -113,6 +121,20 @@
 		5: "fell"
 	};
 	
+	function iterate(obj, pname) {
+			Object.keys(obj).forEach(key => {
+				if (typeof obj[key] === 'object') {
+					iterate(obj[key], pname)
+				} else {
+					obj[key] = robojournalist(obj[key], {
+						health, health,
+						expanded: expand,
+						plcname: pname,
+					})
+				}
+			})
+		}
+
 
 	function standfirst(place, topicsIn) {
 
@@ -140,14 +162,9 @@
 		})
 	}	
 
-
-
 	function results(place, topicsIn) {
 		
 		var o = JSON.parse(JSON.stringify(topicsIn));
-
-		console.log("topics", o)
-		console.log("et ", place.name)
 		iterate(o, place.name)
 
 		function topic(i, top) {
@@ -199,6 +216,7 @@
 			drop, drop,
 			ord: ord,
 			ageBandLU: ageBandLU,
+			eq: eq,
 		})
 
 	}
@@ -248,10 +266,7 @@
 
 						<hr style="width: 40%; margin: 60px auto 30px auto;"/>
 						<h2 id="create">Creating this article</h2>
-						<p>This article has been generated using a semi-automated system for story selection and data-to-text templating.</p>
-						<p>The system relies upon a computer programme to decide which topics are relevant to specific areas and describe the data in words.</p>
-						<p>For each local authority district, the variables that have changed the most since 2011 are selected automatically. Variables that have experienced a considerably larger or smaller change than the regional or national averages are also selected.</p>
-						<p>The decisions made by the computer programme were coded by staff in the ONS Digital Publishing team in advance of the release of Census 2021 data.</p>
+						<p>This article was generated using some automation. Topics are automatically chosen based on how relevant they are for each area.</p>
 						<div style="height:200px"></div>
 					</main>
 				{/if}

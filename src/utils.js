@@ -1,8 +1,6 @@
 import { csvParse, autoType } from 'd3-dsv';
 import robojournalist from 'robojournalist';
 
-var expand;
-
 async function getData(url) {
   let response = await fetch(url);
   let string = await response.text();
@@ -222,18 +220,6 @@ if (parent=="London") {
   city = "region"
 }
 
-function iterate(obj, pname) {
-  Object.keys(obj).forEach(key => {
-    if (typeof obj[key] === 'object') {
-      iterate(obj[key], pname)
-    } else {
-      obj[key] = robojournalist(obj[key], {
-        expanded: expand,
-        plcname: pname,
-      })
-    }
-  })
-}
 var ones = ['', '', 'second-', 'third-', 'fourth-', 'fifth-', 'sixth-', 'seventh-', 'eighth-', 'ninth-'];
 
 function suffixer(int) {
@@ -271,5 +257,11 @@ var ageBandLU = {
   '70-79': ['people between the ages of 70 and 79 years', 'between 70 and 79 years'],
   '80plus': ['people aged 80 years or over', 'over the age of 80 years']
 }
+function eq(a, b) {
+  return Array.isArray(a) &&
+      Array.isArray(b) &&
+      a.length === b.length &&
+      a.every((val, index) => val === b[index]);
+}
 
-export { ageBandLU, uncap1, getData, regionThe, drop, iterate, ud, otherRank, otherEst, qui, cha, cur, figs, get_word, city, ord, chains };
+export { eq, ageBandLU, uncap1, getData, regionThe, drop, ud, otherRank, otherEst, qui, cha, cur, figs, get_word, city, ord, chains };

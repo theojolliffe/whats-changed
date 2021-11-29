@@ -1,9 +1,9 @@
 <script>
-	import { ageBandLU, ord, uncap1, regionThe, drop, iterate, ud, otherRank, otherEst, qui, cha, cur, figs, get_word, city,  chains } from "./utils";
+	import { ageBandLU, ord, uncap1, regionThe, drop, ud, otherRank, otherEst, qui, cha, cur, figs, get_word, city,  chains } from "./utils";
 	import Select from "./ui/Select.svelte";
 	import Selectb from "./ui/SelectB.svelte";
 	import { load } from "archieml"; //this is the parser from ArchieML to JSON
-	import { onMount } from 'svelte';
+	import robojournalist from 'robojournalist';
 
 	var selected, selectedb, quartiles, locRankCha, locRankCur, eng, rgncode, rgnLoad, natRankCha, natRankCur, topics, topic;
 	let topicOptions = [
@@ -103,6 +103,7 @@
 
 	var regions = []
 	$: thisReg = "null"
+
 
 	fetch("https://raw.githubusercontent.com/theojolliffe/census-data/main/json/place/E92000001.json")
 		.then(res => res.json())
@@ -260,8 +261,19 @@
 		console.log("RGNNin",rgn )
 
 		var o = JSON.parse(JSON.stringify(topicsIn));
-
-		iterate(o, place.name)
+  
+		function iterate(obj, pname) {
+			Object.keys(obj).forEach(key => {
+				if (typeof obj[key] === 'object') {
+					iterate(obj[key], pname)
+				} else {
+					obj[key] = robojournalist(obj[key], {
+						health, health,
+						plcname: pname,
+					})
+				}
+			})
+		}
 
 		function topic(i, top) {
 			let ttop
@@ -375,10 +387,7 @@
 						{/each}
 						<hr style="width: 40%; margin: 60px auto 30px auto;"/>
 						<h2 id="create">Creating this article</h2>
-						<p>This article has been generated using a semi-automated system for story selection and data-to-text templating.</p>
-						<p>The system relies upon a computer programme to decide which topics are relevant to specific areas and describe the data in words.</p>
-						<p>For each local authority district, the variables that have changed the most since 2011 are selected automatically. Variables that have experienced a considerably larger or smaller change than the regional or national averages are also selected.</p>
-						<p>The decisions made by the computer programme were coded by staff in the ONS Digital Publishing team in advance of the release of Census 2021 data.</p>
+						<p>This article was generated using some automation. Topics are automatically chosen based on how relevant they are for each area.</p>
 						<div style="height:200px"></div>
 					</main>
 				{/if}

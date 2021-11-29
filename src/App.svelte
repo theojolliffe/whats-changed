@@ -67,5 +67,4 @@
 		padding: 15px;
 		font-size: 1.2rem;
 	}
-
 </style>
