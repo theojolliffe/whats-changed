@@ -386,7 +386,6 @@
 			{/if}
 			{:else}
 			<div style="padding: 50px; padding-left: 40%; font-size: x-large">Loading...</div>
-	
 		{/if}
 	{/if}
 </div>
