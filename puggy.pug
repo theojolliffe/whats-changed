@@ -188,7 +188,6 @@ mixin overtake(i, loc)
         | highest percentage of #[+value(topics[s[i][0]][s[i][3]].adj_noun_s)].
     else
         | went from having the
-        -console.log(i, loc, data[s[i][0]][s[i][1]+"_rank"+loc][2001][s[i][3]])
         | #[+value(ord(Math.abs(data[s[i][0]][s[i][1]+"_rank"+loc][2001][s[i][3]]))+ud(data[s[i][0]][s[i][1]+"_rank"+loc][2001][s[i][3]],"highest", "lowest"))]
         | to the #[+value(ord(Math.abs(data[s[i][0]][s[i][1]+"_rank"+loc][2011][s[i][3]]))+"lowest")] percentage of Christian people out of 309 English local authoirities.
 
@@ -256,7 +255,6 @@ mixin inRegion
 
 // The proportion of healthy residents in Manchester is growing at the third fastest rate of all local authority disricts across England.
 // The population of Manchester is becoming more healthy at the third fastest of all local authority districts across England.
-
 mixin topRank(i)
     | The proportion of #[+value(topic(i).adj_noun)] is 
     | #[+value(ud(cha(s, place, i, "r"), 'growing', 'falling'))]
@@ -314,11 +312,11 @@ mixin sent3Perc(i)
         | The proportion of  #[+value(topic(i).adj_noun)] has been
         | #[+value(ud(cha(s, place, i), 'growing', 'falling'))]
         | #[+value(ud((Math.abs(cha(s, place, i)) - rgn.data[s[i][0]][s[i][1]]['change'][s[i][3]]), 'faster', 'at a slower rate'))]
-        | here than the average
+        | here than
         | across #[+value(parent)]
         | (from #[+value((rgn.data[s[i][0]][s[i][1]][2001][s[i][3]])/100, {'FORMAT': '0.0%'})] in 2011 to 
         | #[+value((rgn.data[s[i][0]][s[i][1]][2011][s[i][3]])/100, {'FORMAT': '0.0%'})]) 
-        | and the average across 
+        | and across 
         | #[+value(country)] 
         | (from #[+value((eng.data[s[i][0]][s[i][1]][2001][s[i][3]])/100, {'FORMAT': '0.0%'})] to 
         | #[+value((eng.data[s[i][0]][s[i][1]][2011][s[i][3]])/100, {'FORMAT': '0.0%'})]).
@@ -553,7 +551,6 @@ mixin sent2Diff(i)
         | #[+value((chain0_11)/100, {'FORMAT': '0.0%'})]
     if (chains[s[i][3]].length>1)
         | , while #[+value(topic(i, chains[s[i][3]][1]).topic)]
-        - console.log('chain1_11', chain1_11)
         if (Math.round(chain1_11*10)/10==Math.round(chain1_01*10)/10)
             | remained stable at around #[+value((chain1_11)/100, {'FORMAT': '0.0%'})]
         else
@@ -566,12 +563,6 @@ mixin sent2Diff(i)
 
 //- The percentage of private renters in this district is rising but at a slower rate than the average across the North West.
 mixin difference(i)
-    -console.log('s[i]: ', s[i])
-    -console.log('palce: ', place)
-    -console.log('rgn: ', rgn)
-    -console.log('place.nearSimilar.nearTops: ', place.nearSimilar.nearTops)
-    -console.log('place.similar: ', place.similar)
-    -console.log('eng: ', eng)
     | The percentage of #[+value(topic(i).adj_noun)] 
     if (Math.abs(cha(s, place, i))<1)
         | remained 
@@ -593,10 +584,9 @@ mixin difference(i)
         syn
             | in this area
     - var curDif
-    if ((stories[i].type.includes('nearDiff'))&(!hasSaid('nearDiff'))|(stories[i].type == ['nearDiff']))
+    if ((stories[i].type.includes('nearDiff'))&(!hasSaid('nearDiff'))|(eq(stories[i].type, ['nearDiff'])))
         recordSaid('nearDiff')
         - curDif = 'nearDiff'
-        - console.log("neardiff")
         if (Math.abs(cha(s, place, i))<1)
             | , while the proportion #[+value(ud(cha(s, place.nearSimilar.nearTops, i), 'rose', 'fell'))] in
         else
@@ -605,7 +595,7 @@ mixin difference(i)
             else
                 | at a faster rate than in
         | nearby #[+value(place.nearSimilar.nearTops.name)].
-    else if ((stories[i].type.includes('simiDiff'))&(!hasSaid('simiDiff'))|(stories[i].type == ['simiDiff']))
+    else if ((stories[i].type.includes('simiDiff'))&(!hasSaid('simiDiff'))|(eq(stories[i].type, ['simiDiff'])))
         recordSaid('simiDiff')
         - curDif = 'simiDiff'
         if (Math.abs(cha(s, place, i))<1)
@@ -616,7 +606,7 @@ mixin difference(i)
             else
                 | at a faster rate than in
         | #[+value(place.similar.name)], a statistically similar local authority.
-    else if (stories[i].type.includes('regDiff')&(!hasSaid('regDiff'))|(stories[i].type == ['regDiff']))
+    else if (stories[i].type.includes('regDiff')&(!hasSaid('regDiff'))|(eq(stories[i].type, ['regDiff'])))
         recordSaid('regDiff')
         - curDif = 'regDiff'
         if (Math.abs(cha(s, place, i))<1)
@@ -627,7 +617,7 @@ mixin difference(i)
             else
                 | at a faster rate than
         | across #[+value(parent)].
-    else if (stories[i].type.includes('couDiff')&(!hasSaid('couDiff'))|(stories[i].type == ['couDiff']))
+    else if (stories[i].type.includes('couDiff')&(!hasSaid('couDiff'))|(eq(stories[i].type, ['couDiff'])))
         recordSaid('couDiff')
         - curDif = 'couDiff'
         if (Math.abs(cha(s, place, i))<1)
@@ -640,7 +630,7 @@ mixin difference(i)
         | across #[+value(country)].
     p 
         | In #[+value(place.name)] the proportion 
-        if (cha(s, place, i)<0.2)
+        if (Math.abs(cha(s, place, i))<0.2)
             | stayed close to #[+value((data[s[i][0]][s[i][1]][2011][s[i][3]])/100, {'FORMAT': '0.0%'})] between the last two censuses.
         else
             | #[+value(ud(cha(s, place, i), 'increased', 'decreased'))] 
@@ -662,7 +652,6 @@ mixin difference(i)
             | #[+value((place.similar.data[s[i][0]][s[i][1]][2011][s[i][3]])/100, {'FORMAT': '0.0%'})] 
         else if (curDif == 'regDiff')
             | regional proportion
-            - console.log("RGN", rgn)
             | #[+value(ud(cha(s, rgn, i), 'increased', 'decreased'))]  from 
             | #[+value((rgn.data[s[i][0]][s[i][1]][2001][s[i][3]])/100, {'FORMAT': '0.0%'})] to 
             | #[+value((rgn.data[s[i][0]][s[i][1]][2011][s[i][3]])/100, {'FORMAT': '0.0%'})] 
@@ -682,8 +671,6 @@ mixin percPara(i)
         h2 #[+value(topic(i).subhead.pos)]
     else 
         h2 #[+value(topic(i).subhead.neu)]
-    //- else if (stories[i].type.some(r=> ['locRank','natRank'].includes(r)))
-    - console.log("stories", stories)
     if (stories[i].type.includes('natRank'))
         | #[+rank1nat(i)]
         p #[+rank2(i)]
@@ -695,7 +682,7 @@ mixin percPara(i)
             else
                 p #[+acrossRegion(i)]
                 p #[+despiteRegion(i)]
-    else if (stories[i].type.includes('size')&(!hasSaid('SIZE')))
+    else if ((stories[i].type.includes('size'))&(!hasSaid('SIZE'))|(eq(stories[i].type, ['size'])))
         recordSaid('SIZE')
         | #[+sent1Perc(i)]
         p #[+sent2Perc(i)]
@@ -713,12 +700,13 @@ mixin percPara(i)
                 p #[+acrossRegion(i)]
                 p #[+despiteRegion(i)]
     else
+        deleteSaid('SIZE')
         | #[+difference(i)]
     if (s[i][0]=='health')
         p #[+healthExplain]
 
 mixin para(i)
-    -console.log("s", s)
+    -console.log('S -', i,  stories[i])
     if (s[i][1] == 'value')
         if (s[i][0] == 'agemed')
             h2 #[+subheadAge(i)]
@@ -731,11 +719,13 @@ mixin para(i)
             p #[+sent2pop(i)]
             if (s[i][0]=='population')
                 p #[+density]
-            if (data['density'][s[i][1]+'_rank'].overtake[s[i][3]].length>0)
+            if ((data['density'][s[i][1]+'_rank'].overtake[s[i][3]].length>0)&(Math.abs(cur(s, place, i, "r"))<30))
                 p #[+sent4Pop(i)]
     if (s[i][1] == 'perc')
         | #[+percPara(i)]
 
+-console.log("eng", eng)
+-console.log("rgn", rgn)
 -console.log("place", place)
 | #[+para(0)]
 h4 This is a placeholder title for a chart that will be placed below

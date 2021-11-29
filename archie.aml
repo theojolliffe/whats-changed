@@ -191,7 +191,7 @@ religion.Hindu.adj_noun: people who describe themselves as Hindu
 religion.Sikh.adj_noun: people who describe themselves as Sikh
 religion.Jewish.adj_noun: people who describe themselves as Jewish
 religion.Muslim.adj_noun: people who describe themselves as Muslim
-religion.Noreligion.adj_noun: people who describe themselves as non-religioous
+religion.Noreligion.adj_noun: people who describe themselves as non-religious
 
 hoursworked.Female1-15.adj_noun: people working short hours
 hoursworked.Female49plus.adj_noun: people working long hours
