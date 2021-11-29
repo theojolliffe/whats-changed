@@ -11,6 +11,9 @@
 		<Tab>Area Reports</Tab>
 		<Tab>Topic QA</Tab>
 	</TabList>
+	<!-- <TabPanel>
+		<Topics/>
+	</TabPanel> -->
 	<TabPanel>	
 		<Reports/>
 	</TabPanel>
