@@ -32,12 +32,14 @@
 
 </script>
 
-<div>
+<!-- <div>
 	<div style="width: 640px; margin: 50px auto;">
 		<Select bind:selected options={topicOptions} placeholder="Search a topic" value="value" label="label" search={true} on:select="{() => { if (selected) { loadTopic(selected.value) }}}"/>
 	</div>
-</div>
+</div> -->
 
+<iframe width="100%" height="6494" frameborder="0"
+  src="https://observablehq.com/embed/cc9449078bb7b9ae?cells=chart"></iframe>
 
 <style>
 	.chart :global(div) {
