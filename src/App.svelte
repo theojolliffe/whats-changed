@@ -14,13 +14,16 @@
 		<Tab>Word Selection</Tab>
 	</TabList>
 	<TabPanel>
-		<Words/>
+		<Reports/>
+
 	</TabPanel>
 	<TabPanel>	
-		<Reports/>
+		<Topics/>
+
 	</TabPanel>
 	<TabPanel>
-		<Topics/>
+		<Words/>
+
 	</TabPanel>
 </Tabs>
 
