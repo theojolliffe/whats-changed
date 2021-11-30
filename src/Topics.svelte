@@ -6,6 +6,8 @@
 	import robojournalist from 'robojournalist';
 
 	var selected, selectedb, quartiles, locRankCha, locRankCur, eng, rgncode, rgnLoad, natRankCha, natRankCur, topics, topic;
+	var health, expand;
+
 	let topicOptions = [
 		{"label": "Average age", "value": "agemed_value_change"},
 		// {"label": "Care provision", "value": "care_perc_change"},
@@ -256,13 +258,7 @@
 
 		topic = true
 	}
-
-	function results(place, rgn, topicsIn, s, story) {
-		console.log("RGNNin",rgn )
-
-		var o = JSON.parse(JSON.stringify(topicsIn));
-  
-		function iterate(obj, pname) {
+	function iterate(obj, pname) {
 			Object.keys(obj).forEach(key => {
 				if (typeof obj[key] === 'object') {
 					iterate(obj[key], pname)
@@ -274,6 +270,30 @@
 				}
 			})
 		}
+	function results(place, rgn, topicsIn, s, story) {
+
+					// Define the word to describe population change in standfirst
+					if (place.data.population.value.change.all>8) {
+				expand = "expanded"
+			} else if (place.data.population.value.change.all>3) {
+				expand = "grew"
+			} else if (place.data.population.value.change.all>0) {
+				expand = "did not change much"
+			} else {
+				expand = "shrunk"
+			} 
+			// Define the word to describe health change in standfirst
+			if (place.data.health.perc.change.good>0) {
+				health = "improved"
+			} else if (place.data.health.perc.change.good<0) {
+				health = "deteriorated"
+			}
+
+			
+		console.log("RGNNin",rgn )
+
+		var o = JSON.parse(JSON.stringify(topicsIn));
+		iterate(o)
 
 		function topic(i, top) {
 			let ttop
