@@ -1,5 +1,5 @@
 <script>
-	import { ageBandLU, ord, uncap1, regionThe, drop, ud, otherRank, otherEst, qui, cha, cur, figs, get_word, city,  chains } from "./utils";
+	import { eq, udord, sign, nuword, ageBandLU, ord, uncap1, regionThe, drop, ud, otherRank, otherEst, qui, cha, cur, figs, get_word, city,  chains } from "./utils";
 	import Select from "./ui/Select.svelte";
 	import Selectb from "./ui/SelectB.svelte";
 	import { load } from "archieml"; //this is the parser from ArchieML to JSON
@@ -323,6 +323,10 @@
 			drop, drop,
 			ord: ord,
 			ageBandLU: ageBandLU,
+			nuword: nuword,
+			sign: sign,
+			udord: udord,
+			eq, eq
 		})
 
 	}

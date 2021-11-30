@@ -99,57 +99,51 @@ mixin sent1pop(i)
     | #[+tenYears],
     | the #[+value(topics[s[0][0]].general)]
     | of #[+value(place.name)]
-    | #[+value(ud(cha(s, place, i), 'rose', 'shrunk'))]
-    | #[+value(figs(place.stories[i].value)[0])]
-    | #[+value(Math.abs((figs(place.stories[i].value)[1])/100), {'FORMAT': '0.0%'})] 
-    | from #[+value(figs(data[s[i][0]][s[i][1]][2001][s[i][3]])[0])]
-    | #[+value(figs(data[s[i][0]][s[i][1]][2001][s[i][3]])[1])]
-    | to #[+value(figs(data[s[i][0]][s[i][1]][2011][s[i][3]])[0])]
-    | #[+value(figs(data[s[i][0]][s[i][1]][2011][s[i][3]])[1])],
-    | #[+value(ud(data[s[i][0]][s[i][1]+'_rank_local'][2011][s[i][3]], 'giving it the', 'leaving it with the'))]
-    if (Math.abs(data[s[i][0]][s[i][1]+'_rank_local'][2011][s[i][3]])>1)
-        | #[+value(Math.abs(data[s[i][0]][s[i][1]+'_rank_local'][2011][s[i][3]]), {'ORDINAL_TEXTUAL':true})]
-    | #[+value(ud(data[s[i][0]][s[i][1]+'_rank_local'][2011][s[i][3]], 'largest', 'smallest'))]
-    | #[+value(topics[s[i][0]].synonym)] 
-    | of any #[+value(place.gss.short)] in #[+value(parent)].
+    | #[+value(ud(cha(s, place, i), 'rose', 'fell by'))]
+    | #[+value(Math.abs((data[s[i][0]][s[i][1]]['change'][s[i][3]])/100), {'FORMAT': '0.0%'})] 
+    | from #[+value(figs(data[s[i][0]][s[i][1]][2001][s[i][3]], 3)[0])]
+    | #[+value(figs(data[s[i][0]][s[i][1]][2001][s[i][3]], 3)[1])]
+    | to #[+value(figs(data[s[i][0]][s[i][1]][2011][s[i][3]], 3)[0])]
+    | #[+value(figs(data[s[i][0]][s[i][1]][2011][s[i][3]], 3)[1])].
+
+mixin geog 
+    if (country=="Wales")
+        | Wales
+    else
+        | the #[+value((parent=="London")?"city":"region")]
 
 // The addition of over 100,000 people means Manchester's population is also the fastest-growing in the North West and the second-fastest-growing across England. Only Tower Hamlets in London, with an increase of almost 30%, has a faster-growing population.
 mixin sent2pop(i)
+    - var lra = data[s[i][0]][s[i][1]+'_rank_local']['change'][s[i][3]]
     | The 
-    if (data[s[i][0]][s[i][1]][2011][s[i][3]]-data[s[i][0]][s[i][1]][2001][s[i][3]]<0)
-        | loss
-    else
-        | addition
-    | of 
-    | #[+value(figs(data[s[i][0]][s[i][1]][2011][s[i][3]]-data[s[i][0]][s[i][1]][2001][s[i][3]], "num")[0])] 
+    | #[+value(ud(cha(s, place, i), "addition", "loss"))]
+    | of about
     | #[+value(Math.abs(figs(data[s[i][0]][s[i][1]][2011][s[i][3]]-data[s[i][0]][s[i][1]][2001][s[i][3]], "num")[1]))]
-    | people means this area's population is the
-    if (Math.abs(data[s[i][0]][s[i][1]+'_rank_local']['change'][s[i][3]])>1)
-        | #[+value(Math.abs(data[s[i][0]][s[i][1]+'_rank_local']['change'][s[i][3]]), {'ORDINAL_TEXTUAL':true})]
-    | #[+value(ud(cha(s, place, i), 'fastest-growing', 'most rapidly declining'))]
-    | in the #[+value(city)] 
-    if (Math.abs(data[s[i][0]][s[i][1]+'_rank']['change'][s[i][3]])<20)
-        if (Math.abs(data[s[i][0]][s[i][1]+'_rank']['change'][s[i][3]])>1)
-            | and the #[+value(Math.abs(data[s[i][0]][s[i][1]+'_rank']['change'][s[i][3]]), {'ORDINAL_TEXTUAL':true})]
-        | #[+value(ud(cha(s, place, i), 'fastest-growing', 'most rapidly declining'))]
-        | across 
-        | #[+value(country)].
-    else
-        if (place.stories[i].value<(eng.data[s[i][0]][s[i][1]]['change'][s[i][3]]-1))
-            | but increasing at a slower rate than the total population of 
-        else if (place.stories[i].value>(eng.data[s[i][0]][s[i][1]]['change'][s[i][3]]+1))
-            | and increasing faster than the rate of population growth across 
+    | people means this area's population is  
+    if (sign(lra, cha(s, place, i)))
+        | the #[+value(ud(lra, (ord(Math.abs(lra))+"fastest-growing"), (ord(Math.abs(lra))+"most rapidly declining")))]
+        | in #[+geog]
+    if (country=="England")
+        | #[+value((place.stories[i].value<(eng.data[s[i][0]][s[i][1]]['change'][s[i][3]]-1))?"but":"and")]
+        if (Math.abs(data[s[i][0]][s[i][1]+'_rank']['change'][s[i][3]])<20)
+            if (Math.abs(data[s[i][0]][s[i][1]+'_rank']['change'][s[i][3]])>1)
+                | the #[+value(Math.abs(data[s[i][0]][s[i][1]+'_rank']['change'][s[i][3]]), {'ORDINAL_TEXTUAL':true})]
+            | #[+value(ud(cha(s, place, i), 'fastest-growing', 'most rapidly declining'))]
+            | across 
+            | #[+value(country)].
         else
-            | and increasing at a similar rate to the overall population of
-        | #[+value(country)] (up #[+value((eng.data[s[i][0]][s[i][1]]['change'][s[i][3]])/100, {'FORMAT': '0.0%'} )] since the 2011 census).
-    //- | Only 
-    //- | #[+value(Object.keys(data[s[i][0]][s[i][1]+'_rank']['top_bottom'][s[i][3]]['1.0']))]
-    //- | in London 
-    //- | , with an increase of almost 
-    //- | #[+value((figs(Object.values(data[s[i][0]][s[i][1]+'_rank']['top_bottom'][s[i][3]]['1.0']))[1])/100, {'FORMAT': '0.0%'})]
-    //- | , has a 
-    //- | faster-growing 
-    //- | population.
+            if (place.stories[i].value<(eng.data[s[i][0]][s[i][1]]['change'][s[i][3]]-1))
+                | increasing at a slower rate than the total population of 
+            else if (place.stories[i].value>(eng.data[s[i][0]][s[i][1]]['change'][s[i][3]]+1))
+                | increasing faster than the rate of population growth across 
+            else
+                | increasing at a similar rate to the overall population of
+            | #[+value(country)] (up #[+value((eng.data[s[i][0]][s[i][1]]['change'][s[i][3]])/100, {'FORMAT': '0.0%'} )] since the 2011 census).
+    else
+        | , while #[+value(place.name)] #[+value(data.population.value_rank[2011].all==data.population.value_rank[2001].all?"remains":"becomes")] the 
+        | #[+value(udord(data.population.value_rank[2011].all, "most", "least"))] populous
+        | local authority in the country. 
+
 
 // For each football pitch-sized piece of land (about 7,140 square metres), Manchester is now home to, on average, about 31 people, compared to 24 in 2011.
 mixin density 
@@ -157,6 +151,19 @@ mixin density
     | #[+value(Number.parseFloat(Number.parseFloat(0.714*data.density.value[2011].all).toPrecision(2)))]
     | people per football pitch-sized piece of land (about #[+value(7140)] square metres), compared to 
     | #[+value(Number.parseFloat(Number.parseFloat(0.714*data.density.value[2001].all).toPrecision(2)))] in 2011.
+    if (data.density.value_rank[2011].all==1)
+        | This makes it #[+value(country)]'s #[+value(udord(data.density.value_rank[2011].all, "most-densely-populated", "least-densely-populated"))] #[+value(place.gss.short)].
+    else if (data.density.value_rank_local[2011].all==1)
+        | This makes it #[+value(parent)]'s #[+value(udord(data.density.value_rank_local[2011].all, "most-densely-populated", "least-densely-populated"))] #[+value(place.gss.short)].
+    else if (data.density.value_rank[2011].all<6)
+        | This makes it #[+value(country)]'s #[+value(udord(data.density.value_rank[2011].all, "most-densely-populated", "least-densely-populated"))] #[+value(place.gss.short)].
+    else if (data.density.value_rank_local[2011].all<6)
+        | This makes it #[+value(parent)]'s #[+value(udord(data.density.value_rank_local[2011].all, "most-densely-populated", "least-densely-populated"))] #[+value(place.gss.short)].
+    else if (data.density.value_rank[2011].all<11)
+        | This makes it #[+value(country)]'s #[+value(udord(data.density.value_rank[2011].all, "most-densely-populated", "least-densely-populated"))] #[+value(place.gss.short)].
+    else if (data.density.value_rank_local[2011].all<11)
+        | This makes it #[+value(parent)]'s #[+value(udord(data.density.value_rank_local[2011].all, "most-densely-populated", "least-densely-populated"))] #[+value(place.gss.short)].
+
 
 // Between 2011 and 2021, Manchester overtook Wiltshire and Liverpool to become England's eighth-most populated local authority.
 mixin sent4Pop(i)
@@ -174,22 +181,25 @@ mixin sent4Pop(i)
 
 mixin overtake(i, loc)
     | During this period, the #[+value(place.gss.short)] 
-    if (Math.abs(data[s[i][0]][s[i][1]+"_rank"+loc][2011][s[i][3]])<11)
-        | overtook 
-        if (data[s[i][0]][s[i][1]+"_rank"+loc]['overtake'][s[i][3]].length<4)
-            eachz item in data[s[i][0]][s[i][1]+"_rank"+loc]['overtake'][s[i][3]] with { separator: ',', last_separator: 'and' }
+    - var ove = data[s[i][0]][s[i][1]+"_rank"+loc]['overtake'][s[i][3]]
+    - var ra = data[s[i][0]][s[i][1]+"_rank"+loc][2011][s[i][3]]
+    if (Math.abs(ra)<11)
+        | #[+value(ud(ra, 'overtook', 'fell below'))] 
+        if (ove.length<4)
+            eachz item in ove with { separator: ',', last_separator: 'and' }
                 | #{item}
-        else if (data[s[i][0]][s[i][1]+"_rank"+loc]['overtake'][s[i][3]].length>3)
-            | #[+value(data[s[i][0]][s[i][1]+"_rank"+loc]['overtake'][s[i][3]].length)] areas, 
-            | including #[+value(data[s[i][0]][s[i][1]+"_rank"+loc]['overtake'][s[i][3]][0])] 
-            | and #[+value(data[s[i][0]][s[i][1]+"_rank"+loc]['overtake'][s[i][3]][1])]
-        | to become the #[+value((loc == "_local") ? parentNT : "English")] area with the
-        | #[+value(ord(Math.abs(data[s[i][0]][s[i][1]+"_rank"+loc][2011][s[i][3]])))]
-        | highest percentage of #[+value(topics[s[i][0]][s[i][3]].adj_noun_s)].
+        else if (ove.length>3)
+            | #[+value(nuword(ove.length))] 
+            | areas, 
+            | including #[+value(ove[0])] 
+            | and #[+value(ove[1])]
+        | to become the #[+value((loc == "_local") ? parentNT : "English")] local authority with the
+        | #[+value(ud(ra, (ord(Math.abs(ra))+"highest"), (ord(Math.abs(ra))+"lowest")))]
+        | percentage of #[+value(topics[s[i][0]][s[i][3]].adj_noun_s)].
     else
         | went from having the
         | #[+value(ord(Math.abs(data[s[i][0]][s[i][1]+"_rank"+loc][2001][s[i][3]]))+ud(data[s[i][0]][s[i][1]+"_rank"+loc][2001][s[i][3]],"highest", "lowest"))]
-        | to the #[+value(ord(Math.abs(data[s[i][0]][s[i][1]+"_rank"+loc][2011][s[i][3]]))+"lowest")] percentage of Christian people out of 309 English local authoirities.
+        | to the #[+value(ud(ra, (ord(Math.abs(ra))+"highest"), (ord(Math.abs(ra))+"lowest")))] percentage of Christian people out of 309 English local authoirities.
 
 //- mixin percOfRes(place)
 //-     synz {mode:'sequence'}
@@ -209,12 +219,10 @@ mixin sent1Perc(i)
         else
             | increased 
         | from 
-        | #[+value(figs(data[s[i][0]][s[i][1]][2001][s[i][3]])[0])]
         | #[+value((figs(data[s[i][0]][s[i][1]][2001][s[i][3]])[1])/100, {'FORMAT': '0.0%'})]
         if (i==1)
             | in 2011
         | to 
-        | #[+value(figs(cur(s, place, i))[0])]
         | #[+value((figs(cur(s, place, i))[1])/100, {'FORMAT': '0.0%'})]
         if (i!=1)
             | #[+tenYears]
@@ -228,7 +236,6 @@ mixin sent2Perc(i)
     | (#[+value((figs(data[s[i][0]][s[i][1]][2011][chains[s[i][3]][0]])[1])/100, {'FORMAT': '0.0%'})])  
     | #[+value(topic(i, chains[s[i][3]][0]).verb_past)],
     | compared with
-    | #[+value(figs(data[s[i][0]][s[i][1]][2001][chains[s[i][3]][0]])[0])]
     | #[+value((figs(data[s[i][0]][s[i][1]][2001][chains[s[i][3]][0]])[1])/100, {'FORMAT': '0.0%'})]
     | in 2011. 
     if (chains[s[i][3]].length>1)
@@ -239,10 +246,8 @@ mixin sent2Perc(i)
         else
             | increased
         | from 
-        | #[+value(figs(data[s[i][0]][s[i][1]][2001][chains[s[i][3]][1]])[0])]
         | #[+value((figs(data[s[i][0]][s[i][1]][2001][chains[s[i][3]][1]])[1])/100, {'FORMAT': '0.0%'})]
         | to 
-        | #[+value(figs(data[s[i][0]][s[i][1]][2011][chains[s[i][3]][1]])[0])]
         | #[+value((figs(data[s[i][0]][s[i][1]][2011][chains[s[i][3]][1]])[1])/100, {'FORMAT': '0.0%'})]
         | .
 
@@ -316,10 +321,15 @@ mixin sent3Perc(i)
         | across #[+value(parent)]
         | (from #[+value((rgn.data[s[i][0]][s[i][1]][2001][s[i][3]])/100, {'FORMAT': '0.0%'})] in 2011 to 
         | #[+value((rgn.data[s[i][0]][s[i][1]][2011][s[i][3]])/100, {'FORMAT': '0.0%'})]) 
-        | and across 
-        | #[+value(country)] 
-        | (from #[+value((eng.data[s[i][0]][s[i][1]][2001][s[i][3]])/100, {'FORMAT': '0.0%'})] to 
-        | #[+value((eng.data[s[i][0]][s[i][1]][2011][s[i][3]])/100, {'FORMAT': '0.0%'})]).
+        | and  
+        if (country=="England")
+            | across #[+value(country)] 
+            | (from #[+value((eng.data[s[i][0]][s[i][1]][2001][s[i][3]])/100, {'FORMAT': '0.0%'})] to 
+            | #[+value((eng.data[s[i][0]][s[i][1]][2011][s[i][3]])/100, {'FORMAT': '0.0%'})]).
+        else
+            | in #[+nearbyname]
+            | (from #[+value((place.nearSimilar.nearTops.data[s[i][0]][s[i][1]][2001][s[i][3]])/100, {'FORMAT': '0.0%'})] to 
+            | #[+value((place.nearSimilar.nearTops.data[s[i][0]][s[i][1]][2011][s[i][3]])/100, {'FORMAT': '0.0%'})]).
 
 // Blackburn with Darwen has the region's next lowest proportion of residents from a White ethnic group (69.2%), while 90.1% in nearby Salford are from a White ethnic group.
 mixin nextHighest(i)
@@ -335,7 +345,7 @@ mixin nextHighest(i)
         | (#[+value((data[s[i][0]][s[i][1]+"_rank_local"]['above_below'][s[i][3]].below.value)/100, {'FORMAT': '0.0%'})]),
     | while the proportion is
     | #[+value((place.nearSimilar.nearTops.data[s[i][0]][s[i][1]][2011][s[i][3]])/100, {'FORMAT': '0.0%'})]
-    | in nearby #[+value(place.nearSimilar.nearTops.name)].
+    | in #[+nearbyname].
 
 // As a result, this area now has the country's highest proportion of private renters and the lowest proportion of homeowners.
 mixin nowHasCou(i)
@@ -389,7 +399,6 @@ mixin considImprov(i)
             | The considerable improvement has brought health in 
             | #[+value(place.name)] close to 
         | the national average
-        | (#[+value(figs(eng.data[s[i][0]][s[i][1]][2011][s[i][3]])[0])]
         | #[+value((figs(eng.data[s[i][0]][s[i][1]][2011][s[i][3]])[1])/100, {'FORMAT': '0.0%'})]
         | in #[+value(country)] described their health as good in 2021).
     else
@@ -405,7 +414,6 @@ mixin considImprov(i)
             | The considerable improvement has brought health in 
             | #[+value(place.name)] close to 
         | the regional average
-        | (#[+value(figs(rgn.data[s[i][0]][s[i][1]][2011][s[i][3]])[0])]
         | #[+value((figs(rgn.data[s[i][0]][s[i][1]][2011][s[i][3]])[1])/100, {'FORMAT': '0.0%'})]
         | in #[+value(parent)] described their health as good in 2021).
 
@@ -424,8 +432,8 @@ mixin butSlower(i, loc)
             | the #[+value(ord(data[s[i][0]][s[i][1]+'_rank'+loc][s[i][2]][s[i][3]]))] 
             | slowest rate of any local authority across #[+value(country)]. 
         else
-            | a slower rate than all other local authorities 
-            | #[+value((loc=="_local")?"in " + parent: "across "+ country)]
+            | a slower rate than all other 
+            | #[+value((loc!="_local")? ("across " + country): (parent=="London")? "London boroughs":"local authorities in "+parent)]
             if (Math.abs(data[s[i][0]][s[i][1]+'_rank'+loc][s[i][2]][s[i][3]])!=1)
                 | except #[+value(data[s[i][0]][s[i][1]+'_rank'+loc].top_bottom[s[i][3]][1].name)]
                 if (Math.abs(data[s[i][0]][s[i][1]+'_rank'+loc][s[i][2]][s[i][3]])!=2)
@@ -458,7 +466,6 @@ mixin rank2(i)
     | (#[+value((figs(data[s[i][0]][s[i][1]][2011][s[i][3]])[1])/100, {'FORMAT': '0.0%'})])  
     | #[+value(topic(i, s[i][3]).verb_past)],
     | compared with
-    | #[+value(figs(data[s[i][0]][s[i][1]][2001][s[i][3]])[0])]
     | #[+value((figs(data[s[i][0]][s[i][1]][2001][s[i][3]])[1])/100, {'FORMAT': '0.0%'})]
     | in 2011. 
     | The percentage of
@@ -468,19 +475,31 @@ mixin rank2(i)
     else
         | increased
     | from 
-    | #[+value(figs(data[s[i][0]][s[i][1]][2001][chains[s[i][3]][0]])[0])]
     | #[+value((figs(data[s[i][0]][s[i][1]][2001][chains[s[i][3]][0]])[1])/100, {'FORMAT': '0.0%'})]
     | to 
-    | #[+value(figs(data[s[i][0]][s[i][1]][2011][chains[s[i][3]][0]])[0])]
     | #[+value((figs(data[s[i][0]][s[i][1]][2011][chains[s[i][3]][0]])[1])/100, {'FORMAT': '0.0%'})]
     | .
+
+mixin regional 
+    if (parent=="London")
+        | London
+    else if (parent=="Wales")
+        | Welsh
+    else
+        | regional
 
 //- Across the North East, Manchester (from 50% in 2011 to 30% in 2021) saw the next greatest drop in the proportion of people working long hours, while the regional average decreased from 40% to 20%.
 mixin acrossRegion(i)
     | Across #[+value(parent)], 
-    if (Math.abs(data[s[i][0]][s[i][1]+'_rank_local'][s[i][2]][s[i][3]])==1)
-        | Manchester 
-        | (from 50% in 2011 to 30% in 2021) saw the next greatest drop in the proportion of people working long hours, while the regional average decreased from 40% to 20%.
+    - var rl = data[s[i][0]][s[i][1]+'_rank_local'][s[i][2]][s[i][3]]
+    if (Math.abs(rl)==1)
+        | #[+value(data[s[i][0]][s[i][1]+'_rank_local'].top_bottom[s[i][3]][rl<0?"-2":"2"].name)] 
+        | (from #[+value((data[s[i][0]][s[i][1]+'_rank_local'].top_bottom[s[i][3]][rl<0?"-2":"2"][2001])/100, {'FORMAT': '0.0%'})] in 2011 
+        | to #[+value((data[s[i][0]][s[i][1]+'_rank_local'].top_bottom[s[i][3]][rl<0?"-2":"2"][2011])/100, {'FORMAT': '0.0%'})] in 2021) 
+        | saw the next greatest #[+value([rl<0?"drop":"rise"])] in the proportion of #[+value(topic(i).adj_noun)], 
+        | while the #[+regional] figure #[+value(rgn.data[s[i][0]][s[i][1]]['change'][s[i][3]]<0?"fell":"went up")] from 
+        | #[+value((rgn.data[s[i][0]][s[i][1]][2001][s[i][3]])/100, {'FORMAT': '0.0%'})] to
+        | #[+value((rgn.data[s[i][0]][s[i][1]][2011][s[i][3]])/100, {'FORMAT': '0.0%'})].
     else if (Math.abs(data[s[i][0]][s[i][1]+'_rank_local'][s[i][2]][s[i][3]])==2)
         | only 
         | #[+value(data[s[i][0]][s[i][1]+'_rank_local']['top_bottom'][s[i][3]]["-1"]['name'])]
@@ -500,8 +519,7 @@ mixin acrossRegionExcept(i)
     | #[+value(ud(cha(s, rgn, i), 'rose', 'fell'))]
     | from #[+value((rgn.data[s[i][0]][s[i][1]]['2001'][s[i][3]])/100, {'FORMAT': '0.0%'})] to 
     | #[+value((rgn.data[s[i][0]][s[i][1]]['2011'][s[i][3]])/100, {'FORMAT': '0.0%'})] between the last two censuses,
-    | while the proportion in nearby
-    | #[+value(place.nearSimilar.nearTops.name)]
+    | while the proportion in #[+nearbyname]
     | #[+value(ud(cha(s, place.nearSimilar.nearTops, i), 'rose', 'fell'))]
     | from #[+value((place.nearSimilar.nearTops.data[s[i][0]][s[i][1]]['2001'][s[i][3]])/100, {'FORMAT': '0.0%'})] to 
     | #[+value((place.nearSimilar.nearTops.data[s[i][0]][s[i][1]]['2011'][s[i][3]])/100, {'FORMAT': '0.0%'})].
@@ -594,7 +612,7 @@ mixin difference(i)
                 | but at a slower rate than in
             else
                 | at a faster rate than in
-        | nearby #[+value(place.nearSimilar.nearTops.name)].
+        | #[+nearbyname].
     else if ((stories[i].type.includes('simiDiff'))&(!hasSaid('simiDiff'))|(eq(stories[i].type, ['simiDiff'])))
         recordSaid('simiDiff')
         - curDif = 'simiDiff'
@@ -605,7 +623,7 @@ mixin difference(i)
                 | but at a slower rate than in
             else
                 | at a faster rate than in
-        | #[+value(place.similar.name)], a statistically similar local authority.
+        | #[+similarname].
     else if (stories[i].type.includes('regDiff')&(!hasSaid('regDiff'))|(eq(stories[i].type, ['regDiff'])))
         recordSaid('regDiff')
         - curDif = 'regDiff'
@@ -641,12 +659,12 @@ mixin difference(i)
             | in 2021. 
         | During the same period, the 
         if (curDif == 'nearDiff')
-            | proportion in #[+value(place.nearSimilar.nearTops.name)]
+            | proportion in #[+nearbyname]
             | #[+value(ud(cha(s, place.nearSimilar.nearTops, i), 'increased', 'decreased'))]  from 
             | #[+value((place.nearSimilar.nearTops.data[s[i][0]][s[i][1]][2001][s[i][3]])/100, {'FORMAT': '0.0%'})] to 
             | #[+value((place.nearSimilar.nearTops.data[s[i][0]][s[i][1]][2011][s[i][3]])/100, {'FORMAT': '0.0%'})] 
         else if (curDif == 'simiDiff')
-            | proportion in #[+value(place.similar.name)]
+            | proportion in #[+similarname]
             | #[+value(ud(cha(s, place.similar, i), 'increased', 'decreased'))]  from 
             | #[+value((place.similar.data[s[i][0]][s[i][1]][2001][s[i][3]])/100, {'FORMAT': '0.0%'})] to 
             | #[+value((place.similar.data[s[i][0]][s[i][1]][2011][s[i][3]])/100, {'FORMAT': '0.0%'})] 
@@ -663,9 +681,77 @@ mixin difference(i)
         | .
     | #[+sent2Diff(i)]
 
+mixin similarname
+    | #[+value(place.similar.name)]
+    if (!hasSaid('SIMILAR'))
+        recordSaid('SIMILAR')
+        | , a statistically similar local authority
+
+mixin nearbyname
+    if (!hasSaid('NEARBY'))
+        recordSaid('NEARBY')
+        | nearby
+    | #[+value(place.nearSimilar.nearTops.name)]
+
+mixin buck(i, curBuck)
+    | The percentage of #[+value(topic(i).adj_noun)] 
+    | is #[+value(ud(cha(s, place, i), 'rising', 'falling'))] 
+    synz {mode:'sequence'}
+        syn
+            | in #[+value(place.name)]
+        syn
+            | here
+        syn
+            | in this #[+value(place.classification)] 
+        syn
+            | in this area
+    | #[+value(ud(cha(s, place, i), 'but falling', 'but rising'))]
+    if (stories[i].type.includes('regBuck')&stories[i].type.includes('couBuck'))
+        | across #[+value(parent)] and #[+value(country)] at large
+    else if (curBuck=='regBuck')
+        | across #[+value(parent)]
+    else if (curBuck=='couBuck')
+        | across #[+value(country)]
+    else if (curBuck=="simiBuck")
+        | in #[+similarname]
+    else if (curBuck=="nearBuck")
+        | in #[+nearbyname]
+    | .
+    p 
+        | In #[+value(place.name)] the proportion 
+        | #[+value(ud(cha(s, place, i), 'went up', 'came down'))]
+        | from 
+        | #[+value((data[s[i][0]][s[i][1]][2001][s[i][3]])/100, {'FORMAT': '0.0%'})]
+        | in 2011 to 
+        | #[+value((data[s[i][0]][s[i][1]][2011][s[i][3]])/100, {'FORMAT': '0.0%'})]
+        | in 2021
+        if (curBuck=='couBuck')
+            | , while across #[+value(country)] it
+            | #[+value(ud(cha(s, place, i), 'fell', 'went up'))]
+            | from #[+value((eng.data[s[i][0]][s[i][1]][2001][s[i][3]])/100, {'FORMAT': '0.0%'})]
+            | to #[+value((eng.data[s[i][0]][s[i][1]][2011][s[i][3]])/100, {'FORMAT': '0.0%'})]
+        else if (curBuck=="simiBuck")
+            | , while across #[+value(country)] it
+            | #[+value(ud(cha(s, place, i), 'fell', 'went up'))]
+            | from #[+value((place.similar.data[s[i][0]][s[i][1]][2001][s[i][3]])/100, {'FORMAT': '0.0%'})]
+            | to #[+value((place.similar.data[s[i][0]][s[i][1]][2011][s[i][3]])/100, {'FORMAT': '0.0%'})]
+        else if (curBuck=="nearBuck")
+            | , while across #[+value(country)] it
+            | #[+value(ud(cha(s, place, i), 'fell', 'went up'))]
+            | from #[+value((place.nearSimilar.nearTops.data[s[i][0]][s[i][1]][2001][s[i][3]])/100, {'FORMAT': '0.0%'})]
+            | to #[+value((place.nearSimilar.nearTops.data[s[i][0]][s[i][1]][2011][s[i][3]])/100, {'FORMAT': '0.0%'})]
+        | .
+        | During the same period, the regional proportion #[+value(ud(cha(s, rgn, i), 'rose', 'fell'))] from 
+        | #[+value((rgn.data[s[i][0]][s[i][1]][2001][s[i][3]])/100, {'FORMAT': '0.0%'})] to 
+        | #[+value((rgn.data[s[i][0]][s[i][1]][2011][s[i][3]])/100, {'FORMAT': '0.0%'})].
+    | #[+sent2Diff(i)]
+
+
 //- Deals with all percentage based variables
 mixin percPara(i)
-    if ((cha(s, place, i)<0)&(data[s[i][0]][s[i][1]][2011][s[i][3]]<data[s[i][0]][s[i][1]][2001][s[i][3]]))
+    if ((stories[i].type.includes('couBuck', 'regBuck'))&(!stories[i].type.includes('natRank')))
+        h2 #[+value(topic(i).subhead.buc)]
+    else if ((cha(s, place, i)<0)&(data[s[i][0]][s[i][1]][2011][s[i][3]]<data[s[i][0]][s[i][1]][2001][s[i][3]]))
         h2 #[+value(topic(i).subhead.neg)]
     else if ((cha(s, place, i)>0)&(data[s[i][0]][s[i][1]][2011][s[i][3]]>data[s[i][0]][s[i][1]][2001][s[i][3]]))
         h2 #[+value(topic(i).subhead.pos)]
@@ -682,6 +768,12 @@ mixin percPara(i)
             else
                 p #[+acrossRegion(i)]
                 p #[+despiteRegion(i)]
+    else if ((stories[i].type.includes('regBuck'))|(eq(stories[i].type, ['regBuck'])))
+        - var curBuck = 'regBuck'
+        | #[+buck(i, curBuck)]
+    else if ((stories[i].type.includes('couBuck'))|(eq(stories[i].type, ['couBuck'])))
+        - var curBuck = 'couBuck'
+        | #[+buck(i, curBuck)]
     else if ((stories[i].type.includes('size'))&(!hasSaid('SIZE'))|(eq(stories[i].type, ['size'])))
         recordSaid('SIZE')
         | #[+sent1Perc(i)]
@@ -699,6 +791,14 @@ mixin percPara(i)
             else
                 p #[+acrossRegion(i)]
                 p #[+despiteRegion(i)]
+    else if ((stories[i].type.includes('simiBuck'))&(!hasSaid('BUCK'))|(eq(stories[i].type, ['simiBuck'])))
+        recordSaid('BUCK')
+        - var curBuck = 'simiBuck'
+        | #[+buck(i, curBuck)]
+    else if ((stories[i].type.includes('nearBuck'))&(!hasSaid('BUCK'))|(eq(stories[i].type, ['nearBuck'])))
+        recordSaid('BUCK')
+        - var curBuck = 'nearBuck'
+        | #[+buck(i, curBuck)]
     else
         deleteSaid('SIZE')
         | #[+difference(i)]
@@ -719,8 +819,8 @@ mixin para(i)
             p #[+sent2pop(i)]
             if (s[i][0]=='population')
                 p #[+density]
-            if ((data['density'][s[i][1]+'_rank'].overtake[s[i][3]].length>0)&(Math.abs(cur(s, place, i, "r"))<30))
-                p #[+sent4Pop(i)]
+            //- if ((data['density'][s[i][1]+'_rank'].overtake[s[i][3]].length>0)&(Math.abs(cur(s, place, i, "r"))<30))
+            //-     p #[+sent4Pop(i)]
     if (s[i][1] == 'perc')
         | #[+percPara(i)]
 

@@ -104,8 +104,11 @@ function get_word(num, dict) {
       } } }
   return [OverUnder, lowest_label]
 }
-function figs(x) {
-  let sigfig = Number.parseFloat(Number.parseFloat(x).toPrecision(2))
+function figs(x, f) {
+  if (f!=3) {
+    f = 2
+  }
+  let sigfig = Number.parseFloat(Number.parseFloat(x).toPrecision(f))
   let text;
   if (x-sigfig<-x/100) {
     text = "under "
@@ -220,7 +223,26 @@ if (parent=="London") {
   city = "region"
 }
 
+function sign(x, y) {
+  if (Math.sign(x) == Math.sign(y)) {
+    return true
+  } else {
+    return false
+  }
+}
+
+
 var ones = ['', '', 'second-', 'third-', 'fourth-', 'fifth-', 'sixth-', 'seventh-', 'eighth-', 'ninth-'];
+
+var nuwords = ['no', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'];
+
+function nuword(x) {
+  if (x<10) {
+    return nuwords[x]
+  } else {
+    return x
+  }
+}
 
 function suffixer(int) {
   let ord
@@ -263,5 +285,10 @@ function eq(a, b) {
       a.length === b.length &&
       a.every((val, index) => val === b[index]);
 }
+function udord(n, w1, w2) {
+  let w = ud(n, w1, w2)
+  let nu = ord(n)
+  return nu+w
+}
 
-export { eq, ageBandLU, uncap1, getData, regionThe, drop, ud, otherRank, otherEst, qui, cha, cur, figs, get_word, city, ord, chains };
+export { udord, sign, nuword, eq, ageBandLU, uncap1, getData, regionThe, drop, ud, otherRank, otherEst, qui, cha, cur, figs, get_word, city, ord, chains };

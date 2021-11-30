@@ -1,7 +1,7 @@
 <script>
-	import { eq, ageBandLU, ord, uncap1, getData, regionThe, drop, ud, otherRank, otherEst, qui, cha, cur, figs, get_word, city, chains } from "./utils";
+	import { udord, sign, nuword, eq, ageBandLU, ord, uncap1, getData, regionThe, drop, ud, otherRank, otherEst, qui, cha, cur, figs, get_word, city, chains } from "./utils";
 	import Select from "./ui/Select.svelte";
-	import { load } from "archieml"; //this is the parser from ArchieML to JSON
+	import { load } from "archieml"; 
 	import { onMount } from 'svelte';
 	import robojournalist from 'robojournalist';
 
@@ -45,7 +45,7 @@
 		res = res.filter(d => d['type']=='lad')
 		options = res.sort((a, b) => a.name.localeCompare(b.name));
 		let  defaultLoc = options[Math.round(336*Math.random())]['name']
-		defaultLoc = 'Three Rivers';
+		defaultLoc = 'Cardiff';
 		console.log(defaultLoc)
 		selected = options.find(d => d.name == defaultLoc);
 		console.log(selected.code)
@@ -140,6 +140,7 @@
 
 		var o = JSON.parse(JSON.stringify(topicsIn));
 		iterate(o, place.name)
+		console.log("o000ooo", o)
 
 		let sf = []
 		let changeMag = 0
@@ -202,7 +203,7 @@
 			topic: topic,
 			topics: o,
 			chains: chains,
-			country: "England",
+			country: place.parents[0].name=="Wales"?"Wales":"England",
 			get_word: get_word,
 			figs: figs,
 			otherEst: otherEst,
@@ -217,6 +218,9 @@
 			ord: ord,
 			ageBandLU: ageBandLU,
 			eq: eq,
+			nuword: nuword,
+			sign: sign,
+			udord: udord, 
 		})
 
 	}
