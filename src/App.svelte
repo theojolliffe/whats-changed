@@ -13,14 +13,14 @@
 		<Tab>Topic QA</Tab>
 		<Tab>Word Selection</Tab>
 	</TabList>
+	<TabPanel>
+		<Words/>
+	</TabPanel>
 	<TabPanel>	
 		<Reports/>
 	</TabPanel>
 	<TabPanel>
 		<Topics/>
-	</TabPanel>
-	<TabPanel>
-		<Words/>
 	</TabPanel>
 </Tabs>
 
