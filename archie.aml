@@ -206,6 +206,7 @@ children.Kids.subhead.neu: Change in family dynamics
 children.NoKids.subhead.pos: More homes with children
 children.NoKids.subhead.neg: Fewer homes with children
 children.NoKids.subhead.neu: Change in family dynamics
+children.NoKids.subhead.buc: {plcname} bucks trend for children
 children.NonDepKids.subhead.pos: More homes with non-dependent children
 children.NonDepKids.subhead.neg: Fewer homes with non-dependent children
 children.NonDepKids.subhead.neu: Change in family dynamics
@@ -299,7 +300,7 @@ hoursworked.Male49plus.subhead.pos: More working long hours
 hoursworked.Male49plus.subhead.neg: Fewer people working long hours
 
 // **The rate of homeownership*** in Greenwich rose from 68.1% to 79.6%
-
+// ***The proportion of people from a Black ethnic group*** in Three Rivers rose from 1.0% to 1.8%
 marital.Single.topic: the proportion of single people
 marital.Married.topic: the proportion of married people
 marital.Seperated.topic: the proportion of seperated people
@@ -312,19 +313,19 @@ tenure.rented_private.topic: private renting
 tenure.rented_social.topic: the rate of social housing
 tenure.owned.topic: the rate of homeownership
 
-health.good.topic: are from a White ethnic group
-health.fair.topic: fairly healthy residents
-health.bad.topic: unhealthy residents
+health.good.topic: the percentage of healthy people
+health.fair.topic: the percentage of fairly healthy people
+health.bad.topic: the percentage of unhealthy people
 
-ethnicity.white.topic: are from a White ethnic group
-ethnicity.black.topic: are from a Black ethnic group
-ethnicity.asian.topic: are from an Asian ethnic group
+ethnicity.white.topic: the proportion of people from a White ethnic group
+ethnicity.black.topic: the proportion of people from a Black ethnic group
+ethnicity.asian.topic: the proportion of people from an Asian ethnic group
 
 economic.employee.topic: the rate of employment
 economic.inactive.topic: the rate of economic inactivity
 economic.self-employed.topic: the rate of self-employment
 economic.unemployed.topic: the rate of unemployment
-economic.student.topic: students
+economic.student.topic: the percentage of students
 
 household.Cohabiting.topic: cohabiting households
 household.LoneParent.topic: single parent households
@@ -355,8 +356,8 @@ children.NoKids.adj_noun_s: childless homes
 children.NonDepKids.adj_noun_s: homes with only non-dependent children
 
 tenure.rented_private.adj_noun_s: private renting
-tenure.rented_social.adj_noun_s: the rate of social housing
-tenure.owned.adj_noun_s: the rate of homeownership
+tenure.rented_social.adj_noun_s: social housing
+tenure.owned.adj_noun_s: homeownership
 
 health.good.adj_noun_s: are from a White ethnic group
 health.fair.adj_noun_s: fairly healthy residents
