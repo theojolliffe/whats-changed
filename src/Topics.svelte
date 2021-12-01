@@ -293,7 +293,7 @@
 		console.log("RGNNin",rgn )
 
 		var o = JSON.parse(JSON.stringify(topicsIn));
-		iterate(o)
+		iterate(o, place.name)
 
 		function topic(i, top) {
 			let ttop

@@ -45,7 +45,7 @@
 		res = res.filter(d => d['type']=='lad')
 		options = res.sort((a, b) => a.name.localeCompare(b.name));
 		let  defaultLoc = options[Math.round(336*Math.random())]['name']
-		defaultLoc = 'Cardiff';
+		defaultLoc = 'Caerphilly';
 		console.log(defaultLoc)
 		selected = options.find(d => d.name == defaultLoc);
 		console.log(selected.code)
