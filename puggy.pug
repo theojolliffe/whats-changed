@@ -350,11 +350,10 @@ mixin sent3Perc(i)
             if ((cha(s, place, i)>cha(s, near, i)-1)&(cha(s, place, i)<cha(s, near, i)+1))
                 | at a similar rate to the figure
             else
-                | #[+value(ud((Math.abs(cha(s, place, i)) - rgn.data[s[i][0]][s[i][1]]['change'][s[i][3]]), 'faster', 'at a slower rate'))]
-                | here than
+                | #[+value(uds((Math.abs(cha(s, place, i)) - Math.abs(cha(s, rgn, i))), 'faster here than', 'at a slower rate here than', 'here at a similar rate to'))]
             | across #[+value(parent)]
             | (from #[+value((rgn.data[s[i][0]][s[i][1]][2001][s[i][3]])/100, {'FORMAT': '0.0%'})] in 2011 to 
-            | #[+value((rgn.data[s[i][0]][s[i][1]][2011][s[i][3]])/100, {'FORMAT': '0.0%'})]) 
+            | #[+value((cur(s, rgn, i))/100, {'FORMAT': '0.0%'})]) 
             if ((sign(Math.abs(cha(s, place, i))-Math.abs(cha(s, rgn, i))), sign(Math.abs(cha(s, place, i))-Math.abs(cha(s, eng, i)))))
                 | and across #[+value(country)] 
                 | (from #[+value((eng.data[s[i][0]][s[i][1]][2001][s[i][3]])/100, {'FORMAT': '0.0%'})] to 
@@ -368,7 +367,7 @@ mixin sent3Perc(i)
                 | at a similar rate to 
             else
                 | #[+value(ud(Math.abs(cha(s, place, i))-Math.abs(cha(s, near, i)), 'faster', 'at a slower rate'))]
-                | here than in
+                | here than in 
             | #[+nearbyname]
             | (from #[+value((near.data[s[i][0]][s[i][1]][2001][s[i][3]])/100, {'FORMAT': '0.0%'})] in 2011 to 
             | #[+value((near.data[s[i][0]][s[i][1]][2011][s[i][3]])/100, {'FORMAT': '0.0%'})])
