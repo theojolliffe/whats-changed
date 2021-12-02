@@ -303,4 +303,15 @@ function adv(x, y) {
   }
   return w
 }
-export { adv, udord, sign, nuword, eq, ageBandLU, uncap1, getData, regionThe, drop, ud, otherRank, otherEst, qui, cha, cur, figs, get_word, city, ord, chains };
+
+function uds(n, w1, w2, w3) {
+   if (n<-1) { 
+     return w2 
+    } else if (n>1) { 
+      return w1 
+    } else {
+      return w3
+    }
+  }
+
+export { uds, adv, udord, sign, nuword, eq, ageBandLU, uncap1, getData, regionThe, drop, ud, otherRank, otherEst, qui, cha, cur, figs, get_word, city, ord, chains };

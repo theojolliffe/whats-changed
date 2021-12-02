@@ -1,5 +1,5 @@
 <script>
-	import { adv, udord, sign, nuword, eq, ageBandLU, ord, uncap1, getData, regionThe, drop, ud, otherRank, otherEst, qui, cha, cur, figs, get_word, city, chains } from "./utils";
+	import { uds, adv, udord, sign, nuword, eq, ageBandLU, ord, uncap1, getData, regionThe, drop, ud, otherRank, otherEst, qui, cha, cur, figs, get_word, city, chains } from "./utils";
 	import Select from "./ui/Select.svelte";
 	import { load } from "archieml"; 
 	import { onMount } from 'svelte';
@@ -231,7 +231,8 @@
 			udord: udord, 
 			near: place.nearSimilar.nearTops,
 			simi: place.similar,
-			adv: adv
+			adv: adv,
+			uds: uds,
 		})
 
 	}

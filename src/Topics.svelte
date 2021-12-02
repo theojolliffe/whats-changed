@@ -1,5 +1,5 @@
 <script>
-	import { adv, eq, udord, sign, nuword, ageBandLU, ord, uncap1, regionThe, drop, ud, otherRank, otherEst, qui, cha, cur, figs, get_word, city,  chains } from "./utils";
+	import { uds, adv, eq, udord, sign, nuword, ageBandLU, ord, uncap1, regionThe, drop, ud, otherRank, otherEst, qui, cha, cur, figs, get_word, city,  chains } from "./utils";
 	import Select from "./ui/Select.svelte";
 	import Selectb from "./ui/SelectB.svelte";
 	import { load } from "archieml"; //this is the parser from ArchieML to JSON
@@ -291,9 +291,6 @@
 				health = "deteriorated"
 			}
 
-			
-		console.log("RGNNin",rgn )
-
 		var o = JSON.parse(JSON.stringify(topicsIn));
 		iterate(o, place.name)
 
@@ -352,6 +349,7 @@
 			eq, eq,
 			near: place.nearSimilar.nearTops,
 			adv: adv,
+			uds: uds,
 		})
 
 	}
