@@ -258,7 +258,6 @@ function suffixer(int) {
 }
 
 function ord(x) {
-  console.log("X", x)
   let ordin
   if (Math.abs(x)<10) {
     ordin = ones[Math.abs(x)]

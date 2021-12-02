@@ -57,13 +57,14 @@ mixin sent1Age(i)
             | Census 2021 data also shows a shift in #[+value(topics[s[i][0]].synonym)].
         else
             | #[+tenYears],
-        | the #[+value(topics[s[i][0]].general)] 
-        | in #[+value(place.name)] 
-        | #[+value(ud(cha(s, place, i), 'rose by', 'fell by'))]
-        | #[+value(Math.abs(cha(s, place, i)), {'TEXTUAL':true })] 
-        | #[+value(Math.abs(cha(s, place, i))==1?'year':'years')],
-        | from #[+value(data[s[i][0]][s[i][1]][2001][s[i][3]])]
-        | to #[+value(data[s[i][0]][s[i][1]][2011][s[i][3]])] years of age.
+        p
+            | the #[+value(topics[s[i][0]].general)] 
+            | in #[+value(place.name)] 
+            | #[+value(ud(cha(s, place, i), 'rose by', 'fell by'))]
+            | #[+value(Math.abs(cha(s, place, i)), {'TEXTUAL':true })] 
+            | #[+value(Math.abs(cha(s, place, i))==1?'year':'years')],
+            | from #[+value(data[s[i][0]][s[i][1]][2001][s[i][3]])]
+            | to #[+value(data[s[i][0]][s[i][1]][2011][s[i][3]])] years of age.
 
 // Manchester's average age is the lowest in the North West and remains considerably lower than the average age across England (38 years of age).
 mixin sent2Age(i)        
@@ -145,7 +146,7 @@ mixin sent2pop(i)
         if ((lra<5) & (sign(lra, cha(s, place, i))))
             | the #[+value(ud(lra, (ord(Math.abs(lra))+"fastest-growing"), (ord(Math.abs(lra))+"most rapidly declining")))]
             | in #[+geog]
-        | #[+value((place.stories[i].value<(eng.data[s[i][0]][s[i][1]]['change'][s[i][3]]-1))?"but":"and")]
+            | #[+value((place.stories[i].value<(eng.data[s[i][0]][s[i][1]]['change'][s[i][3]]-1))?"but":"and")]
         if (Math.abs(data[s[i][0]][s[i][1]+'_rank']['change'][s[i][3]])<20)
             if (Math.abs(data[s[i][0]][s[i][1]+'_rank']['change'][s[i][3]])>1)
                 | the #[+value(Math.abs(data[s[i][0]][s[i][1]+'_rank']['change'][s[i][3]]), {'ORDINAL_TEXTUAL':true})]
@@ -230,7 +231,8 @@ mixin overtake(i, loc)
     else
         | went from having the
         | #[+value(ord(Math.abs(data[s[i][0]][s[i][1]+"_rank"+loc][2001][s[i][3]]))+ud(data[s[i][0]][s[i][1]+"_rank"+loc][2001][s[i][3]],"highest", "lowest"))]
-        | to the #[+value(ud(ra, (ord(Math.abs(ra))+"highest"), (ord(Math.abs(ra))+"lowest")))] percentage of Christian people out of 309 English local authoirities.
+        | to the #[+value(ud(ra, (ord(Math.abs(ra))+"highest"), (ord(Math.abs(ra))+"lowest")))] percentage of #[+value(topics[s[i][0]][s[i][3]].adj_noun_s)] out of 
+        | #[+value((country=="England")?"309 English":"22 Welsh")] local authoirities.
 
 //- mixin percOfRes(place)
 //-     synz {mode:'sequence'}
@@ -565,7 +567,17 @@ mixin acrossRegion(i)
         | #[+value((rgn.data[s[i][0]][s[i][1]]['2001'][s[i][3]])/100, {'FORMAT': '0.0%'})] to 
         | #[+value((rgn.data[s[i][0]][s[i][1]]['2011'][s[i][3]])/100, {'FORMAT': '0.0%'})].
     else if (Math.abs(data[s[i][0]][s[i][1]+'_rank_local'][s[i][2]][s[i][3]])==3)
-        | only Manchester (from 50% in 2011 to 30% in 2021) and Liverpool (from 40% to 10%) saw a greater drop in the proportion of people working long hours.
+        | only 
+        | #[+value(data[s[i][0]][s[i][1]+'_rank_local']['top_bottom'][s[i][3]]["-1"]['name'])]
+        | (from 
+        | #[+value((data[s[i][0]][s[i][1]+'_rank_local']['top_bottom'][s[i][3]]["-1"]['2001'])/100, {'FORMAT': '0.0%'})] in 2011 to 
+        | #[+value((data[s[i][0]][s[i][1]+'_rank_local']['top_bottom'][s[i][3]]["-1"]['2011'])/100, {'FORMAT': '0.0%'})] in 2021) 
+        | and 
+        | #[+value(data[s[i][0]][s[i][1]+'_rank_local']['top_bottom'][s[i][3]]["-2"]['name'])]
+        | (from 
+        | #[+value((data[s[i][0]][s[i][1]+'_rank_local']['top_bottom'][s[i][3]]["-2"]['2001'])/100, {'FORMAT': '0.0%'})] to 
+        | #[+value((data[s[i][0]][s[i][1]+'_rank_local']['top_bottom'][s[i][3]]["-2"]['2011'])/100, {'FORMAT': '0.0%'})]) 
+        | saw a greater #[+value(cha(s, place, i)<0?"drop":"rise")] in the proportion of #[+value(topic(i).adj_noun)].
 
 //- Across the North East, the proportion of self-employed people rose from 10% in 2011 to 15% in 2021, while the proportion in nearby Middlesborough rose from 11% to 14%.
 mixin acrossRegionExcept(i)
@@ -581,23 +593,53 @@ mixin acrossRegionExcept(i)
 
 mixin acrossCountry(i)
     | Across #[+value(country)], 
-    if (Math.abs(data[s[i][0]][s[i][1]+'_rank_local'][s[i][2]][s[i][3]])==1)
-        | Manchester (from 50% in 2011 to 30% in 2021) saw the next greatest drop in the proportion of people working long hours, while the regional average decreased from 40% to 20%.
-    else if (Math.abs(data[s[i][0]][s[i][1]+'_rank_local'][s[i][2]][s[i][3]])==2)
-        | only Manchester (from 50% in 2011 to 30% in 2021) saw a greater drop in the proportion of people working long hours, while the regional average decreased from 40% to 20%.
-    else if (Math.abs(data[s[i][0]][s[i][1]+'_rank_local'][s[i][2]][s[i][3]])==3)
-        | only Manchester (from 50% in 2011 to 30% in 2021) and Liverpool (from 40% to 10%) saw a greater drop in the proportion of people working long hours.
+    - var r = data[s[i][0]][s[i][1]+'_rank'][s[i][2]][s[i][3]]
+    if (Math.abs(r)==1)
+        | #[+value(data[s[i][0]][s[i][1]+'_rank'].top_bottom[s[i][3]][rl<0?"-2":"2"].name)] 
+        | (from #[+value((data[s[i][0]][s[i][1]+'_rank'].top_bottom[s[i][3]][rl<0?"-2":"2"][2001])/100, {'FORMAT': '0.0%'})] in 2011 
+        | to #[+value((data[s[i][0]][s[i][1]+'_rank'].top_bottom[s[i][3]][rl<0?"-2":"2"][2011])/100, {'FORMAT': '0.0%'})] in 2021) 
+        | saw the next greatest #[+value([rl<0?"drop":"rise"])] in the proportion of #[+value(topic(i).adj_noun)], 
+        | while the #[+regional] figure #[+value(rgn.data[s[i][0]][s[i][1]]['change'][s[i][3]]<0?"fell":"went up")] from 
+        | #[+value((rgn.data[s[i][0]][s[i][1]][2001][s[i][3]])/100, {'FORMAT': '0.0%'})] to
+        | #[+value((rgn.data[s[i][0]][s[i][1]][2011][s[i][3]])/100, {'FORMAT': '0.0%'})].
+    else if (Math.abs(data[s[i][0]][s[i][1]+'_rank'][s[i][2]][s[i][3]])==2)
+        | only 
+        | #[+value(data[s[i][0]][s[i][1]+'_rank']['top_bottom'][s[i][3]]["-1"]['name'])]
+        | (from 
+        | #[+value((data[s[i][0]][s[i][1]+'_rank']['top_bottom'][s[i][3]]["-1"]['2001'])/100, {'FORMAT': '0.0%'})] in 2011 to 
+        | #[+value((data[s[i][0]][s[i][1]+'_rank']['top_bottom'][s[i][3]]["-1"]['2011'])/100, {'FORMAT': '0.0%'})] in 2021) 
+        | saw a greater drop in the proportion of #[+value(topic(i).adj_noun)], while the regional average 
+        | #[+value(ud(cha(s, rgn, i), 'increased', 'decreased'))] from 
+        | #[+value((rgn.data[s[i][0]][s[i][1]]['2001'][s[i][3]])/100, {'FORMAT': '0.0%'})] to 
+        | #[+value((rgn.data[s[i][0]][s[i][1]]['2011'][s[i][3]])/100, {'FORMAT': '0.0%'})].
+    else if (Math.abs(data[s[i][0]][s[i][1]+'_rank'][s[i][2]][s[i][3]])==3)
+        | only 
+        | #[+value(data[s[i][0]][s[i][1]+'_rank']['top_bottom'][s[i][3]]["-1"]['name'])]
+        | (from 
+        | #[+value((data[s[i][0]][s[i][1]+'_rank']['top_bottom'][s[i][3]]["-1"]['2001'])/100, {'FORMAT': '0.0%'})] in 2011 to 
+        | #[+value((data[s[i][0]][s[i][1]+'_rank']['top_bottom'][s[i][3]]["-1"]['2011'])/100, {'FORMAT': '0.0%'})] in 2021) 
+        | and 
+        | #[+value(data[s[i][0]][s[i][1]+'_rank']['top_bottom'][s[i][3]]["-2"]['name'])]
+        | (from 
+        | #[+value((data[s[i][0]][s[i][1]+'_rank']['top_bottom'][s[i][3]]["-2"]['2001'])/100, {'FORMAT': '0.0%'})] to 
+        | #[+value((data[s[i][0]][s[i][1]+'_rank']['top_bottom'][s[i][3]]["-2"]['2011'])/100, {'FORMAT': '0.0%'})]) 
+        | saw a greater #[+value(cha(s, place, i)<0?"drop":"rise")] in the proportion of #[+value(topic(i).adj_noun)].
 
 mixin despiteRegion(i)
     | Despite the shift in #[+value(topics[s[i][0]].general)], #[+value(place.name)] still has #[+value(parent)]'s 
     | #[+value(udord(data[s[i][0]][s[i][1]+'_rank_local'][s[i][2]][s[i][3]], 'highest propotion', 'lowest propotion'))]
     | of #[+value(topic(i)['adj_noun'])], 
-    | behind only 
+    | behind
     | #[+value(data[s[i][0]][s[i][1]+'_rank_local']['above_below'][s[i][3]].above.name)]
     | (#[+value(data[s[i][0]][s[i][1]+'_rank_local']['above_below'][s[i][3]].above.value/100, {'FORMAT': '0.0%'})]).
 
 mixin despiteCountry(i)
-    | Despite the shift in working patterns, Ribble still has #[+value(country)]'s second highest proportion of people working long hours, behind only Wigan (20%).
+    | Despite the shift in #[+value(topics[s[i][0]].general)], #[+value(place.name)] still has #[+value(country)]'s 
+    | #[+value(udord(data[s[i][0]][s[i][1]+'_rank'][s[i][2]][s[i][3]], 'highest propotion', 'lowest propotion'))]
+    | of #[+value(topic(i)['adj_noun'])], 
+    | behind 
+    | #[+value(data[s[i][0]][s[i][1]+'_rank']['above_below'][s[i][3]].above.name)]
+    | (#[+value(data[s[i][0]][s[i][1]+'_rank']['above_below'][s[i][3]].above.value/100, {'FORMAT': '0.0%'})]).
 
 mixin ppoint()
     if !hasSaid('PP')
@@ -823,7 +865,7 @@ mixin percPara(i)
             p #[+allOthers(i, "", "d")]
         else if (data[s[i][0]][s[i][1]+"_rank"].top_bottom[s[i][3]]["-1"].change>0)
             p #[+allOthers(i, "", "u")]
-        else if ((data[s[i][0]][s[i][1]+'_rank']['overtake'][s[i][3]].length>0)&(Math.abs(cur(s, place, i, 'r'))<6))
+        else if ((data[s[i][0]][s[i][1]+'_rank']['overtake'][s[i][3]].length>0)&(Math.abs(cur(s, place, i, 'r'))<10))
             p #[+overtake(i, "")]
         else
             if (Math.sign(data[s[i][0]][s[i][1]+'_rank_local'][s[i][2]][s[i][3]]) != Math.sign(cha(s, place, i)))
@@ -851,7 +893,7 @@ mixin percPara(i)
             p #[+allOthers(i, "_local", "d")]
         if (data[s[i][0]][s[i][1]+"_rank_local"].top_bottom[s[i][3]]["-1"].change>0)
             p #[+allOthers(i, "_local", "u")]
-        else if ((data[s[i][0]][s[i][1]+'_rank_local']['overtake'][s[i][3]].length>0)&(Math.abs(cur(s, place, i, 'rl')<6)))
+        else if ((data[s[i][0]][s[i][1]+'_rank_local']['overtake'][s[i][3]].length>0)&(Math.abs(cur(s, place, i, 'rl'))<20))
             p #[+overtake(i, "_local")]
         else
             if (Math.sign(data[s[i][0]][s[i][1]+'_rank_local'][s[i][2]][s[i][3]]) != Math.sign(cha(s, place, i)))
