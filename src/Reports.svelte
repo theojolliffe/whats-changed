@@ -1,11 +1,11 @@
 <script>
-	import { udord, sign, nuword, eq, ageBandLU, ord, uncap1, getData, regionThe, drop, ud, otherRank, otherEst, qui, cha, cur, figs, get_word, city, chains } from "./utils";
+	import { adv, udord, sign, nuword, eq, ageBandLU, ord, uncap1, getData, regionThe, drop, ud, otherRank, otherEst, qui, cha, cur, figs, get_word, city, chains } from "./utils";
 	import Select from "./ui/Select.svelte";
 	import { load } from "archieml"; 
 	import { onMount } from 'svelte';
 	import robojournalist from 'robojournalist';
 
-	var options, selected, place, quartiles, locRankCha, locRankCur, eng, rgncode, rgn, s, natRankCha, natRankCur, topics;
+	var options, selected, place, quartiles, locRankCha, locRankCur, eng, rgncode, rgn, s, natRankCha, natRankCur, topics, wal;
 	var health, expand;
 
     var topics;
@@ -45,7 +45,7 @@
 		res = res.filter(d => d['type']=='lad')
 		options = res.sort((a, b) => a.name.localeCompare(b.name));
 		let  defaultLoc = options[Math.round(336*Math.random())]['name']
-		defaultLoc = 'Caerphilly';
+		// defaultLoc = 'Merthyr Tydfil';
 		console.log(defaultLoc)
 		selected = options.find(d => d.name == defaultLoc);
 		console.log(selected.code)
@@ -111,6 +111,13 @@
 			quartiles = null;
 			eng = json;
 		})
+		fetch("https://raw.githubusercontent.com/theojolliffe/census-data/main/json/place/W92000004.json")
+		.then(res => res.json())
+		.then(json => {
+			json.children = options.filter(d => d.parent == code);
+			json.siblings = options.filter(d => d.parent == json['parents'][0]['code']);
+			wal = json;
+		})
 	}
 
 	let grewSyn = {
@@ -140,7 +147,6 @@
 
 		var o = JSON.parse(JSON.stringify(topicsIn));
 		iterate(o, place.name)
-		console.log("o000ooo", o)
 
 		let sf = []
 		let changeMag = 0
@@ -150,6 +156,7 @@
 				changeMag = changeMag+Math.abs(e['value'])
 			}
 		});
+		console.log("O", o)
 		return rosaenlg_en_US.render(stand, {
 			language: 'en_UK',
 			place: place,
@@ -186,6 +193,7 @@
 			language: 'en_UK',
 			place: place,
 			data: place.data,
+			cou: place.parents[0].name=="Wales"?wal:eng,
 			// replace eng with country data (inc Wales)
 			eng: eng,
 			rgn: rgn,
@@ -221,6 +229,9 @@
 			nuword: nuword,
 			sign: sign,
 			udord: udord, 
+			near: place.nearSimilar.nearTops,
+			simi: place.similar,
+			adv: adv
 		})
 
 	}

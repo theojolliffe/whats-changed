@@ -15,11 +15,9 @@
 	</TabList>
 	<TabPanel>
 		<Reports/>
-
 	</TabPanel>
 	<TabPanel>	
 		<Topics/>
-
 	</TabPanel>
 	<TabPanel>
 		<Words/>

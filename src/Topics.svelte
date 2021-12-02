@@ -1,11 +1,11 @@
 <script>
-	import { eq, udord, sign, nuword, ageBandLU, ord, uncap1, regionThe, drop, ud, otherRank, otherEst, qui, cha, cur, figs, get_word, city,  chains } from "./utils";
+	import { adv, eq, udord, sign, nuword, ageBandLU, ord, uncap1, regionThe, drop, ud, otherRank, otherEst, qui, cha, cur, figs, get_word, city,  chains } from "./utils";
 	import Select from "./ui/Select.svelte";
 	import Selectb from "./ui/SelectB.svelte";
 	import { load } from "archieml"; //this is the parser from ArchieML to JSON
 	import robojournalist from 'robojournalist';
 
-	var selected, selectedb, quartiles, locRankCha, locRankCur, eng, rgncode, rgnLoad, natRankCha, natRankCur, topics, topic;
+	var wal, selected, selectedb, quartiles, locRankCha, locRankCur, eng, rgncode, rgnLoad, natRankCha, natRankCur, topics, topic;
 	var health, expand;
 
 	let topicOptions = [
@@ -106,13 +106,15 @@
 	var regions = []
 	$: thisReg = "null"
 
-
+	fetch("https://raw.githubusercontent.com/theojolliffe/census-data/main/json/place/W92000004.json")
+		.then(res => res.json())
+		.then(json => {
+			wal = json;
+		})
 	fetch("https://raw.githubusercontent.com/theojolliffe/census-data/main/json/place/E92000001.json")
 		.then(res => res.json())
 		.then(json => {
-			quartiles = null;
 			eng = json;
-			console.log('eng', eng)
 			loaded1 = true
 		})
 		.then(d => {
@@ -313,6 +315,7 @@
 			language: 'en_UK',
 			place: place,
 			data: place.data,
+			cou: place.parents[0].name=="Wales"?wal:eng,
 			eng: eng,
 			rgn: rgn,
 			parent: uncap1(regionThe(place.parents[0].name)),
@@ -346,7 +349,9 @@
 			nuword: nuword,
 			sign: sign,
 			udord: udord,
-			eq, eq
+			eq, eq,
+			near: place.nearSimilar.nearTops,
+			adv: adv,
 		})
 
 	}

@@ -152,7 +152,7 @@ function cha(s, place, i, type) {
   } else {
     type = ""
   }
-  return place.data[s[i][0]][s[i][1]+type]['change'][s[i][3]]
+  return Math.round(place.data[s[i][0]][s[i][1]+type]['change'][s[i][3]]*10)/10
 }
 
 function qui(n) {
@@ -291,4 +291,17 @@ function udord(n, w1, w2) {
   return nu+w
 }
 
-export { udord, sign, nuword, eq, ageBandLU, uncap1, getData, regionThe, drop, ud, otherRank, otherEst, qui, cha, cur, figs, get_word, city, ord, chains };
+function adv(x, y) {
+  let w
+  let d = x-y
+  let perc = (d/y)*100
+  if (Math.abs(perc)>7) {
+    w = 'considerably'
+  } else if (Math.abs(perc)>3) {
+    w = 'somewhat'
+  } else {
+    w = 'slightly'
+  }
+  return w
+}
+export { adv, udord, sign, nuword, eq, ageBandLU, uncap1, getData, regionThe, drop, ud, otherRank, otherEst, qui, cha, cur, figs, get_word, city, ord, chains };
