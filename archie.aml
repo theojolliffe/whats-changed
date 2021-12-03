@@ -216,31 +216,31 @@ children.NonDepKids.subhead.buc: {plcname} bucks trend for children
 care.noCare.subhead.pos: Drop in unpaid care provision
 care.noCare.subhead.neg: Rise in unpaid care provision
 care.noCare.subhead.neu: Change in care provision
-care.noCare.subhead.buc: {plcname} bucks trend in care provision
+care.noCare.subhead.buc: {plcname} bucks trend for care provision
 care.1to19hoursWeek.subhead.pos: Rise in moderate hours care provision
 care.1to19hoursWeek.subhead.neg: Fall in moderate hours care provision
 care.1to19hoursWeek.subhead.neu: Change in care provision
-care.1to19hoursWeek.subhead.buc: {plcname} bucks trend in care provision
+care.1to19hoursWeek.subhead.buc: {plcname} bucks trend for care provision
 care.20to49hoursWeek.subhead.pos: Rise in long hours care provision
 care.20to49hoursWeek.subhead.neg: Fall in long hours care provision
 care.20to49hoursWeek.subhead.neu: Change in care provision
-care.20to49hoursWeek.subhead.buc: {plcname} bucks trend in care provision
+care.20to49hoursWeek.subhead.buc: {plcname} bucks trend for care provision
 care.40PlushoursWeek.subhead.pos: Rise in extremely long hours care provision
 care.40PlushoursWeek.subhead.neg: Fall in extremely long hours care provision
 care.40PlushoursWeek.subhead.neu: Change in care provision
-care.40PlushoursWeek.subhead.buc: {plcname} bucks trend in care provision
+care.40PlushoursWeek.subhead.buc: {plcname} bucks trend for care provision
 marital.Single.subhead.pos: More single people in {plcname}
 marital.Single.subhead.neg: Less single people in {plcname}
 marital.Single.subhead.neu: Changing relationships in {plcname}
-marital.Single.subhead.buc: {plcname} bucks trend in relationships
+marital.Single.subhead.buc: {plcname} bucks trend for relationships
 marital.Married.subhead.pos: Marriage on the up
 marital.Married.subhead.neg: Marriage declining
 marital.Married.subhead.neu: Changing relationships in {plcname}
-marital.Married.subhead.buc: {plcname} bucks trend in relationships
+marital.Married.subhead.buc: {plcname} bucks trend for relationships
 marital.Seperated.subhead.pos: A decade of breakups
 marital.Seperated.subhead.neg: Relationships remain strong
 marital.Seperated.subhead.neu: Changing relationships in {plcname}
-marital.Seperated.subhead.buc: {plcname} bucks trend in relationships
+marital.Seperated.subhead.buc: {plcname} bucks trend for relationships
 tenure.rented_private.subhead.pos: Rise in private renting
 tenure.rented_private.subhead.neg: Fall in private renting
 tenure.rented_private.subhead.neu: Change in {plcname} housing
@@ -280,7 +280,7 @@ ethnicity.asian.subhead.buc: {plcname} bucks trend for ethnicity
 economic.employee.subhead.pos: Rise in rate of employment
 economic.employee.subhead.neg: Fall in rate of employment
 economic.employee.subhead.neu: Change in work life
-economic.employee.subhead.buc: {plcname} bucks trend in work life
+economic.employee.subhead.buc: {plcname} bucks trend for work life
 economic.inactive.subhead.pos: Rise in rate of economic activity
 economic.inactive.subhead.neg: Fall in rate of economic activity
 economic.inactive.subhead.neu: Changing work life
@@ -316,27 +316,27 @@ household.Married.subhead.buc: {plcname} reverses marriage trend
 religion.Christian.subhead.pos: New beliefs in {plcname}
 religion.Christian.subhead.neg: Changing beliefs
 religion.Christian.subhead.neu: Changing beliefs
-religion.Christian.subhead.buc: {plcname} reverses trend in religion
+religion.Christian.subhead.buc: {plcname} reverses trend for religion
 religion.Buddhist.subhead.pos: New beliefs in {plcname}
 religion.Buddhist.subhead.neg: Changing beliefs
 religion.Buddhist.subhead.neu: Changing beliefs
-religion.Buddhist.subhead.buc: {plcname} reverses trend in religion
+religion.Buddhist.subhead.buc: {plcname} reverses trend for religion
 religion.Hindu.subhead.pos: New beliefs in {plcname}
 religion.Hindu.subhead.neg: Changing beliefs
 religion.Hindu.subhead.neu: Changing beliefs
-religion.Hindu.subhead.buc: {plcname} reverses trend in religion
+religion.Hindu.subhead.buc: {plcname} reverses trend for religion
 religion.Sikh.subhead.pos: New beliefs in {plcname}
 religion.Sikh.subhead.neg: Changing beliefs
 religion.Sikh.subhead.neu: Changing beliefs
-religion.Sikh.subhead.buc: {plcname} reverses trend in religion
+religion.Sikh.subhead.buc: {plcname} reverses trend for religion
 religion.Jewish.subhead.pos: New beliefs in {plcname}
 religion.Jewish.subhead.neg: Changing beliefs
 religion.Jewish.subhead.neu: Changing beliefs
-religion.Jewish.subhead.buc: {plcname} reverses trend in religion
+religion.Jewish.subhead.buc: {plcname} reverses trend for religion
 religion.Muslim.subhead.pos: New beliefs in {plcname}
 religion.Muslim.subhead.neg: Changing beliefs
 religion.Muslim.subhead.neu: Changing beliefs
-religion.Muslim.subhead.buc: {plcname} reverses trend in religion
+religion.Muslim.subhead.buc: {plcname} reverses trend for religion
 religion.Noreligion.subhead.pos: New beliefs in {plcname}
 religion.Noreligion.subhead.neg: Changing beliefs
 religion.Noreligion.subhead.neu: Changing beliefs
