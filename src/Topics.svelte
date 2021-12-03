@@ -104,7 +104,6 @@
 'W92000004']
 
 	var regions = []
-	$: thisReg = "null"
 
 	fetch("https://raw.githubusercontent.com/theojolliffe/census-data/main/json/place/W92000004.json")
 		.then(res => res.json())
@@ -143,6 +142,9 @@
 				places.push(json);
 		})
 	})
+	$: placesload = false
+	$: console.log('placesload', placesload)
+	setTimeout(function(){ placesload = true }, 1000);
 
 
 
@@ -232,8 +234,6 @@
 				}
 			}
 
-			console.log("thisReg", regions[2])
-			
 			let tmpOb = {
 				'place': places[i],
 				'story': story,
@@ -380,18 +380,22 @@
 	<script src="https://unpkg.com/rosaenlg@3.0.1/dist/rollup/rosaenlg_tiny_en_US_3.0.1_comp.js" on:load="{onRosaeNlgLoad}"></script>
 </svelte:head>
 
+{#if placesload}
 <div>
 	<div style="width: 640px; margin: 50px auto;">
 		<Select bind:selected options={topicOptions} placeholder="Search a topic" value="value" label="label" search={true} on:select="{() => { if (selected) { loadTopic(selected.value) }}}"/>
 	</div>
 </div>
+{:else}
+<div style="padding: 50px; padding-left: 40%; font-size: x-large">Loading...</div>	
+{/if}
 
 <div>
 	{#if topic}
 		{#if loaded1}
-			{#if loaded}
-			{#if rgnLoad}
-				{#if eng}	
+				{#if loaded}
+					{#if rgnLoad}
+						{#if eng}	
 					<div style="width: 640px; margin:0 auto;">
 						<h1>{selected.label}</h1>
 					</div>
@@ -417,11 +421,9 @@
 						<p>This article was generated using some automation. Topics are automatically chosen based on how relevant they are for each area.</p>
 						<div style="height:200px"></div>
 					</main>
+						{/if}
+					{/if}
 				{/if}
-				{/if}
-			{/if}
-			{:else}
-			<div style="padding: 50px; padding-left: 40%; font-size: x-large">Loading...</div>
 		{/if}
 	{/if}
 </div>

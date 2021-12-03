@@ -13,9 +13,9 @@
 		<Tab>Topic QA</Tab>
 		<Tab>Word Selection</Tab>
 	</TabList>
-	<TabPanel>
+	<!-- <TabPanel>
 		<Reports/>
-	</TabPanel>
+	</TabPanel> -->
 	<TabPanel>	
 		<Topics/>
 	</TabPanel>
