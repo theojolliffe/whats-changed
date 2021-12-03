@@ -648,6 +648,7 @@ mixin ppoint()
         | pp
 
 mixin sent2Diff(i, chain0_01, chain0_11, chain1_01, chain1_11)
+    - console.log('chain0_01', chain0_01)
     | #[+value(topic(i, chains[s[i][3]][0]).topic)] in 
     | #[+value(place.name)]
     if (Math.round(chain0_11*10)/10==Math.round(chain0_01*10)/10)
@@ -655,9 +656,9 @@ mixin sent2Diff(i, chain0_01, chain0_11, chain1_01, chain1_11)
     else
         | #[+value(ud(chain0_11-chain0_01, 'rose', 'fell'))]
         | from 
-        | #[+value((chain0_01)/100, {'FORMAT': '0.0%'})]
+        | #[+value((chain0_01/100), {'FORMAT': '0.0%'})]
         | to 
-        | #[+value((chain0_11)/100, {'FORMAT': '0.0%'})]
+        | #[+value((chain0_11/100), {'FORMAT': '0.0%'})]
     if (chains[s[i][3]].length>1)
         | , while #[+value(topic(i, chains[s[i][3]][1]).topic)]
         if (Math.round(chain1_11*10)/10==Math.round(chain1_01*10)/10)
@@ -665,9 +666,9 @@ mixin sent2Diff(i, chain0_01, chain0_11, chain1_01, chain1_11)
         else
             | #[+value(ud(chain1_11-chain1_01, 'increased', 'decreased'))]
             | from 
-            | #[+value((chain1_01)/100, {'FORMAT': '0.0%'})]
+            | #[+value((chain1_01/100), {'FORMAT': '0.0%'})]
             | to 
-            | #[+value((chain1_11)/100, {'FORMAT': '0.0%'})]
+            | #[+value((chain1_11/100), {'FORMAT': '0.0%'})]
     | .
 
 //- The percentage of private renters in this district is rising but at a slower rate than the average across the North West.
@@ -784,7 +785,7 @@ mixin nearbyname
         | nearby
     | #[+value(near.name)]
 
-mixin buck(i, curBuck)
+mixin buck(i, curBuck, chain0_01, chain0_11, chain1_01, chain1_11)
     | The percentage of #[+value(topic(i).adj_noun)] 
     | is #[+value(ud(cha(s, place, i), 'rising', 'falling'))] 
     synz {mode:'sequence'}
@@ -844,7 +845,7 @@ mixin allOthers(i, r, updo)
     | to #[+value((rgn.data[s[i][0]][s[i][1]][2011][s[i][3]])/100, {'FORMAT': '0.0%'})]
 
 //- Deals with all percentage based variables
-mixin percPara(i)
+mixin percPara(i, chain0_01, chain0_11, chain1_01, chain1_11)
     - var chain0_11 = data[s[i][0]][s[i][1]][2011][chains[s[i][3]][0]]
     - var chain0_01 = data[s[i][0]][s[i][1]][2001][chains[s[i][3]][0]] 
     - var chain1_11 = data[s[i][0]][s[i][1]][2011][chains[s[i][3]][1]] 
@@ -875,10 +876,10 @@ mixin percPara(i)
                     p #[+despiteRegion(i)]
     else if ((stories[i].type.includes('regBuck'))|(eq(stories[i].type, ['regBuck'])))
         - var curBuck = 'regBuck'
-        | #[+buck(i, curBuck)]
+        | #[+buck(i, curBuck, chain0_01, chain0_11, chain1_01, chain1_11)]
     else if ((stories[i].type.includes('couBuck'))|(eq(stories[i].type, ['couBuck'])))
         - var curBuck = 'couBuck'
-        | #[+buck(i, curBuck)]
+        | #[+buck(i, curBuck, chain0_01, chain0_11, chain1_01, chain1_11)]
     else if ((stories[i].type.includes('size'))&(!hasSaid('SIZE'))|(eq(stories[i].type, ['size'])))
         recordSaid('SIZE')
         | #[+sent1Perc(i)]
@@ -904,11 +905,11 @@ mixin percPara(i)
     else if ((stories[i].type.includes('simiBuck'))&(!hasSaid('BUCK'))|(eq(stories[i].type, ['simiBuck'])))
         recordSaid('BUCK')
         - var curBuck = 'simiBuck'
-        | #[+buck(i, curBuck)]
+        | #[+buck(i, curBuck, chain0_01, chain0_11, chain1_01, chain1_11)]
     else if ((stories[i].type.includes('nearBuck'))&(!hasSaid('BUCK'))|(eq(stories[i].type, ['nearBuck'])))
         recordSaid('BUCK')
         - var curBuck = 'nearBuck'
-        | #[+buck(i, curBuck)]
+        | #[+buck(i, curBuck, chain0_01, chain0_11, chain1_01, chain1_11)]
     else
         deleteSaid('SIZE')
         | #[+difference(i, chain0_01, chain0_11, chain1_01, chain1_11)]

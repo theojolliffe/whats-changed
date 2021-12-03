@@ -45,7 +45,10 @@
 		res = res.filter(d => d['type']=='lad')
 		options = res.sort((a, b) => a.name.localeCompare(b.name));
 		let  defaultLoc = options[Math.round(336*Math.random())]['name']
-		// defaultLoc = 'Merthyr Tydfil';
+		defaultLoc = 'Harlow';
+		if (['Daventry', 'East Northamptonshire', 'South Northamptonshire', 'Kettering', 'Corby', 'Wellingborough', 'Northampton'].includes.deaultLoc) {
+			let  defaultLoc = options[Math.round(336*Math.random())]['name']
+		}
 		console.log(defaultLoc)
 		selected = options.find(d => d.name == defaultLoc);
 		console.log(selected.code)
