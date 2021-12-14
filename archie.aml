@@ -20,18 +20,18 @@ agemed.adj.low: youngest
 
 // Giving it the greatest ***headcount*** of any local authority area in the North West of England.
 // Census 2021 data also shows a shift in ***working patterns***.
-tenure.synonym: {plcname}'s housing
-health.synonym: the local population's well-being
-ethnicity.synonym: the ethnic makeup of {plcname}
-economic.synonym: the employment status of many here
-household.synonym: family life for many in {plcname}
-religion.synonym: the local population's religious beliefs
-care.synonym: the amount of unpaid care provided here
-children.synonym: family life for many in {plcname} 
-hoursworked.synonym: the working patterns of many in {plcname}
-marital.synonym: the relationships of many here
-population.synonym: {plcnam}'s population
-agemed.synonym: the local population's average age
+tenure.synonym: housing shift in {plcname}
+health.synonym: shift in the local population's well-being
+ethnicity.synonym: shift in the ethnic makeup of {plcname}
+economic.synonym: shift in the employment status of many here
+household.synonym: shift in family life for many in {plcname}
+religion.synonym: shift in the local population's religious beliefs
+care.synonym: shift in the amount of unpaid care provided here
+children.synonym: shift in family life for many in {plcname} 
+hoursworked.synonym: shift in the working patterns of many in {plcname}
+marital.synonym: shift in the relationships of many here
+population.synonym: shift in {plcnam}'s population
+agemed.synonym: shift in the local population's average age
 
 // The religious profile of Torbay changed considerably in the 10 years leading up to the last census
 // ***Health improved considerably in Torbay*** in the 10 years leading up to the last census
@@ -121,7 +121,7 @@ health.good.verb_past: said their health was good
 health.fair.verb_past: said their health was fair
 health.bad.verb_past: said their health was bad
 
-ethnicity.white.verb_past: said they were from a White ethnic group
+ethnicity.white.verb_past: said they were from the White ethnic group
 ethnicity.black.verb_past: said they were from a Black ethnic group
 ethnicity.asian.verb_past: said they were from an Asian ethnic group
 
@@ -171,7 +171,7 @@ health.good.adj_noun: healthy residents
 health.fair.adj_noun: people that described their health as fair
 health.bad.adj_noun: unhealthy residents
 
-ethnicity.white.adj_noun: residents from a White ethnic group
+ethnicity.white.adj_noun: residents from the White ethnic group
 ethnicity.black.adj_noun: residents from a Black ethnic group
 ethnicity.asian.adj_noun: residents from an Asian ethnic group
 
@@ -265,8 +265,8 @@ health.bad.subhead.pos: Health deteriorates
 health.bad.subhead.neg: Health improves
 health.bad.subhead.neu: Change in health
 health.bad.subhead.buc: {plcname} bucks trend for health
-ethnicity.white.subhead.pos: More residents from a White ethnic group
-ethnicity.white.subhead.neg: Fewer residents from a White ethnic group
+ethnicity.white.subhead.pos: More residents from the White ethnic group
+ethnicity.white.subhead.neg: Fewer residents from the White ethnic group
 ethnicity.white.subhead.neu: Change in ethnic makeup
 ethnicity.white.subhead.buc: {plcname} bucks trend for ethnicity
 ethnicity.black.subhead.pos: More residents from a Black ethnic group
@@ -360,6 +360,8 @@ hoursworked.Male49plus.subhead.buc: {plcname} reverses job trend
 
 // **The rate of homeownership*** in Greenwich rose from 68.1% to 79.6%
 // ***The proportion of people from a Black ethnic group*** in Three Rivers rose from 1.0% to 1.8%
+population.all.topic: the population
+
 marital.Single.topic: the proportion of single people
 marital.Married.topic: the proportion of married people
 marital.Seperated.topic: the proportion of seperated people
@@ -376,7 +378,7 @@ health.good.topic: the percentage of healthy people
 health.fair.topic: the percentage of fairly healthy people
 health.bad.topic: the percentage of unhealthy people
 
-ethnicity.white.topic: the proportion of people from a White ethnic group
+ethnicity.white.topic: the proportion of people from the White ethnic group
 ethnicity.black.topic: the proportion of people from a Black ethnic group
 ethnicity.asian.topic: the proportion of people from an Asian ethnic group
 
@@ -418,11 +420,11 @@ tenure.rented_private.adj_noun_s: private renting
 tenure.rented_social.adj_noun_s: social housing
 tenure.owned.adj_noun_s: homeownership
 
-health.good.adj_noun_s: are from a White ethnic group
+health.good.adj_noun_s: are from the White ethnic group
 health.fair.adj_noun_s: fairly healthy residents
 health.bad.adj_noun_s: unhealthy residents
 
-ethnicity.white.adj_noun_s: are from a White ethnic group
+ethnicity.white.adj_noun_s: are from the White ethnic group
 ethnicity.black.adj_noun_s: are from a Black ethnic group
 ethnicity.asian.adj_noun_s: are from an Asian ethnic group
 
@@ -449,3 +451,14 @@ hoursworked.Female1-15.adj_noun_s: short hours workers
 hoursworked.Female49plus.adj_noun_s: long hours workers
 hoursworked.Male1-15.adj_noun_s: short hours workers
 hoursworked.Male49plus.adj_noun_s: long hours workers
+
+// The percentage of people living in Southwark by ***ethnicity***; March 2011, March 2021
+hoursworked.subtitle: weekly hours worked
+religion.subtitle: religion
+household.subtitle: household type
+ethnicity.subtitle: ethnic group
+economic.subtitle: economic status
+health.subtitle: self-reported health
+tenure.subtitle: housing tenure
+children.subtitle: child occupancy
+marital.subtitle: marital status

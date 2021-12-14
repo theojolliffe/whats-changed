@@ -53,13 +53,10 @@ mixin tenYears
 // Between the last two censuses, the average age in Manchester fell by two years, from 34 to 32 years of age.
 mixin sent1Age(i)
     p
-        if (i==1)
-            | Census 2021 data also shows a shift in #[+value(topics[s[i][0]].synonym)].
-        else
-            | #[+tenYears],
+        | Census 2021 data also shows a #[+value(topics[s[i][0]].synonym)].
         p
-            | the #[+value(topics[s[i][0]].general)] 
-            | in #[+value(place.name)] 
+            | Between the last two censuses, the median age
+            | of #[+value(place.name)] 
             | #[+value(ud(cha(s, place, i), 'rose by', 'fell by'))]
             | #[+value(Math.abs(cha(s, place, i)), {'TEXTUAL':true })] 
             | #[+value(Math.abs(cha(s, place, i))==1?'year':'years')],
@@ -244,7 +241,7 @@ mixin overtake(i, loc)
 // In the 10 years leading up to the last census, the percentage of Manchester residents describing their health as good increased from just over 66% to about 80%.
 mixin sent1Perc(i)
     if (i==1)
-        p Census 2021 data also shows a shift in #[+value(topics[s[i][0]].synonym)].
+        p Census 2021 data also shows a #[+value(topics[s[i][0]].synonym)].
     p the percentage of
         | #[+value(topic(i).clausal_modifier)] 
         if (cha(s, place, i)<0)
@@ -640,7 +637,7 @@ mixin despiteCountry(i)
     | #[+value(data[s[i][0]][s[i][1]+'_rank']['above_below'][s[i][3]].above.name)]
     | (#[+value(data[s[i][0]][s[i][1]+'_rank']['above_below'][s[i][3]].above.value/100, {'FORMAT': '0.0%'})]).
 
-mixin ppoint()
+mixin ppoint
     if !hasSaid('PP')
         | percentage points (pp)
         recordSaid('PP')
@@ -935,57 +932,120 @@ mixin para(i)
     if (s[i][1] == 'perc')
         | #[+percPara(i)]
 
+mixin chartTitleSize(i)
+    if (s[i][0]=="population")
+        h4 
+            | Population density is increasing here at a 
+            | #[+value(uds(data.density.value.change.all-rgn.data.density.value.change.all, "faster rate than", "slower rate than", "similar rate to"))]
+            | #[+value(parent)]
+        h5 
+            | Population density (people per 7,140 square metres) across #[+value(place.name)], #[+value((country=="Wales")?simi.name:parent)] and #[+value(country)]; March 2011, March 2021
+    else if (s[i][0]=="agemed")
+        h4 
+            | The proportion aged
+            | #[+value(ageBandLU[data.age10yr.absChange['pos'][0][0]][1])]
+            | #[+value((cha(s, place, i)<0)?"decreased":"increased")] by
+            | #[+value(data.age10yr.perc.change[data.age10yr.absChange['pos'][0][0]], {'FORMAT': '0.0'})]
+            |  #[+ppoint]
+        h5 
+            | The percentage of people in #[+value(place.name)] by 10 year age band; March 2011, March 2021
+    else
+        h4 
+            | #[+value(topic(i).topic)] in 
+            | #[+value(place.name)]
+            | #[+value((cha(s, place, i)<0)?"decreased":"increased")] by
+            | #[+value(Math.abs(cha(s, place, i)))]
+            | #[+ppoint]
+        h5 
+            | The percentage of people living in #[+value(place.name)], #[+value(parent)] and #[+value(country)] that #[+value(topic(i).verb_past)]; March 2011, March 2021
+
+mixin chartTitleOther(i)
+    if (s[i][0]=="population")
+        h4 
+            | Population density is
+            | #[+value(uds(data.density.value[2011].all-rgn.data.density.value[2011].all, "higher than", "lower than", "similar to"))]
+            | the average across #[+value(parent)]
+        h5 
+            | Population density (people per 7,140 square metres) across #[+value(parent)]; March 2021 (dot size represents change since 2011)
+    else if (s[i][0]=="agemed")
+        h4 
+            | The proportion aged
+            | #[+value(ageBandLU[data.age10yr.absChange['pos'][0][0]][1])]
+            | #[+value((cha(s, place, i)<0)?"decreased":"increased")] by
+            | #[+value(data.age10yr.perc.change[data.age10yr.absChange['pos'][0][0]], {'FORMAT': '0.0'})]
+            |  #[+ppoint]
+        h5 
+            | The percentage of people in #[+value(place.name)] by 10 year age band; March 2011, March 2021
+    else
+        h4 
+            | #[+value(topic(i).topic)] 
+            | #[+value((cur(s, place, i)-cur(s, rgn, i)<0)?"is lower than":"is higher than")] across #[+value(parent)]
+        h5 
+            | The percentage of people across #[+value(parent)] that #[+value(topic(i).verb_past)]; March 2021
+
+mixin chartTitle(i)
+    if (stories[i].type.includes('size'))
+        | #[+chartTitleSize(i)]
+    else
+        | #[+chartTitleOther(i)]
+
+
 -console.log("eng", eng)
 -console.log("rgn", rgn)
 -console.log("place", place)
+
+// Start of th article \/
 | #[+para(0)]
-h4 This is a placeholder title for a chart that will be placed below
-div#visph Data visualisation placeholder
+| #[+chartTitle(0)]
+div#esc123
+
 if (s.length>1)
     | #[+para(1)]
-    h4 This is a placeholder title for a chart that will be placed below
-    div#visph Data visualisation placeholder
+    | #[+chartTitle(1)]
+    div#esc123
+
 if (s.length>2)
     | #[+para(2)]
-    h4 This is a placeholder title for a chart that will be placed below
-    div#visph Data visualisation placeholder
+    | #[+chartTitle(2)]
+    div#esc123
+
 if (s.length>3)
     | #[+para(3)]
-    h4 This is a placeholder title for a chart that will be placed below
-    div#visph Data visualisation placeholder
+    | #[+chartTitle(3)]
+    div#esc123
+
 if (s.length>4)
     | #[+para(4)]
-    h4 This is a placeholder title for a chart that will be placed below
-    div#visph Data visualisation placeholder
+    | #[+chartTitle(4)]
+    div#esc123
 if (s.length>5)
     | #[+para(5)]
-    h4 This is a placeholder title for a chart that will be placed below
-    div#visph Data visualisation placeholder
+    | #[+chartTitle(5)]
+//-     div#esc123
 //- if (s.length>6)
 //-     | #[+para(6)]
-//-     h4 This is a placeholder title for a chart that will be placed below
-//-     div#visph Data visualisation placeholder
+//-     | #[+chartTitle(5)]
+//-     div#esc123
 //- if (s.length>7)
 //-     | #[+para(7)]
-//-     h4 This is a placeholder title for a chart that will be placed below
-//-     div#visph Data visualisation placeholder
+//-     | #[+chartTitle(5)]
+//-     div#esc123
 //- if (s.length>8)
 //-     | #[+para(8)]
-//-     h4 This is a placeholder title for a chart that will be placed below
-//-     div#visph Data visualisation placeholder
+//-     | #[+chartTitle(5)]
+//-     div#esc123
 //- if (s.length>9)
 //-     | #[+para(9)]
-//-     h4 This is a placeholder title for a chart that will be placed below
-//-     div#visph Data visualisation placeholder
+//-     | #[+chartTitle(5)]
+//-     div#esc123
 //- if (s.length>10)
 //-     | #[+para(10)]
-//-     h4 This is a placeholder title for a chart that will be placed below
-//-     div#visph Data visualisation placeholder
+//-     | #[+chartTitle(5)]
+//-     div#esc123
 //- if (s.length>11)
 //-     | #[+para(11)]
-//-     h4 This is a placeholder title for a chart that will be placed below
-//-     div#visph Data visualisation placeholder
+//-     | #[+chartTitle(5)]
+//-     div#esc123
 //- if (s.length>12)
 //-     | #[+para(12)]
-//-     h4 This is a placeholder title for a chart that will be placed below
-//-     div#visph Data visualisation placeholder
+//-     | #[+chartTitle(5)]
