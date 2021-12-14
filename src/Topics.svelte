@@ -380,7 +380,7 @@
 	<script src="https://unpkg.com/rosaenlg@3.0.1/dist/rollup/rosaenlg_tiny_en_US_3.0.1_comp.js" on:load="{onRosaeNlgLoad}"></script>
 </svelte:head>
 
-{#if regions.length>8}
+{#if rgnLoad}
 	{#if placesload}
 	<div>
 		<div style="width: 640px; margin: 50px auto;">
