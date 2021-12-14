@@ -274,22 +274,22 @@
 		}
 	function results(place, rgn, topicsIn, s, story) {
 
-					// Define the word to describe population change in standfirst
-					if (place.data.population.value.change.all>8) {
-				expand = "expanded"
-			} else if (place.data.population.value.change.all>3) {
-				expand = "grew"
-			} else if (place.data.population.value.change.all>0) {
-				expand = "did not change much"
-			} else {
-				expand = "shrunk"
-			} 
-			// Define the word to describe health change in standfirst
-			if (place.data.health.perc.change.good>0) {
-				health = "improved"
-			} else if (place.data.health.perc.change.good<0) {
-				health = "deteriorated"
-			}
+		// Define the word to describe population change in standfirst
+		if (place.data.population.value.change.all>8) {
+			expand = "expanded"
+		} else if (place.data.population.value.change.all>3) {
+			expand = "grew"
+		} else if (place.data.population.value.change.all>0) {
+			expand = "did not change much"
+		} else {
+			expand = "shrunk"
+		} 
+		// Define the word to describe health change in standfirst
+		if (place.data.health.perc.change.good>0) {
+			health = "improved"
+		} else if (place.data.health.perc.change.good<0) {
+			health = "deteriorated"
+		}
 
 		var o = JSON.parse(JSON.stringify(topicsIn));
 		iterate(o, place.name)
@@ -380,12 +380,16 @@
 	<script src="https://unpkg.com/rosaenlg@3.0.1/dist/rollup/rosaenlg_tiny_en_US_3.0.1_comp.js" on:load="{onRosaeNlgLoad}"></script>
 </svelte:head>
 
-{#if placesload}
-<div>
-	<div style="width: 640px; margin: 50px auto;">
-		<Select bind:selected options={topicOptions} placeholder="Search a topic" value="value" label="label" search={true} on:select="{() => { if (selected) { loadTopic(selected.value) }}}"/>
+{#if regions.length>8}
+	{#if placesload}
+	<div>
+		<div style="width: 640px; margin: 50px auto;">
+			<Select bind:selected options={topicOptions} placeholder="Search a topic" value="value" label="label" search={true} on:select="{() => { if (selected) { loadTopic(selected.value) }}}"/>
+		</div>
 	</div>
-</div>
+	{:else}
+	<div style="padding: 50px; padding-left: 40%; font-size: x-large">Loading...</div>	
+	{/if}
 {:else}
 <div style="padding: 50px; padding-left: 40%; font-size: x-large">Loading...</div>	
 {/if}
@@ -393,34 +397,34 @@
 <div>
 	{#if topic}
 		{#if loaded1}
-				{#if loaded}
-					{#if rgnLoad}
-						{#if eng}	
-					<div style="width: 640px; margin:0 auto;">
-						<h1>{selected.label}</h1>
-					</div>
-					{#if subSel}
-						<div>
-							<div style="width: 640px; margin: 50px auto;">
-								<Selectb bind:selectedb options={subSel} placeholder="Search a subtopic" value="value" label="label" search={true} on:select="{() => { if (selectedb) { loadSubTopic(selectedb.value) }}}"/>
-							</div>
+			{#if loaded}
+				{#if rgnLoad}
+					{#if eng}	
+						<div style="width: 640px; margin:0 auto;">
+							<h1>{selected.label}</h1>
 						</div>
-						{#if loadedb}
-							<div style="width: 640px; margin:0 auto;">
-								<h1>{selectedb.label}</h1>
+						{#if subSel}
+							<div>
+								<div style="width: 640px; margin: 50px auto;">
+									<Selectb bind:selectedb options={subSel} placeholder="Search a subtopic" value="value" label="label" search={true} on:select="{() => { if (selectedb) { loadSubTopic(selectedb.value) }}}"/>
+								</div>
 							</div>
+							{#if loadedb}
+								<div style="width: 640px; margin:0 auto;">
+									<h1>{selectedb.label}</h1>
+								</div>
+							{/if}
 						{/if}
-					{/if}
-					<main>
-						{#each placesOb as item, i (i)}
-							<h2 style="text-decoration: underline;">{item['place'].name}</h2>
-							{@html results(item['place'], item['region'], topics, item['s'], item['story'])}
-						{/each}
-						<hr style="width: 40%; margin: 60px auto 30px auto;"/>
-						<h2 id="create">Creating this article</h2>
-						<p>This article was generated using some automation. Topics are automatically chosen based on how relevant they are for each area.</p>
-						<div style="height:200px"></div>
-					</main>
+						<main>
+							{#each placesOb as item, i (i)}
+								<h2 style="text-decoration: underline;">{item['place'].name}</h2>
+								{@html results(item['place'], item['region'], topics, item['s'], item['story'])}
+							{/each}
+							<hr style="width: 40%; margin: 60px auto 30px auto;"/>
+							<h2 id="create">Creating this article</h2>
+							<p>This article was generated using some automation. Topics are automatically chosen based on how relevant they are for each area.</p>
+							<div style="height:200px"></div>
+						</main>
 						{/if}
 					{/if}
 				{/if}
