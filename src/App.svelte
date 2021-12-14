@@ -2,7 +2,7 @@
 	import Warning from "./ui/Warning.svelte";
 	import Reports from "./Reports.svelte";
 	import Topics from "./Topics.svelte";
-	import Words from "./WordsOld.svelte";
+	import Words from "./Words.svelte";
 	import { Tabs, TabList, TabPanel, Tab } from './tabs/tabs.js';
 </script>
 <Warning/>
@@ -21,7 +21,6 @@
 	</TabPanel>
 	<TabPanel>
 		<Words/>
-
 	</TabPanel>
 </Tabs>
 

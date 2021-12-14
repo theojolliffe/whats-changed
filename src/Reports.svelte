@@ -4,8 +4,11 @@
 	import { load } from "archieml"; 
 	import { onMount } from 'svelte';
 	import robojournalist from 'robojournalist';
+	import { LineChart, ScatterChart, ColumnChart } from '@onsvisual/svelte-charts';
+	import DotPlotChart from './charts/DotPlotChart.svelte';
 
-	var options, selected, place, quartiles, locRankCha, locRankCur, eng, rgncode, rgn, s, natRankCha, natRankCur, topics, wal;
+
+	var options, selected, place, quartiles, locRankCha, locRankCur, eng, rgncode, rgn, s, natRankCha, natRankCur, topics, wal, found, ladData, props;
 	var health, expand;
 
     var topics;
@@ -35,6 +38,14 @@
     const onRosaeNlgLoad = () => { loaded = true }
 
 
+	// Data load functions
+	getData("https://raw.githubusercontent.com/theojolliffe/census-data/main/laddata.csv").then(res => {
+		res.forEach(d => {
+			d.code = d[""];
+			delete d[""];
+		});
+		ladData = res
+	});
 
 	// Data load functions
 	getData("https://raw.githubusercontent.com/theojolliffe/census-data/main/csv/lists/places_2020.csv").then(res => {
@@ -45,7 +56,7 @@
 		res = res.filter(d => d['type']=='lad')
 		options = res.sort((a, b) => a.name.localeCompare(b.name));
 		let  defaultLoc = options[Math.round(336*Math.random())]['name']
-		// defaultLoc = 'Harlow';
+		// defaultLoc = 'Amber Valley';
 		if (['Daventry', 'East Northamptonshire', 'South Northamptonshire', 'Kettering', 'Corby', 'Wellingborough', 'Northampton'].includes.deaultLoc) {
 			let  defaultLoc = options[Math.round(336*Math.random())]['name']
 		}
@@ -62,7 +73,6 @@
 			json.siblings = options.filter(d => d.parent == json['parents'][0]['code']);
 			quartiles = null;
 			place = json;
-
 
 			// Define the word to describe population change in standfirst
 			if (place.data.population.value.change.all>8) {
@@ -90,10 +100,10 @@
 				}
 			});
 			rgncode = place.parents[0].code
-			locRankCha = s.map(d => parseInt(place.data[d[0]][d[1]+"_rank_local"][d[2]][d[3]]))
-			natRankCha = s.map(d => parseInt(place.data[d[0]][d[1]+"_rank"][d[2]][d[3]]))
-			locRankCur = s.map(d => parseInt(place.data[d[0]][d[1]+"_rank_local"]['2011'][d[3]]))
-			natRankCur = s.map(d => parseInt(place.data[d[0]][d[1]+"_rank"]['2011'][d[3]]))
+			locRankCha = s.map(d => parseInt(place.data[d[0]][d[1]+"_rank_local"][d[2]][d[3]]));
+			natRankCha = s.map(d => parseInt(place.data[d[0]][d[1]+"_rank"][d[2]][d[3]]));
+			locRankCur = s.map(d => parseInt(place.data[d[0]][d[1]+"_rank_local"]['2011'][d[3]]));
+			natRankCur = s.map(d => parseInt(place.data[d[0]][d[1]+"_rank"]['2011'][d[3]]));
 
 			fetch("https://raw.githubusercontent.com/theojolliffe/census-data/main/json/place/" + rgncode + ".json")
 			.then(res => res.json())
@@ -132,18 +142,18 @@
 	};
 	
 	function iterate(obj, pname) {
-			Object.keys(obj).forEach(key => {
-				if (typeof obj[key] === 'object') {
-					iterate(obj[key], pname)
-				} else {
-					obj[key] = robojournalist(obj[key], {
-						health, health,
-						expanded: expand,
-						plcname: pname,
-					})
-				}
-			})
-		}
+		Object.keys(obj).forEach(key => {
+			if (typeof obj[key] === 'object') {
+				iterate(obj[key], pname)
+			} else {
+				obj[key] = robojournalist(obj[key], {
+					health, health,
+					expanded: expand,
+					plcname: pname,
+				})
+			}
+		})
+	}
 
 
 	function standfirst(place, topicsIn) {
@@ -192,7 +202,7 @@
 			return string.charAt(0).toUpperCase() + string.slice(1);
 		}
 		
-		return rosaenlg_en_US.render(puggy, {
+		let res = rosaenlg_en_US.render(puggy, {
 			language: 'en_UK',
 			place: place,
 			data: place.data,
@@ -237,6 +247,7 @@
 			adv: adv,
 			uds: uds,
 		})
+		return res.split(`<div id="esc123"></div>`)
 
 	}
 	function goTop() {
@@ -256,6 +267,150 @@
 			margin-bottom: 80px;`)
 		}, 1000)
 	})
+
+
+	function makeChartData(place, region, england, i) {
+		let temp = []
+		let arr = [place, region, england]
+		if (place) {
+			for (const k in {2015: "", 2016: "", 2017: "", 2018: ""}) {
+					for (const j in arr) {
+						let top = arr[j].data[subDomains[i]['Domain']]['subdomains'][subDomains[i]['Subdomain']].total
+						temp.push({
+							year: parseInt(k),
+							value: top[k]['value'],
+							group: arr[j].name
+					});
+				}
+			}
+		}
+		return temp
+	}
+
+	function fbp(x) {
+		return Number.parseFloat(Number.parseFloat(0.714*x).toPrecision(2))
+	}
+
+	function makeProps(i) {
+		let s = place.stories[i].label.split("_")
+			if (s.length>4) {
+				s[3] = s[3]+"_"+s[4]
+				s.pop()
+			}
+		if (place.stories[i].type.includes('size')) {
+			if (s[0]=="population") {
+				return {
+					height: 120,
+					data: [
+						{label: eng.name, 2011: fbp(eng.data.density.value[2001].all), 2021: fbp(eng.data.density.value[2011].all)},
+						{label: rgn.name, 2011: fbp(rgn.data.density.value[2001].all), 2021: fbp(rgn.data.density.value[2011].all)},
+						{label: place.name, 2011: fbp(place.data.density.value[2001].all), 2021: fbp(place.data.density.value[2011].all)},
+					],
+				}
+			}
+			else {
+				return {
+					legend: true,
+					height: 120,
+					data: [
+						{
+							label: eng.name, 
+							2011: eng.data[s[0]][s[1]][2001][s[3]], 
+							2021: eng.data[s[0]][s[1]][2011][s[3]],
+						},
+						{
+							label: rgn.name, 
+							2011: rgn.data[s[0]][s[1]][2001][s[3]], 
+							2021: rgn.data[s[0]][s[1]][2011][s[3]]
+						},
+						{
+							label: place.name, 
+							2011: place.data[s[0]][s[1]][2001][s[3]], 
+							2021: place.data[s[0]][s[1]][2011][s[3]]
+						},
+					],
+				}	
+			}
+		}
+		else {
+			// ScatterChart
+
+			var chartdata
+			if (s[0]=="population") {
+				chartdata = ladData.filter(d => (d['parent']==place.parents[0].name)&(d.topic == "density_all"))
+			} else {
+				chartdata = ladData.filter(d => (d['parent']==place.parents[0].name)&(d.topic == s[0]+"_"+s[3]))
+			}
+
+			
+			// let chartd = []
+			// chartdata.forEach(d => {
+			// 	chartd.push({ year: 2011, value: d['2001'], group: d.topic })
+			// 	chartd.push({ year: 2021, value: d['2011'], group: d.topic })
+			// });
+			chartdata = chartdata.map(d => ({ 'change': d['change'], 'value': parseFloat(d[2011]), 'unique': d['lad'], 'id': d['parent']}))
+			chartdata.forEach((item, i) => {
+				if (item.unique==place.name) {
+					item.id = place.name
+				} else if (item.id == place.parents[0].name) {
+					item.id = "The rest of "+uncap1(regionThe(place.parents[0].name))
+					// item.id = "Rest of England"
+				} else {
+					item.id = "Rest of England"
+				}
+			})
+
+			return props = {
+				mode: "stacked",
+				line: false,
+				legend: true,
+				data: chartdata,
+				xKey: "value",
+				yKey: null,
+				rKey: "change",
+				r: [3, 9],
+				zKey: "id"
+				// title: "Multi-line chart"
+			}
+		}
+	}
+	function chartType(i) {
+		let s = place.stories[i].label.split("_")
+		if (s.length>4) {
+			s[3] = s[3]+"_"+s[4]
+			s.pop()
+		}		
+		if (place.stories[i].type.includes('size')) {
+			return DotPlotChart
+		} else {
+			// LINECHART
+			return ScatterChart
+		}
+	}
+	
+	// var chartdata = ladData.filter(d => (d.lad==place.name)&(d.topic == s[0]+"_"+s[3]))
+	// 		chartdata = chartdata.map(d => ({ 'id': d['parent'], 'unique': d['lad'], 'value': parseFloat(d[2011]) }))
+	// 		chartdata.forEach((item, i) => {
+	// 			if (item.unique==place.name) {
+	// 				item.id = place.name
+	// 			} else if (item.id == place.parents[0].name) {
+	// 				item.id = place.parents[0].name
+	// 				// item.id = "Rest of England"
+	// 			} else {
+	// 				item.id = "Rest of England"
+	// 			}
+	// 		})
+	// 		chartdata = chartdata.sort(function(a, b){return b['value'] - a['value']})
+
+	// 		console.log("CHARTDATAS", chartdata)
+
+	// 		return props = {
+	// 			legend: true,
+	// 			data: chartdata,
+	// 			xKey: "unique",
+	// 			yKey: "value",
+	// 			zKey: "id"
+
 </script>
 
 <svelte:head>
@@ -281,8 +436,15 @@
 						</div>
 					</div>
 					<main>
-						{@html results(place, topics)}
-
+						{#each results(place, topics) as res, i (i)}
+							{#if i<10}
+								{@html res}
+								<div style="width: 100%">
+									<svelte:component this="{chartType(i)}" {...makeProps(i)}/>
+								</div>
+							{/if}
+						{/each}
+		
 						<hr style="width: 40%; margin: 60px auto 30px auto;"/>
 						<h2 id="create">Creating this article</h2>
 						<p>This article was generated using some automation. Topics are automatically chosen based on how relevant they are for each area.</p>
@@ -301,6 +463,19 @@
 		padding: 0px;
 		line-height: 2;
 		color: #323132;
+	}
+	:global(h5) {
+		font-size: 18px;
+		font-weight: 400;
+		color: #707071;
+		margin-top: 10px;
+	}
+	:global(h4) {
+		margin-top: 50px;
+		margin-bottom: 10px;
+	}
+	:global(h2) {
+		margin-top: 60px;
 	}
 
 	main {
