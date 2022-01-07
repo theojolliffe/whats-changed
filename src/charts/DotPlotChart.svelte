@@ -13,7 +13,7 @@
 	export let labels = false;
 	const yKey = 'label';
 	const xKey = Object.keys(data[0]).filter(d => d !== yKey);
-	const seriesColors = ['#3C388E', '#DF0667', '#2166ac','#b2182b','grey'];
+	const seriesColors = ['#DF0667', '#3C388E', '#2166ac','#b2182b','grey'];
 
 	data.forEach(d => {
 		xKey.forEach(name => {

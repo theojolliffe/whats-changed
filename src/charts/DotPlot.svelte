@@ -16,14 +16,14 @@
 		<g class="dot-row">
 			<defs>
 				<linearGradient id="myGradient" gradientTransform="rotate(0)">
-				<stop offset="5%"  stop-color="#3C388E80" />
-				<stop offset="95%" stop-color="#3C388E10" />
+				<stop offset="5%"  stop-color="#3C388E10" />
+				<stop offset="95%" stop-color="#3C388E80" />
 				</linearGradient>
 			</defs>
 			<defs>
 				<linearGradient id="myGradientRev" gradientTransform="rotate(0)">
-				<stop offset="5%"  stop-color="#3C388E10" />
-				<stop offset="95%" stop-color="#3C388E80" />
+				<stop offset="5%"  stop-color="#3C388E80" />
+				<stop offset="95%" stop-color="#3C388E10" />
 				</linearGradient>
 			</defs>
 
