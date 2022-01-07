@@ -11,16 +11,30 @@
 
 <g class="dot-plot">
 	{#each $data as row}
+		{console.log("row", (row[2021])-(row[2011])>0)}
+		{console.log("row data", row[2021])}
 		<g class="dot-row">
-			<line
-				x1="{Math.min(...$xGet(row))}"
-				y1="{$yGet(row) + midHeight}"
-				x2="{Math.max(...$xGet(row))}"
-				y2="{$yGet(row) + midHeight}"
-				stroke="{$zScale($config.x[2])}"
-				stroke-width="{2 * r}"
-				opacity="0.15"
-			></line>
+			<defs>
+				<linearGradient id="myGradient" gradientTransform="rotate(0)">
+				<stop offset="5%"  stop-color="#3C388E80" />
+				<stop offset="95%" stop-color="#3C388E10" />
+				</linearGradient>
+			</defs>
+			<defs>
+				<linearGradient id="myGradientRev" gradientTransform="rotate(0)">
+				<stop offset="5%"  stop-color="#3C388E10" />
+				<stop offset="95%" stop-color="#3C388E80" />
+				</linearGradient>
+			</defs>
+
+			<rect
+				x="{Math.min(...$xGet(row))}"
+				y="{$yGet(row) + midHeight-7}"
+				width="{Math.max(...$xGet(row))-Math.min(...$xGet(row))}"
+				height="14"
+				fill="{(((row[2021])-(row[2011]))>0)?"url('#myGradient')":"url('#myGradientRev')"}"
+				opacity="0.85"
+			></rect>
 
 			{#each $xGet(row) as circleX, i}
 				<circle

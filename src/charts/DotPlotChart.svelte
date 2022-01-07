@@ -29,6 +29,7 @@
 	}
 </style>
 
+
 <div class="chart-container" style="height: {height}px">
 	<LayerCake
 		padding={{ right: 0, bottom: 20, left: 0 }}

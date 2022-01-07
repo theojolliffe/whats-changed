@@ -425,9 +425,9 @@
 							<p>This article was generated using some automation. Topics are automatically chosen based on how relevant they are for each area.</p>
 							<div style="height:200px"></div>
 						</main>
-						{/if}
 					{/if}
 				{/if}
+			{/if}
 		{/if}
 	{/if}
 </div>
