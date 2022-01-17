@@ -798,7 +798,7 @@ var app = (function () {
     			div = element("div");
     			strong = element("strong");
     			strong.textContent = "Warning!";
-    			t1 = text(" This prototype uses 2011 data in lieu of the latest Census 2021. Data are likely to contain inaccuracies.");
+    			t1 = text(" This prototype uses 2011 data in lieu of the latest Census 2021 data. Data are likely to contain inaccuracies.");
     			add_location(strong, file$v, 1, 2, 24);
     			attr_dev(div, "class", "warning svelte-srzfvi");
     			add_location(div, file$v, 0, 0, 0);

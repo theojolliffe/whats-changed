@@ -1,5 +1,5 @@
 <div class="warning">
-  <strong>Warning!</strong> This prototype uses 2011 data in lieu of the latest Census 2021. Data are likely to contain inaccuracies.
+  <strong>Warning!</strong> This prototype uses 2011 data in lieu of the latest Census 2021 data. Data are likely to contain inaccuracies.
 </div>
 
 <style>
