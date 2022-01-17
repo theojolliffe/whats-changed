@@ -798,7 +798,7 @@ var app = (function () {
     			div = element("div");
     			strong = element("strong");
     			strong.textContent = "Warning!";
-    			t1 = text(" This prototype uses 2011 data in lieu of the latest Census 2021 data being released. Data are likely to contain inaccuracies.");
+    			t1 = text(" This prototype uses 2011 data in lieu of the latest Census 2021. Data are likely to contain inaccuracies.");
     			add_location(strong, file$v, 1, 2, 24);
     			attr_dev(div, "class", "warning svelte-srzfvi");
     			add_location(div, file$v, 0, 0, 0);
@@ -24323,39 +24323,39 @@ var app = (function () {
     			t20 = space();
     			div5 = element("div");
     			set_style(span0, "font-weight", "400");
-    			add_location(span0, file$6, 435, 25, 11848);
+    			add_location(span0, file$6, 435, 25, 11845);
     			attr_dev(h1, "class", "svelte-1eybmbe");
-    			add_location(h1, file$6, 435, 7, 11830);
+    			add_location(h1, file$6, 435, 7, 11827);
     			set_style(div0, "width", "640px");
     			set_style(div0, "margin", "50px auto");
-    			add_location(div0, file$6, 437, 8, 11928);
-    			add_location(div1, file$6, 436, 7, 11914);
+    			add_location(div0, file$6, 437, 8, 11925);
+    			add_location(div1, file$6, 436, 7, 11911);
     			html_tag.a = t5;
     			attr_dev(span1, "class", "back-to-top svelte-1eybmbe");
-    			add_location(span1, file$6, 442, 31, 12213);
-    			add_location(p0, file$6, 442, 7, 12189);
+    			add_location(span1, file$6, 442, 31, 12210);
+    			add_location(p0, file$6, 442, 7, 12186);
     			set_style(div2, "width", "640px");
     			set_style(div2, "margin", "0 auto");
-    			add_location(div2, file$6, 434, 6, 11780);
+    			add_location(div2, file$6, 434, 6, 11777);
     			attr_dev(div3, "id", "sf");
     			attr_dev(div3, "class", "svelte-1eybmbe");
-    			add_location(div3, file$6, 433, 5, 11760);
+    			add_location(div3, file$6, 433, 5, 11757);
     			attr_dev(svg, "height", "25");
     			attr_dev(svg, "width", "50");
-    			add_location(svg, file$6, 457, 8, 12716);
+    			add_location(svg, file$6, 457, 8, 12713);
     			attr_dev(div4, "class", "triangle-container svelte-1eybmbe");
-    			add_location(div4, file$6, 456, 7, 12675);
+    			add_location(div4, file$6, 456, 7, 12672);
     			attr_dev(button, "class", "svelte-1eybmbe");
-    			add_location(button, file$6, 455, 6, 12639);
+    			add_location(button, file$6, 455, 6, 12636);
     			attr_dev(hr, "class", "svelte-1eybmbe");
-    			add_location(hr, file$6, 468, 6, 13038);
+    			add_location(hr, file$6, 468, 6, 13035);
     			attr_dev(h2, "id", "create");
-    			add_location(h2, file$6, 469, 6, 13050);
-    			add_location(p1, file$6, 470, 6, 13099);
+    			add_location(h2, file$6, 469, 6, 13047);
+    			add_location(p1, file$6, 470, 6, 13096);
     			set_style(div5, "height", "200px");
-    			add_location(div5, file$6, 471, 6, 13240);
+    			add_location(div5, file$6, 471, 6, 13237);
     			attr_dev(main, "class", "svelte-1eybmbe");
-    			add_location(main, file$6, 445, 5, 12391);
+    			add_location(main, file$6, 445, 5, 12388);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div3, anchor);
@@ -24531,7 +24531,7 @@ var app = (function () {
     			if (switch_instance) create_component(switch_instance.$$.fragment);
     			html_tag.a = t;
     			set_style(div, "width", "100%");
-    			add_location(div, file$6, 449, 8, 12495);
+    			add_location(div, file$6, 449, 8, 12492);
     		},
     		m: function mount(target, anchor) {
     			html_tag.m(raw_value, target, anchor);
@@ -24687,7 +24687,7 @@ var app = (function () {
     			polygon = svg_element("polygon");
     			attr_dev(polygon, "points", "25,20 15,10 25,20 35,10");
     			attr_dev(polygon, "class", "triangle svelte-1eybmbe");
-    			add_location(polygon, file$6, 461, 11, 12868);
+    			add_location(polygon, file$6, 461, 11, 12865);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, polygon, anchor);
@@ -24717,7 +24717,7 @@ var app = (function () {
     			polygon = svg_element("polygon");
     			attr_dev(polygon, "points", "25,10 15,20 25,10 35,20");
     			attr_dev(polygon, "class", "triangle svelte-1eybmbe");
-    			add_location(polygon, file$6, 459, 11, 12777);
+    			add_location(polygon, file$6, 459, 11, 12774);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, polygon, anchor);
@@ -24759,10 +24759,10 @@ var app = (function () {
     			if (if_block) if_block.c();
     			if (!src_url_equal(script0.src, script0_src_value = "https://d3js.org/d3.v3.min.js")) attr_dev(script0, "src", script0_src_value);
     			attr_dev(script0, "charset", "utf-8");
-    			add_location(script0, file$6, 424, 1, 11476);
+    			add_location(script0, file$6, 424, 1, 11473);
     			if (!src_url_equal(script1.src, script1_src_value = "https://unpkg.com/rosaenlg@3.0.1/dist/rollup/rosaenlg_tiny_en_US_3.0.1_comp.js")) attr_dev(script1, "src", script1_src_value);
-    			add_location(script1, file$6, 425, 1, 11547);
-    			add_location(div, file$6, 428, 0, 11693);
+    			add_location(script1, file$6, 425, 1, 11544);
+    			add_location(div, file$6, 428, 0, 11690);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -24930,8 +24930,8 @@ var app = (function () {
     		res = res.filter(d => d['type'] == 'lad');
     		$$invalidate(0, options = res.sort((a, b) => a.name.localeCompare(b.name)));
     		let defaultLoc = options[Math.round(336 * Math.random())]['name'];
+    		defaultLoc = 'Monmouthshire';
 
-    		// defaultLoc = 'Monmouthshire';
     		if ([
     			'Daventry',
     			'East Northamptonshire',
