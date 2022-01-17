@@ -11,8 +11,6 @@
 
 <g class="dot-plot">
 	{#each $data as row}
-		{console.log("row", (row[2021])-(row[2011])>0)}
-		{console.log("row data", row[2021])}
 		<g class="dot-row">
 			<defs>
 				<linearGradient id="myGradient" gradientTransform="rotate(0)">

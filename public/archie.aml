@@ -1,5 +1,6 @@
 // This coincided with a remarkable transformation of the city’s health, housing and ethnic makeup.
 tenure.general: housing
+welsh.general: knowledge of the Welsh language
 health.general: health
 ethnicity.general: ethnic makeup
 economic.general: jobs
@@ -47,6 +48,7 @@ hoursworked.profile: work life changed for many in {plcname}
 marital.profile: family life changed for many in {plcname}
 population.profile: {plcname}'s population {expanded}
 agemed.profile: {plcname}'s population grew older
+welsh.profile: the use of welsh changed considerably in {plcname}
 
 // In the 10 years leading up to the last census, the percentage of ***Manchester residents that rent privately*** increased from about 16% to over 28%.
 // The proportion of employed people in Manchester working long hours increased from from about 16% to over 28%.
@@ -61,7 +63,7 @@ care.40PlushoursWeek.clausal_modifier: {plcname} residents that provide at least
 
 marital.Single.clausal_modifier: single people in {plcname}
 marital.Married.clausal_modifier: people in {plcname} that are married
-marital.Seperated.clausal_modifier: people in {plcname} that have seperated from a married partner
+marital.Seperated.clausal_modifier: people in {plcname} that have separated from a married partner
 
 tenure.rented_private.clausal_modifier: people living in {plcname} that rent privately
 tenure.rented_social.clausal_modifier: {plcname} residents that live in social housing
@@ -104,6 +106,8 @@ hoursworked.Male49plus.clausal_modifier: employed people in {plcname} working  o
 children.Kids.verb_past: households had at least one dependent child
 children.NoKids.verb_past: households had no children
 children.NonDepKids.verb_past: households had only non-dependent children
+
+welsh.SpeaksWelsh.verb_past: said they can speak Welsh
 
 care.1to19hoursWeek.verb_past: reported providing up to 19 hours of unpaid care each week
 care.20to49hoursWeek.verb_past: reported providing between 20 and 49 hours of unpaid care each week
@@ -161,7 +165,7 @@ care.40PlushoursWeek.adj_noun: people providing 50 hours, or more, of weekly car
 
 marital.Single.adj_noun: single people
 marital.Married.adj_noun: married people
-marital.Seperated.adj_noun: people who have seperated
+marital.Seperated.adj_noun: people who have separated
 
 tenure.rented_private.adj_noun: private renters
 tenure.rented_social.adj_noun: people living in social housing
@@ -201,102 +205,106 @@ hoursworked.Male49plus.adj_noun: people working long hours
 
 // The percentage of ***healthy residents*** is increasing faster here than in any other local authority district across England.
 
+welsh.SpeaksWelsh.subhead.pos: Lower proportion of Welsh speakers
+welsh.SpeaksWelsh.subhead.neg: Higher proportion of Welsh speakers
+welsh.SpeaksWelsh.subhead.neu: Shift in Welsh language skills
+welsh.SpeaksWelsh.subhead.buc: {plcname} reverses trend for Welsh language
 children.Kids.subhead.pos: More homes with children
 children.Kids.subhead.neg: Fewer homes with children
 children.Kids.subhead.neu: Change in family dynamics
-children.Kids.subhead.buc: {plcname} bucks trend for children
+children.Kids.subhead.buc: {plcname} reverses trend for children
 children.NoKids.subhead.pos: More homes with children
 children.NoKids.subhead.neg: Fewer homes with children
 children.NoKids.subhead.neu: Change in family dynamics
-children.NoKids.subhead.buc: {plcname} bucks trend for children
+children.NoKids.subhead.buc: {plcname} reverses trend for children
 children.NonDepKids.subhead.pos: More homes with non-dependent children
 children.NonDepKids.subhead.neg: Fewer homes with non-dependent children
 children.NonDepKids.subhead.neu: Change in family dynamics
-children.NonDepKids.subhead.buc: {plcname} bucks trend for children
+children.NonDepKids.subhead.buc: {plcname} reverses trend for children
 care.noCare.subhead.pos: Drop in unpaid care provision
 care.noCare.subhead.neg: Rise in unpaid care provision
 care.noCare.subhead.neu: Change in care provision
-care.noCare.subhead.buc: {plcname} bucks trend for care provision
+care.noCare.subhead.buc: {plcname} reverses trend for care provision
 care.1to19hoursWeek.subhead.pos: Rise in moderate hours care provision
 care.1to19hoursWeek.subhead.neg: Fall in moderate hours care provision
 care.1to19hoursWeek.subhead.neu: Change in care provision
-care.1to19hoursWeek.subhead.buc: {plcname} bucks trend for care provision
+care.1to19hoursWeek.subhead.buc: {plcname} reverses trend for care provision
 care.20to49hoursWeek.subhead.pos: Rise in long hours care provision
 care.20to49hoursWeek.subhead.neg: Fall in long hours care provision
 care.20to49hoursWeek.subhead.neu: Change in care provision
-care.20to49hoursWeek.subhead.buc: {plcname} bucks trend for care provision
+care.20to49hoursWeek.subhead.buc: {plcname} reverses trend for care provision
 care.40PlushoursWeek.subhead.pos: Rise in extremely long hours care provision
 care.40PlushoursWeek.subhead.neg: Fall in extremely long hours care provision
 care.40PlushoursWeek.subhead.neu: Change in care provision
-care.40PlushoursWeek.subhead.buc: {plcname} bucks trend for care provision
+care.40PlushoursWeek.subhead.buc: {plcname} reverses trend for care provision
 marital.Single.subhead.pos: More single people in {plcname}
 marital.Single.subhead.neg: Less single people in {plcname}
 marital.Single.subhead.neu: Changing relationships in {plcname}
-marital.Single.subhead.buc: {plcname} bucks trend for relationships
+marital.Single.subhead.buc: {plcname} reverses trend for relationships
 marital.Married.subhead.pos: Marriage on the up
 marital.Married.subhead.neg: Marriage declining
 marital.Married.subhead.neu: Changing relationships in {plcname}
-marital.Married.subhead.buc: {plcname} bucks trend for relationships
+marital.Married.subhead.buc: {plcname} reverses trend for relationships
 marital.Seperated.subhead.pos: A decade of breakups
 marital.Seperated.subhead.neg: Relationships remain strong
 marital.Seperated.subhead.neu: Changing relationships in {plcname}
-marital.Seperated.subhead.buc: {plcname} bucks trend for relationships
+marital.Seperated.subhead.buc: {plcname} reverses trend for relationships
 tenure.rented_private.subhead.pos: Rise in private renting
 tenure.rented_private.subhead.neg: Fall in private renting
 tenure.rented_private.subhead.neu: Change in {plcname} housing
-tenure.rented_private.subhead.buc: {plcname} bucks trend for housing
+tenure.rented_private.subhead.buc: {plcname} reverses trend for housing
 tenure.rented_social.subhead.pos: Rise in social renting
 tenure.rented_social.subhead.neg: Fall in social renting
 tenure.rented_social.subhead.neu: Change in {plcname} housing
-tenure.rented_social.subhead.buc: {plcname} bucks trend for housing
+tenure.rented_social.subhead.buc: {plcname} reverses trend for housing
 tenure.owned.subhead.pos: Rise in homeownership
 tenure.owned.subhead.neg: Fall in homeownership
 tenure.owned.subhead.neu: Change in {plcname} housing
-tenure.owned.subhead.buc: {plcname} bucks trend for housing
+tenure.owned.subhead.buc: {plcname} reverses trend for housing
 health.good.subhead.pos: Health improves
 health.good.subhead.neg: Health deteriorates
 health.good.subhead.neu: Change in health
-health.good.subhead.buc: {plcname} bucks trend for health
+health.good.subhead.buc: {plcname} reverses trend for health
 health.fair.subhead.pos: More people in fair health
 health.fair.subhead.neg: Fewer people in fair health
 health.fair.subhead.neu: Change in health
-health.fair.subhead.buc: {plcname} bucks trend for health
+health.fair.subhead.buc: {plcname} reverses trend for health
 health.bad.subhead.pos: Health deteriorates
 health.bad.subhead.neg: Health improves
 health.bad.subhead.neu: Change in health
-health.bad.subhead.buc: {plcname} bucks trend for health
+health.bad.subhead.buc: {plcname} reverses trend for health
 ethnicity.white.subhead.pos: More residents from the White ethnic group
 ethnicity.white.subhead.neg: Fewer residents from the White ethnic group
 ethnicity.white.subhead.neu: Change in ethnic makeup
-ethnicity.white.subhead.buc: {plcname} bucks trend for ethnicity
+ethnicity.white.subhead.buc: {plcname} reverses trend for ethnicity
 ethnicity.black.subhead.pos: More residents from a Black ethnic group
 ethnicity.black.subhead.neg: More residents from a Black ethnic group
 ethnicity.black.subhead.neu: Change in ethnic makeup
-ethnicity.black.subhead.buc: {plcname} bucks trend for ethnicity
+ethnicity.black.subhead.buc: {plcname} reverses trend for ethnicity
 ethnicity.asian.subhead.pos: More residents from an Asian ethnic group
 ethnicity.asian.subhead.neg: Fewer residents from an Asian ethnic group
 ethnicity.asian.subhead.neu: Change in ethnic makeup
-ethnicity.asian.subhead.buc: {plcname} bucks trend for ethnicity
+ethnicity.asian.subhead.buc: {plcname} reverses trend for ethnicity
 economic.employee.subhead.pos: Rise in rate of employment
 economic.employee.subhead.neg: Fall in rate of employment
 economic.employee.subhead.neu: Change in work life
-economic.employee.subhead.buc: {plcname} bucks trend for work life
+economic.employee.subhead.buc: {plcname} reverses trend for work life
 economic.inactive.subhead.pos: Rise in rate of economic activity
 economic.inactive.subhead.neg: Fall in rate of economic activity
 economic.inactive.subhead.neu: Changing work life
-economic.inactive.subhead.buc: {plcname} bucks trend for jobs
+economic.inactive.subhead.buc: {plcname} reverses trend for jobs
 economic.self-employed.subhead.pos: Rise in rate of self-employment
 economic.self-employed.subhead.neg: Fall in rate of self-employment
 economic.self-employed.subhead.neu: Changing work life
-economic.self-employed.subhead.buc: {plcname} bucks trend for jobs
+economic.self-employed.subhead.buc: {plcname} reverses trend for jobs
 economic.unemployed.subhead.pos: Rise in rate of unemployment
 economic.unemployed.subhead.neg: Fall in rate of unemployment
 economic.unemployed.subhead.neu: Changing work life
-economic.unemployed.subhead.buc: {plcname} bucks trend for jobs
+economic.unemployed.subhead.buc: {plcname} reverses trend for jobs
 economic.student.subhead.pos: More students
 economic.student.subhead.neg: Fewer students
 economic.student.subhead.neu: Changing work life
-economic.student.subhead.buc: {plcname} bucks student trend
+economic.student.subhead.buc: {plcname} reverses student trend
 household.Cohabiting.subhead.pos: More people cohabiting
 household.Cohabiting.subhead.neg: Fewer people cohabiting
 household.Cohabiting.subhead.neu: New household dynamics
@@ -362,9 +370,11 @@ hoursworked.Male49plus.subhead.buc: {plcname} reverses job trend
 // ***The proportion of people from a Black ethnic group*** in Three Rivers rose from 1.0% to 1.8%
 population.all.topic: the population
 
+welsh.SpeaksWelsh.topic: The proportion of people who can speak Welsh
+
 marital.Single.topic: the proportion of single people
 marital.Married.topic: the proportion of married people
-marital.Seperated.topic: the proportion of seperated people
+marital.Seperated.topic: the proportion of separated people
 
 children.Kids.topic: the proportion of homes with children
 children.NoKids.topic: the proportion of childless homes
@@ -410,7 +420,7 @@ hoursworked.Male49plus.topic: long hour working
 
 marital.Single.adj_noun_s: single people
 marital.Married.adj_noun_s: married people
-marital.Seperated.adj_noun_s: seperated people
+marital.Seperated.adj_noun_s: separated people
 
 children.Kids.adj_noun_s: homes with children
 children.NoKids.adj_noun_s: childless homes

@@ -11,6 +11,8 @@
 	var options, selected, place, quartiles, locRankCha, locRankCur, eng, rgncode, rgn, s, natRankCha, natRankCur, topics, wal, found, ladData, props;
 	var health, expand;
 
+	var more = false;
+
     var topics;
     fetch("./archie.aml")
         .then((res) => res.text())
@@ -56,7 +58,7 @@
 		res = res.filter(d => d['type']=='lad')
 		options = res.sort((a, b) => a.name.localeCompare(b.name));
 		let  defaultLoc = options[Math.round(336*Math.random())]['name']
-		// defaultLoc = 'Amber Valley';
+		defaultLoc = 'Monmouthshire';
 		if (['Daventry', 'East Northamptonshire', 'South Northamptonshire', 'Kettering', 'Corby', 'Wellingborough', 'Northampton'].includes.deaultLoc) {
 			let  defaultLoc = options[Math.round(336*Math.random())]['name']
 		}
@@ -246,6 +248,7 @@
 			simi: place.similar,
 			adv: adv,
 			uds: uds,
+			more: more,
 		})
 		return res.split(`<div id="esc123"></div>`)
 
@@ -411,6 +414,11 @@
 	// 			yKey: "value",
 	// 			zKey: "id"
 
+	function readMore() {
+		more = !more
+		results = results
+	}
+
 </script>
 
 <svelte:head>
@@ -444,8 +452,21 @@
 								</div>
 							{/if}
 						{/each}
+
+						<button on:click={readMore}>
+							<div class="triangle-container">
+								<svg height="25" width="50">
+										{#if more}
+											<polygon points="25,10 15,20 25,10 35,20" class="triangle" />
+										{:else}
+											<polygon points="25,20 15,10 25,20 35,10" class="triangle" />
+										{/if}
+								</svg>
+							</div>
+							{more?'Read less':'Read more'}
+						</button>
 		
-						<hr style="width: 40%; margin: 60px auto 30px auto;"/>
+						<hr/>
 						<h2 id="create">Creating this article</h2>
 						<p>This article was generated using some automation. Topics are automatically chosen based on how relevant they are for each area.</p>
 						<div style="height:200px"></div>
@@ -457,13 +478,45 @@
 </div>
 
 <style>
+	
+	hr {
+		margin: 60px auto 30px;
+		background-color: #eee;
+	}
 	@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
 	:global(body) {
 		font-family: 'Open Sans', sans-serif;
 		padding: 0px;
 		line-height: 2;
 		color: #323132;
+
 	}
+	.triangle{
+  fill: transparent;
+  stroke: #206095;
+    stroke-width: 3;
+  transition: all 0.8s ease-in-out;
+  /* transform: rotate(-180deg);  */
+}
+.triangle-container {
+    float: left;
+}
+
+button {
+	color: #206095;
+    background-color: transparent;
+    outline: transparent;
+    border: none;
+    text-decoration: underline;
+    font-weight: 700;
+    font-size: 18px;
+	margin-top: 60px;
+	cursor: pointer;
+}
+button:active{
+    background-color: transparent;
+}
+
 	:global(h5) {
 		font-size: 18px;
 		font-weight: 400;

@@ -841,6 +841,71 @@ mixin allOthers(i, r, updo)
     | #[+value((updo=="d")?"dropped":"grew")] from #[+value((rgn.data[s[i][0]][s[i][1]][2001][s[i][3]])/100, {'FORMAT': '0.0%'})]
     | to #[+value((rgn.data[s[i][0]][s[i][1]][2011][s[i][3]])/100, {'FORMAT': '0.0%'})]
 
+mixin welsh(i)
+    h2 #[+value(topic(i).subhead.buc)]
+    p
+        | The proportion of people over the age of three that speak Welsh in !{place.name} 
+        | #[+value(ud(cha(s, place, i), 'rose', 'fell'))] 
+        | from about #[+value((place.data[s[i][0]][s[i][1]][2001][s[i][3]])/100, {'FORMAT': '0.0%'})]
+        | to #[+value((place.data[s[i][0]][s[i][1]][2011][s[i][3]])/100, {'FORMAT': '0.0%'})]
+        | in the 10 years leading up to the last census. 
+    if (Math.abs(place.data[s[i][0]][s[i][1]+'_rank_local']['change'][s[i][3]])<4)
+        p 
+            | This !{place.classification} saw the largest decline in the porportion of Welsh speakers of any local authority in the country. 
+            | Of the few areas where knowledge of the Welsh language increased, !{data.welsh.perc_rank_local.top_bottom.SpeaksWelsh[1].name} saw the greatest change,
+            | from 
+            | #[+value((data.welsh.perc_rank_local.top_bottom.SpeaksWelsh[1][2001])/100, {'FORMAT': '0.0%'})]
+            | in 2011 to 
+            | #[+value((data.welsh.perc_rank_local.top_bottom.SpeaksWelsh[1][2011])/100, {'FORMAT': '0.0%'})]
+            | in 2021 .
+    p
+    - let v11speak = place.data[s[i][0]]['value'][2011][s[i][3]]
+    - let v01speak = place.data[s[i][0]]['value'][2001][s[i][3]]
+    - let v11nosp = place.data[s[i][0]]['value'][2011]['NoWelsh']
+    - let v01nosp = place.data[s[i][0]]['value'][2001]['NoWelsh']
+    - let difnosp = v11nosp - v01nosp
+    - let difspeak = v11speak - v01speak
+        if (Math.abs(place.data[s[i][0]][s[i][1]+'_rank_local'][2011][s[i][3]])>3) & (Math.abs(place.data[s[i][0]][s[i][1]+'_rank_local']['change'][s[i][3]])>3)
+            | This shift 
+        else
+            | The shift in !{place.name}
+        | was driven by 
+        | #[+value((difspeak)<0?'the loss':'an increase')]
+        | of about 
+        | #[+value(Math.abs(difspeak))] 
+        | Welsh speakers 
+        | and
+        if (Math.sign(difspeak))!=(Math.sign(difnosp))
+            | #[+value((difnosp)>0?'an increase':'the loss')] of 
+        | #[+value(Math.abs(difnosp))]
+        | people who do not speak Welsh.  
+    p
+        | The proportion in nearby 
+        | !{place.nearSimilar.nearTops.name}
+        | #[+value(ud(cha(s, place.nearSimilar.nearTops, i), 'rose', 'fell'))]  from 
+        | #[+value((place.nearSimilar.nearTops.data[s[i][0]][s[i][1]][2001][s[i][3]])/100, {'FORMAT': '0.0%'})]
+        | to
+        | #[+value((place.nearSimilar.nearTops.data[s[i][0]][s[i][1]][2011][s[i][3]])/100, {'FORMAT': '0.0%'})].
+        | Across Wales, approximately 
+        | #[+value((rgn.data[s[i][0]][s[i][1]][2011][s[i][3]])/100, {'FORMAT': '0.0%'})] 
+        | of people said they could speak Welsh, 
+        | #[+value(ud(cha(s, rgn, i), 'up', 'down'))] from 
+        | #[+value((rgn.data[s[i][0]][s[i][1]][2001][s[i][3]])/100, {'FORMAT': '0.0%'})] 
+        | at the 2011 census.
+    if (Math.abs(place.data[s[i][0]][s[i][1]+'_rank_local'][2011][s[i][3]])>3) & (Math.abs(place.data[s[i][0]][s[i][1]+'_rank_local']['change'][s[i][3]])>3)
+        p
+            | !{data.welsh.perc_rank_local.top_bottom.SpeaksWelsh[1].name} 
+            | was one of the few areas that saw an increase in the proportion of Welsh speakers (from 
+            | #[+value((data.welsh.perc_rank_local.top_bottom.SpeaksWelsh[1][2001])/100, {'FORMAT': '0.0%'})] 
+            | in 2011 to 
+            | #[+value((data.welsh.perc_rank_local.top_bottom.SpeaksWelsh[1][2011])/100, {'FORMAT': '0.0%'})] 
+            | in 2021)
+            | , while !{data.welsh.perc_rank_local.top_bottom.SpeaksWelsh["-1"].name} saw the greatest fall (from 
+            | #[+value((data.welsh.perc_rank_local.top_bottom.SpeaksWelsh["-1"][2001])/100, {'FORMAT': '0.0%'})] 
+            | to 
+            | #[+value((data.welsh.perc_rank_local.top_bottom.SpeaksWelsh["-1"][2011])/100, {'FORMAT': '0.0%'})]
+            | ). 
+
 //- Deals with all percentage based variables
 mixin percPara(i, chain0_01, chain0_11, chain1_01, chain1_11)
     - var chain0_11 = data[s[i][0]][s[i][1]][2011][chains[s[i][3]][0]]
@@ -930,7 +995,10 @@ mixin para(i)
             //- if ((data['density'][s[i][1]+'_rank'].overtake[s[i][3]].length>0)&(Math.abs(cur(s, place, i, "r"))<30))
             //-     p #[+sent4Pop(i)]
     if (s[i][1] == 'perc')
-        | #[+percPara(i)]
+        if (s[i][0] == 'welsh')
+            | #[+welsh(i)]
+        else
+            | #[+percPara(i)]
 
 mixin chartTitleSize(i)
     if (s[i][0]=="population")
@@ -1018,34 +1086,37 @@ if (s.length>4)
     | #[+para(4)]
     | #[+chartTitle(4)]
     div#esc123
+
 if (s.length>5)
     | #[+para(5)]
     | #[+chartTitle(5)]
-//-     div#esc123
-//- if (s.length>6)
-//-     | #[+para(6)]
-//-     | #[+chartTitle(5)]
-//-     div#esc123
-//- if (s.length>7)
-//-     | #[+para(7)]
-//-     | #[+chartTitle(5)]
-//-     div#esc123
-//- if (s.length>8)
-//-     | #[+para(8)]
-//-     | #[+chartTitle(5)]
-//-     div#esc123
-//- if (s.length>9)
-//-     | #[+para(9)]
-//-     | #[+chartTitle(5)]
-//-     div#esc123
-//- if (s.length>10)
-//-     | #[+para(10)]
-//-     | #[+chartTitle(5)]
-//-     div#esc123
-//- if (s.length>11)
-//-     | #[+para(11)]
-//-     | #[+chartTitle(5)]
-//-     div#esc123
-//- if (s.length>12)
-//-     | #[+para(12)]
-//-     | #[+chartTitle(5)]
+
+if (more==true)
+    div#esc123
+    if (s.length>6)
+        | #[+para(6)]
+        | #[+chartTitle(5)]
+        div#esc123
+    if (s.length>7)
+        | #[+para(7)]
+        | #[+chartTitle(5)]
+        div#esc123
+    if (s.length>8)
+        | #[+para(8)]
+        | #[+chartTitle(5)]
+        div#esc123
+    if (s.length>9)
+        | #[+para(9)]
+        | #[+chartTitle(5)]
+        div#esc123
+    if (s.length>10)
+        | #[+para(10)]
+        | #[+chartTitle(5)]
+        div#esc123
+    if (s.length>11)
+        | #[+para(11)]
+        | #[+chartTitle(5)]
+        div#esc123
+    if (s.length>12)
+        | #[+para(12)]
+        | #[+chartTitle(5)]
