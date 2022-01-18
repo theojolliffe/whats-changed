@@ -171,9 +171,9 @@ tenure.rented_private.adj_noun: private renters
 tenure.rented_social.adj_noun: people living in social housing
 tenure.owned.adj_noun: homeowners
 
-health.good.adj_noun: healthy residents
+health.good.adj_noun: residents who percieve their health as good
 health.fair.adj_noun: people that described their health as fair
-health.bad.adj_noun: unhealthy residents
+health.bad.adj_noun: residents who percieve their health as poor
 
 ethnicity.white.adj_noun: residents from the White ethnic group
 ethnicity.black.adj_noun: residents from a Black ethnic group
@@ -205,21 +205,21 @@ hoursworked.Male49plus.adj_noun: people working long hours
 
 // The percentage of ***healthy residents*** is increasing faster here than in any other local authority district across England.
 
-welsh.SpeaksWelsh.subhead.pos: Lower proportion of Welsh speakers
-welsh.SpeaksWelsh.subhead.neg: Higher proportion of Welsh speakers
-welsh.SpeaksWelsh.subhead.neu: Shift in Welsh language skills
+welsh.SpeaksWelsh.subhead.pos: Higher proportion of Welsh speakers
+welsh.SpeaksWelsh.subhead.neg: Lower proportion of Welsh speakers
+welsh.SpeaksWelsh.subhead.neu: Local shift in Welsh language skills
 welsh.SpeaksWelsh.subhead.buc: {plcname} reverses trend for Welsh language
 children.Kids.subhead.pos: More homes with children
 children.Kids.subhead.neg: Fewer homes with children
-children.Kids.subhead.neu: Change in family dynamics
+children.Kids.subhead.neu: Changes in family structure
 children.Kids.subhead.buc: {plcname} reverses trend for children
-children.NoKids.subhead.pos: More homes with children
-children.NoKids.subhead.neg: Fewer homes with children
-children.NoKids.subhead.neu: Change in family dynamics
+children.NoKids.subhead.pos: More homes without children
+children.NoKids.subhead.neg: Fewer homes without children
+children.NoKids.subhead.neu: Changes in family structure
 children.NoKids.subhead.buc: {plcname} reverses trend for children
 children.NonDepKids.subhead.pos: More homes with non-dependent children
 children.NonDepKids.subhead.neg: Fewer homes with non-dependent children
-children.NonDepKids.subhead.neu: Change in family dynamics
+children.NonDepKids.subhead.neu: Changes in family structure
 children.NonDepKids.subhead.buc: {plcname} reverses trend for children
 care.noCare.subhead.pos: Drop in unpaid care provision
 care.noCare.subhead.neg: Rise in unpaid care provision
@@ -321,34 +321,34 @@ household.Married.subhead.pos: Marriage on the up
 household.Married.subhead.neg: Marriage declining 
 household.Married.subhead.neu: New household dynamics
 household.Married.subhead.buc: {plcname} reverses marriage trend
-religion.Christian.subhead.pos: New beliefs in {plcname}
-religion.Christian.subhead.neg: Changing beliefs
-religion.Christian.subhead.neu: Changing beliefs
+religion.Christian.subhead.pos: More people identifying as Christian
+religion.Christian.subhead.neg: Fewer people identifying as Christian
+religion.Christian.subhead.neu: Changing beliefs in {plcname}
 religion.Christian.subhead.buc: {plcname} reverses trend for religion
-religion.Buddhist.subhead.pos: New beliefs in {plcname}
-religion.Buddhist.subhead.neg: Changing beliefs
-religion.Buddhist.subhead.neu: Changing beliefs
+religion.Buddhist.subhead.pos: More people identifying as Buddhist
+religion.Buddhist.subhead.neg: Fewer people identifying as Buddhist
+religion.Buddhist.subhead.neu: Changing beliefs in {plcname}
 religion.Buddhist.subhead.buc: {plcname} reverses trend for religion
-religion.Hindu.subhead.pos: New beliefs in {plcname}
-religion.Hindu.subhead.neg: Changing beliefs
-religion.Hindu.subhead.neu: Changing beliefs
+religion.Hindu.subhead.pos: More people identifying as Hindu
+religion.Hindu.subhead.neg: Fewer people identifying as Hindu
+religion.Hindu.subhead.neu: Changing beliefs in {plcname}
 religion.Hindu.subhead.buc: {plcname} reverses trend for religion
-religion.Sikh.subhead.pos: New beliefs in {plcname}
-religion.Sikh.subhead.neg: Changing beliefs
-religion.Sikh.subhead.neu: Changing beliefs
+religion.Sikh.subhead.pos: More people identifying as Sikh
+religion.Sikh.subhead.neg: Fewer people identifying as Sikh
+religion.Sikh.subhead.neu: Changing beliefs in {plcname}
 religion.Sikh.subhead.buc: {plcname} reverses trend for religion
-religion.Jewish.subhead.pos: New beliefs in {plcname}
-religion.Jewish.subhead.neg: Changing beliefs
-religion.Jewish.subhead.neu: Changing beliefs
+religion.Jewish.subhead.pos: More people identifying as Jewish
+religion.Jewish.subhead.neg: Fewer people identifying as Jewish
+religion.Jewish.subhead.neu: Changing beliefs in {plcname}
 religion.Jewish.subhead.buc: {plcname} reverses trend for religion
-religion.Muslim.subhead.pos: New beliefs in {plcname}
-religion.Muslim.subhead.neg: Changing beliefs
-religion.Muslim.subhead.neu: Changing beliefs
+religion.Muslim.subhead.pos: More people identifying as Muslim
+religion.Muslim.subhead.neg: Fewer people identifying as Muslim 
+religion.Muslim.subhead.neu: Changing beliefs in {plcname}
 religion.Muslim.subhead.buc: {plcname} reverses trend for religion
-religion.Noreligion.subhead.pos: New beliefs in {plcname}
-religion.Noreligion.subhead.neg: Changing beliefs
-religion.Noreligion.subhead.neu: Changing beliefs
-religion.Noreligion.subhead.buc: {plcname} reverses athiest trend
+religion.Noreligion.subhead.pos: More athiests in {plcname}
+religion.Noreligion.subhead.neg: Fewer athiests in {plcname}
+religion.Noreligion.subhead.neu: Changing beliefs in {plcname}
+religion.Noreligion.subhead.buc: {plcname} reverses trend in athiesm
 hoursworked.Female1-15.subhead.pos: More people working short hours
 hoursworked.Female1-15.subhead.neg: Fewer people working short hours
 hoursworked.Female1-15.subhead.neu: Change in work hours
@@ -403,12 +403,12 @@ household.LoneParent.topic: single parent households
 household.OnePerson.topic: single person households
 household.Married.topic: married households
 
-religion.Christian.topic: the proportion of Christian people
-religion.Buddhist.topic: the proportion of Buddhist people
-religion.Hindu.topic: the proportion of Hindu people
-religion.Sikh.topic: the proportion of Sikh people
-religion.Jewish.topic: the proportion of Jewish people
-religion.Muslim.topic: the proportion of Muslim people
+religion.Christian.topic: the proportion of people who identify as Christian 
+religion.Buddhist.topic: the proportion of people who identify as Buddhist
+religion.Hindu.topic: the proportion of people who identify as Hindu
+religion.Sikh.topic: the proportion of people who identify as Sikh
+religion.Jewish.topic: the proportion of people who identify as Jewish
+religion.Muslim.topic: the proportion of people who identify as Muslim
 religion.Noreligion.topic: the proportion of athiests
 
 hoursworked.Female1-15.topic: short hour working
@@ -449,12 +449,12 @@ household.LoneParent.adj_noun_s: single parent households
 household.OnePerson.adj_noun_s: single person households
 household.Married.adj_noun_s: married households
 
-religion.Christian.adj_noun_s: Christian people
-religion.Buddhist.adj_noun_s: Buddhist people
-religion.Hindu.adj_noun_s: Hindu people
-religion.Sikh.adj_noun_s: Sikh people
-religion.Jewish.adj_noun_s: Jewish people
-religion.Muslim.adj_noun_s: Muslim people
+religion.Christian.adj_noun_s: people who identify as Christian
+religion.Buddhist.adj_noun_s: people who identify as Buddhist
+religion.Hindu.adj_noun_s: people who identify as Hindu
+religion.Sikh.adj_noun_s: people who identify as Sikh
+religion.Jewish.adj_noun_s: people who identify as Jewish
+religion.Muslim.adj_noun_s: people who identify as Muslim
 religion.Noreligion.adj_noun_s: athiests
 
 hoursworked.Female1-15.adj_noun_s: short hours workers

@@ -8,7 +8,7 @@
 	import DotPlotChart from './charts/DotPlotChart.svelte';
 
 
-	var options, selected, place, quartiles, locRankCha, locRankCur, eng, rgncode, rgn, s, natRankCha, natRankCur, topics, wal, found, ladData, props;
+	var options, selected, place, locRankCha, locRankCur, eng, rgncode, rgn, s, natRankCha, natRankCur, topics, wal, found, ladData, props;
 	var health, expand;
 
 	var more = false;
@@ -58,7 +58,7 @@
 		res = res.filter(d => d['type']=='lad')
 		options = res.sort((a, b) => a.name.localeCompare(b.name));
 		let  defaultLoc = options[Math.round(336*Math.random())]['name']
-		defaultLoc = 'Monmouthshire';
+		defaultLoc = 'Stockport';
 		if (['Daventry', 'East Northamptonshire', 'South Northamptonshire', 'Kettering', 'Corby', 'Wellingborough', 'Northampton'].includes.deaultLoc) {
 			let  defaultLoc = options[Math.round(336*Math.random())]['name']
 		}
@@ -73,7 +73,6 @@
 		.then(json => {
 			json.children = options.filter(d => d.parent == code);
 			json.siblings = options.filter(d => d.parent == json['parents'][0]['code']);
-			quartiles = null;
 			place = json;
 
 			// Define the word to describe population change in standfirst
@@ -112,7 +111,6 @@
 			.then(json => {
 				json.children = options.filter(d => d.parent == code);
 				json.siblings = options.filter(d => d.parent == json['parents'][0]['code']);
-				quartiles = null;
 				rgn = json;
 			})
 
@@ -123,7 +121,6 @@
 		.then(json => {
 			json.children = options.filter(d => d.parent == code);
 			json.siblings = options.filter(d => d.parent == json['parents'][0]['code']);
-			quartiles = null;
 			eng = json;
 		})
 		fetch("https://raw.githubusercontent.com/theojolliffe/census-data/main/json/place/W92000004.json")
@@ -244,7 +241,7 @@
 			nuword: nuword,
 			sign: sign,
 			udord: udord, 
-			near: place.nearSimilar.nearTops,
+			near: place.nearbyArea.nearTops,
 			simi: place.similar,
 			adv: adv,
 			uds: uds,
@@ -271,6 +268,10 @@
 		}, 1000)
 	})
 
+
+
+
+	// MAKE CHARTS
 
 	function makeChartData(place, region, england, i) {
 		let temp = []
@@ -337,32 +338,23 @@
 		}
 		else {
 			// ScatterChart
-
 			var chartdata
 			if (s[0]=="population") {
 				chartdata = ladData.filter(d => (d['parent']==place.parents[0].name)&(d.topic == "density_all"))
 			} else {
 				chartdata = ladData.filter(d => (d['parent']==place.parents[0].name)&(d.topic == s[0]+"_"+s[3]))
 			}
-
-			
-			// let chartd = []
-			// chartdata.forEach(d => {
-			// 	chartd.push({ year: 2011, value: d['2001'], group: d.topic })
-			// 	chartd.push({ year: 2021, value: d['2011'], group: d.topic })
-			// });
-			chartdata = chartdata.map(d => ({ 'change': d['change'], 'value': parseFloat(d[2011]), 'unique': d['lad'], 'id': d['parent']}))
+			chartdata = chartdata.map(d => ({ 'change': d['change'], 'value': (s[0]=="population")? 0.714*parseFloat(d[2011]) : parseFloat(d[2011]), 'unique': d['lad'], 'id': d['parent']}))
 			chartdata.forEach((item, i) => {
 				if (item.unique==place.name) {
 					item.id = place.name
 				} else if (item.id == place.parents[0].name) {
 					item.id = "The rest of "+uncap1(regionThe(place.parents[0].name))
-					// item.id = "Rest of England"
 				} else {
 					item.id = "Rest of England"
 				}
 			})
-
+			console.log('chartdata', chartdata)
 			return props = {
 				mode: "stacked",
 				line: false,
@@ -372,8 +364,7 @@
 				yKey: null,
 				rKey: "change",
 				r: [3, 9],
-				zKey: "id"
-				// title: "Multi-line chart"
+				zKey: "id",
 			}
 		}
 	}
@@ -391,29 +382,6 @@
 		}
 	}
 	
-	// var chartdata = ladData.filter(d => (d.lad==place.name)&(d.topic == s[0]+"_"+s[3]))
-	// 		chartdata = chartdata.map(d => ({ 'id': d['parent'], 'unique': d['lad'], 'value': parseFloat(d[2011]) }))
-	// 		chartdata.forEach((item, i) => {
-	// 			if (item.unique==place.name) {
-	// 				item.id = place.name
-	// 			} else if (item.id == place.parents[0].name) {
-	// 				item.id = place.parents[0].name
-	// 				// item.id = "Rest of England"
-	// 			} else {
-	// 				item.id = "Rest of England"
-	// 			}
-	// 		})
-	// 		chartdata = chartdata.sort(function(a, b){return b['value'] - a['value']})
-
-	// 		console.log("CHARTDATAS", chartdata)
-
-	// 		return props = {
-	// 			legend: true,
-	// 			data: chartdata,
-	// 			xKey: "unique",
-	// 			yKey: "value",
-	// 			zKey: "id"
-
 	function readMore() {
 		more = !more
 		results = results

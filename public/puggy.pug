@@ -842,22 +842,31 @@ mixin allOthers(i, r, updo)
     | to #[+value((rgn.data[s[i][0]][s[i][1]][2011][s[i][3]])/100, {'FORMAT': '0.0%'})]
 
 mixin welsh(i)
-    h2 #[+value(topic(i).subhead.buc)]
     p
-        | The proportion of people over the age of three that speak Welsh in !{place.name} 
+        | The proportion of Welsh speakers in !{place.name} 
         | #[+value(ud(cha(s, place, i), 'rose', 'fell'))] 
-        | from about #[+value((place.data[s[i][0]][s[i][1]][2001][s[i][3]])/100, {'FORMAT': '0.0%'})]
+        | from #[+value((place.data[s[i][0]][s[i][1]][2001][s[i][3]])/100, {'FORMAT': '0.0%'})]
         | to #[+value((place.data[s[i][0]][s[i][1]][2011][s[i][3]])/100, {'FORMAT': '0.0%'})]
         | in the 10 years leading up to the last census. 
     if (Math.abs(place.data[s[i][0]][s[i][1]+'_rank_local']['change'][s[i][3]])<4)
         p 
-            | This !{place.classification} saw the largest decline in the porportion of Welsh speakers of any local authority in the country. 
-            | Of the few areas where knowledge of the Welsh language increased, !{data.welsh.perc_rank_local.top_bottom.SpeaksWelsh[1].name} saw the greatest change,
-            | from 
-            | #[+value((data.welsh.perc_rank_local.top_bottom.SpeaksWelsh[1][2001])/100, {'FORMAT': '0.0%'})]
-            | in 2011 to 
-            | #[+value((data.welsh.perc_rank_local.top_bottom.SpeaksWelsh[1][2011])/100, {'FORMAT': '0.0%'})]
-            | in 2021 .
+            | This amounts to the 
+            | #[+value(drop(data[s[i][0]][s[i][1]+'_rank_local']['change'][s[i][3]], 'largest decline', 'largest increase'))]
+            | in the porportion of Welsh speakers of any local authority in the country.
+            if (data.welsh.perc_rank_local.top_bottom.SpeaksWelsh[1].name!=place.name)
+                | Of the few areas where knowledge of the Welsh language increased, !{data.welsh.perc_rank_local.top_bottom.SpeaksWelsh[1].name} saw the greatest change,
+                | from 
+                | #[+value((data.welsh.perc_rank_local.top_bottom.SpeaksWelsh[1][2001])/100, {'FORMAT': '0.0%'})]
+                | in 2011 to 
+                | #[+value((data.welsh.perc_rank_local.top_bottom.SpeaksWelsh[1][2011])/100, {'FORMAT': '0.0%'})]
+                | in 2021 .
+            else 
+                | The next greatest increase was seen in !{data.welsh.perc_rank_local.top_bottom.SpeaksWelsh[2].name} 
+                | (from #[+value((data.welsh.perc_rank_local.top_bottom.SpeaksWelsh[2][2001])/100, {'FORMAT': '0.0%'})] in 2011 to 
+                | #[+value((data.welsh.perc_rank_local.top_bottom.SpeaksWelsh[2][2011])/100, {'FORMAT': '0.0%'})] in 2021), 
+                | while !{data.welsh.perc_rank_local.top_bottom.SpeaksWelsh["-1"].name} saw the greatest decline
+                | (from #[+value((data.welsh.perc_rank_local.top_bottom.SpeaksWelsh["-1"][2001])/100, {'FORMAT': '0.0%'})] to 
+                | #[+value((data.welsh.perc_rank_local.top_bottom.SpeaksWelsh["-1"][2011])/100, {'FORMAT': '0.0%'})]).
     p
     - let v11speak = place.data[s[i][0]]['value'][2011][s[i][3]]
     - let v01speak = place.data[s[i][0]]['value'][2001][s[i][3]]
@@ -870,28 +879,27 @@ mixin welsh(i)
         else
             | The shift in !{place.name}
         | was driven by 
-        | #[+value((difspeak)<0?'the loss':'an increase')]
-        | of about 
+        | #[+value((difspeak)<0?'the loss':'the addition')]
+        | of 
         | #[+value(Math.abs(difspeak))] 
-        | Welsh speakers 
+        | people over the age of three that speak Welsh 
         | and
         if (Math.sign(difspeak))!=(Math.sign(difnosp))
-            | #[+value((difnosp)>0?'an increase':'the loss')] of 
+            | #[+value((difnosp)>0?'the addition':'the loss')] of 
         | #[+value(Math.abs(difnosp))]
         | people who do not speak Welsh.  
     p
-        | The proportion in nearby 
-        | !{place.nearSimilar.nearTops.name}
-        | #[+value(ud(cha(s, place.nearSimilar.nearTops, i), 'rose', 'fell'))]  from 
-        | #[+value((place.nearSimilar.nearTops.data[s[i][0]][s[i][1]][2001][s[i][3]])/100, {'FORMAT': '0.0%'})]
-        | to
-        | #[+value((place.nearSimilar.nearTops.data[s[i][0]][s[i][1]][2011][s[i][3]])/100, {'FORMAT': '0.0%'})].
-        | Across Wales, approximately 
-        | #[+value((rgn.data[s[i][0]][s[i][1]][2011][s[i][3]])/100, {'FORMAT': '0.0%'})] 
-        | of people said they could speak Welsh, 
-        | #[+value(ud(cha(s, rgn, i), 'up', 'down'))] from 
+        | In #[+nearbyname] #[+value((place.nearbyArea.nearTops.data[s[i][0]][s[i][1]][2011][s[i][3]])/100, {'FORMAT': '0.0%'})] of people over the age of three
+        | can speak some Welsh
+        | , #[+value(ud(cha(s, place.nearbyArea.nearTops, i), 'up', 'down'))]
+        | from #[+value((place.nearbyArea.nearTops.data[s[i][0]][s[i][1]][2001][s[i][3]])/100, {'FORMAT': '0.0%'})] at the 2011 census.
+        | .
+        | Across Wales, the proportion 
+        | #[+value(ud(cha(s, rgn, i), 'rose', 'fell'))] from
         | #[+value((rgn.data[s[i][0]][s[i][1]][2001][s[i][3]])/100, {'FORMAT': '0.0%'})] 
-        | at the 2011 census.
+        | to
+        | #[+value((rgn.data[s[i][0]][s[i][1]][2011][s[i][3]])/100, {'FORMAT': '0.0%'})] 
+        | .
     if (Math.abs(place.data[s[i][0]][s[i][1]+'_rank_local'][2011][s[i][3]])>3) & (Math.abs(place.data[s[i][0]][s[i][1]+'_rank_local']['change'][s[i][3]])>3)
         p
             | !{data.welsh.perc_rank_local.top_bottom.SpeaksWelsh[1].name} 
@@ -908,75 +916,78 @@ mixin welsh(i)
 
 //- Deals with all percentage based variables
 mixin percPara(i, chain0_01, chain0_11, chain1_01, chain1_11)
-    - var chain0_11 = data[s[i][0]][s[i][1]][2011][chains[s[i][3]][0]]
-    - var chain0_01 = data[s[i][0]][s[i][1]][2001][chains[s[i][3]][0]] 
-    - var chain1_11 = data[s[i][0]][s[i][1]][2011][chains[s[i][3]][1]] 
-    - var chain1_01 = data[s[i][0]][s[i][1]][2001][chains[s[i][3]][1]] 
     if ((stories[i].type.includes('couBuck', 'regBuck'))&(!stories[i].type.includes('natRank')))
         h2 #[+value(topic(i).subhead.buc)]
-    else if ((cha(s, place, i)<0)&(data[s[i][0]][s[i][1]][2011][s[i][3]]<data[s[i][0]][s[i][1]][2001][s[i][3]]))
+    else if ((cha(s, place, i)<0)&(data[s[i][0]]['value'][2011][s[i][3]]<data[s[i][0]]['value'][2001][s[i][3]]))
         h2 #[+value(topic(i).subhead.neg)]
-    else if ((cha(s, place, i)>0)&(data[s[i][0]][s[i][1]][2011][s[i][3]]>data[s[i][0]][s[i][1]][2001][s[i][3]]))
+    else if ((cha(s, place, i)>0)&(data[s[i][0]]['value'][2011][s[i][3]]>data[s[i][0]]['value'][2001][s[i][3]]))
         h2 #[+value(topic(i).subhead.pos)]
     else 
         h2 #[+value(topic(i).subhead.neu)]
-    if (stories[i].type.includes('natRank'))
-        | #[+rank1nat(i)]
-        p #[+rank2(i)]
-        if (data[s[i][0]][s[i][1]+"_rank"].top_bottom[s[i][3]][1].change<0)
-            p #[+allOthers(i, "", "d")]
-        else if (data[s[i][0]][s[i][1]+"_rank"].top_bottom[s[i][3]]["-1"].change>0)
-            p #[+allOthers(i, "", "u")]
-        else if ((data[s[i][0]][s[i][1]+'_rank']['overtake'][s[i][3]].length>0)&(Math.abs(cur(s, place, i, 'r'))<10))
-            p #[+overtake(i, "")]
-        else
-            if (Math.sign(data[s[i][0]][s[i][1]+'_rank_local'][s[i][2]][s[i][3]]) != Math.sign(cha(s, place, i)))
-                p #[+acrossRegionExcept(i)]
-            else
-                p #[+acrossRegion(i)]
-                if ((sign(cha(s, place, i)))!=(sign(cur(s, place, i, 'rl'))))
-                    p #[+despiteRegion(i)]
-    else if ((stories[i].type.includes('regBuck'))|(eq(stories[i].type, ['regBuck'])))
-        - var curBuck = 'regBuck'
-        | #[+buck(i, curBuck, chain0_01, chain0_11, chain1_01, chain1_11)]
-    else if ((stories[i].type.includes('couBuck'))|(eq(stories[i].type, ['couBuck'])))
-        - var curBuck = 'couBuck'
-        | #[+buck(i, curBuck, chain0_01, chain0_11, chain1_01, chain1_11)]
-    else if ((stories[i].type.includes('size'))&(!hasSaid('SIZE'))|(eq(stories[i].type, ['size'])))
-        recordSaid('SIZE')
-        | #[+sent1Perc(i)]
-        p #[+sent2Perc(i, chain0_01, chain0_11, chain1_01, chain1_11)]
-        p #[+sent3Perc(i)]
-    else if (stories[i].type.includes('locRank'))
-        deleteSaid('SIZE')
-        | #[+rank1reg(i)]
-        p #[+rank2(i)]
-        if (data[s[i][0]][s[i][1]+"_rank_local"].top_bottom[s[i][3]][1].change<0)
-            p #[+allOthers(i, "_local", "d")]
-        if (data[s[i][0]][s[i][1]+"_rank_local"].top_bottom[s[i][3]]["-1"].change>0)
-            p #[+allOthers(i, "_local", "u")]
-        else if ((data[s[i][0]][s[i][1]+'_rank_local']['overtake'][s[i][3]].length>0)&(Math.abs(cur(s, place, i, 'rl'))<20))
-            p #[+overtake(i, "_local")]
-        else
-            if (Math.sign(data[s[i][0]][s[i][1]+'_rank_local'][s[i][2]][s[i][3]]) != Math.sign(cha(s, place, i)))
-                p #[+acrossRegionExcept(i)]
-            else
-                p #[+acrossRegion(i)]
-                if ((sign(cha(s, place, i)))!=(sign(cur(s, place, i, 'rl'))))
-                    p #[+despiteRegion(i)]
-    else if ((stories[i].type.includes('simiBuck'))&(!hasSaid('BUCK'))|(eq(stories[i].type, ['simiBuck'])))
-        recordSaid('BUCK')
-        - var curBuck = 'simiBuck'
-        | #[+buck(i, curBuck, chain0_01, chain0_11, chain1_01, chain1_11)]
-    else if ((stories[i].type.includes('nearBuck'))&(!hasSaid('BUCK'))|(eq(stories[i].type, ['nearBuck'])))
-        recordSaid('BUCK')
-        - var curBuck = 'nearBuck'
-        | #[+buck(i, curBuck, chain0_01, chain0_11, chain1_01, chain1_11)]
+    if (s[i][0] == 'welsh')
+        | #[+welsh(i)]
     else
-        deleteSaid('SIZE')
-        | #[+difference(i, chain0_01, chain0_11, chain1_01, chain1_11)]
-    if (s[i][0]=='health')
-        p #[+healthExplain]
+        - var chain0_11 = data[s[i][0]][s[i][1]][2011][chains[s[i][3]][0]]
+        - var chain0_01 = data[s[i][0]][s[i][1]][2001][chains[s[i][3]][0]] 
+        - var chain1_11 = data[s[i][0]][s[i][1]][2011][chains[s[i][3]][1]] 
+        - var chain1_01 = data[s[i][0]][s[i][1]][2001][chains[s[i][3]][1]] 
+        if (stories[i].type.includes('natRank'))
+            | #[+rank1nat(i)]
+            p #[+rank2(i)]
+            if (data[s[i][0]][s[i][1]+"_rank"].top_bottom[s[i][3]][1].change<0)
+                p #[+allOthers(i, "", "d")]
+            else if (data[s[i][0]][s[i][1]+"_rank"].top_bottom[s[i][3]]["-1"].change>0)
+                p #[+allOthers(i, "", "u")]
+            else if ((data[s[i][0]][s[i][1]+'_rank']['overtake'][s[i][3]].length>0)&(Math.abs(cur(s, place, i, 'r'))<10))
+                p #[+overtake(i, "")]
+            else
+                if (Math.sign(data[s[i][0]][s[i][1]+'_rank_local'][s[i][2]][s[i][3]]) != Math.sign(cha(s, place, i)))
+                    p #[+acrossRegionExcept(i)]
+                else
+                    p #[+acrossRegion(i)]
+                    if ((sign(cha(s, place, i)))!=(sign(cur(s, place, i, 'rl'))))
+                        p #[+despiteRegion(i)]
+        else if ((stories[i].type.includes('regBuck'))|(eq(stories[i].type, ['regBuck'])))
+            - var curBuck = 'regBuck'
+            | #[+buck(i, curBuck, chain0_01, chain0_11, chain1_01, chain1_11)]
+        else if ((stories[i].type.includes('couBuck'))|(eq(stories[i].type, ['couBuck'])))
+            - var curBuck = 'couBuck'
+            | #[+buck(i, curBuck, chain0_01, chain0_11, chain1_01, chain1_11)]
+        else if ((stories[i].type.includes('size'))&(!hasSaid('SIZE'))|(eq(stories[i].type, ['size'])))
+            recordSaid('SIZE')
+            | #[+sent1Perc(i)]
+            p #[+sent2Perc(i, chain0_01, chain0_11, chain1_01, chain1_11)]
+            p #[+sent3Perc(i)]
+        else if (stories[i].type.includes('locRank'))
+            deleteSaid('SIZE')
+            | #[+rank1reg(i)]
+            p #[+rank2(i)]
+            if (data[s[i][0]][s[i][1]+"_rank_local"].top_bottom[s[i][3]][1].change<0)
+                p #[+allOthers(i, "_local", "d")]
+            if (data[s[i][0]][s[i][1]+"_rank_local"].top_bottom[s[i][3]]["-1"].change>0)
+                p #[+allOthers(i, "_local", "u")]
+            else if ((data[s[i][0]][s[i][1]+'_rank_local']['overtake'][s[i][3]].length>0)&(Math.abs(cur(s, place, i, 'rl'))<20))
+                p #[+overtake(i, "_local")]
+            else
+                if (Math.sign(data[s[i][0]][s[i][1]+'_rank_local'][s[i][2]][s[i][3]]) != Math.sign(cha(s, place, i)))
+                    p #[+acrossRegionExcept(i)]
+                else
+                    p #[+acrossRegion(i)]
+                    if ((sign(cha(s, place, i)))!=(sign(cur(s, place, i, 'rl'))))
+                        p #[+despiteRegion(i)]
+        else if ((stories[i].type.includes('simiBuck'))&(!hasSaid('BUCK'))|(eq(stories[i].type, ['simiBuck'])))
+            recordSaid('BUCK')
+            - var curBuck = 'simiBuck'
+            | #[+buck(i, curBuck, chain0_01, chain0_11, chain1_01, chain1_11)]
+        else if ((stories[i].type.includes('nearBuck'))&(!hasSaid('BUCK'))|(eq(stories[i].type, ['nearBuck'])))
+            recordSaid('BUCK')
+            - var curBuck = 'nearBuck'
+            | #[+buck(i, curBuck, chain0_01, chain0_11, chain1_01, chain1_11)]
+        else
+            deleteSaid('SIZE')
+            | #[+difference(i, chain0_01, chain0_11, chain1_01, chain1_11)]
+        if (s[i][0]=='health')
+            p #[+healthExplain]
 
 mixin para(i)
     -console.log('S -', i,  stories[i])
@@ -995,10 +1006,7 @@ mixin para(i)
             //- if ((data['density'][s[i][1]+'_rank'].overtake[s[i][3]].length>0)&(Math.abs(cur(s, place, i, "r"))<30))
             //-     p #[+sent4Pop(i)]
     if (s[i][1] == 'perc')
-        if (s[i][0] == 'welsh')
-            | #[+welsh(i)]
-        else
-            | #[+percPara(i)]
+        | #[+percPara(i)]
 
 mixin chartTitleSize(i)
     if (s[i][0]=="population")
@@ -1034,7 +1042,7 @@ mixin chartTitleOther(i)
             | #[+value(uds(data.density.value[2011].all-rgn.data.density.value[2011].all, "higher than", "lower than", "similar to"))]
             | the average across #[+value(parent)]
         h5 
-            | Population density (people per 7,140 square metres) across #[+value(parent)]; March 2021 (dot size represents change since 2011)
+            | Population density (people per #[+value(7140)] square metres) across #[+value(parent)]; March 2021 (dot size represents change since 2011)
     else if (s[i][0]=="agemed")
         h4 
             | The proportion aged
