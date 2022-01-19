@@ -237,7 +237,7 @@
 			{:else if filtered[0] && group}
 			{#each filtered as option, i}
 			<li class:highlight="{active == i}" on:click="{() => select(option)}" on:mouseover="{() => active = i}" bind:this="{items[i]}">
-				{option[label]} <small>{option[group]}</small>
+				{option[label]} <small>{option['LAD21CD']}</small>
 			</li>
 			{/each}
 			{:else if filtered[0]}

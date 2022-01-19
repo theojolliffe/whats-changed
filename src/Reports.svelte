@@ -11,6 +11,10 @@
 	var options, selected, place, locRankCha, locRankCur, eng, rgncode, rgn, s, natRankCha, natRankCur, topics, wal, found, ladData, props;
 	var health, expand;
 
+	function cap(string) {
+		return string.charAt(0).toUpperCase() + string.slice(1);
+	}
+
 	var more = false;
 
     var topics;
@@ -50,22 +54,25 @@
 	});
 
 	// Data load functions
-	getData("https://raw.githubusercontent.com/theojolliffe/census-data/main/csv/lists/places_2020.csv").then(res => {
+	getData("https://raw.githubusercontent.com/theojolliffe/census-data/main/csv/lists/Local_Authority_Districts_(May_2021)_UK_BFE_V3.csv").then(res => {
 		res.forEach(d => {
-			d.typepl = types[d.type].pl;
-			d.typenm = types[d.type].name;
-		});
-		res = res.filter(d => d['type']=='lad')
-		options = res.sort((a, b) => a.name.localeCompare(b.name));
-		let  defaultLoc = options[Math.round(336*Math.random())]['name']
-		defaultLoc = 'Stockport';
-		if (['Daventry', 'East Northamptonshire', 'South Northamptonshire', 'Kettering', 'Corby', 'Wellingborough', 'Northampton'].includes.deaultLoc) {
-			let  defaultLoc = options[Math.round(336*Math.random())]['name']
-		}
+			d.code = d.LAD21CD
+			d.name = d.LAD21NM
+		})
+		res = res.filter(d => (d['LAD21CD'].substring(0,1)!='S')&(d['LAD21CD'].substring(0,1)!='N'))
+		console.log('res', res)
+
+		options = res.sort((a, b) => a.LAD21NM.localeCompare(b.LAD21NM));
+		console.log('options', options)
+		let defaultLoc = options[Math.round(331*Math.random())]['LAD21NM']
+		defaultLoc = 'North Northamptonshire';
+		// if (['Daventry', 'East Northamptonshire', 'South Northamptonshire', 'Kettering', 'Corby', 'Wellingborough', 'Northampton'].includes.deaultLoc) {
+		// 	let  defaultLoc = options[Math.round(336*Math.random())]['name']
+		// }
 		console.log(defaultLoc)
-		selected = options.find(d => d.name == defaultLoc);
-		console.log(selected.code)
-		loadArea(selected.code)
+		selected = options.find(d => d.LAD21NM == defaultLoc);
+		console.log(selected.LAD21CD)
+		loadArea(selected.LAD21CD)
 	});
 	function loadArea(code) {
 		fetch("https://raw.githubusercontent.com/theojolliffe/census-data/main/json/place/" + code + ".json")
@@ -197,9 +204,7 @@
 			return o[s[i][0]][ttop]
 		}
 
-		function cap(string) {
-			return string.charAt(0).toUpperCase() + string.slice(1);
-		}
+
 		
 		let res = rosaenlg_en_US.render(puggy, {
 			language: 'en_UK',
@@ -401,7 +406,7 @@
 				{#if rgn}
 					<div id="sf">
 						<div style="width: 640px; margin:0 auto;">
-							<h1>{place.name}: <span style="font-weight: 400;">What's changed</span></h1>
+							<h1>{cap(place.name)}: <span style="font-weight: 400;">What's changed</span></h1>
 							<div>
 								<div style="width: 640px; margin: 50px auto;">
 									<Select {options} bind:selected group="typenm" search={true} on:select="{() => { if (selected) { loadArea(selected.code) }}}"/>
@@ -436,7 +441,7 @@
 		
 						<hr/>
 						<h2 id="create">Creating this article</h2>
-						<p>This article was generated using some automation. Topics are automatically chosen based on how relevant they are for each area.</p>
+						<p>This article was generated using some automation. Topics are selected based on the most notable changes seen in each local authority.</p>
 						<div style="height:200px"></div>
 					</main>
 				{/if}
