@@ -360,7 +360,6 @@
 			uds: uds,
 			pluralize: pluralize
 		})
-
 	}
 
 	setTimeout(function() {
