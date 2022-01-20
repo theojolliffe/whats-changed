@@ -4,9 +4,11 @@
 	import Selectb from "./ui/SelectB.svelte";
 	import { load } from "archieml"; //this is the parser from ArchieML to JSON
 	import robojournalist from 'robojournalist';
+	import pluralize from 'pluralize';
 
 	var wal, selected, selectedb, quartiles, locRankCha, locRankCur, eng, rgncode, rgnLoad, natRankCha, natRankCur, topics, topic;
 	var health, expand;
+	var findst = false
 
 	let topicOptions = [
 		{"label": "Average age", "value": "agemed_value_change"},
@@ -127,6 +129,7 @@
 		})
 		.then(d => {
 			rgnLoad = true
+			findst = true
 		})
 		console.log('regions', regions)
 
@@ -215,6 +218,11 @@
 			placesOb = [...new Set(placesOb)]
 		}
 		loadedb = true
+	}
+
+	function loadPreTopic(code) {
+		findst = false;
+		loadTopic(code)
 	}
 
 	/// LOAD TOPIC
@@ -347,9 +355,10 @@
 			sign: sign,
 			udord: udord,
 			eq, eq,
-			near: place.nearSimilar.nearTops,
+			near: place.nearbyArea.nearTops,
 			adv: adv,
 			uds: uds,
+			pluralize: pluralize
 		})
 
 	}
@@ -380,19 +389,25 @@
 	<script src="https://unpkg.com/rosaenlg@3.0.1/dist/rollup/rosaenlg_tiny_en_US_3.0.1_comp.js" on:load="{onRosaeNlgLoad}"></script>
 </svelte:head>
 
+{#if findst}
+	<div style="padding: 180px; padding: 20px 20px 20px 20px; font-size: x-large;">Please wait a moment after selecting a topic while we search for relevant stories...</div>	
+{/if}
+
 {#if rgnLoad}
 	{#if placesload}
 	<div>
 		<div style="width: 640px; margin: 50px auto;">
-			<Select bind:selected options={topicOptions} placeholder="Search a topic" value="value" label="label" search={true} on:select="{() => { if (selected) { loadTopic(selected.value) }}}"/>
+			<Select bind:selected options={topicOptions} placeholder="Search a topic" value="value" label="label" search={true} on:select="{() => { if (selected) { loadPreTopic(selected.value) }}}"/>
 		</div>
 	</div>
 	{:else}
 	<div style="padding: 50px; padding-left: 40%; font-size: x-large">Loading...</div>	
 	{/if}
 {:else}
-<div style="padding: 50px; padding-left: 40%; font-size: x-large">Loading...</div>	
+	<div style="padding: 50px; padding-left: 40%; font-size: x-large">Loading...</div>	
 {/if}
+
+
 
 <div>
 	{#if topic}

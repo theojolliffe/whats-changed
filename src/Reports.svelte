@@ -4,6 +4,7 @@
 	import { load } from "archieml"; 
 	import { onMount } from 'svelte';
 	import robojournalist from 'robojournalist';
+	import pluralize from 'pluralize';
 	import { LineChart, ScatterChart, ColumnChart } from '@onsvisual/svelte-charts';
 	import DotPlotChart from './charts/DotPlotChart.svelte';
 
@@ -60,15 +61,11 @@
 			d.name = d.LAD21NM
 		})
 		res = res.filter(d => (d['LAD21CD'].substring(0,1)!='S')&(d['LAD21CD'].substring(0,1)!='N'))
-		console.log('res', res)
 
 		options = res.sort((a, b) => a.LAD21NM.localeCompare(b.LAD21NM));
-		console.log('options', options)
 		let defaultLoc = options[Math.round(331*Math.random())]['LAD21NM']
-		defaultLoc = 'North Northamptonshire';
-		// if (['Daventry', 'East Northamptonshire', 'South Northamptonshire', 'Kettering', 'Corby', 'Wellingborough', 'Northampton'].includes.deaultLoc) {
-		// 	let  defaultLoc = options[Math.round(336*Math.random())]['name']
-		// }
+		defaultLoc = 'Cambridge';
+
 		console.log(defaultLoc)
 		selected = options.find(d => d.LAD21NM == defaultLoc);
 		console.log(selected.LAD21CD)
@@ -175,7 +172,6 @@
 				changeMag = changeMag+Math.abs(e['value'])
 			}
 		});
-		console.log("O", o)
 		return rosaenlg_en_US.render(stand, {
 			language: 'en_UK',
 			place: place,
@@ -251,6 +247,7 @@
 			adv: adv,
 			uds: uds,
 			more: more,
+			pluralize, pluralize
 		})
 		return res.split(`<div id="esc123"></div>`)
 
@@ -308,37 +305,73 @@
 			}
 		if (place.stories[i].type.includes('size')) {
 			if (s[0]=="population") {
-				return {
-					height: 120,
-					data: [
-						{label: eng.name, 2011: fbp(eng.data.density.value[2001].all), 2021: fbp(eng.data.density.value[2011].all)},
-						{label: rgn.name, 2011: fbp(rgn.data.density.value[2001].all), 2021: fbp(rgn.data.density.value[2011].all)},
-						{label: place.name, 2011: fbp(place.data.density.value[2001].all), 2021: fbp(place.data.density.value[2011].all)},
-					],
+				if (rgn.name == 'Wales') {
+					return {
+						height: 120,
+						data: [
+							{label: eng.name, 2011: fbp(eng.data.density.value[2001].all), 2021: fbp(eng.data.density.value[2011].all)},
+							{label: rgn.name, 2011: fbp(rgn.data.density.value[2001].all), 2021: fbp(rgn.data.density.value[2011].all)},
+							{label: place.name, 2011: fbp(place.data.density.value[2001].all), 2021: fbp(place.data.density.value[2011].all)},
+						],
+					}
+				} else {
+					return {
+						height: 120,
+						data: [
+							{label: rgn.name, 2011: fbp(rgn.data.density.value[2001].all), 2021: fbp(rgn.data.density.value[2011].all)},
+							{label: place.nearbyArea.nearTops.name.name, 2011: fbp(place.nearbyArea.nearTops.name.data.density.value[2001].all), 2021: fbp(place.nearbyArea.nearTops.name.data.density.value[2011].all)},
+							{label: place.name, 2011: fbp(place.data.density.value[2001].all), 2021: fbp(place.data.density.value[2011].all)},
+						],
+					}
 				}
 			}
 			else {
-				return {
-					legend: true,
-					height: 120,
-					data: [
-						{
-							label: eng.name, 
-							2011: eng.data[s[0]][s[1]][2001][s[3]], 
-							2021: eng.data[s[0]][s[1]][2011][s[3]],
-						},
-						{
-							label: rgn.name, 
-							2011: rgn.data[s[0]][s[1]][2001][s[3]], 
-							2021: rgn.data[s[0]][s[1]][2011][s[3]]
-						},
-						{
-							label: place.name, 
-							2011: place.data[s[0]][s[1]][2001][s[3]], 
-							2021: place.data[s[0]][s[1]][2011][s[3]]
-						},
-					],
-				}	
+				if (rgn.name == 'Wales') {
+					return {
+						legend: true,
+						height: 120,
+						data: [
+
+							{
+								label: rgn.name, 
+								2011: rgn.data[s[0]][s[1]][2001][s[3]],
+								2021: rgn.data[s[0]][s[1]][2011][s[3]]
+							},
+							{
+								label: place.nearbyArea.nearTops.name, 
+								2011: place.nearbyArea.nearTops.data[s[0]][s[1]][2001][s[3]], 
+								2021: place.nearbyArea.nearTops.data[s[0]][s[1]][2011][s[3]],
+							},
+							{
+								label: place.name, 
+								2011: place.data[s[0]][s[1]][2001][s[3]],
+								2021: place.data[s[0]][s[1]][2011][s[3]]
+							},
+						],
+					}
+				} else {
+					return {
+						legend: true,
+						height: 120,
+						data: [
+							{
+								label: eng.name, 
+								2011: eng.data[s[0]][s[1]][2001][s[3]], 
+								2021: eng.data[s[0]][s[1]][2011][s[3]],
+							},
+							{
+								label: rgn.name, 
+								2011: rgn.data[s[0]][s[1]][2001][s[3]], 
+								2021: rgn.data[s[0]][s[1]][2011][s[3]]
+							},
+							{
+								label: place.name, 
+								2011: place.data[s[0]][s[1]][2001][s[3]], 
+								2021: place.data[s[0]][s[1]][2011][s[3]]
+							},
+						],
+					}
+				}
 			}
 		}
 		else {
@@ -354,12 +387,11 @@
 				if (item.unique==place.name) {
 					item.id = place.name
 				} else if (item.id == place.parents[0].name) {
-					item.id = "The rest of "+uncap1(regionThe(place.parents[0].name))
+					item.id = "Rest of "+uncap1(regionThe(place.parents[0].name))
 				} else {
 					item.id = "Rest of England"
 				}
 			})
-			console.log('chartdata', chartdata)
 			return props = {
 				mode: "stacked",
 				line: false,
@@ -425,7 +457,6 @@
 								</div>
 							{/if}
 						{/each}
-
 						<button on:click={readMore}>
 							<div class="triangle-container">
 								<svg height="25" width="50">
