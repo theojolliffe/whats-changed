@@ -189,7 +189,7 @@ mixin density
     - let ppfp = Number.parseFloat(Number.parseFloat(0.714*data.density.value[2011].all).toPrecision(2))
     | #[+value(place.name)] is now home to, on average, 
     | #[+value(ppfp)] #[+value(pluralize('person', ppfp))]
-    | people per football pitch-sized piece of land (about #[+value(7140)] square metres), compared to 
+    | per football pitch-sized piece of land (about #[+value(7140)] square metres), compared to 
     | #[+value(Number.parseFloat(Number.parseFloat(0.714*data.density.value[2001].all).toPrecision(2)))] in 2011.
     if (Math.abs(data.density.value_rank[2011].all)==1)
         | This makes it #[+value(country)]'s #[+value(udord(data.density.value_rank[2011].all, "most-densely-populated", "least-densely-populated"))] #[+value(place.gss.short)].
