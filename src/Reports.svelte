@@ -298,6 +298,8 @@
 	}
 
 	function makeProps(i) {
+		console.log('i', i)
+		console.log('place.stories', place.stories)
 		let s = place.stories[i].label.split("_")
 			if (s.length>4) {
 				s[3] = s[3]+"_"+s[4]
@@ -450,12 +452,12 @@
 					</div>
 					<main>
 						{#each results(place, topics) as res, i (i)}
-							{#if i<10}
+							<!-- {#if i<19} -->
 								{@html res}
 								<div style="width: 100%">
 									<svelte:component this="{chartType(i)}" {...makeProps(i)}/>
 								</div>
-							{/if}
+							<!-- {/if} -->
 						{/each}
 						<button on:click={readMore}>
 							<div class="triangle-container">

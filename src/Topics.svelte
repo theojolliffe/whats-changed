@@ -358,7 +358,8 @@
 			near: place.nearbyArea.nearTops,
 			adv: adv,
 			uds: uds,
-			pluralize: pluralize
+			pluralize: pluralize,
+			topics: true
 		})
 	}
 

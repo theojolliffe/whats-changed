@@ -430,18 +430,18 @@ tenure.rented_private.adj_noun_s: private renting
 tenure.rented_social.adj_noun_s: social housing
 tenure.owned.adj_noun_s: homeownership
 
-health.good.adj_noun_s: are from the White ethnic group
+health.good.adj_noun_s: people describing their health as good
 health.fair.adj_noun_s: fairly healthy residents
-health.bad.adj_noun_s: unhealthy residents
+health.bad.adj_noun_s: people describing their health as bad
 
-ethnicity.white.adj_noun_s: are from the White ethnic group
-ethnicity.black.adj_noun_s: are from a Black ethnic group
-ethnicity.asian.adj_noun_s: are from an Asian ethnic group
+ethnicity.white.adj_noun_s: people from the White ethnic group
+ethnicity.black.adj_noun_s: people from a Black ethnic group
+ethnicity.asian.adj_noun_s: people from an Asian ethnic group
 
-economic.employee.adj_noun_s: employment
-economic.inactive.adj_noun_s: economic inactivity
-economic.self-employed.adj_noun_s: self-employment
-economic.unemployed.adj_noun_s: unemployment
+economic.employee.adj_noun_s: employed people
+economic.inactive.adj_noun_s: economically inactive people
+economic.self-employed.adj_noun_s: self-employed people 
+economic.unemployed.adj_noun_s: unemployed people 
 economic.student.adj_noun_s: students
 
 household.Cohabiting.adj_noun_s: cohabiting households
