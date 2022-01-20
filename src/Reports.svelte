@@ -360,7 +360,7 @@
 								2021: eng.data[s[0]][s[1]][2011][s[3]],
 							},
 							{
-								label: rgn.name, 
+								label: uncap1(regionThe(place.parents[0].name)), 
 								2011: rgn.data[s[0]][s[1]][2001][s[3]], 
 								2021: rgn.data[s[0]][s[1]][2011][s[3]]
 							},
@@ -469,7 +469,6 @@
 							</div>
 							{more?'Read less':'Read more'}
 						</button>
-		
 						<hr/>
 						<h2 id="create">Creating this article</h2>
 						<p>This article was generated using some automation. Topics are selected based on the most notable changes seen in each local authority.</p>
