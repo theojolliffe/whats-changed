@@ -186,6 +186,17 @@ mixin sent2pop(i)
             | #[+value((cha(s, place, i)==cha(s, rgn, i))?'also':'')]
             |up #[+pc(rgn.data[s[i][0]][s[i][1]]['change'][s[i][3]])] since the 2011 census).
 
+mixin pc(x)
+    if (Math.abs(x)<20)
+        | #[+value((x/100), {'FORMAT': '0.0%'})]
+    else 
+        | #[+value((x/100), {'FORMAT': '0%'})] 
+
+mixin val(x)
+    if (Math.abs(x)<20)
+        | #[+value(x, {'FORMAT': '0.0'})]
+    else
+        | #[+value(x, {'FORMAT': '0'})] 
 
 // For each football pitch-sized piece of land (about 7,140 square metres), Manchester is now home to, on average, about 31 people, compared to 24 in 2011.
 mixin density 
@@ -898,12 +909,17 @@ mixin welsh(i)
         | #[+value(Math.abs(difnosp))]
         | people who do not speak Welsh.  
     p
-        | In #[+nearbyname] #[+pc((place.nearbyArea.nearTops.data[s[i][0]][s[i][1]][2011][s[i][3]]))] of people over the age of three
-        | can speak some Welsh
-        | , #[+value(ud(cha(s, place.nearbyArea.nearTops, i), 'up', 'down'))]
-        | from #[+pc((place.nearbyArea.nearTops.data[s[i][0]][s[i][1]][2001][s[i][3]]))] at the 2011 census.
-        | .
+        if (Math.round(place.nearbyArea.nearTops.data[s[i][0]][s[i][1]][2011][s[i][3]]*10) == Math.round(place.nearbyArea.nearTops.data[s[i][0]][s[i][1]][2001][s[i][3]]*10))
+            | In #[+nearbyname] the proportion of people over the age of three
+            | who can speak some Welsh remained relatively stable at close to #[+pc((place.nearbyArea.nearTops.data[s[i][0]][s[i][1]][2011][s[i][3]]))].
+        else
+            | In #[+nearbyname] #[+pc((place.nearbyArea.nearTops.data[s[i][0]][s[i][1]][2011][s[i][3]]))] of people over the age of three
+            | can speak some Welsh
+            | , #[+value(ud(cha(s, place.nearbyArea.nearTops, i), 'up', 'down'))]
+            | from #[+pc((place.nearbyArea.nearTops.data[s[i][0]][s[i][1]][2001][s[i][3]]))] at the 2011 census.
+            | .
         | Across Wales, the proportion 
+        - console.log("place", place)
         | #[+value(ud(cha(s, rgn, i), 'rose', 'fell'))] from
         | #[+pc((rgn.data[s[i][0]][s[i][1]][2001][s[i][3]]))] 
         | to

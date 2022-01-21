@@ -152,7 +152,15 @@ function cha(s, place, i, type) {
   } else {
     type = ""
   }
-  return Math.round(place.data[s[i][0]][s[i][1]+type]['change'][s[i][3]]*10)/10
+  let out
+  console.log('placecha', place)
+  try {
+    out = Math.round(place.data[s[i][0]][s[i][1]+type]['change'][s[i][3]]*10)/10
+  }
+  catch(err) {
+    console.log(err.message);
+  }
+  return out
 }
 
 function qui(n) {

@@ -10,7 +10,7 @@
 
 
 	var options, selected, place, locRankCha, locRankCur, eng, rgncode, rgn, s, natRankCha, natRankCur, topics, wal, found, ladData, props;
-	var health, expand;
+	var health, expand, ladLoaded;
 
 	function cap(string) {
 		return string.charAt(0).toUpperCase() + string.slice(1);
@@ -52,6 +52,7 @@
 			delete d[""];
 		});
 		ladData = res
+		ladLoaded = true
 	});
 
 	// Data load functions
@@ -64,7 +65,7 @@
 
 		options = res.sort((a, b) => a.LAD21NM.localeCompare(b.LAD21NM));
 		let defaultLoc = options[Math.round(331*Math.random())]['LAD21NM']
-		defaultLoc = 'Cambridge';
+		// defaultLoc = 'Cambridge';
 
 		console.log(defaultLoc)
 		selected = options.find(d => d.LAD21NM == defaultLoc);
@@ -78,6 +79,16 @@
 			json.children = options.filter(d => d.parent == code);
 			json.siblings = options.filter(d => d.parent == json['parents'][0]['code']);
 			place = json;
+			rgncode = place.parents[0].code
+
+			fetch("https://raw.githubusercontent.com/theojolliffe/census-data/main/json/place/" + rgncode + ".json")
+			.then(res => res.json())
+			.then(json => {
+				json.children = options.filter(d => d.parent == code);
+				json.siblings = options.filter(d => d.parent == json['parents'][0]['code']);
+				rgn = json;
+				console.log('rgn', rgn)
+			})
 
 			// Define the word to describe population change in standfirst
 			if (place.data.population.value.change.all>8) {
@@ -104,20 +115,10 @@
 					e.pop()
 				}
 			});
-			rgncode = place.parents[0].code
 			locRankCha = s.map(d => parseInt(place.data[d[0]][d[1]+"_rank_local"][d[2]][d[3]]));
 			natRankCha = s.map(d => parseInt(place.data[d[0]][d[1]+"_rank"][d[2]][d[3]]));
 			locRankCur = s.map(d => parseInt(place.data[d[0]][d[1]+"_rank_local"]['2011'][d[3]]));
 			natRankCur = s.map(d => parseInt(place.data[d[0]][d[1]+"_rank"]['2011'][d[3]]));
-
-			fetch("https://raw.githubusercontent.com/theojolliffe/census-data/main/json/place/" + rgncode + ".json")
-			.then(res => res.json())
-			.then(json => {
-				json.children = options.filter(d => d.parent == code);
-				json.siblings = options.filter(d => d.parent == json['parents'][0]['code']);
-				rgn = json;
-			})
-
 
 		})
 		fetch("https://raw.githubusercontent.com/theojolliffe/census-data/main/json/place/E92000001.json")
@@ -185,7 +186,7 @@
 		})
 	}	
 
-	function results(place, topicsIn) {
+	function results(rgn, place, topicsIn) {
 		
 		var o = JSON.parse(JSON.stringify(topicsIn));
 		iterate(o, place.name)
@@ -434,6 +435,7 @@
 
 <div>
 	{#if place}
+		{#if ladLoaded}
 		{#if loaded}
 			{#if eng}	
 				{#if rgn}
@@ -450,7 +452,7 @@
 						</div>
 					</div>
 					<main>
-						{#each results(place, topics) as res, i (i)}
+						{#each results(rgn, place, topics) as res, i (i)}
 							<!-- {#if i<19} -->
 								{@html res}
 								<div style="width: 100%">
@@ -477,6 +479,7 @@
 					</main>
 				{/if}
 			{/if}
+		{/if}
 		{/if}
 	{/if}
 </div>

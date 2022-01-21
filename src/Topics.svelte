@@ -23,6 +23,7 @@
 		{"label": "Population", "value": "population_value_change"},
 		{"label": "Religion", "value": "religion_perc_change"},
 		{"label": "Tenure", "value": "tenure_perc_change"},
+		{"label": "Welsh", "value": "welsh_perc_change"},
 	]
 	// Switch off when timeout function and change selected to agemed when not developing
 	selected = topicOptions.find(d => d.value == "agemed_value_change")
@@ -49,7 +50,7 @@
 		'health_perc_change': [
 			{'label': 'All', 'value': 'all'},
 			{'label': 'Good', 'value': 'good'},
-			{'label': 'Fair', 'value': 'fair'},
+			// {'label': 'Fair', 'value': 'fair'},
 			{'label': 'Bad', 'value': 'bad'},
 		],
 		'hoursworked_perc_change': [
@@ -79,7 +80,7 @@
 		'population_value_change': false,
 		'religion_perc_change': [
 			{'label': 'All', 'value': 'all'},
-			{'label': 'Buddhist', 'value': 'Buddhist'},
+			// {'label': 'Buddhist', 'value': 'Buddhist'},
 			{'label': 'Christian', 'value': 'Christian'},
 			{'label': 'Hindu', 'value': 'Hindu'},
 			{'label': 'Jewish', 'value': 'Jewish'},
@@ -92,6 +93,7 @@
 			{'label': 'Private renting', 'value': 'rented_private'},
 			{'label': 'Social renting', 'value': 'rented_social'},
 		],
+		'welsh_perc_change': false,
 	}
 
 	var regionArr = ['E12000001',
