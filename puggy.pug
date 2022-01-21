@@ -53,6 +53,9 @@ mixin tenYears
 // Between the last two censuses, the average age in Manchester fell by two years, from 34 to 32 years of age.
 mixin sent1Age(i)
     p
+        - console.log("topics", topics)
+        - console.log("s", s)
+        - console.log("i", i)
         | Census 2021 data also shows a #[+value(topics[s[i][0]].synonym)].
         p
             | Between the last two censuses, the median age
@@ -114,7 +117,7 @@ mixin sent3Age(i)
     | . 
 
 mixin pc(x)
-    if (Math.abs(x)<10)
+    if (Math.abs(x)<20)
         | #[+value((x/100), {'FORMAT': '0.0%'})]
     else 
         | #[+value((x/100), {'FORMAT': '0%'})] 
@@ -256,11 +259,11 @@ mixin sent1Perc(i)
         else
             | increased 
         | from 
-        | #[+pc(figs(data[s[i][0]][s[i][1]][2001][s[i][3]])[1])]
+        | #[+pc(data[s[i][0]][s[i][1]][2001][s[i][3]])]
         if (i==1)
             | in 2011
         | to 
-        | #[+pc(figs(cur(s, place, i))[1])] 
+        | #[+pc(cur(s, place, i))] 
         if (i!=1)
             | #[+tenYears]
         | .
@@ -452,7 +455,7 @@ mixin considImprov(i)
             | The considerable improvement has brought health in 
             | #[+value(place.name)] close to 
         | the national average
-        | #[+pc((figs(eng.data[s[i][0]][s[i][1]][2011][s[i][3]])[1]))]
+        | #[+pc(eng.data[s[i][0]][s[i][1]][2011][s[i][3]])]
         | in #[+value(country)] described their health as good in 2021).
     else
         if (data[s[i][0]][s[i][1]][2011][s[i][3]]<(eng.data[s[i][0]][s[i][1]][2011][s[i][3]]-2))
@@ -467,7 +470,7 @@ mixin considImprov(i)
             | The considerable improvement has brought health in 
             | #[+value(place.name)] close to 
         | the regional average
-        | #[+pc((figs(rgn.data[s[i][0]][s[i][1]][2011][s[i][3]])[1]))]
+        | #[+pc(rgn.data[s[i][0]][s[i][1]][2011][s[i][3]])]
         | in #[+value(parent)] described their health as good in 2021).
 
 mixin healthExplain
@@ -516,10 +519,10 @@ mixin rank2(i)
     | In 2021,
     | #[+value(get_word((data[s[i][0]][s[i][1]][2011][s[i][3]])/100, 'frac')[0])]
     | #[+value(get_word((data[s[i][0]][s[i][1]][2011][s[i][3]])/100, 'frac')[1])]
-    | (#[+pc((figs(data[s[i][0]][s[i][1]][2011][s[i][3]])[1]))])  
+    | (#[+pc(data[s[i][0]][s[i][1]][2011][s[i][3]])])  
     | #[+value(topic(i, s[i][3]).verb_past)],
     | compared with
-    | #[+pc((figs(data[s[i][0]][s[i][1]][2001][s[i][3]])[1]))]
+    | #[+pc(data[s[i][0]][s[i][1]][2001][s[i][3]])]
     | in 2011. 
     | The percentage of
     | #[+value(topic(i, chains[s[i][3]][0]).clausal_modifier)] 
@@ -528,9 +531,9 @@ mixin rank2(i)
     else
         | increased
     | from 
-    | #[+pc((figs(data[s[i][0]][s[i][1]][2001][chains[s[i][3]][0]])[1]))]
+    | #[+pc(data[s[i][0]][s[i][1]][2001][chains[s[i][3]][0]])]
     | to 
-    | #[+pc((figs(data[s[i][0]][s[i][1]][2011][chains[s[i][3]][0]])[1]))]
+    | #[+pc(data[s[i][0]][s[i][1]][2011][chains[s[i][3]][0]])]
     | .
 
 mixin regional 
@@ -724,7 +727,7 @@ mixin difference(i, chain0_01, chain0_11, chain1_01, chain1_11)
         recordSaid('regDiff')
         - curDif = 'regDiff'
         if (Math.abs(cha(s, place, i))<1)
-            | , while the proportion #[+value(ud(cha(s, rgn, i), 'rose', 'fell'))] in
+            | , while the proportion #[+value(ud(cha(s, rgn, i), 'rose', 'fell'))] 
         else
             if (Math.abs(cha(s, place, i)) < Math.abs(cha(s, rgn, i)))
                 | but at a slower rate than
@@ -735,7 +738,7 @@ mixin difference(i, chain0_01, chain0_11, chain1_01, chain1_11)
         recordSaid('couDiff')
         - curDif = 'couDiff'
         if (Math.abs(cha(s, place, i))<1)
-            | , while the proportion #[+value(ud(cha(s, eng, i), 'rose', 'fell'))] in
+            | , while the proportion #[+value(ud(cha(s, eng, i), 'rose', 'fell'))] 
         else
             if (Math.abs(cha(s, place, i)) < Math.abs(cha(s, eng, i)))
                 | but at a slower rate than
@@ -1066,10 +1069,11 @@ mixin chartTitleOther(i)
             | The percentage of people across #[+value(parent)] that #[+value(topic(i).verb_past)]; March 2021
 
 mixin chartTitle(i)
-    if (stories[i].type.includes('size'))
-        | #[+chartTitleSize(i)]
-    else
-        | #[+chartTitleOther(i)]
+    if !(isTopic)
+        if (stories[i].type.includes('size'))
+            | #[+chartTitleSize(i)]
+        else
+            | #[+chartTitleOther(i)]
 
 
 -console.log("eng", eng)
