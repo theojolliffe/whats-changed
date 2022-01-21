@@ -156,7 +156,7 @@ mixin sent2pop(i)
         if ((lra<5) & (sign(lra, cha(s, place, i))))
             | the #[+value(ud(lra, (ord(Math.abs(lra))+"fastest-growing"), (ord(Math.abs(lra))+"most rapidly declining")))]
             | in #[+geog]
-            | #[+value((place.stories[i].value<(eng.data[s[i][0]][s[i][1]]['change'][s[i][3]]-1))?"but":"and")]
+            | #[+value((Math.sign(data[s[i][0]][s[i][1]+'_rank']['change'][s[i][3]])!=(Math.sign(data[s[i][0]][s[i][1]+'_rank_local']['change'][s[i][3]])))?"but":"and")]
         if (Math.abs(data[s[i][0]][s[i][1]+'_rank']['change'][s[i][3]])<20)
             if (Math.abs(data[s[i][0]][s[i][1]+'_rank']['change'][s[i][3]])>1)
                 | the #[+value(Math.abs(data[s[i][0]][s[i][1]+'_rank']['change'][s[i][3]]), {'ORDINAL_TEXTUAL':true})]
