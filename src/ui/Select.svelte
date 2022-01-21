@@ -1,6 +1,6 @@
 <script>
 	import { createEventDispatcher } from 'svelte';
-	
+	import { getData } from "../utils";
 	const dispatch = createEventDispatcher();
 	
 	export let options;
@@ -20,6 +20,16 @@
 	let el;
 	let input;
 	let items = [];
+	let classLU 
+
+	// Data load functions
+	getData("https://raw.githubusercontent.com/theojolliffe/census-data/main/csv/lists/Corresponding%20Local%20Authorities-Table%201.csv").then(res => {
+		res.forEach(d => {
+		});
+		classLU = res
+		console.log('classLUd', res)
+
+	});
 	
 	function sleep(ms) {
 		return new Promise(resolve => setTimeout(resolve, ms));
@@ -81,6 +91,7 @@
 			}
 		}
 	}
+	$: console.log('filtered', filtered)
 	
 	$: document.onclick = function(e){
 		if(e.target !== el){
@@ -236,8 +247,13 @@
 			<li>Type a name...</li>
 			{:else if filtered[0] && group}
 			{#each filtered as option, i}
+				{#if !(classLU.find(d => d.Name == option[label]))}
+					{console.log("--666-----option", option[label], classLU.find(d => d.Name == option[label]))}
+				{/if}
 			<li class:highlight="{active == i}" on:click="{() => select(option)}" on:mouseover="{() => active = i}" bind:this="{items[i]}">
-				{option[label]} <small>{option['LAD21CD']}</small>
+				{option[label]} <small>{
+					classLU.find(d => d.Name == option[label])['Supergroup name'] + ", " + classLU.find(d => d.Name == option[label])['Region/Country']
+					}</small>
 			</li>
 			{/each}
 			{:else if filtered[0]}
