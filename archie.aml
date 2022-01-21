@@ -73,7 +73,7 @@ health.good.clausal_modifier: {plcname} residents that describe their health as 
 health.fair.clausal_modifier: {plcname} residents that describe their health as fair
 health.bad.clausal_modifier: {plcname} residents that describe their health as bad
 
-ethnicity.white.clausal_modifier: {plcname} residents from one of the White ethnic groups
+ethnicity.white.clausal_modifier: {plcname} residents from one of a white ethnic groups
 ethnicity.black.clausal_modifier: {plcname} residents from one of the Black ethnic groups
 ethnicity.asian.clausal_modifier: {plcname} residents from one of the Asian ethnic groups
 
@@ -125,7 +125,7 @@ health.good.verb_past: said their health was good
 health.fair.verb_past: said their health was fair
 health.bad.verb_past: said their health was bad
 
-ethnicity.white.verb_past: said they were from the White ethnic group
+ethnicity.white.verb_past: said they were from a white ethnic group
 ethnicity.black.verb_past: said they were from a Black ethnic group
 ethnicity.asian.verb_past: said they were from an Asian ethnic group
 
@@ -175,7 +175,7 @@ health.good.adj_noun: residents who perceive their health as good
 health.fair.adj_noun: people that described their health as fair
 health.bad.adj_noun: residents who perceive their health as poor
 
-ethnicity.white.adj_noun: residents from the White ethnic group
+ethnicity.white.adj_noun: residents from a white ethnic group
 ethnicity.black.adj_noun: residents from a Black ethnic group
 ethnicity.asian.adj_noun: residents from an Asian ethnic group
 
@@ -273,8 +273,8 @@ health.bad.subhead.pos: Health deteriorates
 health.bad.subhead.neg: Health improves
 health.bad.subhead.neu: Change in health
 health.bad.subhead.buc: {plcname} reverses trend for health
-ethnicity.white.subhead.pos: More residents from the White ethnic group
-ethnicity.white.subhead.neg: Fewer residents from the White ethnic group
+ethnicity.white.subhead.pos: More residents from a white ethnic group
+ethnicity.white.subhead.neg: Fewer residents from a white ethnic group
 ethnicity.white.subhead.neu: Change in ethnic makeup
 ethnicity.white.subhead.buc: {plcname} reverses trend for ethnicity
 ethnicity.black.subhead.pos: More residents from a Black ethnic group
@@ -388,7 +388,7 @@ health.good.topic: the percentage of healthy people
 health.fair.topic: the percentage of fairly healthy people
 health.bad.topic: the percentage of unhealthy people
 
-ethnicity.white.topic: the proportion of people from the White ethnic group
+ethnicity.white.topic: the proportion of people from a white ethnic group
 ethnicity.black.topic: the proportion of people from a Black ethnic group
 ethnicity.asian.topic: the proportion of people from an Asian ethnic group
 
@@ -434,7 +434,7 @@ health.good.adj_noun_s: people describing their health as good
 health.fair.adj_noun_s: fairly healthy residents
 health.bad.adj_noun_s: people describing their health as bad
 
-ethnicity.white.adj_noun_s: people from the White ethnic group
+ethnicity.white.adj_noun_s: people from a white ethnic group
 ethnicity.black.adj_noun_s: people from a Black ethnic group
 ethnicity.asian.adj_noun_s: people from an Asian ethnic group
 
