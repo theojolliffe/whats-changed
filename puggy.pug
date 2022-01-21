@@ -1,7 +1,9 @@
 
 // Population passes half a million
 mixin subheadVal(i)
-    if (cha(s, place, i)<0)
+    if (Math.round(data[s[i][0]][s[i][1]][2001][s[i][3]]/1000) == Math.round(data[s[i][0]][s[i][1]][2011][s[i][3]]/1000))
+        | Population plateaus
+    else if (cha(s, place, i)<0)
         | Population drops
     else if ((data[s[i][0]][s[i][1]]['2001'][s[i][3]]<100000)&(data[s[i][0]][s[i][1]]['2011'][s[i][3]]>100000))
         | Population passes #[+value(100000)]
@@ -127,11 +129,14 @@ mixin sent1pop(i)
     | #[+tenYears],
     | the #[+value(topics[s[0][0]].general)]
     | of #[+value(place.name)]
-    | #[+value(ud(cha(s, place, i), 'rose', 'fell by'))]
-    | #[+pc(Math.abs(data[s[i][0]][s[i][1]]['change'][s[i][3]]))]
-    | from #[+value(figs(data[s[i][0]][s[i][1]][2001][s[i][3]], 3)[0])]
-    | #[+value(figs(data[s[i][0]][s[i][1]][2001][s[i][3]], 3)[1])]
-    | to #[+value(figs(data[s[i][0]][s[i][1]][2011][s[i][3]], 3)[1])].
+    if (Math.round(data[s[i][0]][s[i][1]][2001][s[i][3]]/1000) == Math.round(data[s[i][0]][s[i][1]][2011][s[i][3]]/1000))
+        | remained close to #[+value(figs(data[s[i][0]][s[i][1]][2011][s[i][3]], 3)[1])].
+    else
+        | #[+value(ud(cha(s, place, i), 'rose', 'fell by'))]
+        | #[+pc(Math.abs(data[s[i][0]][s[i][1]]['change'][s[i][3]]))]
+        | from #[+value(figs(data[s[i][0]][s[i][1]][2001][s[i][3]], 3)[0])]
+        | #[+value(figs(data[s[i][0]][s[i][1]][2001][s[i][3]], 3)[1])]
+        | to #[+value(figs(data[s[i][0]][s[i][1]][2011][s[i][3]], 3)[1])].
 
 mixin geog 
     if (country=="Wales")
