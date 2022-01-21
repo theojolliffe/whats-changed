@@ -199,9 +199,8 @@
 			}
 			return o[s[i][0]][ttop]
 		}
+		console.log("topics", o)
 
-
-		
 		let res = rosaenlg_en_US.render(puggy, {
 			language: 'en_UK',
 			place: place,

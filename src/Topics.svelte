@@ -359,7 +359,7 @@
 			adv: adv,
 			uds: uds,
 			pluralize: pluralize,
-			topics: true
+			isTopic: true
 		})
 	}
 
