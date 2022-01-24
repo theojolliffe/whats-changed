@@ -1,16 +1,36 @@
 <script>
-	import { uds, adv, udord, sign, nuword, eq, ageBandLU, ord, uncap1, getData, regionThe, drop, ud, otherRank, otherEst, qui, cha, cur, figs, get_word, city, chains } from "./utils";
+	import { uds, adv, udord, sign, nuword, eq, ageBandLU, ord, uncap1, getData, regionThe, drop, ud, otherRank, otherEst, qui, cha, cur, figs, get_word, city, chains, prev } from "./utils";
 	import Select from "./ui/Select.svelte";
 	import { load } from "archieml"; 
 	import { onMount } from 'svelte';
 	import robojournalist from 'robojournalist';
 	import pluralize from 'pluralize';
+	import Fuse from 'fuse.js'
 	import { LineChart, ScatterChart, ColumnChart } from '@onsvisual/svelte-charts';
 	import DotPlotChart from './charts/DotPlotChart.svelte';
 
+	function fuzz(w1, w2) {
+		const options = {
+			includeScore: true
+		}
+		const fuse = new Fuse([w1], options)
+		const result = fuse.search(w2)
+		if (result.length>0) {
+			return false
+		} else {
+			return true
+		}
+	}
+	console.log('fuzzyzyz', fuzz("Greater Manchester", "Manchester"))
 
 	var options, selected, place, locRankCha, locRankCur, eng, rgncode, rgn, s, natRankCha, natRankCur, topics, wal, found, ladData, props;
-	var health, expand, ladLoaded;
+	var health, expand, ladLoaded, cou;
+
+	const findOne = (haystack, arr) => {
+		return arr.some(v => haystack.includes(v));
+	};
+
+	console.log('findOne', findOne([1, 2, 3], [3]))
 
 	function cap(string) {
 		return string.charAt(0).toUpperCase() + string.slice(1);
@@ -55,6 +75,26 @@
 		ladLoaded = true
 	});
 
+
+	var regionLU = {};
+	// Data load functions
+	getData("https://raw.githubusercontent.com/theojolliffe/census-data/main/csv/lists/Corresponding%20Local%20Authorities-Table%201.csv").then(res => {
+		res.forEach(d => {
+			regionLU[d['Name']] = d['Region/Country'];
+		});
+		console.log("regionLU", regionLU)
+	});
+
+	var countyLU = {};
+	// Data load functions
+	getData("https://raw.githubusercontent.com/theojolliffe/census-data/main/csv/lists/Local_Authority_District_to_County_(April_2021)_Lookup_in_England.csv").then(res => {
+		res.forEach(d => {
+			countyLU[d['LAD21NM']] = d['CTY21NM'];
+		});
+		console.log("countyLU", countyLU)
+	});
+
+
 	// Data load functions
 	getData("https://raw.githubusercontent.com/theojolliffe/census-data/main/csv/lists/Local_Authority_Districts_(May_2021)_UK_BFE_V3.csv").then(res => {
 		res.forEach(d => {
@@ -65,7 +105,7 @@
 
 		options = res.sort((a, b) => a.LAD21NM.localeCompare(b.LAD21NM));
 		let defaultLoc = options[Math.round(331*Math.random())]['LAD21NM']
-		defaultLoc = 'Blackpool';
+		defaultLoc = 'Barking and Dagenham';
 
 		console.log(defaultLoc)
 		selected = options.find(d => d.LAD21NM == defaultLoc);
@@ -201,15 +241,18 @@
 			return o[s[i][0]][ttop]
 		}
 		console.log("topics", o)
+		cou = place.parents[0].name=="Wales"?wal:eng
 
 		let res = rosaenlg_en_US.render(puggy, {
 			language: 'en_UK',
 			place: place,
 			data: place.data,
-			cou: place.parents[0].name=="Wales"?wal:eng,
+			cou: cou,
 			// replace eng with country data (inc Wales)
 			eng: eng,
 			rgn: rgn,
+			uncap1: uncap1,
+			regionThe: regionThe,
 			parent: uncap1(regionThe(place.parents[0].name)),
 			parentNT: uncap1(regionThe(place.parents[0].name, "NT")),
 			s: s,
@@ -247,7 +290,12 @@
 			adv: adv,
 			uds: uds,
 			more: more,
-			pluralize, pluralize
+			pluralize, pluralize,
+			countyLU: countyLU,
+			fuzz: fuzz,
+			prev: prev,
+			regionLU: regionLU,
+			findOne: findOne
 		})
 		return res.split(`<div id="esc123"></div>`)
 
@@ -298,8 +346,6 @@
 	}
 
 	function makeProps(i) {
-		console.log('i', i)
-		console.log('place.stories', place.stories)
 		let s = place.stories[i].label.split("_")
 			if (s.length>4) {
 				s[3] = s[3]+"_"+s[4]
@@ -380,10 +426,11 @@
 			// ScatterChart
 			var chartdata
 			if (s[0]=="population") {
-				chartdata = ladData.filter(d => (d['parent']==place.parents[0].name)&(d.topic == "density_all"))
-			} else {
-				chartdata = ladData.filter(d => (d['parent']==place.parents[0].name)&(d.topic == s[0]+"_"+s[3]))
+				s[0] = 'density';
+				s[3] = 'all';
 			}
+			chartdata = ladData.filter(d => (d['parent']==place.parents[0].name)&(d.topic == s[0]+"_"+s[3]))
+			
 			chartdata = chartdata.map(d => ({ 'change': d['change'], 'value': (s[0]=="population")? 0.714*parseFloat(d[2011]) : parseFloat(d[2011]), 'unique': d['lad'], 'id': d['parent']}))
 			chartdata.forEach((item, i) => {
 				if (item.unique==place.name) {
@@ -394,6 +441,14 @@
 					item.id = "Rest of England"
 				}
 			})
+			chartdata.push({
+				change: +cou.data[s[0]][s[1]]['change'][s[3]],
+				value: +cou.data[s[0]][s[1]]['2011'][s[3]],
+				unique: 'Average across ' + cou.name, 
+				id: 'Average across ' + cou.name, 
+			})
+
+			console.log('chartdata', chartdata)
 			return props = {
 				mode: "stacked",
 				line: false,
@@ -475,6 +530,7 @@
 						<hr/>
 						<h2 id="create">Creating this article</h2>
 						<p>This article was generated using some automation. Topics are selected based on the most notable changes seen in each local authority.</p>
+						<p>Notable changes include a high percentage point shift, a pattern of change that differs from the pattern seen at the regional or national level, and the shifting of a variable for which the area ranks considerably high or low.</p>
 						<div style="height:200px"></div>
 					</main>
 				{/if}

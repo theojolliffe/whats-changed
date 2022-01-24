@@ -1,14 +1,32 @@
 <script>
-	import { uds, adv, eq, udord, sign, nuword, ageBandLU, ord, uncap1, regionThe, drop, ud, otherRank, otherEst, qui, cha, cur, figs, get_word, city,  chains } from "./utils";
+	import { uds, adv, eq, udord, sign, nuword, ageBandLU, ord, uncap1, regionThe, drop, ud, otherRank, otherEst, qui, cha, cur, figs, get_word, city, chains, prev, getData} from "./utils";
 	import Select from "./ui/Select.svelte";
 	import Selectb from "./ui/SelectB.svelte";
 	import { load } from "archieml"; //this is the parser from ArchieML to JSON
 	import robojournalist from 'robojournalist';
 	import pluralize from 'pluralize';
+	import Fuse from 'fuse.js'
 
 	var wal, selected, selectedb, quartiles, locRankCha, locRankCur, eng, rgncode, rgnLoad, natRankCha, natRankCur, topics, topic;
 	var health, expand;
 	var findst = false
+
+	function fuzz(w1, w2) {
+		const options = {
+			includeScore: true
+		}
+		const fuse = new Fuse([w1], options)
+		const result = fuse.search(w2)
+		if (result.length>0) {
+			return false
+		} else {
+			return true
+		}
+	}
+
+	const findOne = (haystack, arr) => {
+		return arr.some(v => haystack.includes(v));
+	};
 
 	let topicOptions = [
 		{"label": "Average age", "value": "agemed_value_change"},
@@ -30,6 +48,25 @@
 	// setTimeout(function() {
 	// 	loadTopic(selected.value)
 	// }, 6000);
+
+
+	var regionLU = {};
+	// Data load functions
+	getData("https://raw.githubusercontent.com/theojolliffe/census-data/main/csv/lists/Corresponding%20Local%20Authorities-Table%201.csv").then(res => {
+		res.forEach(d => {
+			regionLU[d['Name']] = d['Region/Country'];
+		});
+		console.log("regionLU", regionLU)
+	});
+
+	var countyLU = {};
+	// Data load functions
+	getData("https://raw.githubusercontent.com/theojolliffe/census-data/main/csv/lists/Local_Authority_District_to_County_(April_2021)_Lookup_in_England.csv").then(res => {
+		res.forEach(d => {
+			countyLU[d['LAD21NM']] = d['CTY21NM'];
+		});
+		console.log("countyLU", countyLU)
+	});
 
 	console.log('topicOptions', topicOptions)
 	var subTopicOpt = {
@@ -325,6 +362,8 @@
 			cou: place.parents[0].name=="Wales"?wal:eng,
 			eng: eng,
 			rgn: rgn,
+			uncap1: uncap1,
+			regionThe: regionThe,
 			parent: uncap1(regionThe(place.parents[0].name)),
 			parentNT: uncap1(regionThe(place.parents[0].name, "NT")),
 			s: s,
@@ -361,7 +400,12 @@
 			adv: adv,
 			uds: uds,
 			pluralize: pluralize,
-			isTopic: true
+			isTopic: true,
+			countyLU: countyLU,
+			regionLU: regionLU,
+			fuzz: fuzz,
+			prev: prev,
+			findOne: findOne,
 		})
 	}
 

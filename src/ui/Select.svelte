@@ -27,8 +27,6 @@
 		res.forEach(d => {
 		});
 		classLU = res
-		console.log('classLUd', res)
-
 	});
 	
 	function sleep(ms) {
@@ -91,7 +89,6 @@
 			}
 		}
 	}
-	$: console.log('filtered', filtered)
 	
 	$: document.onclick = function(e){
 		if(e.target !== el){

@@ -133,6 +133,16 @@ function figs(x, f) {
 }
 
 
+function prev(s, place, i, type) {
+  if (type=="rl") {
+    type = "_rank_local"
+  } else if (type=="r") {
+    type = "_rank"
+  } else {
+    type = ""
+  }
+  return place.data[s[i][0]][s[i][1]+type][2001][s[i][3]]
+}
 function cur(s, place, i, type) {
   if (type=="rl") {
     type = "_rank_local"
@@ -153,7 +163,6 @@ function cha(s, place, i, type) {
     type = ""
   }
   let out
-  console.log('placecha', place)
   try {
     out = Math.round(place.data[s[i][0]][s[i][1]+type]['change'][s[i][3]]*10)/10
   }
@@ -322,4 +331,4 @@ function uds(n, w1, w2, w3) {
     }
   }
 
-export { uds, adv, udord, sign, nuword, eq, ageBandLU, uncap1, getData, regionThe, drop, ud, otherRank, otherEst, qui, cha, cur, figs, get_word, city, ord, chains };
+export { uds, adv, udord, sign, nuword, eq, ageBandLU, uncap1, getData, regionThe, drop, ud, otherRank, otherEst, qui, cha, cur, figs, get_word, city, ord, chains, prev };

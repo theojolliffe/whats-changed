@@ -24,10 +24,14 @@
     "archieml": "^0.5.0",
     "d3": "^7.1.1",
     "d3-dsv": "^3.0.1",
+    "fast-fuzzy": "^1.11.1",
+    "fuse.js": "^6.5.3",
+    "fuzzy-matching": "^0.4.3",
     "gh-pages": "^3.2.3",
     "pluralize": "^8.0.0",
     "pug-load": "^3.0.0",
     "robojournalist": "0.0.5",
-    "sirv-cli": "^1.0.0"
+    "sirv-cli": "^1.0.0",
+    "svelte-fuzzy": "^2.1.0"
   }
 }
