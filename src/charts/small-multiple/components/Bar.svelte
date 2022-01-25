@@ -8,8 +8,6 @@
 
     let hov
     function doHover(e, d) {
-        console.log('e', e)
-        console.log('d', d)
         // hovered = d ? d : null;
         hov = d
         dispatch('hover', {
@@ -18,7 +16,6 @@
             event: e
         });
 	}
-    $: console.log('label', hovered) 
 </script>
 
 <g class="bar-group">
@@ -28,13 +25,13 @@
                 class='group-rect'
                 data-id="{i}"
                 x="{$xScale.range()[0]}"
-                y="{(j % 2 == 0)? $yGet(d) : $yGet(d) + 14 }"
+                y="{(j % 2 == 0)? $yGet(d) : $yGet(d) + 12 }"
                 rx="{5}"
-                height={$yScale.bandwidth()/2.5}
+                height={$yScale.bandwidth()/2.3}
                 width="{$xGet(d)}"
-                fill = "{(j % 2 == 0)? '#3C388E' : '#DF0667' }"
+                fill = "{(j % 2 == 0)? '#DF0667' : '#3C388E' }"
                 stroke="{d == hov ? 'orange' : 'white' }"
-                stroke-width= "2"
+                stroke-width= "{d == hov ? '3' : '2' }"
                 on:mouseover={el => doHover(el, d)}
                 on:mouseleave={e => doHover(e, null)}
             ></rect>

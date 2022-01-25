@@ -361,15 +361,15 @@
 				return a
 			}
 			let chartData = [
-				[dtrans(cou.data.age10yr.perc['2001'], 2011), dtrans(cou.data.age10yr.perc['2011'], 2021)],
-				[dtrans(rgn.data.age10yr.perc['2001'], 2011), dtrans(rgn.data.age10yr.perc['2011'], 2021)],
 				[dtrans(place.data.age10yr.perc['2001'], 2011), dtrans(place.data.age10yr.perc['2011'], 2021)],
+				[dtrans(rgn.data.age10yr.perc['2001'], 2011), dtrans(rgn.data.age10yr.perc['2011'], 2021)],
+				[dtrans(cou.data.age10yr.perc['2001'], 2011), dtrans(cou.data.age10yr.perc['2011'], 2021)],
 			]
 			let props ={
 						legend: true,
 						height: 120,
 						chartData: chartData,
-						labels: [place.name, cou.name, rgn.name],
+						labels: [place.name, rgn.name, cou.name],
 						xKey: "value",
 						yKey: "year"
 					}

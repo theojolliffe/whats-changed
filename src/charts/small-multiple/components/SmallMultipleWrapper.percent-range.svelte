@@ -23,10 +23,8 @@
 
   const extents = calcExtents(data, extentGetters);
 
-  console.log('groupeddata', data) 
 
   function doHoverAge(e) {
-    console.log('in the bar', e)
 
 		hovered = e.detail.id;
     ageLabel = e

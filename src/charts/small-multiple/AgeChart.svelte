@@ -39,7 +39,7 @@
   {/each}
 </div>
 
-<Legend domain={[2011, 2021]} colors={['#3C388E', '#DF0667']}/>
+<Legend domain={[2011, 2021]} colors={['#DF0667', '#3C388E']}/>
 
 
 <style>
