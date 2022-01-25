@@ -7,6 +7,7 @@
 	import pluralize from 'pluralize';
 	import Fuse from 'fuse.js'
 	import { LineChart, ScatterChart, ColumnChart } from '@onsvisual/svelte-charts';
+	import AgeChart from './charts/small-multiple/AgeChart.svelte';
 	import DotPlotChart from './charts/DotPlotChart.svelte';
 
 	function fuzz(w1, w2) {
@@ -351,7 +352,31 @@
 				s[3] = s[3]+"_"+s[4]
 				s.pop()
 			}
-		if (place.stories[i].type.includes('size')) {
+		if (s[0]=="agemed") {
+			function dtrans(d, g) {
+				let a = []
+				Object.keys(d).forEach(e => {
+					a.push({'x': e, 'y': d[e], 'g': g})
+				});
+				return a
+			}
+			let chartData = [
+				[dtrans(cou.data.age10yr.perc['2001'], 2011), dtrans(cou.data.age10yr.perc['2011'], 2021)],
+				[dtrans(rgn.data.age10yr.perc['2001'], 2011), dtrans(rgn.data.age10yr.perc['2011'], 2021)],
+				[dtrans(place.data.age10yr.perc['2001'], 2011), dtrans(place.data.age10yr.perc['2011'], 2021)],
+			]
+			let props ={
+						legend: true,
+						height: 120,
+						chartData: chartData,
+						labels: [place.name, cou.name, rgn.name],
+						xKey: "value",
+						yKey: "year"
+					}
+			console.log('props', props)
+			return props
+		}
+		else if (place.stories[i].type.includes('size')) {
 			if (s[0]=="population") {
 				if (rgn.name == 'Wales') {
 					return {
@@ -468,7 +493,10 @@
 			s[3] = s[3]+"_"+s[4]
 			s.pop()
 		}		
-		if (place.stories[i].type.includes('size')) {
+		if (s[0]=='agemed') {
+			return AgeChart
+		}
+		else if (place.stories[i].type.includes('size')) {
 			return DotPlotChart
 		} else {
 			// LINECHART
