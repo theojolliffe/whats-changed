@@ -107,7 +107,7 @@ mixin sent2Age(i)
 
 // The drop in age was largely driven by an increase of nearly 50,000 people between the ages of 20 and 29 years, while the population over the age of 70 years decreased by almost two thousand.
 mixin sent3Age(i)
-    | The #[+value(ud(agediff, 'rise', 'drop'))] in age was largely driven by an increase of 
+    | The #[+value(ud(agediff, 'rise', 'drop'))] in age was because of an increase of 
     | #[+value(figs(data.age10yr.absChange['pos'][0][1])[0])]  
     | #[+value(figs(data.age10yr.absChange['pos'][0][1])[1])]  
     | #[+value(ageBandLU[data.age10yr.absChange['pos'][0][0]][0])]
@@ -116,6 +116,12 @@ mixin sent3Age(i)
         | #[+value(figs(data.age10yr.absChange['neg'][0][1])[0])]  
         | #[+value(Math.abs(figs(data.age10yr.absChange['neg'][0][1])[1]))]  
     | . 
+
+mixin rou(x)
+    if (Math.abs(x)<20)
+        | #[+value(Math.round(x*10)/10)]
+    else 
+        | #[+value(Math.round(x))]
 
 mixin pc(x)
     if (Math.abs(x)<20)
@@ -507,7 +513,7 @@ mixin healthExplain
 //- Private renting rose in Maldon, but at a slower rate than all other local authorities in East England, except Luton and Watford.
 mixin butSlower(i, loc)
     p 
-        | #[+value(topic(i, s[i][3]).topic)] 
+        | #[+value(topic(i, s[i][3]).sample)] 
         | #[+value(ud(cha(s, place, i), 'rose', 'fell'))]
         | in #[+value(place.name)], but at
         if (data[s[i][0]][s[i][1]+'_rank'+loc][s[i][2]][s[i][3]]>3)|(rgn.name=="Wales")
@@ -710,7 +716,7 @@ mixin ppoint
 
 mixin sent2Diff(i, chain0_01, chain0_11, chain1_01, chain1_11)
     - console.log('chain0_01', chain0_01)
-    | #[+value(topic(i, chains[s[i][3]][0]).topic)] in 
+    | #[+value(topic(i, chains[s[i][3]][0]).sample)] in 
     | #[+value(place.name)]
     if (Math.round(chain0_11)==Math.round(chain0_01))
         | remained close to #[+pc((chain0_11))]
@@ -721,7 +727,7 @@ mixin sent2Diff(i, chain0_01, chain0_11, chain1_01, chain1_11)
         | to 
         | #[+pc(chain0_11)]
     if (chains[s[i][3]].length>1)
-        | , while #[+value(topic(i, chains[s[i][3]][1]).topic)]
+        | , while #[+value(topic(i, chains[s[i][3]][1]).sample)]
         if (Math.round(chain1_11*10)/10==Math.round(chain1_01*10)/10)
             | remained close to #[+pc((chain1_11))]
         else
@@ -1088,7 +1094,7 @@ mixin chartTitleSize(i)
             | #[+value(uds(data.density.value.change.all-rgn.data.density.value.change.all, "faster rate than", "slower rate than", "similar rate to"))]
             | #[+value(parent)]
         h5 
-            | Population density (usual residents per 7,140 square metres) across #[+value(place.name)], #[+value((country=="Wales")?simi.name:parent)] and #[+value(country)]; March 2011, March 2021
+            | Population density (usual residents per 7,140 square metres) across #[+value(place.name)], #[+value((country=="Wales")?simi.name:parent)] and #[+value(country)], March 2011, March 2021
     else if (s[i][0]=="agemed")
         h4 
             | The proportion aged
@@ -1097,16 +1103,18 @@ mixin chartTitleSize(i)
             | #[+value(data.age10yr.perc.change[data.age10yr.absChange['pos'][0][0]], {'FORMAT': '0.0'})]
             |  #[+ppoint]
         h5 
-            | The percentage of #[+value(topics[s[i][0]].measure)] in #[+value(place.name)] by 10 year age band; March 2011, March 2021
+            | The percentage of #[+value(topics[s[i][0]].measure)] in #[+value(place.name)] by 10 year age band, March 2011, March 2021
     else
         h4 
-            | #[+value(topic(i).topic)] in 
+            - console.log(topic)
+            - console.log(topic(i))
+            | #[+value(topic(i).sample)] in 
             | #[+value(place.name)]
             | #[+value((cha(s, place, i)<0)?"decreased":"increased")] by
-            | #[+value(Math.abs(cha(s, place, i)))]
+            | #[+rou(Math.abs(cha(s, place, i)))]
             | #[+ppoint]
         h5 
-            | The percentage of #[+value(topics[s[i][0]].measure)] living in #[+value(place.name)], #[+value(parent)] and #[+value(country)] that #[+value(topic(i).verb_past)]; March 2011, March 2021
+            | The percentage of #[+value(topics[s[i][0]].measure)] in #[+value(place.name)], #[+value(parent)] and #[+value(country)] that #[+value(topic(i).verb_past)], March 2011, March 2021
 
 mixin chartTitleOther(i)
     if (s[i][0]=="population")
@@ -1115,22 +1123,28 @@ mixin chartTitleOther(i)
             | #[+value(uds(data.density.value[2011].all-rgn.data.density.value[2011].all, "higher than", "lower than", "similar to"))]
             | the average across #[+value(parent)]
         h5 
-            | Population density (usual residents per #[+value(7140)] square metres) across #[+value(parent)]; March 2021 (dot size represents change since 2011)
+            | Population density (usual residents per #[+value(7140)] square metres) across #[+value(parent)], March 2021 (larger dots represent greater positive change since 2011)
     else if (s[i][0]=="agemed")
         h4 
-            | The proportion aged
-            | #[+value(ageBandLU[data.age10yr.absChange['pos'][0][0]][1])]
-            | #[+value((cha(s, place, i)<0)?"decreased":"increased")] by
-            | #[+value(data.age10yr.perc.change[data.age10yr.absChange['pos'][0][0]], {'FORMAT': '0.0'})]
-            |  #[+ppoint]
+            - let agegroup = data.age10yr.absChange['pos'][0][0]
+            | A 
+            if (Math.round(place.data.age10yr.perc[2011][agegroup]) == Math.round(rgn.data.age10yr.perc[2011][agegroup]) ) 
+                | similar 
+            else if (place.data.age10yr.perc[2011][agegroup] > rgn.data.age10yr.perc[2011][agegroup] ) 
+                | higher 
+            else 
+                | lower
+            | proportion of !{place.name}'s population are 
+            | #[+value(ageBandLU[agegroup][1])]
+            | compared with the average across !{rgn.name}
         h5 
-            | The percentage of #[+value(topics[s[i][0]].measure)] in #[+value(place.name)] by 10 year age band; March 2011, March 2021
+            | The percentage of #[+value(topics[s[i][0]].measure)] in #[+value(place.name)] by 10 year age band, March 2011, March 2021
     else
         h4 
-            | #[+value(topic(i).topic)] 
+            | #[+value(topic(i).sample)] 
             | #[+value((cur(s, place, i)-cur(s, rgn, i)<0)?"is lower than":"is higher than")] across #[+value(parent)]
         h5 
-            | The percentage of #[+value(topics[s[i][0]].measure)] across #[+value(parent)] that #[+value(topic(i).verb_past)]; March 2021
+            | The percentage of #[+value(topics[s[i][0]].measure)] across #[+value(parent)] that #[+value(topic(i).verb_past)], March 2021
 
 mixin chartTitle(i)
     if !(isTopic)

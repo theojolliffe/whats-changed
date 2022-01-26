@@ -18,29 +18,7 @@ mixin coincide
             | This coincided with 
         syn 
             | At the same time there were
-    if (changeMag>40)
-        | changes to the
-    else if (changeMag>30)
-        | changes to the
-    else 
-        synz 
-            syn
-                | shift in the
-            syn 
-                | change in the
-    synz
-        syn
-            | area's
-        syn
-            if (place.gss)
-                | #[+value(place.gss.short)]'s
-            else
-                | area's
-        syn 
-            if (place.classification)
-                | #[+value(place.classification)]'s
-            else
-                | area's
+    | changes in
 
 mixin standfirst1
     - console.log('sf', sf)
