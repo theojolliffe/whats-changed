@@ -106,7 +106,7 @@
 
 		options = res.sort((a, b) => a.LAD21NM.localeCompare(b.LAD21NM));
 		let defaultLoc = options[Math.round(331*Math.random())]['LAD21NM']
-		defaultLoc = 'Barking and Dagenham';
+		// defaultLoc = 'Barking and Dagenham';
 
 		console.log(defaultLoc)
 		selected = options.find(d => d.LAD21NM == defaultLoc);
@@ -456,7 +456,7 @@
 			}
 			chartdata = ladData.filter(d => (d['parent']==place.parents[0].name)&(d.topic == s[0]+"_"+s[3]))
 			
-			chartdata = chartdata.map(d => ({ 'change': d['change'], 'value': (s[0]=="population")? 0.714*parseFloat(d[2011]) : parseFloat(d[2011]), 'unique': d['lad'], 'id': d['parent']}))
+			chartdata = chartdata.map(d => ({ 'change': d['change'], 'value': (s[0]=="density")? 0.714*parseFloat(d[2011]) : parseFloat(d[2011]), 'unique': d['lad'], 'id': d['parent']}))
 			chartdata.forEach((item, i) => {
 				if (item.unique==place.name) {
 					item.id = place.name
