@@ -106,7 +106,7 @@
 
 		options = res.sort((a, b) => a.LAD21NM.localeCompare(b.LAD21NM));
 		let defaultLoc = options[Math.round(331*Math.random())]['LAD21NM']
-		// defaultLoc = 'Barking and Dagenham';
+		defaultLoc = 'Derby';
 
 		console.log(defaultLoc)
 		selected = options.find(d => d.LAD21NM == defaultLoc);
@@ -433,7 +433,7 @@
 								2021: eng.data[s[0]][s[1]][2011][s[3]],
 							},
 							{
-								label: cap(uncap1(regionThe(place.parents[0].name))),
+								label: place.parents[0].name,
 								2011: rgn.data[s[0]][s[1]][2001][s[3]], 
 								2021: rgn.data[s[0]][s[1]][2011][s[3]]
 							},

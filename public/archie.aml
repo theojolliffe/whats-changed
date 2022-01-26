@@ -257,6 +257,56 @@ hoursworked.Female49plus.adj_noun: people working long hours
 hoursworked.Male1-15.adj_noun: people working less than 16 hours in a week
 hoursworked.Male49plus.adj_noun: people working long hours 
 
+
+
+children.Kids.verb: homes with children
+children.NoKids.verb: homes without children
+children.NonDepKids.verb: homes with adult children living with their parents
+
+care.1to19hoursWeek.verb: said they provide up to 19 hours of weekly care
+care.20to49hoursWeek.verb: said they provide between 20 and 49 hours of weekly care
+care.40PlushoursWeek.verb: said they provide 50 hours, or more, of weekly care
+
+marital.Single.verb: said they were single
+marital.Married.verb: said they are married
+marital.Seperated.verb: said they have separated
+
+tenure.rented_private.verb: private renters
+tenure.rented_social.verb: people living in social housing
+tenure.owned.verb: said they own their home
+
+health.good.verb: that perceive their health as good
+health.fair.verb: that described their health as fair
+health.bad.verb: that perceive their health as poor
+
+ethnicity.white.verb: from a White ethnic group
+ethnicity.black.verb: from a Black ethnic group
+ethnicity.asian.verb: from an Asian ethnic group
+
+economic.employee.verb: employed people
+economic.inactive.verb: people who are not working or actively seeking work
+economic.self-employed.verb: self-employed people
+economic.unemployed.verb: unemployed people
+economic.student.verb: students
+
+household.Cohabiting.verb: households with an unmarried couple
+household.LoneParent.verb: single parent households
+household.OnePerson.verb: single person households
+household.Married.verb: households with a married couple
+
+religion.Christian.verb: describe themselves as Christian
+religion.Buddhist.verb: describe themselves as Buddhist
+religion.Hindu.verb: describe themselves as Hindu
+religion.Sikh.verb: describe themselves as Sikh
+religion.Jewish.verb: describe themselves as Jewish
+religion.Muslim.verb: describe themselves as Muslim
+religion.Noreligion.verb: describe themselves as non-religious
+
+hoursworked.Female1-15.verb: working less than 16 hours in a week
+hoursworked.Female49plus.verb: working long hours
+hoursworked.Male1-15.verb: working less than 16 hours in a week
+hoursworked.Male49plus.verb: working long hours 
+
 // The percentage of ***healthy residents*** is increasing faster here than in any other local authority district across England.
 
 welsh.SpeaksWelsh.subhead.pos: Higher proportion of Welsh speakers
@@ -585,3 +635,17 @@ hoursworked.measure: usual residents aged 16 to 74 (in employment the week befor
 marital.measure: usual residents aged 16 and over
 population.measure: usual residents
 agemed.measure: usual residents
+
+tenure.measure_s: households
+welsh.measure_s: people aged three and over
+health.measure_s: people
+ethnicity.measure_s: people
+economic.measure_s: people aged 16 to 74
+household.measure_s: households
+religion.measure_s: people
+care.measure_s: people
+children.measure_s: households
+hoursworked.measure_s: people aged 16 to 74 (in employment the week before the census)
+marital.measure_s: people aged 16 and over
+population.measure_s: people
+agemed.measure_s: people
