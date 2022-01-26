@@ -539,7 +539,7 @@ mixin rank1reg(i)
         | This area saw #[+value(parent)]'s 
         | #[+value(drop(data[s[i][0]][s[i][1]+'_rank_local'][s[i][2]][s[i][3]], 'largest drop', 'largest rise'))]
         | in the proportion of #[+value(topic(i, s[i][3]).adj_noun)].
-        | #[+acrossRegion(i)]
+        p #[+acrossRegion(i)]
 
 //- This district saw England's second-largest drop in the proportion of people who describe themselves as Christian.
 mixin rank1nat(i)
@@ -550,19 +550,20 @@ mixin rank1nat(i)
         | This area saw #[+value(country)]'s 
         | #[+value(drop(data[s[i][0]][s[i][1]+'_rank'][s[i][2]][s[i][3]], 'largest drop', 'largest rise'))]
         | in the proportion of #[+value(topic(i, s[i][3]).adj_noun)].
-        | #[+acrossCountry(i)]
+        p #[+acrossCountry(i)]
 
 mixin rank2(i)
     | In 2021,
     | #[+value(get_word((data[s[i][0]][s[i][1]][2011][s[i][3]])/100, 'frac')[0])]
     | #[+value(get_word((data[s[i][0]][s[i][1]][2011][s[i][3]])/100, 'frac')[1])]
     | (#[+pc(data[s[i][0]][s[i][1]][2011][s[i][3]])])
+    | #[+value(topics[s[i][0]].measure_s)] in !{place.name}
     | #[+value(topic(i, s[i][3]).verb_past_samp)],
     | compared with
     | #[+pc(data[s[i][0]][s[i][1]][2001][s[i][3]])]
     | in 2011. 
-    | The percentage of
-    | #[+value(topic(i, chains[s[i][3]][0]).clausal_modifier)] 
+    | The percentage that 
+    | #[+value(topic(i, chains[s[i][3]][0]).verb)] 
     if (data[s[i][0]][s[i][1]][2001][chains[s[i][3]][0]]>data[s[i][0]][s[i][1]][2011][chains[s[i][3]][0]])
         | decreased 
     else
@@ -600,26 +601,26 @@ mixin acrossRegion(i)
         | .
     else if (Math.abs(data[s[i][0]][s[i][1]+'_rank_local'][s[i][2]][s[i][3]])==2)
         | only 
-        | #[+value(data[s[i][0]][s[i][1]+'_rank_local']['top_bottom'][s[i][3]]["-1"]['name'])]
-        | #[+county(data[s[i][0]][s[i][1]+'_rank_local']['top_bottom'][s[i][3]]["-1"]['name'])]
+        | #[+value(data[s[i][0]][s[i][1]+'_rank_local']['top_bottom'][s[i][3]][(rl<0)?"-1":"1"]['name'])]
+        | #[+county(data[s[i][0]][s[i][1]+'_rank_local']['top_bottom'][s[i][3]][(rl<0)?"-1":"1"]['name'])]
         | saw a greater #[+value((rl<0)?'fall':'rise')] in the proportion of #[+value(topic(i).adj_noun)]
         | (from 
-        | #[+pc((data[s[i][0]][s[i][1]+'_rank_local']['top_bottom'][s[i][3]]["-1"]['2001']))] to 
-        | #[+pc((data[s[i][0]][s[i][1]+'_rank_local']['top_bottom'][s[i][3]]["-1"]['2011']))]) 
+        | #[+pc((data[s[i][0]][s[i][1]+'_rank_local']['top_bottom'][s[i][3]][(rl<0)?"-1":"1"]['2001']))] to 
+        | #[+pc((data[s[i][0]][s[i][1]+'_rank_local']['top_bottom'][s[i][3]][(rl<0)?"-1":"1"]['2011']))]) 
         | .
     else if (Math.abs(data[s[i][0]][s[i][1]+'_rank_local'][s[i][2]][s[i][3]])==3)
         | only 
-        | #[+value(data[s[i][0]][s[i][1]+'_rank_local']['top_bottom'][s[i][3]]["-1"]['name'])]
-        | #[+county(data[s[i][0]][s[i][1]+'_rank_local']['top_bottom'][s[i][3]]["-1"]['name'])]
+        | #[+value(data[s[i][0]][s[i][1]+'_rank_local']['top_bottom'][s[i][3]][(rl<0)?"-1":"1"]['name'])]
+        | #[+county(data[s[i][0]][s[i][1]+'_rank_local']['top_bottom'][s[i][3]][(rl<0)?"-1":"1"]['name'])]
         | (from 
-        | #[+pc((data[s[i][0]][s[i][1]+'_rank_local']['top_bottom'][s[i][3]]["-1"]['2001']))] in 2011 to 
-        | #[+pc((data[s[i][0]][s[i][1]+'_rank_local']['top_bottom'][s[i][3]]["-1"]['2011']))] in 2021) 
+        | #[+pc((data[s[i][0]][s[i][1]+'_rank_local']['top_bottom'][s[i][3]][(rl<0)?"-1":"1"]['2001']))] to 
+        | #[+pc((data[s[i][0]][s[i][1]+'_rank_local']['top_bottom'][s[i][3]][(rl<0)?"-1":"1"]['2011']))]) 
         | and 
-        | #[+value(data[s[i][0]][s[i][1]+'_rank_local']['top_bottom'][s[i][3]]["-2"]['name'])]
-        | #[+county(data[s[i][0]][s[i][1]+'_rank_local']['top_bottom'][s[i][3]]["-2"]['name'])]
+        | #[+value(data[s[i][0]][s[i][1]+'_rank_local']['top_bottom'][s[i][3]][(rl<0)?"-2":"2"]['name'])]
+        | #[+county(data[s[i][0]][s[i][1]+'_rank_local']['top_bottom'][s[i][3]][(rl<0)?"-2":"2"]['name'])]
         | (from 
-        | #[+pc((data[s[i][0]][s[i][1]+'_rank_local']['top_bottom'][s[i][3]]["-2"]['2001']))] to 
-        | #[+pc((data[s[i][0]][s[i][1]+'_rank_local']['top_bottom'][s[i][3]]["-2"]['2011']))]) 
+        | #[+pc((data[s[i][0]][s[i][1]+'_rank_local']['top_bottom'][s[i][3]][(rl<0)?"-2":"2"]['2001']))] to 
+        | #[+pc((data[s[i][0]][s[i][1]+'_rank_local']['top_bottom'][s[i][3]][(rl<0)?"-2":"2"]['2011']))]) 
         | saw a greater #[+value(cha(s, place, i)<0?"decrease":"increase")] in the proportion of #[+value(topic(i).adj_noun)].
 
 //- Across the North East, the proportion of self-employed people rose from 10% in 2011 to 15% in 2021, while the proportion in nearby Middlesborough rose from 11% to 14%.
@@ -1134,7 +1135,7 @@ mixin chartTitleOther(i)
                 | higher 
             else 
                 | lower
-            | proportion of !{place.name}'s population are 
+            | proportion of !{place.name}'s population are aged
             | #[+value(ageBandLU[agegroup][1])]
             | compared with the average across !{rgn.name}
         h5 
