@@ -57,9 +57,9 @@ children.Kids.clausal_modifier: households in {plcname} with children
 children.NoKids.clausal_modifier: households in {plcname} without children
 children.NonDepKids.clausal_modifier: households in {plcname} with with only adult children living with their parents
 
-care.1to19hoursWeek.clausal_modifier: {plcname} residents that provide up to 19 hours of weekly care
-care.20to49hoursWeek.clausal_modifier: {plcname} residents that provide between 20 and 49 hours of weekly care
-care.40PlushoursWeek.clausal_modifier: {plcname} residents that provide at least 50 hours of weekly care
+care.1to19hoursWeek.clausal_modifier: {plcname} residents that provide up to 19 hours of weekly unpaid care
+care.20to49hoursWeek.clausal_modifier: {plcname} residents that provide between 20 and 49 hours of weekly unpaid care
+care.40PlushoursWeek.clausal_modifier: {plcname} residents that provide at least 50 hours of weekly unpaid care
 
 marital.Single.clausal_modifier: single people in {plcname}
 marital.Married.clausal_modifier: adults in {plcname} that are married
@@ -73,7 +73,7 @@ health.good.clausal_modifier: {plcname} residents that describe their health as 
 health.fair.clausal_modifier: {plcname} residents that describe their health as fair
 health.bad.clausal_modifier: {plcname} residents that describe their health as bad
 
-ethnicity.white.clausal_modifier: {plcname} residents from one of a White ethnic groups
+ethnicity.white.clausal_modifier: {plcname} residents from one of the White ethnic groups
 ethnicity.black.clausal_modifier: {plcname} residents from one of the Black ethnic groups
 ethnicity.asian.clausal_modifier: {plcname} residents from one of the Asian ethnic groups
 
@@ -101,64 +101,65 @@ hoursworked.Female49plus.clausal_modifier: employees working more than 49 hours 
 hoursworked.Male1-15.clausal_modifier: employed people in {plcname} working less than 16 hours
 hoursworked.Male49plus.clausal_modifier: employed people in {plcname} working more than 49 hours in the week before the census
 
-// Just over 3 in 10 (32%) ***said they live in social housing*** in 2021, compared with about 39% in 2011
+// Chart subtitle: The percentage of households **rented privately** across local authority areas in the East Midlands and the average across England, March 2021
+// Chart subtitle: The percentage of usual residents in Derby, the East Midlands and England **said they rent privately**, March 2011, March 2021
 
-children.Kids.verb_past: had at least one dependent child
-children.NoKids.verb_past: had no children
-children.NonDepKids.verb_past: had only adult children living with their parents
+children.Kids.verb_past: with at least one dependent child
+children.NoKids.verb_past: without children
+children.NonDepKids.verb_past: where a parent lives with their adult children
 
-welsh.SpeaksWelsh.verb_past: said they can speak Welsh
+welsh.SpeaksWelsh.verb_past: that said they can speak Welsh
 
-care.1to19hoursWeek.verb_past: reported providing up to 19 hours of unpaid care each week
-care.20to49hoursWeek.verb_past: reported providing between 20 and 49 hours of unpaid care each week
-care.40PlushoursWeek.verb_past: reported providing at least 50 hours of unpaid care each week
+care.1to19hoursWeek.verb_past: that reported providing up to 19 hours of unpaid care each week
+care.20to49hoursWeek.verb_past: that reported providing between 20 and 49 hours of unpaid care each week
+care.40PlushoursWeek.verb_past: that reported providing at least 50 hours of unpaid care each week
 
-marital.Single.verb_past: said they were single
-marital.Married.verb_past: said they were married
-marital.Seperated.verb_past: said they had divorced or broken up with their partner
+marital.Single.verb_past: that said they were single
+marital.Married.verb_past: that said they were married
+marital.Seperated.verb_past: that said they had divorced or broken up with their partner
 
-tenure.rented_private.verb_past: said they rent privately
-tenure.rented_social.verb_past: said they live in social housing
-tenure.owned.verb_past: said they own their home
+tenure.rented_private.verb_past: that rent privately
+tenure.rented_social.verb_past: that rent socially
+tenure.owned.verb_past: that own their home
 
-health.good.verb_past: said their health was good
-health.fair.verb_past: said their health was fair
+health.good.verb_past: that said their health was good
+health.fair.verb_past: that said their health was fair
 health.bad.verb_past: said their health was bad
 
-ethnicity.white.verb_past: said they were from a White ethnic group
-ethnicity.black.verb_past: said they were from a Black ethnic group
-ethnicity.asian.verb_past: said they were from an Asian ethnic group
+ethnicity.white.verb_past: that said they were from a White ethnic group
+ethnicity.black.verb_past: that said they were from a Black ethnic group
+ethnicity.asian.verb_past: that said they were from an Asian ethnic group
 
-economic.employee.verb_past: said they were employed
-economic.inactive.verb_past: said they were not working or actively seeking work
-economic.self-employed.verb_past: said they were self-employed
-economic.unemployed.verb_past: said they were unemployed
-economic.student.verb_past: said they were in education
+economic.employee.verb_past: that said they were employed
+economic.inactive.verb_past: that said they were not working or actively seeking work
+economic.self-employed.verb_past: that said they were self-employed
+economic.unemployed.verb_past: that said they were unemployed
+economic.student.verb_past: that said they were in education
 
-household.Cohabiting.verb_past: had an unmarried couple
-household.LoneParent.verb_past: had a single parent
-household.OnePerson.verb_past: comprised only a single person
-household.Married.verb_past: had an married couple
+household.Cohabiting.verb_past: that had an unmarried couple
+household.LoneParent.verb_past: that had a single parent
+household.OnePerson.verb_past: that comprised only a single person
+household.Married.verb_past: that had an married couple
 
-religion.Christian.verb_past: said they were Christian
-religion.Buddhist.verb_past: said they were Buddhist
-religion.Hindu.verb_past: said they were Hindu
-religion.Sikh.verb_past: said they were Sikh
-religion.Jewish.verb_past: said they were Jewish
-religion.Muslim.verb_past: said they were Muslim
-religion.Noreligion.verb_past: said they had no religion
+religion.Christian.verb_past: that describe themselves as Christian
+religion.Buddhist.verb_past: that describe themselves as Buddhist
+religion.Hindu.verb_past: that describe themselves as Hindu
+religion.Sikh.verb_past: that describe themselves as Sikh
+religion.Jewish.verb_past: that describe themselves as Jewish
+religion.Muslim.verb_past: that describe themselves as Muslim
+religion.Noreligion.verb_past: that said they had no religion
 
-hoursworked.Female1-15.verb_past: said they had worked less than 16 hours the week before completing the census
-hoursworked.Female49plus.verb_past: said they had worked over 49 hours the week before completing the census
-hoursworked.Male1-15.verb_past: said they had worked less than 16 hours the week before completing the census
-hoursworked.Male49plus.verb_past: said they had worked over 49 hours the week before completing the census
+hoursworked.Female1-15.verb_past: that said they had worked less than 16 hours the week before completing the census
+hoursworked.Female49plus.verb_past: that said they had worked over 49 hours the week before completing the census
+hoursworked.Male1-15.verb_past: that said they had worked less than 16 hours the week before completing the census
+hoursworked.Male49plus.verb_past: that said they had worked over 49 hours the week before completing the census
 
 
 // Just over 3 in 10 (32%) ***said they live in social housing*** in 2021, compared with about 39% in 2011
 
-children.Kids.verb_past_samp: households had at least one dependent child
-children.NoKids.verb_past_samp: households had no children
-children.NonDepKids.verb_past_samp: households had only adult children living with their parents
+children.Kids.verb_past_samp: had at least one dependent child
+children.NoKids.verb_past_samp: had no children
+children.NonDepKids.verb_past_samp: had only adult children living with their parents
 
 welsh.SpeaksWelsh.verb_past_samp: said they can speak Welsh
 
@@ -170,9 +171,9 @@ marital.Single.verb_past_samp: adults said they were single
 marital.Married.verb_past_samp: adults said they were married
 marital.Seperated.verb_past_samp: adults said they had divorced or broken up with their partner
 
-tenure.rented_private.verb_past_samp: said they rent privately
-tenure.rented_social.verb_past_samp: said they live in social housing
-tenure.owned.verb_past_samp: said they own their home
+tenure.rented_private.verb_past_samp: rent privately
+tenure.rented_social.verb_past_samp: live in social housing
+tenure.owned.verb_past_samp: own their home
 
 health.good.verb_past_samp: said their health was good
 health.fair.verb_past_samp: said their health was fair
@@ -188,10 +189,10 @@ economic.self-employed.verb_past_samp: said they were self-employed
 economic.unemployed.verb_past_samp: said they were unemployed
 economic.student.verb_past_samp: said they were in education
 
-household.Cohabiting.verb_past_samp: households had an unmarried couple
-household.LoneParent.verb_past_samp: households had a single parent
-household.OnePerson.verb_past_samp: households comprised only a single person
-household.Married.verb_past_samp: households had an married couple
+household.Cohabiting.verb_past_samp: had an unmarried couple
+household.LoneParent.verb_past_samp: had a single parent
+household.OnePerson.verb_past_samp: comprised only a single person
+household.Married.verb_past_samp: had an married couple
 
 religion.Christian.verb_past_samp: said they were Christian
 religion.Buddhist.verb_past_samp: said they were Buddhist
@@ -201,9 +202,9 @@ religion.Jewish.verb_past_samp: said they were Jewish
 religion.Muslim.verb_past_samp: said they were Muslim
 religion.Noreligion.verb_past_samp: said they had no religion
 
-hoursworked.Female1-15.verb_past_samp: said they had worked less than 16 hours the week before completing the census
+hoursworked.Female1-15.verb_past_samp: said they had worked less than 16 hours the previous week
 hoursworked.Female49plus.verb_past_samp: said they had worked over 49 hours the week before completing the census
-hoursworked.Male1-15.verb_past_samp: said they had worked less than 16 hours the week before completing the census
+hoursworked.Male1-15.verb_past_samp: said they had worked less than 16 hours the previous week
 hoursworked.Male49plus.verb_past_samp: said they had worked over 49 hours the week before completing the census
 
 
@@ -258,22 +259,23 @@ hoursworked.Male1-15.adj_noun: people working less than 16 hours in a week
 hoursworked.Male49plus.adj_noun: people working long hours 
 
 
+The percentage **that private renters** decreased 26% to 21%.
 
-children.Kids.verb: homes with children
-children.NoKids.verb: homes without children
-children.NonDepKids.verb: homes with adult children living with their parents
+children.Kids.verb: with least one child
+children.NoKids.verb: with no children
+children.NonDepKids.verb: that includes an adult living with parents
 
-care.1to19hoursWeek.verb: said they provide up to 19 hours of weekly care
-care.20to49hoursWeek.verb: said they provide between 20 and 49 hours of weekly care
-care.40PlushoursWeek.verb: said they provide 50 hours, or more, of weekly care
+care.1to19hoursWeek.verb: that provide up to 19 hours of weekly care
+care.20to49hoursWeek.verb: that provide between 20 and 49 hours of weekly care
+care.40PlushoursWeek.verb: that provide 50 hours, or more, of weekly care
 
-marital.Single.verb: said they were single
-marital.Married.verb: said they are married
-marital.Seperated.verb: said they have separated
+marital.Single.verb: that said they were single
+marital.Married.verb: that said they are married
+marital.Seperated.verb: that said they have separated
 
-tenure.rented_private.verb: private renters
-tenure.rented_social.verb: people living in social housing
-tenure.owned.verb: said they own their home
+tenure.rented_private.verb: of private renters
+tenure.rented_social.verb: of social renters
+tenure.owned.verb: of homeowners
 
 health.good.verb: that perceive their health as good
 health.fair.verb: that described their health as fair
@@ -283,29 +285,29 @@ ethnicity.white.verb: from a White ethnic group
 ethnicity.black.verb: from a Black ethnic group
 ethnicity.asian.verb: from an Asian ethnic group
 
-economic.employee.verb: employed people
-economic.inactive.verb: people who are not working or actively seeking work
-economic.self-employed.verb: self-employed people
-economic.unemployed.verb: unemployed people
-economic.student.verb: students
+economic.employee.verb: that are employed
+economic.inactive.verb: that are not working or actively seeking work
+economic.self-employed.verb: that are self-employed
+economic.unemployed.verb: that are unemployed
+economic.student.verb: that are students
 
-household.Cohabiting.verb: households with an unmarried couple
-household.LoneParent.verb: single parent households
-household.OnePerson.verb: single person households
-household.Married.verb: households with a married couple
+household.Cohabiting.verb: with an unmarried couple
+household.LoneParent.verb: with a sinle parent
+household.OnePerson.verb: with just a single person
+household.Married.verb: with a married couple 
 
-religion.Christian.verb: describe themselves as Christian
-religion.Buddhist.verb: describe themselves as Buddhist
-religion.Hindu.verb: describe themselves as Hindu
-religion.Sikh.verb: describe themselves as Sikh
-religion.Jewish.verb: describe themselves as Jewish
-religion.Muslim.verb: describe themselves as Muslim
-religion.Noreligion.verb: describe themselves as non-religious
+religion.Christian.verb: that describe themselves as Christian
+religion.Buddhist.verb: that describe themselves as Buddhist
+religion.Hindu.verb: that describe themselves as Hindu
+religion.Sikh.verb: that describe themselves as Sikh
+religion.Jewish.verb: that describe themselves as Jewish
+religion.Muslim.verb: that describe themselves as Muslim
+religion.Noreligion.verb: that describe themselves as non-religious
 
-hoursworked.Female1-15.verb: working less than 16 hours in a week
-hoursworked.Female49plus.verb: working long hours
-hoursworked.Male1-15.verb: working less than 16 hours in a week
-hoursworked.Male49plus.verb: working long hours 
+hoursworked.Female1-15.verb: that work less than 16 hours in a week
+hoursworked.Female49plus.verb: that work over 49 hours in a week
+hoursworked.Male1-15.verb: that work less than 16 hours in a week
+hoursworked.Male49plus.verb: that work over 49 hours in a week
 
 // The percentage of ***healthy residents*** is increasing faster here than in any other local authority district across England.
 
@@ -432,27 +434,27 @@ economic.unemployed.subhead.sta: Unemployment in {plcname}
 economic.student.subhead.pos: More students
 economic.student.subhead.neg: Fewer students
 economic.student.subhead.neu: Changing work life
-economic.student.subhead.buc: {plcname} reverses student trend
+economic.student.subhead.buc: {plcname} stood out from other areas for students
 economic.student.subhead.sta: Students in {plcname}
 household.Cohabiting.subhead.pos: More people cohabiting
 household.Cohabiting.subhead.neg: Fewer people cohabiting
 household.Cohabiting.subhead.neu: New household dynamics
-household.Cohabiting.subhead.buc: {plcname} reverses cohabiting trend
+household.Cohabiting.subhead.buc: {plcname} stood out from other areas for cohabiting
 household.Cohabiting.subhead.sta: Cohabiting in {plcname}
 household.LoneParent.subhead.pos: More single parents
 household.LoneParent.subhead.neg: Fewer single parents
 household.LoneParent.subhead.neu: New household dynamics
-household.LoneParent.subhead.buc: {plcname} reverses single parent trend
+household.LoneParent.subhead.buc: {plcname} stood out from other areas for single parenting
 household.LoneParent.subhead.sta: Single parents in {plcname}
 household.OnePerson.subhead.pos: More people living alone
 household.OnePerson.subhead.neg: Fewer people living alone
 household.OnePerson.subhead.neu: New household dynamics
-household.OnePerson.subhead.buc: {plcname} reverses household trend
+household.OnePerson.subhead.buc: {plcname} stood out from other areas for single person households
 household.OnePerson.subhead.sta: Living alone in {plcname}
 household.Married.subhead.pos: Marriage on the up
 household.Married.subhead.neg: Marriage declining 
 household.Married.subhead.neu: New household dynamics
-household.Married.subhead.buc: {plcname} reverses marriage trend
+household.Married.subhead.buc: {plcname} reverses marriage
 household.Married.subhead.sta: Marriage in {plcname}
 religion.Christian.subhead.pos: More people identifying as Christian
 religion.Christian.subhead.neg: Fewer people identifying as Christian
@@ -492,22 +494,22 @@ religion.Noreligion.subhead.sta: Religion in {plcname}
 hoursworked.Female1-15.subhead.pos: More people working fewer hours
 hoursworked.Female1-15.subhead.neg: Fewer people working fewer hours
 hoursworked.Female1-15.subhead.neu: Change in work hours
-hoursworked.Female1-15.subhead.buc: {plcname} reverses job trend
+hoursworked.Female1-15.subhead.buc: {plcname} stood out from other areas for working hours
 hoursworked.Female1-15.subhead.sta: Working hours in {plcname}
 hoursworked.Female49plus.subhead.pos: More working long hours
 hoursworked.Female49plus.subhead.neg: Fewer people working long hours
 hoursworked.Female49plus.subhead.neu: Change in work hours
-hoursworked.Female49plus.subhead.buc: {plcname} reverses job trend
+hoursworked.Female49plus.subhead.buc: {plcname} stood out from other areas for working hours
 hoursworked.Female49plus.subhead.sta: Working hours in {plcname}
 hoursworked.Male1-15.subhead.pos: More people working fewer hours
 hoursworked.Male1-15.subhead.neg: Fewer people working fewer hours
 hoursworked.Male1-15.subhead.neu: Change in work hours
-hoursworked.Male1-15.subhead.buc: {plcname} reverses job trend
+hoursworked.Male1-15.subhead.buc: {plcname} stood out from other areas for working hours
 hoursworked.Male1-15.subhead.sta: Working hours in {plcname}
 hoursworked.Male49plus.subhead.pos: More working long hours
 hoursworked.Male49plus.subhead.neg: Fewer people working long hours
 hoursworked.Male49plus.subhead.neu: Change in work hours
-hoursworked.Male49plus.subhead.buc: {plcname} reverses job trend
+hoursworked.Male49plus.subhead.buc: {plcname} stood out from other areas for working hours
 hoursworked.Male49plus.subhead.sta: Working hours in {plcname}
 
 // **The rate of homeownership*** in Greenwich rose from 68.1% to 79.6%
@@ -631,21 +633,21 @@ household.measure: households
 religion.measure: usual residents
 care.measure: usual residents
 children.measure: households
-hoursworked.measure: usual residents aged 16 to 74 (in employment the week before the census)
+hoursworked.measure: usual residents aged 16 to 74 (in employment the week before the Census 2021)
 marital.measure: usual residents aged 16 and over
 population.measure: usual residents
 agemed.measure: usual residents
 
 tenure.measure_s: households
 welsh.measure_s: people aged three and over
-health.measure_s: people
-ethnicity.measure_s: people
+health.measure_s: 
+ethnicity.measure_s: 
 economic.measure_s: people aged 16 to 74
 household.measure_s: households
-religion.measure_s: people
-care.measure_s: people
+religion.measure_s: 
+care.measure_s: 
 children.measure_s: households
-hoursworked.measure_s: people aged 16 to 74 (in employment the week before the census)
+hoursworked.measure_s: people aged 16 to 74 (in employment the week before the Census 2021)
 marital.measure_s: people aged 16 and over
-population.measure_s: people
-agemed.measure_s: people
+population.measure_s: 
+agemed.measure_s: 
