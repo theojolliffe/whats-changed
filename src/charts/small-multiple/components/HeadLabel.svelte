@@ -5,7 +5,6 @@
 
         const { data, xGet, yGet, xScale, yScale } = getContext('LayerCake');
 
-        console.log('datooa', $data)
 
         let thisLabel = labels[nu].split(" ")
 </script>

@@ -6,7 +6,6 @@
 
   export let chartData;
   export let labels;
-  console.log('AgeChart data', chartData)
 
   const extentGetters = {
     x: d => d.x,

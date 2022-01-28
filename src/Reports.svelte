@@ -22,7 +22,6 @@
 			return true
 		}
 	}
-	console.log('fuzzyzyz', fuzz("Greater Manchester", "Manchester"))
 
 	var options, selected, place, locRankCha, locRankCur, eng, rgncode, rgn, s, natRankCha, natRankCur, topics, wal, found, ladData, props;
 	var health, expand, ladLoaded, cou;
@@ -31,7 +30,6 @@
 		return arr.some(v => haystack.includes(v));
 	};
 
-	console.log('findOne', findOne([1, 2, 3], [3]))
 
 	function cap(string) {
 		return string.charAt(0).toUpperCase() + string.slice(1);
@@ -83,7 +81,6 @@
 		res.forEach(d => {
 			regionLU[d['Name']] = d['Region/Country'];
 		});
-		console.log("regionLU", regionLU)
 	});
 
 	var countyLU = {};
@@ -92,7 +89,6 @@
 		res.forEach(d => {
 			countyLU[d['LAD21NM']] = d['CTY21NM'];
 		});
-		console.log("countyLU", countyLU)
 	});
 
 
@@ -106,7 +102,7 @@
 
 		options = res.sort((a, b) => a.LAD21NM.localeCompare(b.LAD21NM));
 		let defaultLoc = options[Math.round(331*Math.random())]['LAD21NM']
-		defaultLoc = 'Derby';
+		defaultLoc = 'New Forest';
 
 		console.log(defaultLoc)
 		selected = options.find(d => d.LAD21NM == defaultLoc);
@@ -361,19 +357,19 @@
 				return a
 			}
 			let chartData = [
-				[dtrans(place.data.age10yr.perc['2001'], 2011), dtrans(place.data.age10yr.perc['2011'], 2021)],
-				[dtrans(rgn.data.age10yr.perc['2001'], 2011), dtrans(rgn.data.age10yr.perc['2011'], 2021)],
 				[dtrans(cou.data.age10yr.perc['2001'], 2011), dtrans(cou.data.age10yr.perc['2011'], 2021)],
+				[dtrans(rgn.data.age10yr.perc['2001'], 2011), dtrans(rgn.data.age10yr.perc['2011'], 2021)],
+				[dtrans(place.data.age10yr.perc['2001'], 2011), dtrans(place.data.age10yr.perc['2011'], 2021)],
+
 			]
 			let props ={
 						legend: true,
 						height: 120,
 						chartData: chartData,
-						labels: [place.name, rgn.name, cou.name],
+						labels: [cou.name, rgn.name, place.name],
 						xKey: "value",
 						yKey: "year"
 					}
-			console.log('props', props)
 			return props
 		}
 		else if (place.stories[i].type.includes('size')) {
@@ -473,7 +469,6 @@
 				id: 'Average across ' + cou.name, 
 			})
 
-			console.log('chartdata', chartdata)
 			return props = {
 				mode: "stacked",
 				line: false,
@@ -524,7 +519,7 @@
 				{#if rgn}
 					<div id="sf">
 						<div style="width: 640px; margin:0 auto;">
-							<h1>{cap(place.name)}: <span style="font-weight: 400;">What's changed</span></h1>
+							<h1>{cap(place.name)}: <span style="font-weight: 400;">Changes over time</span></h1>
 							<div>
 								<div style="width: 640px; margin: 50px auto;">
 									<Select {options} bind:selected group="typenm" search={true} on:select="{() => { if (selected) { loadArea(selected.code) }}}"/>

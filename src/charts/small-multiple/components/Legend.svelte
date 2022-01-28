@@ -8,7 +8,6 @@
   export let markerLength = 13;
   export let round = false; // to represent round markers
   
-  console.log("DOMAIN", domain)
 </script>
 
 <!-- {#if Array.isArray(domain) && Array.isArray(colors)} -->
