@@ -36,19 +36,19 @@ agemed.synonym: shift in the local population's average age
 
 // The religious profile of Torbay changed considerably in the 10 years leading up to the last census
 // ***Health improved considerably in Torbay*** in the 10 years leading up to the last census
-tenure.profile: housing in {plcname} changed considerably
-health.profile: health {health} considerably in {plcname}
+tenure.profile: housing in {plcname} changed substantially
+health.profile: health {health} substantially in {plcname}
 ethnicity.profile: ethnic makeup of {plcname} changed substantially 
 economic.profile: work life changed for many in {plcname}
-household.profile: housing in {plcname} changed considerably
-religion.profile: the religious profile of {plcname} changed considerably
+household.profile: housing in {plcname} changed substantially
+religion.profile: the religious profile of {plcname} changed substantially
 care.profile: care provision changed in {plcname}
 children.profile: family life changed for many in {plcname}
 hoursworked.profile: work life changed for many in {plcname}
 marital.profile: family life changed for many in {plcname}
 population.profile: {plcname}'s population {expanded}
 agemed.profile: {plcname}'s population grew older
-welsh.profile: the use of welsh changed considerably in {plcname}
+welsh.profile: the use of welsh changed substantially in {plcname}
 
 // In the 10 years leading up to the last census, the percentage of ***Manchester residents that rent privately*** increased from about 16% to over 28%.
 // The proportion of employed people in Manchester working long hours increased from from about 16% to over 28%.
@@ -83,10 +83,10 @@ economic.self-employed.clausal_modifier: {plcname} residents that are self-emplo
 economic.unemployed.clausal_modifier: {plcname} residents that are unemployment
 economic.student.clausal_modifier: {plcname} residents that are studying
 
-household.Cohabiting.clausal_modifier: households in {plcname} comprising a cohabiting couple
-household.LoneParent.clausal_modifier: households in {plcname} comprising a single parent
-household.OnePerson.clausal_modifier: households in {plcname} comprising a single person
-household.Married.clausal_modifier: households in {plcname} comprising a married couple (with or without children)
+household.Cohabiting.clausal_modifier: households in {plcname}, which comprise a cohabiting couple,
+household.LoneParent.clausal_modifier: households in {plcname}, which comprise a single parent,
+household.OnePerson.clausal_modifier: households in {plcname}, which comprise a single person,
+household.Married.clausal_modifier: households in {plcname}, which comprise a married couple (with or without children),
 
 religion.Christian.clausal_modifier: people in {plcname} that describe themselves as Christian
 religion.Buddhist.clausal_modifier: people in {plcname} that describe themselves as Buddhist
@@ -139,7 +139,7 @@ economic.student.verb_past: that said they were in education
 household.Cohabiting.verb_past: that had an unmarried couple
 household.LoneParent.verb_past: that had a single parent
 household.OnePerson.verb_past: that comprised only a single person
-household.Married.verb_past: that had an married couple
+household.Married.verb_past: that had a married couple
 
 religion.Christian.verb_past: that describe themselves as Christian
 religion.Buddhist.verb_past: that describe themselves as Buddhist
@@ -189,10 +189,10 @@ economic.self-employed.verb_past_samp: said they were self-employed
 economic.unemployed.verb_past_samp: said they were unemployed
 economic.student.verb_past_samp: said they were in education
 
-household.Cohabiting.verb_past_samp: had an unmarried couple
-household.LoneParent.verb_past_samp: had a single parent
-household.OnePerson.verb_past_samp: comprised only a single person
-household.Married.verb_past_samp: had an married couple
+household.Cohabiting.verb_past_samp: have an unmarried couple
+household.LoneParent.verb_past_samp: have a single parent
+household.OnePerson.verb_past_samp: have only a single person
+household.Married.verb_past_samp: have a married couple
 
 religion.Christian.verb_past_samp: said they were Christian
 religion.Buddhist.verb_past_samp: said they were Buddhist
@@ -241,8 +241,8 @@ economic.unemployed.adj_noun: unemployed people
 economic.student.adj_noun: students
 
 household.Cohabiting.adj_noun: households with an unmarried couple
-household.LoneParent.adj_noun: single parent households
-household.OnePerson.adj_noun: single person households
+household.LoneParent.adj_noun: single-parent households
+household.OnePerson.adj_noun: single-person households
 household.Married.adj_noun: households with a married couple
 
 religion.Christian.adj_noun: people who describe themselves as Christian
@@ -449,7 +449,7 @@ household.LoneParent.subhead.sta: Single parents in {plcname}
 household.OnePerson.subhead.pos: More people living alone
 household.OnePerson.subhead.neg: Fewer people living alone
 household.OnePerson.subhead.neu: New household dynamics
-household.OnePerson.subhead.buc: {plcname} stood out from other areas for single person households
+household.OnePerson.subhead.buc: {plcname} stood out from other areas for single-person households
 household.OnePerson.subhead.sta: Living alone in {plcname}
 household.Married.subhead.pos: Marriage on the up
 household.Married.subhead.neg: Marriage declining 
@@ -545,8 +545,8 @@ economic.unemployed.sample: the rate of unemployment
 economic.student.sample: the percentage of students
 
 household.Cohabiting.sample: cohabiting households
-household.LoneParent.sample: single parent households
-household.OnePerson.sample: single person households
+household.LoneParent.sample: single-parent households
+household.OnePerson.sample: single-person households
 household.Married.sample: married households
 
 religion.Christian.sample: the proportion of people who identify as Christian 
@@ -595,8 +595,8 @@ economic.unemployed.adj_noun_s: unemployed people
 economic.student.adj_noun_s: students
 
 household.Cohabiting.adj_noun_s: cohabiting households
-household.LoneParent.adj_noun_s: single parent households
-household.OnePerson.adj_noun_s: single person households
+household.LoneParent.adj_noun_s: single-parent households
+household.OnePerson.adj_noun_s: single-person households
 household.Married.adj_noun_s: married households
 
 religion.Christian.adj_noun_s: people who identify as Christian

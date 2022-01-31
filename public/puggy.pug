@@ -70,7 +70,7 @@ mixin sent2Age(i)
     - let agediff = data[s[i][0]][s[i][1]][2011][s[i][3]]-cou.data.agemed.value[2011].all
     - let agediff01 = data[s[i][0]][s[i][1]][2001][s[i][3]]-cou.data.agemed.value[2001].all
     if (country=="England")
-        | This #[+value(place.classification)] has 
+        | This #[+value((place.classification!='unk')?place.classification:'area')] has 
         if (Math.abs(lra)<4)
             | the #[+value(ud(lra, ord(lra) + "highest", ord(lra) + "lowest"))]
             | average age in #[+value(parent)] and 
@@ -82,11 +82,11 @@ mixin sent2Age(i)
             | has a similar age to the average local authority area across England (#[+value(eng.data.agemed.value[2011].all)] years of age).
         else
             | #[+value((Math.sign(agediff) == Math.sign(agediff01)?'remains':'has become'))] 
-            | #[+value(Math.abs(agediff)>4?'notably': Math.abs(agediff)>2?'somewhat':'slightly')] 
+            | #[+value(Math.abs(agediff)>4?'': Math.abs(agediff)>2?'somewhat':'slightly')] 
             | #[+value(ud(agediff, 'older', 'younger'))] 
             | than the average local authority area across England (#[+value(eng.data.agemed.value[2011].all)] years of age).
     else
-        | This #[+value(place.classification)] has
+        | This #[+value((place.classification!='unk')?place.classification:'area')] has
         | a #[+value(adv(cur(s, place, i), cur(s, simi, i)))] 
         | #[+value(ud(cur(s, place, i)-cur(s, simi, i), 'higher', 'lower'))]
         | average age than #[+similarname] (#[+value(cur(s, simi, i))] years of age) and
@@ -97,7 +97,7 @@ mixin sent2Age(i)
             | has a similar age to the average local authority area across Wales (#[+value(rgn.data.agemed.value[2011].all)] years of age).
         else
             | #[+value((Math.sign(agediff) == Math.sign(agediff01)?'remains':'has become'))] 
-            | #[+value(Math.abs(agediff)>4?'notably': Math.abs(agediff)>2?'somewhat':'slightly')] 
+            | #[+value(Math.abs(agediff)>4?'': Math.abs(agediff)>2?'somewhat':'slightly')] 
             | #[+value(ud(agediff, 'older', 'younger'))] 
             | than the average local authority area across Wales (#[+value(rgn.data.agemed.value[2011].all)] years of age).
 
@@ -176,7 +176,7 @@ mixin sent2pop(i)
                 if (place.stories[i].value<(eng.data[s[i][0]][s[i][1]]['change'][s[i][3]]-1))
                     | increasing at a slower rate than the total population of 
                 else if (place.stories[i].value>(eng.data[s[i][0]][s[i][1]]['change'][s[i][3]]+1))
-                    | increasing faster than the rate of population growth across 
+                    | increasing faster than the rate of growth across 
                 else
                     | increasing at a similar rate to the overall population of
                 | #[+value(country)] (#[+value((cha(s, place, i)==cha(s, eng, i))?'also':'')]
@@ -192,7 +192,7 @@ mixin sent2pop(i)
                 if (place.stories[i].value<(rgn.data[s[i][0]][s[i][1]]['change'][s[i][3]]-1))
                     | increasing at a slower rate than the total population of 
                 else if (place.stories[i].value>(rgn.data[s[i][0]][s[i][1]]['change'][s[i][3]]+1))
-                    | increasing faster than the rate of population growth across 
+                    | increasing faster than the rate of growth across 
                 else
                     | increasing at a similar rate to the overall population of
                 | Wales (
@@ -235,7 +235,7 @@ mixin sent4Pop(i)
     else if (data['density'][s[i][1]+'_rank']['overtake'][s[i][3]].length>3)
         | #[+value(data['density'][s[i][1]+'_rank']['overtake'][s[i][3]].length)] areas, 
         | including #[+value(data['density'][s[i][1]+'_rank']['overtake'][s[i][3]][0])] 
-        | and #[+value(data['density'][s[i][1]+'_rank']['overtake'][s[i][3]][1])]
+        | and #[+value(data['density'][s[i][1]+'_rank']['overtake'][s[i][3]][1])],
     | to become England's #[+value(Math.abs(data.density.value_rank[2011].all), {'ORDINAL_TEXTUAL':true})]
     | most densely populated local authority area.
 
@@ -255,8 +255,7 @@ mixin overtake(i, loc)
             | #[+value(nuword(ove.length))] 
             | local authorities, 
             | including #[+value(ove[0])] 
-            | and #[+value(ove[1])]
-        
+            | and #[+value(ove[1])],
         | to become the #[+value((loc == "_local") ? parentNT : (country=="Wales")?"Welsh":"English")] local authority area with the
         | #[+value(ud(ra, (ord(Math.abs(ra))+"highest"), (ord(Math.abs(ra))+"lowest")))]
         | percentage of #[+value(topics[s[i][0]][s[i][3]].adj_noun_s)].
@@ -264,7 +263,7 @@ mixin overtake(i, loc)
         | went from having the
         | #[+value(ord(Math.abs(data[s[i][0]][s[i][1]+"_rank"+loc][2001][s[i][3]]))+ud(data[s[i][0]][s[i][1]+"_rank"+loc][2001][s[i][3]],"highest", "lowest"))]
         | to the #[+value(ud(ra, (ord(Math.abs(ra))+"highest"), (ord(Math.abs(ra))+"lowest")))] percentage of #[+value(topics[s[i][0]][s[i][3]].adj_noun_s)] out of 
-        | #[+value((country=="England")?"309 English":"22 Welsh")] local authoirities.
+        | #[+value((country=="England")?"309 English":"22 Welsh")] local authorities.
 
 //- mixin percOfRes(place)
 //-     synz {mode:'sequence'}
@@ -296,13 +295,18 @@ mixin sent1Perc(i)
 // About one in eight (13%) described their health as fair, compared with just over 23% in 2011. The percentage reporting bad health decreased from just under 13% to just over 7%.
 mixin sent2Perc(i, chain0_01, chain0_11, chain1_01, chain1_11)
     if (Math.round(chain0_01)==Math.round(chain0_11))
-        | The proportion who #[+value(topic(i, chains[s[i][3]][0]).verb_past_samp)]
+        | The proportion 
+        | #[+value((topics[s[i][0]].measure_s=='households')?'that':'who')] 
+        | #[+value(topic(i, chains[s[i][3]][0]).verb_past_samp)]
         | remained close to #[+pc(chain0_01)], while
     else
         | In 2021,
-        | #[+value(get_word((data[s[i][0]][s[i][1]][2011][chains[s[i][3]][0]])/100, 'frac')[0])]
-        | #[+value(get_word((data[s[i][0]][s[i][1]][2011][chains[s[i][3]][0]])/100, 'frac')[1])]
-        | (#[+pc(chain0_11)])
+        if (data[s[i][0]][s[i][1]][2011][chains[s[i][3]][0]]<1.7)
+            | #[+pc(data[s[i][0]][s[i][1]][2011][chains[s[i][3]][0]])] of
+        else 
+            | #[+value(get_word((data[s[i][0]][s[i][1]][2011][chains[s[i][3]][0]])/100, 'frac')[0])]
+            | #[+value(get_word((data[s[i][0]][s[i][1]][2011][chains[s[i][3]][0]])/100, 'frac')[1])]
+            | (#[+pc(data[s[i][0]][s[i][1]][2011][chains[s[i][3]][0]])])
         | #[+value(topics[s[i][0]].measure_s)]
         | #[+value(topic(i, chains[s[i][3]][0]).verb_past_samp)],
         | compared with
@@ -385,10 +389,10 @@ mixin sent3Perc(i)
         | #[+value(ud(cha(s, place, i), 'growing', 'falling'))]
         if (country=="England")
             if ((cha(s, place, i)>cha(s, near, i)-1)&(cha(s, place, i)<cha(s, near, i)+1))
-                | at a similar rate to the figure
+                | at a similar rate to 
             else
                 | #[+value(uds((Math.abs(cha(s, place, i)) - Math.abs(cha(s, rgn, i))), 'faster here than', 'at a slower rate here than', 'here at a similar rate to'))]
-            | across #[+value(parent)]
+            | the figure for the whole of #[+value(parent)]
             | (from #[+pc((rgn.data[s[i][0]][s[i][1]][2001][s[i][3]]))] in 2011 to 
             | #[+pc((cur(s, rgn, i)))] in 2021)
             if ((sign(Math.abs(cha(s, place, i))-Math.abs(cha(s, rgn, i))), sign(Math.abs(cha(s, place, i))-Math.abs(cha(s, eng, i)))))
@@ -396,7 +400,7 @@ mixin sent3Perc(i)
                 | (from #[+pc((eng.data[s[i][0]][s[i][1]][2001][s[i][3]]))] to 
                 | #[+pc((eng.data[s[i][0]][s[i][1]][2011][s[i][3]]))]).
             else
-                | . Across #[+value(country)] the proportion #[+value(ud(cha(s, rgn, i), 'rose', 'fell'))]
+                | . Across #[+value(country)], the proportion #[+value(ud(cha(s, rgn, i), 'rose', 'fell'))]
                 | from #[+pc((eng.data[s[i][0]][s[i][1]][2001][s[i][3]]))] to 
                 | #[+pc((eng.data[s[i][0]][s[i][1]][2011][s[i][3]]))].
         else
@@ -413,7 +417,7 @@ mixin sent3Perc(i)
                 | (from #[+pc((rgn.data[s[i][0]][s[i][1]][2001][s[i][3]]))] to 
                 | #[+pc((rgn.data[s[i][0]][s[i][1]][2011][s[i][3]]))]) .
             else 
-                | . Across Wales the proportion #[+value(ud(cha(s, rgn, i), 'rose', 'fell'))]
+                | . Across Wales, the proportion #[+value(ud(cha(s, rgn, i), 'rose', 'fell'))]
                 | from #[+pc((rgn.data[s[i][0]][s[i][1]][2001][s[i][3]]))] to 
                 | #[+pc((rgn.data[s[i][0]][s[i][1]][2011][s[i][3]]))].
 
@@ -474,7 +478,7 @@ mixin nowHasReg(i)
 mixin considImprov(i)
     if (data[s[i][0]][s[i][1]+'_rank_local']['change'][s[i][3]]==1)
         if (data[s[i][0]][s[i][1]][2011][s[i][3]]<(eng.data[s[i][0]][s[i][1]][2011][s[i][3]]-2))
-            | But despite the considerable improvement, 
+            | But despite the improvement, 
             | #[+value(place.name)] 
             | remains 
             | less healthy than 
@@ -482,14 +486,14 @@ mixin considImprov(i)
             | As a result, #[+value(place.name)] 
             | has become more healthy than
         else
-            | The considerable improvement has brought health in 
+            | The improvement has brought health in 
             | #[+value(place.name)] close to 
         | the national average
         | #[+pc(eng.data[s[i][0]][s[i][1]][2011][s[i][3]])]
         | in #[+value(country)] described their health as good in 2021).
     else
         if (data[s[i][0]][s[i][1]][2011][s[i][3]]<(eng.data[s[i][0]][s[i][1]][2011][s[i][3]]-2))
-            | But despite the considerable improvement, 
+            | But despite the improvement, 
             | #[+value(place.name)] 
             | remains 
             | less healthy than 
@@ -497,7 +501,7 @@ mixin considImprov(i)
             | As a result, #[+value(place.name)] 
             | has become more healthy than   
         else
-            | The considerable improvement has brought health in 
+            | The improvement has brought health in 
             | #[+value(place.name)] close to 
         | the regional average
         | #[+pc(rgn.data[s[i][0]][s[i][1]][2011][s[i][3]])]
@@ -551,9 +555,12 @@ mixin rank1nat(i)
 
 mixin rank2(i)
     | In 2021,
-    | #[+value(get_word((data[s[i][0]][s[i][1]][2011][s[i][3]])/100, 'frac')[0])]
-    | #[+value(get_word((data[s[i][0]][s[i][1]][2011][s[i][3]])/100, 'frac')[1])]
-    | (#[+pc(data[s[i][0]][s[i][1]][2011][s[i][3]])])
+    if (data[s[i][0]][s[i][1]][2011][s[i][3]]<1.7)
+        | #[+pc(data[s[i][0]][s[i][1]][2011][s[i][3]])] of
+    else 
+        | #[+value(get_word((data[s[i][0]][s[i][1]][2011][s[i][3]])/100, 'frac')[0])]
+        | #[+value(get_word((data[s[i][0]][s[i][1]][2011][s[i][3]])/100, 'frac')[1])]
+        | (#[+pc(data[s[i][0]][s[i][1]][2011][s[i][3]])])
     | #[+value(topics[s[i][0]].measure_s)] in !{place.name}
     | #[+value(topic(i, s[i][3]).verb_past_samp)],
     | compared with
@@ -659,7 +666,7 @@ mixin acrossCountry(i)
         | to #[+pc((data[s[i][0]][s[i][1]+'_rank'+loc].top_bottom[s[i][3]][r<0?"-2":"2"][2011]))])
         | .
     else if (Math.abs(data[s[i][0]][s[i][1]+'_rank'][s[i][2]][s[i][3]])==2)
-        | The greatest #[+value((r<0)?"decrease":"increase")] occured in 
+        | The greatest #[+value((r<0)?"decrease":"increase")] occurred in 
         | #[+value(data[s[i][0]][s[i][1]+'_rank'+loc]['top_bottom'][s[i][3]][r<0?"-1":"1"]['name'])]
         | #[+county(data[s[i][0]][s[i][1]+'_rank'+loc]['top_bottom'][s[i][3]][r<0?"-1":"1"]['name'])]
         | (from 
@@ -667,7 +674,7 @@ mixin acrossCountry(i)
         | #[+pc((data[s[i][0]][s[i][1]+'_rank'+loc]['top_bottom'][s[i][3]][r<0?"-1":"1"]['2011']))]) 
         | .
     else if (Math.abs(data[s[i][0]][s[i][1]+'_rank'][s[i][2]][s[i][3]])==3)
-        | The greatest #[+value((r<0)?"decrease":"increase")] occured in 
+        | The greatest #[+value((r<0)?"decrease":"increase")] occurred in 
         | #[+value(data[s[i][0]][s[i][1]+'_rank'+loc]['top_bottom'][s[i][3]][r<0?"-1":"1"]['name'])]
         | #[+county(data[s[i][0]][s[i][1]+'_rank'+loc]['top_bottom'][s[i][3]][r<0?"-1":"1"]['name'])]
         | (from 
@@ -754,7 +761,7 @@ mixin difference(i, chain0_01, chain0_11, chain1_01, chain1_11)
         syn
             | here
         syn
-            | in this #[+value(place.classification)]
+            | in this #[+value((place.classification!='unk')?place.classification:'area')]
         syn
             | in this area
     - var curDif
@@ -765,7 +772,7 @@ mixin difference(i, chain0_01, chain0_11, chain1_01, chain1_11)
             | , while the proportion #[+value(ud(cha(s, near, i), 'rose', 'fell'))] in
         else
             if (Math.abs(cha(s, place, i)) < Math.abs(cha(s, near, i)))
-                | but at a slower rate than in
+                | , but at a slower rate than in
             else
                 | at a faster rate than in
         | #[+nearbyname].
@@ -776,7 +783,7 @@ mixin difference(i, chain0_01, chain0_11, chain1_01, chain1_11)
             | , while the proportion #[+value(ud(cha(s, place.similar, i), 'rose', 'fell'))] in
         else
             if (Math.abs(cha(s, place, i)) < Math.abs(cha(s, place.similar, i)))
-                | but at a slower rate than in
+                | , but at a slower rate than in
             else
                 | at a faster rate than in
         | #[+similarname].
@@ -787,7 +794,7 @@ mixin difference(i, chain0_01, chain0_11, chain1_01, chain1_11)
             | , while the proportion #[+value(ud(cha(s, rgn, i), 'rose', 'fell'))] 
         else
             if (Math.abs(cha(s, place, i)) < Math.abs(cha(s, rgn, i)))
-                | but at a slower rate than
+                | , but at a slower rate than
             else
                 | at a faster rate than
         | across #[+value(parent)].
@@ -798,7 +805,7 @@ mixin difference(i, chain0_01, chain0_11, chain1_01, chain1_11)
             | , while the proportion #[+value(ud(cha(s, eng, i), 'rose', 'fell'))] 
         else
             if (Math.abs(cha(s, place, i)) < Math.abs(cha(s, eng, i)))
-                | but at a slower rate than
+                | , but at a slower rate than
             else
                 | at a faster rate than
         | across #[+value(country)].
@@ -859,12 +866,12 @@ mixin buck(i, curBuck, chain0_01, chain0_11, chain1_01, chain1_11)
         syn
             | here
         syn
-            | in this #[+value(place.classification)] 
+            | in this #[+value((place.classification!='unk')?place.classification:'area')]
         syn
             | in this area
-    | #[+value(ud(cha(s, place, i), 'while falling', 'while rising'))]
+    | #[+value(ud(cha(s, place, i), ', while falling', ', while rising'))]
     if (stories[i].type.includes('regBuck')&stories[i].type.includes('couBuck'))
-        | across #[+value(parent)] and #[+value(country)] at large
+        | across #[+value(parent)] and #[+value(country)]
     else if (curBuck=='regBuck')
         | across #[+value(parent)]
     else if (curBuck=='couBuck')
@@ -1084,11 +1091,10 @@ mixin chartTitleSize(i)
             | Population density (usual residents per 7,140 square metres) across #[+value(place.name)], #[+value((country=="Wales")?simi.name:parent)] and #[+value(country)], March 2011, March 2021
     else if (s[i][0]=="agemed")
         h4 
-            | The proportion aged
-            | #[+value(ageBandLU[data.age10yr.absChange['pos'][0][0]][1])]
-            | #[+value((cha(s, place, i)<0)?"decreased":"increased")] by
-            | #[+value(data.age10yr.perc.change[data.age10yr.absChange['pos'][0][0]], {'FORMAT': '0.0'})]
-            |  #[+ppoint]
+            - let agegroup = data.age10yr.absChange['pos'][0][0]
+            | About #[+pc(Math.round(place.data.age10yr.perc[2011][agegroup]))]
+            | of people in !{place.name} are aged
+            | #[+value(ageBandLU[agegroup][1])]
         h5 
             | The percentage of #[+value(topics[s[i][0]].measure)] in #[+value(place.name)] by 10 year age band, March 2011, March 2021
     else

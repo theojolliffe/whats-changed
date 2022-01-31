@@ -77,7 +77,7 @@ function drop(x, d, r) {
 
 let num_word = {'quarter of a million': 250000, 'half a million': 500000, 'three quarters of a million': 750000, 'one million': 1000000};
 
-let frac_word = {'one in two': 0.5, 'one in three': 0.333, 'one in four': 0.25, 'one in five': 0.2, 'one in six': 0.167, 'one in seven': 0.143, 'one in eight': 0.125, 'one in nine': 0.111, '1 in 10': 0.1,'1 in 11' : 0.09, '1 in 12' : 0.083, '1 in 13' : 0.077, '1 in 14' : 0.071, '1 in 15' : 0.067, '1 in 16' : 0.063, '1 in 17' : 0.059, '1 in 18' : 0.056, '1 in 19' : 0.053 ,'1 in 20': 0.05, '2 in 10': 0.2, '3 in 10': 0.3, '4 in 10': 0.4, '6 in 10': 0.6, '7 in 10': 0.7, '8 in 10': 0.8, '9 in 10': 0.9, 'all': 1.0};
+let frac_word = {'one in two': 0.5, 'one in three': 0.333, 'one in four': 0.25, 'one in five': 0.2, 'one in six': 0.167, 'one in seven': 0.143, 'one in eight': 0.125, 'one in nine': 0.111, '1 in 10': 0.1,'1 in 11' : 0.09, '1 in 12' : 0.083, '1 in 13' : 0.077, '1 in 14' : 0.071, '1 in 15' : 0.067, '1 in 16' : 0.063, '1 in 17' : 0.059, '1 in 18' : 0.056, '1 in 19' : 0.053, '1 in 20': 0.05, '1 in 25': 0.04, '1 in 30': 0.033, '1 in 40': 0.025, '1 in 50': 0.02,'2 in 10': 0.2, '3 in 10': 0.3, '4 in 10': 0.4, '6 in 10': 0.6, '7 in 10': 0.7, '8 in 10': 0.8, '9 in 10': 0.9, 'all': 1.0};
 
 
 function get_word(num, dict) {
@@ -312,9 +312,9 @@ function adv(x, y) {
   let d = x-y
   let perc = (d/y)*100
   if (Math.abs(perc)>7) {
-    w = 'considerably'
+    w = ''
   } else if (Math.abs(perc)>3) {
-    w = 'somewhat'
+    w = ''
   } else {
     w = 'slightly'
   }
@@ -332,3 +332,21 @@ function uds(n, w1, w2, w3) {
   }
 
 export { uds, adv, udord, sign, nuword, eq, ageBandLU, uncap1, getData, regionThe, drop, ud, otherRank, otherEst, qui, cha, cur, figs, get_word, city, ord, chains, prev };
+
+
+
+
+
+export async function getPhotos(limit, page) {
+  const res = await fetch(`https://picsum.photos/v2/list?limit=${limit}&page=${page}`);
+  return res.json();
+}
+
+export function randomQ(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+export function aspectQ(srcWidth, srcHeight, maxWidth, maxHeight) {
+  let ratio = Math.min(maxWidth / srcWidth, maxHeight / srcHeight);
+  return { width: Math.round(srcWidth * ratio), height: Math.round(srcHeight * ratio) };
+}

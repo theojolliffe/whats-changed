@@ -22,7 +22,7 @@
     "@onsvisual/svelte-charts": "github:onsvisual/svelte-charts",
     "@rollup/plugin-json": "^4.1.0",
     "archieml": "^0.5.0",
-    "d3": "^7.1.1",
+    "d3": "^7.3.0",
     "d3-dsv": "^3.0.1",
     "fast-fuzzy": "^1.11.1",
     "fuse.js": "^6.5.3",
