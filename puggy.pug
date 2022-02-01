@@ -55,9 +55,11 @@ mixin tenYears
     syn
       | in the 10 years leading up to 2021
     syn
-      | in the decade leading up to the last census
-    syn
-      | in the 10 years leading up to the last census
+      | in the 10 years leading up to Census 2021
+    //- syn
+    //-   | in the decade leading up to the last census
+    //- syn
+    //-   | in the 10 years leading up to the last census
 
 // Between the last two censuses, the average age in Manchester fell by two years, from 34 to 32 years of age.
 mixin sent1Age(i)
@@ -948,7 +950,7 @@ mixin welsh(i)
         | #[+value(ud(cha(s, place, i), 'rose', 'fell'))] 
         | from #[+pc((place.data[s[i][0]][s[i][1]][2001][s[i][3]]))]
         | to #[+pc((place.data[s[i][0]][s[i][1]][2011][s[i][3]]))]
-        | in the 10 years leading up to the last census. 
+        | in the 10 years leading up to Census 2021. 
     if (Math.abs(place.data[s[i][0]][s[i][1]+'_rank_local']['change'][s[i][3]])<4)
         p 
             | This amounts to the 
