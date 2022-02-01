@@ -35,7 +35,6 @@ mixin subheadVal(i)
 
 // A disclaim to explain that CoL and the Isles of Scilly are the smallest LAs
 mixin smallDisc(x)
-    - console.log('x area', x)
     if ((x=='the City of London') & (!hasSaid('CoLDisc')))
         recordSaid('CoLDisc')
         | Due to its small size, comparisons to the City of London should be made with caution. 
@@ -256,7 +255,6 @@ mixin overtake(i, loc)
     if (rgn.name=='Wales')
         - loc = "_local"
     - var ove = data[s[i][0]][s[i][1]+"_rank"+loc]['overtake'][s[i][3]]
-    - console.log('ove', ove)
     - var ra = data[s[i][0]][s[i][1]+"_rank"+loc][2011][s[i][3]]
     if (Math.abs(ra)<11)
         | #[+value(ud(ra, 'overtook', 'fell below'))] 
@@ -270,7 +268,6 @@ mixin overtake(i, loc)
             | and #[+value(ove[1])],
         | to become the #[+value((loc == "_local") ? parentNT : (country=="Wales")?"Welsh":"English")] local authority area with the
         | #[+value(ud(ra, (ord(Math.abs(ra))+"highest"), (ord(Math.abs(ra))+"lowest")))]
-        - console.log('topics[s[i][0]][s[i][3]]', topics[s[i][0]][s[i][3]])
         | percentage of #[+value(topics[s[i][0]][s[i][3]].adj_noun_s)].
     else
         | went from having the
@@ -565,7 +562,7 @@ mixin rank1reg(i)
             | , alongside 
             | #[+value((data[s[i][0]][s[i][1]+'_rank_local'].top_bottom[s[i][3]][rl<0?"-2":"2"].name == place.name)? data[s[i][0]][s[i][1]+'_rank_local'].top_bottom[s[i][3]][rl<0?"-3":"3"].name : data[s[i][0]][s[i][1]+'_rank_local'].top_bottom[s[i][3]][rl<0?"-2":"2"].name)].
             | The #[+value((rl<0)? drop(-1, 'largest drop', 'largest rise'):drop(1, 'largest drop', 'largest rise'))] was seen in 
-            | #[+value(data[s[i][0]][s[i][1]+'_rank_local'].top_bottom[s[i][3]][rl<0?"-1":"1"].name)])]
+            | #[+value(data[s[i][0]][s[i][1]+'_rank_local'].top_bottom[s[i][3]][rl<0?"-1":"1"].name)]
         else
             | #[+value(drop(rl, 'largest drop', 'largest rise'))]
             | in the proportion of #[+value(topic(i, s[i][3]).adj_noun)].

@@ -151,8 +151,6 @@ function cur(s, place, i, type) {
   } else {
     type = ""
   }
-  console.log('s', s)
-  console.log('place.data', place.data)
   return place.data[s[i][0]][s[i][1]+type][2011][s[i][3]]
 }
 

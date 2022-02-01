@@ -182,7 +182,7 @@
     fetch("./puggy.pug")
         .then((res) => res.text())
         .then((txt) => (puggy = txt))
-		
+
 	var loaded = false
     const onRosaeNlgLoad = () => { loaded = true }
 	let grewSyn = {
@@ -443,7 +443,9 @@
 						<main>
 							{#each placesOb as item, i (i)}
 								<h2 style="text-decoration: underline;">{item['place'].name}</h2>
-								{@html results(item['place'], item['region'], topics, item['s'], item['story'])}
+								{#if (item['region'])}
+									{@html results(item['place'], item['region'], topics, item['s'], item['story'])}
+								{/if}
 							{/each}
 							<hr style="width: 40%; margin: 60px auto 30px auto;"/>
 							<h2 id="create">Creating this article</h2>
