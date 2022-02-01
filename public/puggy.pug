@@ -35,10 +35,10 @@ mixin subheadVal(i)
 
 // A disclaim to explain that CoL and the Isles of Scilly are the smallest LAs
 mixin smallDisc(x)
-    if ((x=='the City of London') & (!hasSaid('CoLDisc')))
+    if ((x=='City of London') & (!hasSaid('CoLDisc')))
         recordSaid('CoLDisc')
         | Due to its small size, comparisons to the City of London should be made with caution. 
-    else if ((x=='the Isles of Scilly') & (!hasSaid('IoSDisc')))
+    else if ((x=='Isles of Scilly') & (!hasSaid('IoSDisc')))
         recordSaid('IoSDisc')
         | Due to its small size, comparisons to the Isles of Scilly should be made with caution. 
 
@@ -556,7 +556,7 @@ mixin rank1reg(i)
             | in the proportion of #[+value(topic(i, s[i][3]).adj_noun)]
             | , alongside 
             | #[+value((data[s[i][0]][s[i][1]+'_rank_local'].top_bottom[s[i][3]][rl<0?"-1":"1"].name == place.name)? data[s[i][0]][s[i][1]+'_rank_local'].top_bottom[s[i][3]][rl<0?"-2":"2"].name : data[s[i][0]][s[i][1]+'_rank_local'].top_bottom[s[i][3]][rl<0?"-1":"1"].name)].
-        else if ( ( Math.abs(rl) > 1 ) && ( data[s[i][0]][s[i][1]+'_rank_local'].top_bottom[s[i][3]][rl<0?"-3":"3"].change == data[s[i][0]][s[i][1]+'_rank_local'].top_bottom[s[i][3]][rl<0?"-3":"3"].change ) )
+        else if ( ( Math.abs(rl) > 1 ) && ( data[s[i][0]][s[i][1]+'_rank_local'].top_bottom[s[i][3]][rl<0?"-2":"2"].change == data[s[i][0]][s[i][1]+'_rank_local'].top_bottom[s[i][3]][rl<0?"-3":"3"].change ) )
             | joint #[+value(drop(rl, 'largest drop', 'largest rise'))]
             | in the proportion of #[+value(topic(i, s[i][3]).adj_noun)]
             | , alongside 
