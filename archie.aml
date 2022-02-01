@@ -55,7 +55,7 @@ welsh.profile: the use of welsh changed substantially in {plcname}
 
 children.Kids.clausal_modifier: households in {plcname} with children
 children.NoKids.clausal_modifier: households in {plcname} without children
-children.NonDepKids.clausal_modifier: households in {plcname} with with only adult children living with their parents
+children.NonDepKids.clausal_modifier: households in {plcname} with only adult children living with their parents
 
 care.1to19hoursWeek.clausal_modifier: {plcname} residents that provide up to 19 hours of weekly unpaid care
 care.20to49hoursWeek.clausal_modifier: {plcname} residents that provide between 20 and 49 hours of weekly unpaid care
@@ -261,7 +261,7 @@ hoursworked.Male49plus.adj_noun: people working long hours
 
 The percentage **that private renters** decreased 26% to 21%.
 
-children.Kids.verb: with least one child
+children.Kids.verb: with at least one child
 children.NoKids.verb: with no children
 children.NonDepKids.verb: that includes an adult living with parents
 
