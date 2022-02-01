@@ -441,12 +441,14 @@
 							{/if}
 						{/if}
 						<main>
-							{#each placesOb as item, i (i)}
-								<h2 style="text-decoration: underline;">{item['place'].name}</h2>
-								{#if (item['region'])}
-									{@html results(item['place'], item['region'], topics, item['s'], item['story'])}
-								{/if}
-							{/each}
+							{#if placesOb[0]['region']}
+								{#each placesOb as item, i (i)}
+									<h2 style="text-decoration: underline;">{item['place'].name}</h2>
+									{#if (item['region'])}
+										{@html results(item['place'], item['region'], topics, item['s'], item['story'])}
+									{/if}
+								{/each}
+							{/if}
 							<hr style="width: 40%; margin: 60px auto 30px auto;"/>
 							<h2 id="create">Creating this article</h2>
 							<p>This article was generated using some automation. Topics are automatically chosen based on how relevant they are for each area.</p>
