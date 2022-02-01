@@ -441,7 +441,7 @@
 							{/if}
 						{/if}
 						<main>
-							{#if (placesOb[0]['region'])&(placesOb[1]['region'])}
+							{#if placesOb.length>1}
 								{#each placesOb as item, i (i)}
 									<h2 style="text-decoration: underline;">{item['place'].name}</h2>
 									{#if (item['region'])}
