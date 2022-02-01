@@ -38,10 +38,10 @@ mixin smallDisc(x)
     - console.log('x area', x)
     if ((x=='the City of London') & (!hasSaid('CoLDisc')))
         recordSaid('CoLDisc')
-        | Due to its small size, comparisons between the City of London and other areas should be made with caution. 
+        | Due to its small size, comparisons to the City of London should be made with caution. 
     else if ((x=='the Isles of Scilly') & (!hasSaid('IoSDisc')))
         recordSaid('IoSDisc')
-        | Due to its small size, comparisons between the Isles of Scilly and other areas should be made with caution. 
+        | Due to its small size, comparisons to the Isles of Scilly should be made with caution. 
 
 // A younger Manchester
 mixin subheadAge(i)
@@ -699,7 +699,7 @@ mixin acrossCountry(i)
         | (from #[+pc((data[s[i][0]][s[i][1]+'_rank'+loc].top_bottom[s[i][3]][r<0?"-2":"2"][2001]))] 
         | to #[+pc((data[s[i][0]][s[i][1]+'_rank'+loc].top_bottom[s[i][3]][r<0?"-2":"2"][2011]))])
         | .
-        p #[+smallDisc(data[s[i][0]][s[i][1]+'_rank_local'].top_bottom[s[i][3]][rl<0?"-2":"2"].name)]
+        p #[+smallDisc(data[s[i][0]][s[i][1]+'_rank'+loc].top_bottom[s[i][3]][r<0?"-2":"2"].name)]
     else if (Math.abs(data[s[i][0]][s[i][1]+'_rank'][s[i][2]][s[i][3]])==2)
         | The greatest #[+value((r<0)?"decrease":"increase")] occurred in 
         | #[+value(data[s[i][0]][s[i][1]+'_rank'+loc]['top_bottom'][s[i][3]][r<0?"-1":"1"]['name'])]
@@ -708,7 +708,7 @@ mixin acrossCountry(i)
         | #[+pc((data[s[i][0]][s[i][1]+'_rank'+loc]['top_bottom'][s[i][3]][r<0?"-1":"1"]['2001']))] to 
         | #[+pc((data[s[i][0]][s[i][1]+'_rank'+loc]['top_bottom'][s[i][3]][r<0?"-1":"1"]['2011']))]) 
         | .
-        p #[+smallDisc(data[s[i][0]][s[i][1]+'_rank_local'].top_bottom[s[i][3]][rl<0?"-1":"1"].name)]
+        p #[+smallDisc(data[s[i][0]][s[i][1]+'_rank'+loc]['top_bottom'][s[i][3]][r<0?"-1":"1"]['name'])]
     else if (Math.abs(data[s[i][0]][s[i][1]+'_rank'][s[i][2]][s[i][3]])==3)
         | The greatest #[+value((r<0)?"decrease":"increase")] occurred in 
         | #[+value(data[s[i][0]][s[i][1]+'_rank'+loc]['top_bottom'][s[i][3]][r<0?"-1":"1"]['name'])]
@@ -722,8 +722,8 @@ mixin acrossCountry(i)
         | (from 
         | #[+pc((data[s[i][0]][s[i][1]+'_rank'+loc]['top_bottom'][s[i][3]][r<0?"-2":"2"]['2001']))] to 
         | #[+pc((data[s[i][0]][s[i][1]+'_rank'+loc]['top_bottom'][s[i][3]][r<0?"-2":"2"]['2011']))]).
-        p #[+smallDisc(data[s[i][0]][s[i][1]+'_rank_local'].top_bottom[s[i][3]][rl<0?"-1":"1"].name)]
-        p #[+smallDisc(data[s[i][0]][s[i][1]+'_rank_local'].top_bottom[s[i][3]][rl<0?"-2":"2"].name)]
+        p #[+smallDisc(data[s[i][0]][s[i][1]+'_rank'+loc]['top_bottom'][s[i][3]][r<0?"-1":"1"]['name'])]
+        p #[+smallDisc(data[s[i][0]][s[i][1]+'_rank'+loc]['top_bottom'][s[i][3]][r<0?"-2":"2"]['name'])]
 
 mixin despiteRegion(i)
     | Despite the shift in #[+value(topics[s[i][0]].general)], #[+value(place.name)] still has #[+value(parent)]'s 
