@@ -167,9 +167,9 @@ care.1to19hoursWeek.verb_past_samp: reported providing up to 19 hours of unpaid 
 care.20to49hoursWeek.verb_past_samp: reported providing between 20 and 49 hours of unpaid care each week
 care.40PlushoursWeek.verb_past_samp: reported providing at least 50 hours of unpaid care each week
 
-marital.Single.verb_past_samp: adults said they were single
-marital.Married.verb_past_samp: adults said they were married
-marital.Seperated.verb_past_samp: adults said they had divorced or broken up with their partner
+marital.Single.verb_past_samp: said they were single
+marital.Married.verb_past_samp: said they were married
+marital.Seperated.verb_past_samp: said they had divorced or broken up with their partner
 
 tenure.rented_private.verb_past_samp: rent privately
 tenure.rented_social.verb_past_samp: live in social housing
@@ -189,10 +189,10 @@ economic.self-employed.verb_past_samp: said they were self-employed
 economic.unemployed.verb_past_samp: said they were unemployed
 economic.student.verb_past_samp: said they were in education
 
-household.Cohabiting.verb_past_samp: have an unmarried couple
-household.LoneParent.verb_past_samp: have a single parent
-household.OnePerson.verb_past_samp: have only a single person
-household.Married.verb_past_samp: have a married couple
+household.Cohabiting.verb_past_samp: had an unmarried couple
+household.LoneParent.verb_past_samp: had a single parent
+household.OnePerson.verb_past_samp: had only a single person
+household.Married.verb_past_samp: had a married couple
 
 religion.Christian.verb_past_samp: said they were Christian
 religion.Buddhist.verb_past_samp: said they were Buddhist
@@ -611,6 +611,11 @@ hoursworked.Female1-15.adj_noun_s: people working less than 16 hours
 hoursworked.Female49plus.adj_noun_s: long hours workers
 hoursworked.Male1-15.adj_noun_s: people working less than 16 hours
 hoursworked.Male49plus.adj_noun_s: long hours workers
+
+care.1to19hoursWeek.adj_noun_s: people providing up to 19 hours of weekly care
+care.20to49hoursWeek.adj_noun_s: people providing between 20 and 49 hours of weekly care
+care.40PlushoursWeek.adj_noun_s: people providing 50 hours, or more, of weekly care
+
 
 // The percentage of people living in Southwark by ***ethnicity***; March 2011, March 2021
 hoursworked.subtitle: weekly hours worked
