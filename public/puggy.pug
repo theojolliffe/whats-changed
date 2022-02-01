@@ -37,10 +37,10 @@ mixin subheadVal(i)
 mixin smallDisc(x)
     if ((x=='City of London') & (!hasSaid('CoLDisc')))
         recordSaid('CoLDisc')
-        | Due to its small size, comparisons to City of London should be made with caution. 
+        p Due to its small size, comparisons to City of London should be made with caution. 
     else if ((x=='Isles of Scilly') & (!hasSaid('IoSDisc')))
         recordSaid('IoSDisc')
-        | Due to its small size, comparisons to Isles of Scilly should be made with caution. 
+        p Due to its small size, comparisons to Isles of Scilly should be made with caution. 
 
 // A younger Manchester
 mixin subheadAge(i)
@@ -108,7 +108,7 @@ mixin sent2Age(i)
             | #[+value(Math.abs(agediff)>4?'': Math.abs(agediff)>2?'somewhat':'slightly')] 
             | #[+value(ud(agediff, 'older', 'younger'))] 
             | than the average local authority area across Wales (#[+value(rgn.data.agemed.value[2011].all)] years of age).
-        p #[+smallDisc(place.similar.name)]
+        | #[+smallDisc(place.similar.name)]
 
 
 // The drop in age was largely driven by an increase of nearly 50,000 people between the ages of 20 and 29 years, while the population over the age of 70 years decreased by almost two thousand.
@@ -207,7 +207,7 @@ mixin sent2pop(i)
                 | Wales (
                 | #[+value((cha(s, place, i)==cha(s, rgn, i))?'also':'')]
                 |up #[+pc(rgn.data[s[i][0]][s[i][1]]['change'][s[i][3]])] since the 2011 census).
-    p #[+smallDisc(place.name)]
+    | #[+smallDisc(place.name)]
 
 mixin val(x)
     if (Math.abs(x)<10)
@@ -430,7 +430,7 @@ mixin sent3Perc(i)
                 | . Across Wales, the proportion #[+value(ud(cha(s, rgn, i), 'rose', 'fell'))]
                 | from #[+pc((rgn.data[s[i][0]][s[i][1]][2001][s[i][3]]))] to 
                 | #[+pc((rgn.data[s[i][0]][s[i][1]][2011][s[i][3]]))].
-            p #[+smallDisc(near.name)]
+            | #[+smallDisc(near.name)]
 
 // Blackburn with Darwen has the region's next lowest proportion of residents from a White ethnic group (69.2%), while 90.1% in nearby Salford are from a White ethnic group.
 mixin nextHighest(i)
@@ -629,7 +629,7 @@ mixin acrossRegion(i)
         | (from #[+pc((data[s[i][0]][s[i][1]+'_rank_local'].top_bottom[s[i][3]][rl<0?"-2":"2"][2001]))] in 2011 
         | to #[+pc((data[s[i][0]][s[i][1]+'_rank_local'].top_bottom[s[i][3]][rl<0?"-2":"2"][2011]))] in 2021) 
         | .
-        p #[+smallDisc(data[s[i][0]][s[i][1]+'_rank_local'].top_bottom[s[i][3]][rl<0?"-2":"2"].name)]
+        | #[+smallDisc(data[s[i][0]][s[i][1]+'_rank_local'].top_bottom[s[i][3]][rl<0?"-2":"2"].name)]
     else if (Math.abs(data[s[i][0]][s[i][1]+'_rank_local'][s[i][2]][s[i][3]])==2)
         | only 
         | #[+value(data[s[i][0]][s[i][1]+'_rank_local']['top_bottom'][s[i][3]][(rl<0)?"-1":"1"]['name'])]
@@ -639,7 +639,7 @@ mixin acrossRegion(i)
         | #[+pc((data[s[i][0]][s[i][1]+'_rank_local']['top_bottom'][s[i][3]][(rl<0)?"-1":"1"]['2001']))] to 
         | #[+pc((data[s[i][0]][s[i][1]+'_rank_local']['top_bottom'][s[i][3]][(rl<0)?"-1":"1"]['2011']))]) 
         | .
-        p #[+smallDisc(data[s[i][0]][s[i][1]+'_rank_local'].top_bottom[s[i][3]][rl<0?"-1":"1"].name)]
+        | #[+smallDisc(data[s[i][0]][s[i][1]+'_rank_local'].top_bottom[s[i][3]][rl<0?"-1":"1"].name)]
     else if (Math.abs(data[s[i][0]][s[i][1]+'_rank_local'][s[i][2]][s[i][3]])==3)
         | only 
         | #[+value(data[s[i][0]][s[i][1]+'_rank_local']['top_bottom'][s[i][3]][(rl<0)?"-1":"1"]['name'])]
@@ -654,8 +654,8 @@ mixin acrossRegion(i)
         | #[+pc((data[s[i][0]][s[i][1]+'_rank_local']['top_bottom'][s[i][3]][(rl<0)?"-2":"2"]['2001']))] to 
         | #[+pc((data[s[i][0]][s[i][1]+'_rank_local']['top_bottom'][s[i][3]][(rl<0)?"-2":"2"]['2011']))]) 
         | saw a greater #[+value(cha(s, place, i)<0?"decrease":"increase")] in the proportion of #[+value(topic(i).adj_noun)].
-        p #[+smallDisc(data[s[i][0]][s[i][1]+'_rank_local'].top_bottom[s[i][3]][rl<0?"-1":"1"].name)]
-        p #[+smallDisc(data[s[i][0]][s[i][1]+'_rank_local'].top_bottom[s[i][3]][rl<0?"-2":"2"].name)]
+        | #[+smallDisc(data[s[i][0]][s[i][1]+'_rank_local'].top_bottom[s[i][3]][rl<0?"-1":"1"].name)]
+        | #[+smallDisc(data[s[i][0]][s[i][1]+'_rank_local'].top_bottom[s[i][3]][rl<0?"-2":"2"].name)]
 
 //- Across the North East, the proportion of self-employed people rose from 10% in 2011 to 15% in 2021, while the proportion in nearby Middlesborough rose from 11% to 14%.
 mixin acrossRegionExcept(i)
@@ -667,7 +667,7 @@ mixin acrossRegionExcept(i)
     | #[+value(ud(cha(s, near, i), 'rose', 'fell'))]
     | from #[+pc((near.data[s[i][0]][s[i][1]]['2001'][s[i][3]]))] to 
     | #[+pc((near.data[s[i][0]][s[i][1]]['2011'][s[i][3]]))].
-    p #[+smallDisc(near.name)]
+    | #[+smallDisc(near.name)]
 
 mixin county(p)
     if (countyLU[p])
@@ -696,7 +696,7 @@ mixin acrossCountry(i)
         | (from #[+pc((data[s[i][0]][s[i][1]+'_rank'+loc].top_bottom[s[i][3]][r<0?"-2":"2"][2001]))] 
         | to #[+pc((data[s[i][0]][s[i][1]+'_rank'+loc].top_bottom[s[i][3]][r<0?"-2":"2"][2011]))])
         | .
-        p #[+smallDisc(data[s[i][0]][s[i][1]+'_rank'+loc].top_bottom[s[i][3]][r<0?"-2":"2"].name)]
+        | #[+smallDisc(data[s[i][0]][s[i][1]+'_rank'+loc].top_bottom[s[i][3]][r<0?"-2":"2"].name)]
     else if (Math.abs(data[s[i][0]][s[i][1]+'_rank'][s[i][2]][s[i][3]])==2)
         | The greatest #[+value((r<0)?"decrease":"increase")] occurred in 
         | #[+value(data[s[i][0]][s[i][1]+'_rank'+loc]['top_bottom'][s[i][3]][r<0?"-1":"1"]['name'])]
@@ -705,7 +705,7 @@ mixin acrossCountry(i)
         | #[+pc((data[s[i][0]][s[i][1]+'_rank'+loc]['top_bottom'][s[i][3]][r<0?"-1":"1"]['2001']))] to 
         | #[+pc((data[s[i][0]][s[i][1]+'_rank'+loc]['top_bottom'][s[i][3]][r<0?"-1":"1"]['2011']))]) 
         | .
-        p #[+smallDisc(data[s[i][0]][s[i][1]+'_rank'+loc]['top_bottom'][s[i][3]][r<0?"-1":"1"]['name'])]
+        | #[+smallDisc(data[s[i][0]][s[i][1]+'_rank'+loc]['top_bottom'][s[i][3]][r<0?"-1":"1"]['name'])]
     else if (Math.abs(data[s[i][0]][s[i][1]+'_rank'][s[i][2]][s[i][3]])==3)
         | The greatest #[+value((r<0)?"decrease":"increase")] occurred in 
         | #[+value(data[s[i][0]][s[i][1]+'_rank'+loc]['top_bottom'][s[i][3]][r<0?"-1":"1"]['name'])]
@@ -719,8 +719,8 @@ mixin acrossCountry(i)
         | (from 
         | #[+pc((data[s[i][0]][s[i][1]+'_rank'+loc]['top_bottom'][s[i][3]][r<0?"-2":"2"]['2001']))] to 
         | #[+pc((data[s[i][0]][s[i][1]+'_rank'+loc]['top_bottom'][s[i][3]][r<0?"-2":"2"]['2011']))]).
-        p #[+smallDisc(data[s[i][0]][s[i][1]+'_rank'+loc]['top_bottom'][s[i][3]][r<0?"-1":"1"]['name'])]
-        p #[+smallDisc(data[s[i][0]][s[i][1]+'_rank'+loc]['top_bottom'][s[i][3]][r<0?"-2":"2"]['name'])]
+        | #[+smallDisc(data[s[i][0]][s[i][1]+'_rank'+loc]['top_bottom'][s[i][3]][r<0?"-1":"1"]['name'])]
+        | #[+smallDisc(data[s[i][0]][s[i][1]+'_rank'+loc]['top_bottom'][s[i][3]][r<0?"-2":"2"]['name'])]
 
 mixin despiteRegion(i)
     | Despite the shift in #[+value(topics[s[i][0]].general)], #[+value(place.name)] still has #[+value(parent)]'s 
@@ -729,7 +729,7 @@ mixin despiteRegion(i)
     | behind
     | #[+value(data[s[i][0]][s[i][1]+'_rank_local']['above_below'][s[i][3]].above.name)]
     | (#[+pc(data[s[i][0]][s[i][1]+'_rank_local']['above_below'][s[i][3]].above.value)]).
-    p #[+smallDisc(data[s[i][0]][s[i][1]+'_rank_local']['above_below'][s[i][3]].above.name)]
+    | #[+smallDisc(data[s[i][0]][s[i][1]+'_rank_local']['above_below'][s[i][3]].above.name)]
 
 mixin despiteCountry(i)
     | Despite the shift in #[+value(topics[s[i][0]].general)], #[+value(place.name)] still has #[+value(country)]'s 
@@ -738,7 +738,7 @@ mixin despiteCountry(i)
     | behind 
     | #[+value(data[s[i][0]][s[i][1]+'_rank']['above_below'][s[i][3]].above.name)]
     | (#[+pc(data[s[i][0]][s[i][1]+'_rank']['above_below'][s[i][3]].above.value)]).
-    p #[+smallDisc(data[s[i][0]][s[i][1]+'_rank']['above_below'][s[i][3]].above.name)]
+    | #[+smallDisc(data[s[i][0]][s[i][1]+'_rank']['above_below'][s[i][3]].above.name)]
 
 mixin ppoint
     if !hasSaid('PP')
@@ -798,7 +798,7 @@ mixin difference(i, chain0_01, chain0_11, chain1_01, chain1_11)
             else
                 | at a faster rate than in
         | #[+nearbyname].
-        p #[+smallDisc(near.name)]
+        | #[+smallDisc(near.name)]
     else if ((stories[i].type.includes('simiDiff'))&(!hasSaid('simiDiff'))|(eq(stories[i].type, ['simiDiff'])))
         recordSaid('simiDiff')
         - curDif = 'simiDiff'
@@ -810,7 +810,7 @@ mixin difference(i, chain0_01, chain0_11, chain1_01, chain1_11)
             else
                 | at a faster rate than in
         | #[+similarname].
-        p #[+smallDisc(place.similar.name)]
+        | #[+smallDisc(place.similar.name)]
     else if (stories[i].type.includes('regDiff')&(!hasSaid('regDiff'))|(eq(stories[i].type, ['regDiff'])))
         recordSaid('regDiff')
         - curDif = 'regDiff'
@@ -850,13 +850,13 @@ mixin difference(i, chain0_01, chain0_11, chain1_01, chain1_11)
             | #[+value(ud(cha(s, near, i), 'increased', 'decreased'))]  from 
             | #[+pc((near.data[s[i][0]][s[i][1]][2001][s[i][3]]))] to 
             | #[+pc((near.data[s[i][0]][s[i][1]][2011][s[i][3]]))].
-            p #[+smallDisc(near.name)]
+            | #[+smallDisc(near.name)]
         else if (curDif == 'simiDiff')
             | proportion in #[+similarname]
             | #[+value(ud(cha(s, place.similar, i), 'increased', 'decreased'))]  from 
             | #[+pc((place.similar.data[s[i][0]][s[i][1]][2001][s[i][3]]))] to 
             | #[+pc((place.similar.data[s[i][0]][s[i][1]][2011][s[i][3]]))].
-            p #[+smallDisc(place.similar.name)]
+            | #[+smallDisc(place.similar.name)]
         else if (curDif == 'regDiff')
             | regional proportion
             | #[+value(ud(cha(s, rgn, i), 'increased', 'decreased'))]  from 
@@ -903,10 +903,10 @@ mixin buck(i, curBuck, chain0_01, chain0_11, chain1_01, chain1_11)
         | across #[+value(country)].
     else if (curBuck=="simiBuck")
         | in #[+similarname].
-        p #[+smallDisc(place.similar.name)]
+        | #[+smallDisc(place.similar.name)]
     else if (curBuck=="nearBuck")
         | in #[+nearbyname].
-        p #[+smallDisc(near.name)]
+        | #[+smallDisc(near.name)]
     p 
         | In #[+value(place.name)], the proportion 
         | #[+value(ud(cha(s, place, i), 'went up', 'came down'))]
@@ -953,7 +953,7 @@ mixin welsh(i)
         p 
             | This amounts to the 
             | #[+value(drop(data[s[i][0]][s[i][1]+'_rank_local']['change'][s[i][3]], 'largest decline', 'largest increase'))]
-            | in the porportion of Welsh speakers of any local authority area in the country.
+            | in the proportion of Welsh speakers of any local authority area in the country.
             if (data.welsh.perc_rank_local.top_bottom.SpeaksWelsh[1].name!=place.name)
                 | Of the few areas where knowledge of the Welsh language increased, !{data.welsh.perc_rank_local.top_bottom.SpeaksWelsh[1].name} saw the greatest change
                 | (from 
@@ -987,14 +987,14 @@ mixin welsh(i)
         if (Math.round(place.nearbyArea.nearTops.data[s[i][0]][s[i][1]][2011][s[i][3]]*10) == Math.round(place.nearbyArea.nearTops.data[s[i][0]][s[i][1]][2001][s[i][3]]*10))
             | In #[+nearbyname], the proportion of people over the age of three
             | who can speak some Welsh remained close to #[+pc((place.nearbyArea.nearTops.data[s[i][0]][s[i][1]][2011][s[i][3]]))].
-            p #[+smallDisc(near.name)]
+            | #[+smallDisc(near.name)]
         else
             | In #[+nearbyname], #[+pc((place.nearbyArea.nearTops.data[s[i][0]][s[i][1]][2011][s[i][3]]))] of people over the age of three
             | can speak some Welsh
             | , #[+value(ud(cha(s, place.nearbyArea.nearTops, i), 'up', 'down'))]
             | from #[+pc((place.nearbyArea.nearTops.data[s[i][0]][s[i][1]][2001][s[i][3]]))] at the 2011 census.
             | .
-            p #[+smallDisc(near.name)]
+            | #[+smallDisc(near.name)]
         | Across Wales, the proportion 
         | #[+value(ud(cha(s, rgn, i), 'rose', 'fell'))] from
         | #[+pc((rgn.data[s[i][0]][s[i][1]][2001][s[i][3]]))] 
