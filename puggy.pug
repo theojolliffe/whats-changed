@@ -577,7 +577,7 @@ mixin rank1nat(i)
     if (Math.sign(data[s[i][0]][s[i][1]+'_rank'][s[i][2]][s[i][3]]) != Math.sign(cha(s, place, i)))
         | #[+butSlower(i, "")]
     else
-        | This area saw #[+value(country)]'s 
+        | This area saw #[+value(cou.name)]'s 
         | #[+value(drop(data[s[i][0]][s[i][1]+'_rank'][s[i][2]][s[i][3]], 'largest drop', 'largest rise'))]
         | in the proportion of #[+value(topic(i, s[i][3]).adj_noun)].
         p #[+acrossCountry(i)]
