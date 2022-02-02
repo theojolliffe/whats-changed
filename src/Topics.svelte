@@ -406,6 +406,7 @@
 	$: console.log('*****selectedb', selectedb)
 
 	$: placesRegioned = placesOb.map(d => d.region)
+	$: console.log('placesRegioned', placesRegioned)
 </script>
 
 <svelte:head>
