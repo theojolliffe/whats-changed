@@ -224,7 +224,7 @@ marital.Seperated.adj_noun: people who have separated
 
 tenure.rented_private.adj_noun: private renters
 tenure.rented_social.adj_noun: people living in social housing
-tenure.owned.adj_noun: homeowners
+tenure.owned.adj_noun: home owners
 
 health.good.adj_noun: residents who perceive their health as good
 health.fair.adj_noun: people that described their health as fair
@@ -275,7 +275,7 @@ marital.Seperated.verb: that said they have separated
 
 tenure.rented_private.verb: of private renters
 tenure.rented_social.verb: of social renters
-tenure.owned.verb: of homeowners
+tenure.owned.verb: of home owners
 
 health.good.verb: that perceive their health as good
 health.fair.verb: that described their health as fair
@@ -376,8 +376,8 @@ tenure.rented_social.subhead.neg: Fall in social renting
 tenure.rented_social.subhead.neu: Change in {plcname} housing
 tenure.rented_social.subhead.buc: {plcname} stood out from other areas for housing
 tenure.rented_social.subhead.sta: Housing in {plcname}
-tenure.owned.subhead.pos: Rise in homeownership
-tenure.owned.subhead.neg: Fall in homeownership
+tenure.owned.subhead.pos: Rise in home ownership
+tenure.owned.subhead.neg: Fall in home ownership
 tenure.owned.subhead.neu: Change in {plcname} housing
 tenure.owned.subhead.buc: {plcname} stood out from other areas for housing
 tenure.owned.subhead.sta: Housing in {plcname}
@@ -512,7 +512,7 @@ hoursworked.Male49plus.subhead.neu: Change in work hours
 hoursworked.Male49plus.subhead.buc: {plcname} stood out from other areas for working hours
 hoursworked.Male49plus.subhead.sta: Working hours in {plcname}
 
-// **The rate of homeownership*** in Greenwich rose from 68.1% to 79.6%
+// **The rate of home ownership*** in Greenwich rose from 68.1% to 79.6%
 // ***The proportion of people from a Black ethnic group*** in Three Rivers rose from 1.0% to 1.8%
 population.all.sample: the population
 
@@ -528,7 +528,7 @@ children.NonDepKids.sample: the proportion of homes with only adult children liv
 
 tenure.rented_private.sample: private renting
 tenure.rented_social.sample: the rate of social housing
-tenure.owned.sample: the rate of homeownership
+tenure.owned.sample: the rate of home ownership
 
 health.good.sample: the percentage of people “in good health”
 health.fair.sample: the percentage of people “in fair health”
@@ -578,7 +578,7 @@ children.NonDepKids.adj_noun_s: homes with only adult children living with their
 
 tenure.rented_private.adj_noun_s: private renting
 tenure.rented_social.adj_noun_s: social housing
-tenure.owned.adj_noun_s: homeownership
+tenure.owned.adj_noun_s: home ownership
 
 health.good.adj_noun_s: people describing their health as good
 health.fair.adj_noun_s: people describing their health as fair
