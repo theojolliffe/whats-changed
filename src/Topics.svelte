@@ -8,6 +8,7 @@
 	import Fuse from 'fuse.js'
 	var wal, selected, selectedb, quartiles, locRankCha, locRankCur, eng, rgncode, rgnLoad, natRankCha, natRankCur, topics, topic;
 	var health, expand;
+	var totalStories;
 	var findst = false
 	function fuzz(w1, w2) {
 		const options = {
@@ -226,6 +227,7 @@
 					i = i-1
 				}
 			}
+			totalStories = subplacesOb.length
 			let subplacesLow = subplacesOb.sort(function(a, b) { return a['story'][0]['value'] - b['story'][0]['value'] }).slice(0,2)
 			let subplacesHigh = subplacesOb.sort(function(a, b) { return b['story'][0]['value'] - a['story'][0]['value'] }).slice(0,2)
 			let subplacesMid = subplacesOb.sort(function(a, b) { return Math.abs(a['story'][0]['value']) - Math.abs(b['story'][0]['value']) }).slice(0,2)
@@ -270,6 +272,7 @@
 				i = i-1
 			}
 		}
+		totalStories = placesOb.length
 		let placesLow = placesOb.sort(function(a, b) { return a['story'][0]['value'] - b['story'][0]['value'] }).slice(0,2)
 		let placesHigh = placesOb.sort(function(a, b) { return b['story'][0]['value'] - a['story'][0]['value'] }).slice(0,2)
 		let placesMid = placesOb.sort(function(a, b) { return Math.abs(a['story'][0]['value']) - Math.abs(b['story'][0]['value']) }).slice(0,2)
@@ -442,6 +445,7 @@
 						{/if}
 						<main>
 							{#if placesOb.length>1}
+								<p>A total of {totalStories} stories would be published around this topic across all LAs</p>
 								{#each placesOb as item, i (i)}
 									<h2 style="text-decoration: underline;">{item['place'].name}</h2>
 									{#if (item['region'])}
