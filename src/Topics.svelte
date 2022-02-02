@@ -6,6 +6,10 @@
 	import robojournalist from 'robojournalist';
 	import pluralize from 'pluralize';
 	import Fuse from 'fuse.js'
+	import * as regionsJson from './regions.json';
+	var regions = regionsJson.default
+	console.log('regions', regions)
+
 	var wal, selected, selectedb, quartiles, locRankCha, locRankCur, eng, rgncode, rgnLoad, natRankCha, natRankCur, topics, topic;
 	var health, expand;
 	var totalStories;
@@ -51,12 +55,15 @@
 	// }, 6000);
 	var regionLU = {};
 	// Data load functions
-	getData("https://raw.githubusercontent.com/theojolliffe/census-data/main/csv/lists/Corresponding%20Local%20Authorities-Table%201.csv").then(res => {
+	getData("https://raw.githubusercontent.com/theojolliffe/census-data/main/csv/lists/Corresponding%20Local%20Authorities-Table%201.csv")
+	.then(res => {
 		res.forEach(d => {
 			regionLU[d['Name']] = d['Region/Country'];
 		});
 		console.log("regionLU", regionLU)
 	});
+
+
 	var countyLU = {};
 	// Data load functions
 	getData("https://raw.githubusercontent.com/theojolliffe/census-data/main/csv/lists/Local_Authority_District_to_County_(April_2021)_Lookup_in_England.csv").then(res => {
@@ -139,7 +146,7 @@
  'E12000008',
  'E12000009',
 'W92000004']
-	var regions = []
+	// var regions = []
 	fetch("https://raw.githubusercontent.com/theojolliffe/census-data/main/json/place/W92000004.json")
 		.then(res => res.json())
 		.then(json => {
@@ -152,19 +159,19 @@
 			loaded1 = true
 		})
 		.then(d => {
-			regionArr.forEach(thisCode => {
-				fetch("https://raw.githubusercontent.com/theojolliffe/census-data/main/json/place/"+thisCode+".json")
-				.then(res => res.json())
-				.then(json => {
-					regions.push(json);
-				})
-			})
-		})
-		.then(d => {
 			rgnLoad = true
 			findst = true
 		})
-		console.log('regions', regions)
+		// .then(d => {
+		// 	regionArr.forEach(thisCode => {
+		// 		fetch("https://raw.githubusercontent.com/theojolliffe/census-data/main/json/place/"+thisCode+".json")
+		// 		.then(res => res.json())
+		// 		.then(json => {
+		// 			regions.push(json);
+		// 		})
+		// 	})
+		// })
+
 	var loaded1 = false
 	var loadedb = false
 	var places = []
@@ -176,8 +183,10 @@
 				places.push(json);
 		})
 	})
+	
 	$: placesload = false
 	$: console.log('placesload', placesload)
+	$: console.log('regions', regions)
 	setTimeout(function(){ placesload = true }, 1000);
     var topics;
     fetch("./archie.aml")
@@ -232,9 +241,9 @@
 				}
 			}
 			totalStories = subplacesOb.length
-			let subplacesLow = subplacesOb.sort(function(a, b) { return a['story'][0]['value'] - b['story'][0]['value'] }).slice(0,2)
-			let subplacesHigh = subplacesOb.sort(function(a, b) { return b['story'][0]['value'] - a['story'][0]['value'] }).slice(0,2)
-			let subplacesMid = subplacesOb.sort(function(a, b) { return Math.abs(a['story'][0]['value']) - Math.abs(b['story'][0]['value']) }).slice(0,2)
+			let subplacesLow = subplacesOb.sort(function(a, b) { return a['story'][0]['value'] - b['story'][0]['value'] }).slice(0,3)
+			let subplacesHigh = subplacesOb.sort(function(a, b) { return b['story'][0]['value'] - a['story'][0]['value'] }).slice(0,3)
+			let subplacesMid = subplacesOb.sort(function(a, b) { return Math.abs(a['story'][0]['value']) - Math.abs(b['story'][0]['value']) }).slice(0,3)
 			subplacesOb = subplacesHigh.concat(subplacesMid, subplacesLow)
 			// placesOb=placesOb.slice(0,6)
 			console.log('subplacesOb', subplacesOb)
@@ -279,9 +288,9 @@
 			}
 		}
 		totalStories = placesOb.length
-		let placesLow = placesOb.sort(function(a, b) { return a['story'][0]['value'] - b['story'][0]['value'] }).slice(0,2)
-		let placesHigh = placesOb.sort(function(a, b) { return b['story'][0]['value'] - a['story'][0]['value'] }).slice(0,2)
-		let placesMid = placesOb.sort(function(a, b) { return Math.abs(a['story'][0]['value']) - Math.abs(b['story'][0]['value']) }).slice(0,2)
+		let placesLow = placesOb.sort(function(a, b) { return a['story'][0]['value'] - b['story'][0]['value'] }).slice(0,3)
+		let placesHigh = placesOb.sort(function(a, b) { return b['story'][0]['value'] - a['story'][0]['value'] }).slice(0,3)
+		let placesMid = placesOb.sort(function(a, b) { return Math.abs(a['story'][0]['value']) - Math.abs(b['story'][0]['value']) }).slice(0,3)
 		placesOb = placesHigh.concat(placesMid, placesLow)
 		// placesOb=placesOb.slice(0,10)
 		placesOb = [...new Set(placesOb)]
@@ -289,7 +298,7 @@
 		topic = true
 
 
-		setTimeout(aftertime, 5000);
+		setTimeout(aftertime, 51000);
 	}
 	function iterate(obj, pname) {
 			Object.keys(obj).forEach(key => {
