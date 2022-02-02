@@ -444,7 +444,7 @@
 							{/if}
 						{/if}
 						<main>
-							{#if placesOb.length>1}
+							{#if placesOb.map(d => d.region).length>1}
 								<p>A total of {totalStories} stories would be published around this topic across all LAs</p>
 								{#each placesOb as item, i (i)}
 									<h2 style="text-decoration: underline;">{item['place'].name}</h2>
