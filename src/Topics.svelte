@@ -22,6 +22,10 @@
 			return true
 		}
 	}
+
+	function aftertime() {
+		placesRegioned = placesRegioned
+	}
 	const findOne = (haystack, arr) => {
 		return arr.some(v => haystack.includes(v));
 	};
@@ -238,6 +242,8 @@
 			placesOb = [...new Set(placesOb)]
 		}
 		loadedb = true
+
+		setTimeout(aftertime, 5000);
 	}
 	function loadPreTopic(code) {
 		findst = false;
@@ -281,6 +287,9 @@
 		placesOb = [...new Set(placesOb)]
 		console.log('places: sort ', placesOb)
 		topic = true
+
+
+		setTimeout(aftertime, 5000);
 	}
 	function iterate(obj, pname) {
 			Object.keys(obj).forEach(key => {
