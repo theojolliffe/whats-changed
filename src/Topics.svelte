@@ -121,7 +121,8 @@
 		'population_value_change': false,
 		'religion_perc_change': [
 			{'label': 'All', 'value': 'all'},
-			// {'label': 'Buddhist', 'value': 'Buddhist'},
+			{'label': 'Buddhist', 'value': 'Buddhist'},
+			{'label': 'Sikh', 'value': 'Sikh'},
 			{'label': 'Christian', 'value': 'Christian'},
 			{'label': 'Hindu', 'value': 'Hindu'},
 			{'label': 'Jewish', 'value': 'Jewish'},

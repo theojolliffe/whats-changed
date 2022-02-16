@@ -102,7 +102,7 @@
 
 		options = res.sort((a, b) => a.LAD21NM.localeCompare(b.LAD21NM));
 		let defaultLoc = options[Math.round(331*Math.random())]['LAD21NM']
-		// defaultLoc = 'Copeland';
+		// defaultLoc = 'Bolton';
 
 		console.log(defaultLoc)
 		selected = options.find(d => d.LAD21NM == defaultLoc);
@@ -372,6 +372,59 @@
 					}
 			return props
 		}
+		else if (s[0]=="care") {
+			let chartData = [
+  {
+    year: 2017,
+    value: 320,
+    group: 'apples'
+  },
+  {
+    year: 2017,
+    value: 480,
+    group: 'bananas'
+  },
+  {
+    year: 2017,
+    value: 640,
+    group: 'cherries'
+  },
+  {
+    year: 2017,
+    value: 400,
+    group: 'dates'
+  },
+  {
+    year: 2018,
+    value: 640,
+    group: 'apples'
+  },
+  {
+    year: 2018,
+    value: 960,
+    group: 'bananas'
+  },
+  {
+    year: 2018,
+    value: 640,
+    group: 'cherries'
+  },
+  {
+    year: 2018,
+    value: 400,
+    group: 'dates'
+  }]
+			let props ={
+						legend: true,
+						height: 120,
+						data: chartData,
+						labels: [cou.name, rgn.name, place.name],
+						xKey: "year",
+						yKey: "value",
+						zKey: "group"
+					}
+			return props
+		}
 		else if (place.stories[i].type.includes('size')) {
 			if (s[0]=="population") {
 				if (rgn.name == 'Wales') {
@@ -490,6 +543,8 @@
 		}		
 		if (s[0]=='agemed') {
 			return AgeChart
+		} else if (s[0]=='care') {
+			return ColumnChart
 		}
 		else if (place.stories[i].type.includes('size')) {
 			return DotPlotChart

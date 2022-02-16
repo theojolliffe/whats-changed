@@ -211,11 +211,7 @@ mixin sent2pop(i)
                 |up #[+pc(rgn.data[s[i][0]][s[i][1]]['change'][s[i][3]])] since the 2011 census).
     | #[+smallDisc(place.name)]
 
-mixin val(x)
-    if (Math.abs(x)<10)
-        | #[+value(x, {'FORMAT': '0.0'})]
-    else
-        | #[+value(x, {'FORMAT': '0'})] 
+
 
 // For each football pitch-sized piece of land (about 7,140 square metres), Manchester is now home to, on average, about 31 people, compared to 24 in 2011.
 mixin density 
@@ -1017,6 +1013,126 @@ mixin welsh(i)
             | #[+pc((data.welsh.perc_rank_local.top_bottom.SpeaksWelsh["-1"][2011]))]
             | ). 
 
+mixin val(x)
+    - var sig = parseFloat(x.toPrecision(2))
+    synz
+        syn
+            | about
+        syn
+            if (x>sig)
+                | just over 
+            else if (x<sig)
+                | just under 
+        syn
+            | about
+        syn
+            if (x>sig)
+                | just over 
+            else if (x<sig)
+                | just under
+        syn 
+            | 
+    | #[+value(sig)]
+        
+mixin religion(i)
+    - var obj = place.data.religion.perc.change
+    - var bigChange = Object.keys(obj).reduce((a, b) => obj[a] > obj[b] ? a : b)
+    p 
+        | The amount of people in !{place.name} 
+        | #[+value(topics['religion'][bigChange]['verb'])]
+        | increased from 
+        | #[+val(data.religion.value[2001][bigChange])] in 2011 
+        | to #[+val(data.religion.value[2011][bigChange])] in 2021. 
+        | This represents a change from 
+        | #[+pc(data.religion.perc[2001][bigChange])] 
+        | to #[+pc(data.religion.perc[2011][bigChange])] of the local population.
+    p
+        - var locDiff = Math.round(data.religion.perc[2011][bigChange] - data.religion.perc[2001][bigChange])
+        - var regDiff = Math.round(rgn.data.religion.perc[2011][bigChange] - rgn.data.religion.perc[2001][bigChange])
+        - var couDiff = Math.round(cou.data.religion.perc[2011][bigChange] - cou.data.religion.perc[2001][bigChange])
+        | The percentage is increasing at a
+        if (locDiff == regDiff)
+            | similar rate to 
+        else if (locDiff > regDiff)
+            | faster rate than 
+        else if (locDiff < regDiff)
+            | slower rate than
+        | the average across !{parent} 
+        | (from #[+pc(rgn.data.religion.perc[2001][bigChange])] to 
+        | #[+pc(rgn.data.religion.perc[2011][bigChange])])
+        if (cou.name!='Wales')
+            if (Math.sign(locDiff-regDiff)==Math.sign(locDiff-couDiff))
+                | and
+            else
+                if (locDiff == couDiff)
+                    | , but at a similar rate to 
+                else if (locDiff > couDiff)
+                    | , but at a faster rate than 
+                else if (locDiff < couDiff)
+                    | , but at a slower rate than
+            | the average across !{cou.name} 
+            | (from #[+pc(cou.data.religion.perc[2001][bigChange])] to 
+            | #[+pc(cou.data.religion.perc[2011][bigChange])])
+        | .
+    p 
+        - var objAbs = Object.assign({}, place.data.religion.value[2011]) 
+        - delete objAbs[bigChange]
+        - delete objAbs['all']
+        - var bigAbs1 = Object.keys(objAbs).reduce((a, b) => objAbs[a] > objAbs[b] ? a : b)
+        - delete objAbs[bigAbs1]
+        - var bigAbs2 = Object.keys(objAbs).reduce((a, b) => objAbs[a] > objAbs[b] ? a : b)
+        - delete objAbs[bigAbs2]
+        - var bigAbs3 = Object.keys(objAbs).reduce((a, b) => objAbs[a] > objAbs[b] ? a : b)
+        - console.log('bigAbs', bigAbs1)
+        - console.log('bigAbs', bigAbs2)
+        - console.log('bigAbs', bigAbs3)
+        | The amount of people in !{place.name} 
+        | #[+value(topics['religion'][bigAbs1]['verb'])]
+        if (data.religion.value[2001][bigAbs1].toPrecision(2) == data.religion.value[2011][bigAbs1].toPrecision(2))
+            | remained close to #[+val(data.religion.value[2011][bigAbs1])] (#[+pc(data.religion.perc[2011][bigAbs1])]) between the last two censuses
+        else 
+            if (data.religion.value[2001][bigAbs1].toPrecision(2) < data.religion.value[2011][bigAbs1].toPrecision(2))
+                | increased 
+            else if (data.religion.value[2001][bigAbs1].toPrecision(2) > data.religion.value[2011][bigAbs1].toPrecision(2))
+                | decreased
+            | from #[+val(data.religion.value[2001][bigAbs1])]
+            | in 2011 to
+            | #[+val(data.religion.value[2011][bigAbs1])]
+            | in 2021
+            | (from #[+pc(data.religion.perc[2001][bigAbs1])] 
+            | to #[+pc(data.religion.perc[2011][bigAbs1])])
+        | . 
+        | The amount of 
+        | #[+value(topics['religion'][bigAbs2]['adj_noun'])]
+        if (data.religion.value[2001][bigAbs2].toPrecision(2) == data.religion.value[2011][bigAbs2].toPrecision(2))
+            | remained close to #[+val(data.religion.value[2011][bigAbs2])] (#[+pc(data.religion.perc[2011][bigAbs2])])
+        else 
+            if (data.religion.value[2001][bigAbs2]<data.religion.value[2011][bigAbs2])
+                | increased 
+            else if (data.religion.value[2001][bigAbs2]>data.religion.value[2011][bigAbs2])
+                | decreased
+            | from #[+val(data.religion.value[2001][bigAbs2])]
+            | to 
+            | #[+val(data.religion.value[2011][bigAbs2])]
+            | (from #[+pc(data.religion.perc[2001][bigAbs2])] 
+            | to #[+pc(data.religion.perc[2011][bigAbs2])])
+        | ,
+        | while #[+val(data.religion.value[2011][bigAbs3])] people
+        | #[+value(topics['religion'][bigAbs3]['verb_past_samp'])] 
+        | (#[+pc(data.religion.perc[2001][bigAbs3])]), 
+        if (data.religion.value[2001][bigAbs3].toPrecision(2) == data.religion.value[2011][bigAbs3].toPrecision(2))
+            | similar to the amount in 2011 (which at the time represented #[+pc(data.religion.perc[2011][bigAbs3])])
+        else 
+            if (data.religion.value[2001][bigAbs3]<data.religion.value[2011][bigAbs3])
+                | up 
+            else if (data.religion.value[2001][bigAbs3]>data.religion.value[2011][bigAbs3])
+                | down
+            | from 
+            | #[+val(data.religion.value[2001][bigAbs3])]
+            | in 2011 (#[+pc(data.religion.perc[2011][bigAbs3])]).
+    p 
+        | There are many factors that can cause changes to the religious profile of an area, such as migration and varying fertility rates between religious groups.
+
 //- Deals with all percentage based variables
 mixin percPara(i, chain0_01, chain0_11, chain1_01, chain1_11)
     if ((findOne(stories[i].type, ['couBuck', 'regBuck']))&(!stories[i].type.includes('natRank')))
@@ -1031,6 +1147,8 @@ mixin percPara(i, chain0_01, chain0_11, chain1_01, chain1_11)
         h2 #[+value(topic(i).subhead.neu)]
     if (s[i][0] == 'welsh')
         | #[+welsh(i)]
+    else if (s[i][0] == 'religion')
+        | #[+religion(i)]
     else
         - var chain0_11 = data[s[i][0]][s[i][1]][2011][chains[s[i][3]][0]]
         - var chain0_01 = data[s[i][0]][s[i][1]][2001][chains[s[i][3]][0]] 

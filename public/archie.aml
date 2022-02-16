@@ -95,6 +95,8 @@ religion.Sikh.clausal_modifier: people in {plcname} that describe themselves as 
 religion.Jewish.clausal_modifier: people in {plcname} that describe themselves as Jewish
 religion.Muslim.clausal_modifier: people in {plcname} that describe themselves as Muslim
 religion.Noreligion.clausal_modifier: people in {plcname} that have no religion
+religion.Religionnotstated.clausal_modifier: people in {plcname} that did not state their religion
+religion.Otherreligion.clausal_modifier: people in {plcname} that identify with a religion other than Christianity, Islam, Hinduism, Judaism, Buddhism or Sikhism
 
 hoursworked.Female1-15.clausal_modifier: employees working less than 16 weekly hours
 hoursworked.Female49plus.clausal_modifier: employees working more than 49 hours in the week before the census
@@ -148,6 +150,8 @@ religion.Sikh.verb_past: that describe themselves as Sikh
 religion.Jewish.verb_past: that describe themselves as Jewish
 religion.Muslim.verb_past: that describe themselves as Muslim
 religion.Noreligion.verb_past: that said they had no religion
+religion.Religionnotstated.verb_past: that did not state their religion
+religion.Otherreligion.verb_past: that identify with a religion other than Christianity, Islam, Hinduism, Judaism, Buddhism or Sikhism
 
 hoursworked.Female1-15.verb_past: that said they had worked less than 16 hours the week before completing the census
 hoursworked.Female49plus.verb_past: that said they had worked over 49 hours the week before completing the census
@@ -201,6 +205,8 @@ religion.Sikh.verb_past_samp: said they were Sikh
 religion.Jewish.verb_past_samp: said they were Jewish
 religion.Muslim.verb_past_samp: said they were Muslim
 religion.Noreligion.verb_past_samp: said they had no religion
+religion.Religionnotstated.verb_past_samp: did not state their religion
+religion.Otherreligion.verb_past_samp: said they identified with a religion other than Christianity, Islam, Hinduism, Judaism, Buddhism or Sikhism
 
 hoursworked.Female1-15.verb_past_samp: said they had worked less than 16 hours the previous week
 hoursworked.Female49plus.verb_past_samp: said they had worked over 49 hours the week before completing the census
@@ -252,6 +258,8 @@ religion.Sikh.adj_noun: people who describe themselves as Sikh
 religion.Jewish.adj_noun: people who describe themselves as Jewish
 religion.Muslim.adj_noun: people who describe themselves as Muslim
 religion.Noreligion.adj_noun: people who describe themselves as non-religious
+religion.Religionnotstated.adj_noun: people who did not disclosed their religious beliefs
+religion.Otherreligion.adj_noun: people who identify with a religion other than Christianity, Islam, Hinduism, Judaism, Buddhism or Sikhism
 
 hoursworked.Female1-15.adj_noun: people working less than 16 hours in a week
 hoursworked.Female49plus.adj_noun: people working long hours
@@ -303,6 +311,8 @@ religion.Sikh.verb: that describe themselves as Sikh
 religion.Jewish.verb: that describe themselves as Jewish
 religion.Muslim.verb: that describe themselves as Muslim
 religion.Noreligion.verb: that describe themselves as non-religious
+religion.Religionnotstated.verb: that did not disclosed their religious beliefs
+religion.Otherreligion.verb: that identify with a religion other than Christianity, Islam, Hinduism, Judaism, Buddhism or Sikhism
 
 hoursworked.Female1-15.verb: that work less than 16 hours in a week
 hoursworked.Female49plus.verb: that work over 49 hours in a week
@@ -491,6 +501,16 @@ religion.Noreligion.subhead.neg: Fewer people without a religion in {plcname}
 religion.Noreligion.subhead.neu: Changing beliefs in {plcname}
 religion.Noreligion.subhead.buc: {plcname} stood out from other areas for religion
 religion.Noreligion.subhead.sta: Religion in {plcname}
+religion.Religionnotstated.subhead.pos: Religion in {plcname}
+religion.Religionnotstated.subhead.neg: Religion in {plcname}
+religion.Religionnotstated.subhead.neu: Religion in {plcname}
+religion.Religionnotstated.subhead.buc: Religion in {plcname}
+religion.Religionnotstated.subhead.sta: Religion in {plcname}
+religion.Otherreligion.subhead.pos: Religion in {plcname}
+religion.Otherreligion.subhead.neg: Religion in {plcname}
+religion.Otherreligion.subhead.neu: Religion in {plcname}
+religion.Otherreligion.subhead.buc: Religion in {plcname}
+religion.Otherreligion.subhead.sta: Religion in {plcname}
 hoursworked.Female1-15.subhead.pos: More people working fewer hours
 hoursworked.Female1-15.subhead.neg: Fewer people working fewer hours
 hoursworked.Female1-15.subhead.neu: Change in work hours
@@ -556,6 +576,8 @@ religion.Sikh.sample: the proportion of people who identify as Sikh
 religion.Jewish.sample: the proportion of people who identify as Jewish
 religion.Muslim.sample: the proportion of people who identify as Muslim
 religion.Noreligion.sample: the proportion of people without a religion
+religion.Religionnotstated.sample: the proportion of people that did not state their religion
+religion.Otherreligion.sample: the proportion of people who identify with a religion other than Christianity, Islam, Hinduism, Judaism, Buddhism or Sikhism
 
 hoursworked.Female1-15.sample: the proportion of people working less than 16 hours in a week
 hoursworked.Female49plus.sample: long hour working
@@ -606,6 +628,8 @@ religion.Sikh.adj_noun_s: people who identify as Sikh
 religion.Jewish.adj_noun_s: people who identify as Jewish
 religion.Muslim.adj_noun_s: people who identify as Muslim
 religion.Noreligion.adj_noun_s: people without a religion
+religion.Religionnotstated.adj_noun_s: people that did not state their religion
+religion.Otherreligion.adj_noun_s: people who identify with a religion other than Christianity, Islam, Hinduism, Judaism, Buddhism or Sikhism
 
 hoursworked.Female1-15.adj_noun_s: people working less than 16 hours
 hoursworked.Female49plus.adj_noun_s: long hours workers
