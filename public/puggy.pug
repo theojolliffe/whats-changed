@@ -1283,7 +1283,7 @@ mixin percPara(i, chain0_01, chain0_11, chain1_01, chain1_11)
             h2 #[+value(topics['ethnicity'][bigChange].subhead.neg)]
         else 
             h2 #[+value(topics['ethnicity'][bigChange].subhead.sta)]
-    if (s[i][0]=='religion')
+    else if (s[i][0]=='religion')
         - var obj = place.data.religion.perc.change
         - var bigChange = Object.keys(obj).reduce((a, b) => obj[a] > obj[b] ? a : b)
         if (data.religion.value[2011][bigChange]>data.religion.value[2001][bigChange])
