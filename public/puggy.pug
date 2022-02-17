@@ -132,11 +132,6 @@ mixin rou(x)
     else 
         | #[+value(Math.round(x))]
 
-mixin pc(x)
-    if (Math.abs(x)<10)
-        | #[+value((x/100), {'FORMAT': '0.0%'})]
-    else 
-        | #[+value((x/100), {'FORMAT': '0%'})] 
 
 // In the decade to 2021, the population of Manchester rose by over 28% from 391,221 to 503,127, giving it the largest headcount of any local authority area in the North West of England.
 mixin sent1pop(i)
@@ -1033,8 +1028,16 @@ mixin val(x)
         syn 
             | 
     | #[+value(sig)]
-        
+
+mixin pc(x)
+    if (Math.abs(x)<10)
+        - var num = Math.round(x*10)/10
+        | #[+value((num/100), {'FORMAT': '0.0%'})]
+    else 
+        | #[+value((x/100), {'FORMAT': '0%'})] 
+
 mixin religion(i)
+    - function pcnoprint(x) { if (Math.abs(x)<10) { return Math.round(x*10)/10 }  else { return Math.round(x) } }
     - var obj = place.data.religion.perc.change
     - var bigChange = Object.keys(obj).reduce((a, b) => obj[a] > obj[b] ? a : b)
     p 
@@ -1058,8 +1061,13 @@ mixin religion(i)
         else if (locDiff < regDiff)
             | slower rate than
         | the average across !{parent} 
-        | (from #[+pc(rgn.data.religion.perc[2001][bigChange])] to 
-        | #[+pc(rgn.data.religion.perc[2011][bigChange])])
+        - var pcbc01 = pcnoprint(data.religion.perc[2001][bigChange])
+        - var pcbc11 = pcnoprint(data.religion.perc[2011][bigChange])
+        if (pcbc01==pcbc11)
+            | (#[+pc(rgn.data.religion.perc[2011][bigChange])])
+        else
+            | (from #[+pc(rgn.data.religion.perc[2001][bigChange])] to 
+            | #[+pc(rgn.data.religion.perc[2011][bigChange])])
         if (cou.name!='Wales')
             if (Math.sign(locDiff-regDiff)==Math.sign(locDiff-couDiff))
                 | and
@@ -1091,16 +1099,24 @@ mixin religion(i)
         if (data.religion.value[2001][bigAbs1].toPrecision(2) == data.religion.value[2011][bigAbs1].toPrecision(2))
             | remained close to #[+val(data.religion.value[2011][bigAbs1])] (#[+pc(data.religion.perc[2011][bigAbs1])]) between the last two censuses
         else 
-            if (data.religion.value[2001][bigAbs1].toPrecision(2) < data.religion.value[2011][bigAbs1].toPrecision(2))
-                | increased 
-            else if (data.religion.value[2001][bigAbs1].toPrecision(2) > data.religion.value[2011][bigAbs1].toPrecision(2))
+            - console.log(place.name)
+            - console.log('eh', parseFloat(data.religion.value[2001][bigAbs1].toPrecision(2)))
+            - console.log('eh', parseFloat(data.religion.value[2011][bigAbs1].toPrecision(2)))
+            if (parseFloat(data.religion.value[2001][bigAbs1].toPrecision(2)) < parseFloat(data.religion.value[2011][bigAbs1].toPrecision(2)))
+                | increased
+            else if (parseFloat(data.religion.value[2001][bigAbs1].toPrecision(2)) > parseFloat(data.religion.value[2011][bigAbs1].toPrecision(2)))
                 | decreased
             | from #[+val(data.religion.value[2001][bigAbs1])]
             | in 2011 to
             | #[+val(data.religion.value[2011][bigAbs1])]
             | in 2021
-            | (from #[+pc(data.religion.perc[2001][bigAbs1])] 
-            | to #[+pc(data.religion.perc[2011][bigAbs1])])
+            - var pcba101 = pcnoprint(data.religion.perc[2001][bigAbs1])
+            - var pcba111 = pcnoprint(data.religion.perc[2011][bigAbs1])
+            if (pcba101 == pcba111)
+                | (#[+pc(data.religion.perc[2001][bigAbs1])])
+            else
+                | (from #[+pc(data.religion.perc[2001][bigAbs1])] 
+                | to #[+pc(data.religion.perc[2011][bigAbs1])])
         | . 
         | The amount of 
         | #[+value(topics['religion'][bigAbs2]['adj_noun'])]
@@ -1114,12 +1130,17 @@ mixin religion(i)
             | from #[+val(data.religion.value[2001][bigAbs2])]
             | to 
             | #[+val(data.religion.value[2011][bigAbs2])]
-            | (from #[+pc(data.religion.perc[2001][bigAbs2])] 
-            | to #[+pc(data.religion.perc[2011][bigAbs2])])
-        | ,
-        | while #[+val(data.religion.value[2011][bigAbs3])] people
-        | #[+value(topics['religion'][bigAbs3]['verb_past_samp'])] 
-        | (#[+pc(data.religion.perc[2001][bigAbs3])]), 
+            - var pcba201 = pcnoprint(data.religion.perc[2001][bigAbs2])
+            - var pcba211 = pcnoprint(data.religion.perc[2011][bigAbs2])
+            if (pcba201 == pcba211)
+                | (#[+pc(data.religion.perc[2001][bigAbs2])])
+            else
+                | (from #[+pc(data.religion.perc[2001][bigAbs2])] 
+                | to #[+pc(data.religion.perc[2011][bigAbs2])])
+        | .
+    p
+        | #[+val(data.religion.value[2011][bigAbs3])] people (#[+pc(data.religion.perc[2001][bigAbs3])])
+        | #[+value(topics['religion'][bigAbs3]['verb_past_samp'])],
         if (data.religion.value[2001][bigAbs3].toPrecision(2) == data.religion.value[2011][bigAbs3].toPrecision(2))
             | similar to the amount in 2011 (which at the time represented #[+pc(data.religion.perc[2011][bigAbs3])])
         else 
@@ -1135,16 +1156,26 @@ mixin religion(i)
 
 //- Deals with all percentage based variables
 mixin percPara(i, chain0_01, chain0_11, chain1_01, chain1_11)
-    if ((findOne(stories[i].type, ['couBuck', 'regBuck']))&(!stories[i].type.includes('natRank')))
-        h2 #[+value(topic(i).subhead.buc)]
-    else if ((cha(s, place, i)<-1)&(data[s[i][0]]['value'][2011][s[i][3]]<data[s[i][0]]['value'][2001][s[i][3]]))
-        h2 #[+value(topic(i).subhead.neg)]
-    else if ((cha(s, place, i)>1)&(data[s[i][0]]['value'][2011][s[i][3]]>data[s[i][0]]['value'][2001][s[i][3]]))
-        h2 #[+value(topic(i).subhead.pos)]
-    else if (findOne(stories[i].type, ['nearDiff', 'couDiff', 'regDiff']))
-        h2 #[+value(topic(i).subhead.sta)]
-    else 
-        h2 #[+value(topic(i).subhead.neu)]
+    if (s[i][0]=='religion')
+        - var obj = place.data.religion.perc.change
+        - var bigChange = Object.keys(obj).reduce((a, b) => obj[a] > obj[b] ? a : b)
+        if (data.religion.value[2011][bigChange]>data.religion.value[2001][bigChange])
+            h2 #[+value(topics['religion'][bigChange].subhead.pos)]
+        else if (data.religion.value[2011][bigChange]<data.religion.value[2001][bigChange])
+            h2 #[+value(topics['religion'][bigChange].subhead.neg)]
+        else 
+            h2 #[+value(topics['religion'][bigChange].subhead.sta)]
+    else
+        if ((findOne(stories[i].type, ['couBuck', 'regBuck']))&(!stories[i].type.includes('natRank')))
+            h2 #[+value(topic(i).subhead.buc)]
+        else if ((cha(s, place, i)<-1)&(data[s[i][0]]['value'][2011][s[i][3]]<data[s[i][0]]['value'][2001][s[i][3]]))
+            h2 #[+value(topic(i).subhead.neg)]
+        else if ((cha(s, place, i)>1)&(data[s[i][0]]['value'][2011][s[i][3]]>data[s[i][0]]['value'][2001][s[i][3]]))
+            h2 #[+value(topic(i).subhead.pos)]
+        else if (findOne(stories[i].type, ['nearDiff', 'couDiff', 'regDiff']))
+            h2 #[+value(topic(i).subhead.sta)]
+        else 
+            h2 #[+value(topic(i).subhead.neu)]
     if (s[i][0] == 'welsh')
         | #[+welsh(i)]
     else if (s[i][0] == 'religion')

@@ -258,7 +258,7 @@ religion.Sikh.adj_noun: people who describe themselves as Sikh
 religion.Jewish.adj_noun: people who describe themselves as Jewish
 religion.Muslim.adj_noun: people who describe themselves as Muslim
 religion.Noreligion.adj_noun: people who describe themselves as non-religious
-religion.Religionnotstated.adj_noun: people who did not disclosed their religious beliefs
+religion.Religionnotstated.adj_noun: people who did not disclose their religious beliefs
 religion.Otherreligion.adj_noun: people who identify with a religion other than Christianity, Islam, Hinduism, Judaism, Buddhism or Sikhism
 
 hoursworked.Female1-15.adj_noun: people working less than 16 hours in a week
@@ -311,7 +311,7 @@ religion.Sikh.verb: that describe themselves as Sikh
 religion.Jewish.verb: that describe themselves as Jewish
 religion.Muslim.verb: that describe themselves as Muslim
 religion.Noreligion.verb: that describe themselves as non-religious
-religion.Religionnotstated.verb: that did not disclosed their religious beliefs
+religion.Religionnotstated.verb: that did not disclose their religious beliefs
 religion.Otherreligion.verb: that identify with a religion other than Christianity, Islam, Hinduism, Judaism, Buddhism or Sikhism
 
 hoursworked.Female1-15.verb: that work less than 16 hours in a week
