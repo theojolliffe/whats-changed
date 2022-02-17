@@ -6,7 +6,7 @@ ethnicity.general: ethnic makeup
 economic.general: jobs
 household.general: relationships
 religion.general: religion
-care.general: care provision
+care.general: unpaid care provision
 children.general: family life
 hoursworked.general: work life
 marital.general: marriage
@@ -42,7 +42,7 @@ ethnicity.profile: ethnic makeup of {plcname} changed substantially
 economic.profile: work life changed for many in {plcname}
 household.profile: housing in {plcname} changed substantially
 religion.profile: the religious profile of {plcname} changed substantially
-care.profile: care provision changed in {plcname}
+care.profile: unpaid care provision changed in {plcname}
 children.profile: family life changed for many in {plcname}
 hoursworked.profile: work life changed for many in {plcname}
 marital.profile: family life changed for many in {plcname}
@@ -95,6 +95,8 @@ religion.Sikh.clausal_modifier: people in {plcname} that describe themselves as 
 religion.Jewish.clausal_modifier: people in {plcname} that describe themselves as Jewish
 religion.Muslim.clausal_modifier: people in {plcname} that describe themselves as Muslim
 religion.Noreligion.clausal_modifier: people in {plcname} that have no religion
+religion.Religionnotstated.clausal_modifier: people in {plcname} that did not state their religion
+religion.Otherreligion.clausal_modifier: people in {plcname} that identify with a religion other than Christianity, Islam, Hinduism, Judaism, Buddhism or Sikhism
 
 hoursworked.Female1-15.clausal_modifier: employees working less than 16 weekly hours
 hoursworked.Female49plus.clausal_modifier: employees working more than 49 hours in the week before the census
@@ -148,6 +150,8 @@ religion.Sikh.verb_past: that describe themselves as Sikh
 religion.Jewish.verb_past: that describe themselves as Jewish
 religion.Muslim.verb_past: that describe themselves as Muslim
 religion.Noreligion.verb_past: that said they had no religion
+religion.Religionnotstated.verb_past: that did not state their religion
+religion.Otherreligion.verb_past: that identify with a religion other than Christianity, Islam, Hinduism, Judaism, Buddhism or Sikhism
 
 hoursworked.Female1-15.verb_past: that said they had worked less than 16 hours the week before completing the census
 hoursworked.Female49plus.verb_past: that said they had worked over 49 hours the week before completing the census
@@ -201,6 +205,8 @@ religion.Sikh.verb_past_samp: said they were Sikh
 religion.Jewish.verb_past_samp: said they were Jewish
 religion.Muslim.verb_past_samp: said they were Muslim
 religion.Noreligion.verb_past_samp: said they had no religion
+religion.Religionnotstated.verb_past_samp: did not state their religion
+religion.Otherreligion.verb_past_samp: said they identified with a religion other than Christianity, Islam, Hinduism, Judaism, Buddhism or Sikhism
 
 hoursworked.Female1-15.verb_past_samp: said they had worked less than 16 hours the previous week
 hoursworked.Female49plus.verb_past_samp: said they had worked over 49 hours the week before completing the census
@@ -214,9 +220,9 @@ children.Kids.adj_noun: homes with children
 children.NoKids.adj_noun: homes without children
 children.NonDepKids.adj_noun: homes with adult children living with their parents
 
-care.1to19hoursWeek.adj_noun: people providing up to 19 hours of weekly care
-care.20to49hoursWeek.adj_noun: people providing between 20 and 49 hours of weekly care
-care.40PlushoursWeek.adj_noun: people providing 50 hours, or more, of weekly care
+care.1to19hoursWeek.adj_noun: people providing up to 19 hours of weekly unpaid care
+care.20to49hoursWeek.adj_noun: people providing between 20 and 49 hours of weekly unpaid care
+care.40PlushoursWeek.adj_noun: people providing 50 hours, or more, of weekly unpaid care
 
 marital.Single.adj_noun: single people
 marital.Married.adj_noun: married people
@@ -252,6 +258,8 @@ religion.Sikh.adj_noun: people who describe themselves as Sikh
 religion.Jewish.adj_noun: people who describe themselves as Jewish
 religion.Muslim.adj_noun: people who describe themselves as Muslim
 religion.Noreligion.adj_noun: people who describe themselves as non-religious
+religion.Religionnotstated.adj_noun: people who did not disclose their religious beliefs
+religion.Otherreligion.adj_noun: people who identify with a religion other than Christianity, Islam, Hinduism, Judaism, Buddhism or Sikhism
 
 hoursworked.Female1-15.adj_noun: people working less than 16 hours in a week
 hoursworked.Female49plus.adj_noun: people working long hours
@@ -265,9 +273,9 @@ children.Kids.verb: with at least one child
 children.NoKids.verb: with no children
 children.NonDepKids.verb: that includes an adult living with parents
 
-care.1to19hoursWeek.verb: that provide up to 19 hours of weekly care
-care.20to49hoursWeek.verb: that provide between 20 and 49 hours of weekly care
-care.40PlushoursWeek.verb: that provide 50 hours, or more, of weekly care
+care.1to19hoursWeek.verb: that provide up to 19 hours of weekly unpaid care
+care.20to49hoursWeek.verb: that provide between 20 and 49 hours of weekly unpaid care
+care.40PlushoursWeek.verb: that provide 50 hours, or more, of weekly unpaid care
 
 marital.Single.verb: that said they were single
 marital.Married.verb: that said they are married
@@ -303,6 +311,8 @@ religion.Sikh.verb: that describe themselves as Sikh
 religion.Jewish.verb: that describe themselves as Jewish
 religion.Muslim.verb: that describe themselves as Muslim
 religion.Noreligion.verb: that describe themselves as non-religious
+religion.Religionnotstated.verb: that did not disclose their religious beliefs
+religion.Otherreligion.verb: that identify with a religion other than Christianity, Islam, Hinduism, Judaism, Buddhism or Sikhism
 
 hoursworked.Female1-15.verb: that work less than 16 hours in a week
 hoursworked.Female49plus.verb: that work over 49 hours in a week
@@ -333,24 +343,24 @@ children.NonDepKids.subhead.buc: {plcname} stood out from other areas for childr
 children.NonDepKids.subhead.sta: Families in {plcname}
 care.noCare.subhead.pos: Drop in unpaid care provision
 care.noCare.subhead.neg: Rise in unpaid care provision
-care.noCare.subhead.neu: Change in care provision
-care.noCare.subhead.buc: {plcname} stood out from other areas for care provision
-care.noCare.subhead.sta: Care provision in {plcname}
-care.1to19hoursWeek.subhead.pos: Rise in moderate hours care provision
-care.1to19hoursWeek.subhead.neg: Fall in moderate hours care provision
-care.1to19hoursWeek.subhead.neu: Change in care provision
-care.1to19hoursWeek.subhead.buc: {plcname} stood out from other areas for care provision
-care.1to19hoursWeek.subhead.sta: Care provision in {plcname}
-care.20to49hoursWeek.subhead.pos: Rise in long hours care provision
-care.20to49hoursWeek.subhead.neg: Fall in long hours care provision
-care.20to49hoursWeek.subhead.neu: Change in care provision
-care.20to49hoursWeek.subhead.buc: {plcname} stood out from other areas for care provision
-care.20to49hoursWeek.subhead.sta: Care provision in {plcname}
-care.40PlushoursWeek.subhead.pos: Rise in extremely long hours care provision
-care.40PlushoursWeek.subhead.neg: Fall in extremely long hours care provision
-care.40PlushoursWeek.subhead.neu: Change in care provision
-care.40PlushoursWeek.subhead.buc: {plcname} stood out from other areas for care provision
-care.40PlushoursWeek.subhead.sta: Care provision in {plcname}
+care.noCare.subhead.neu: Change in unpaid care provision
+care.noCare.subhead.buc: {plcname} stood out from other areas for unpaid care provision
+care.noCare.subhead.sta: Unpaid care in {plcname}
+care.1to19hoursWeek.subhead.pos: Rise in moderate hours unpaid care provision
+care.1to19hoursWeek.subhead.neg: Fall in moderate hours unpaid care provision
+care.1to19hoursWeek.subhead.neu: Change in unpaid care provision
+care.1to19hoursWeek.subhead.buc: {plcname} stood out from other areas for unpaid care provision
+care.1to19hoursWeek.subhead.sta: Unpaid care in {plcname}
+care.20to49hoursWeek.subhead.pos: Rise in long hours unpaid care provision
+care.20to49hoursWeek.subhead.neg: Fall in long hours unpaid care provision
+care.20to49hoursWeek.subhead.neu: Change in unpaid care 
+care.20to49hoursWeek.subhead.buc: {plcname} stood out from other areas for unpaid care provision
+care.20to49hoursWeek.subhead.sta: Unpaid care in {plcname}
+care.40PlushoursWeek.subhead.pos: Rise in extremely long hours unpaid care
+care.40PlushoursWeek.subhead.neg: Fall in extremely long hours unpaid care
+care.40PlushoursWeek.subhead.neu: Change in unpaid care provision
+care.40PlushoursWeek.subhead.buc: {plcname} stood out from other areas for unpaid care
+care.40PlushoursWeek.subhead.sta: Unpaid care in {plcname}
 marital.Single.subhead.pos: More single people in {plcname}
 marital.Single.subhead.neg: Less single people in {plcname}
 marital.Single.subhead.neu: Changing relationships in {plcname}
@@ -491,6 +501,16 @@ religion.Noreligion.subhead.neg: Fewer people without a religion in {plcname}
 religion.Noreligion.subhead.neu: Changing beliefs in {plcname}
 religion.Noreligion.subhead.buc: {plcname} stood out from other areas for religion
 religion.Noreligion.subhead.sta: Religion in {plcname}
+religion.Religionnotstated.subhead.pos: Religion in {plcname}
+religion.Religionnotstated.subhead.neg: Religion in {plcname}
+religion.Religionnotstated.subhead.neu: Religion in {plcname}
+religion.Religionnotstated.subhead.buc: Religion in {plcname}
+religion.Religionnotstated.subhead.sta: Religion in {plcname}
+religion.Otherreligion.subhead.pos: Religion in {plcname}
+religion.Otherreligion.subhead.neg: Religion in {plcname}
+religion.Otherreligion.subhead.neu: Religion in {plcname}
+religion.Otherreligion.subhead.buc: Religion in {plcname}
+religion.Otherreligion.subhead.sta: Religion in {plcname}
 hoursworked.Female1-15.subhead.pos: More people working fewer hours
 hoursworked.Female1-15.subhead.neg: Fewer people working fewer hours
 hoursworked.Female1-15.subhead.neu: Change in work hours
@@ -556,15 +576,17 @@ religion.Sikh.sample: the proportion of people who identify as Sikh
 religion.Jewish.sample: the proportion of people who identify as Jewish
 religion.Muslim.sample: the proportion of people who identify as Muslim
 religion.Noreligion.sample: the proportion of people without a religion
+religion.Religionnotstated.sample: the proportion of people that did not state their religion
+religion.Otherreligion.sample: the proportion of people who identify with a religion other than Christianity, Islam, Hinduism, Judaism, Buddhism or Sikhism
 
 hoursworked.Female1-15.sample: the proportion of people working less than 16 hours in a week
 hoursworked.Female49plus.sample: long hour working
 hoursworked.Male1-15.sample: the proportion of people working less than 16 hours in a week
 hoursworked.Male49plus.sample: long hour working
 
-care.1to19hoursWeek.sample: the proportion of people providing up to 19 hours of weekly care
-care.20to49hoursWeek.sample: the proportion of people providing between 20 and 49 hours of weekly care
-care.40PlushoursWeek.sample: the proportion of people providing 50 hours, or more, of weekly care
+care.1to19hoursWeek.sample: the proportion of people providing up to 19 hours of weekly unpaid care
+care.20to49hoursWeek.sample: the proportion of people providing between 20 and 49 hours of weekly unpaid care
+care.40PlushoursWeek.sample: the proportion of people providing 50 hours, or more, of weekly unpaid care
 
 // the English area with the highest percentage of ***Buddhist people***.
 
@@ -606,15 +628,17 @@ religion.Sikh.adj_noun_s: people who identify as Sikh
 religion.Jewish.adj_noun_s: people who identify as Jewish
 religion.Muslim.adj_noun_s: people who identify as Muslim
 religion.Noreligion.adj_noun_s: people without a religion
+religion.Religionnotstated.adj_noun_s: people that did not state their religion
+religion.Otherreligion.adj_noun_s: people who identify with a religion other than Christianity, Islam, Hinduism, Judaism, Buddhism or Sikhism
 
 hoursworked.Female1-15.adj_noun_s: people working less than 16 hours
 hoursworked.Female49plus.adj_noun_s: long hours workers
 hoursworked.Male1-15.adj_noun_s: people working less than 16 hours
 hoursworked.Male49plus.adj_noun_s: long hours workers
 
-care.1to19hoursWeek.adj_noun_s: people providing up to 19 hours of weekly care
-care.20to49hoursWeek.adj_noun_s: people providing between 20 and 49 hours of weekly care
-care.40PlushoursWeek.adj_noun_s: people providing 50 hours, or more, of weekly care
+care.1to19hoursWeek.adj_noun_s: people providing up to 19 hours of weekly unpaid care
+care.20to49hoursWeek.adj_noun_s: people providing between 20 and 49 hours of weekly unpaid care
+care.40PlushoursWeek.adj_noun_s: people providing 50 hours, or more, of weekly unpaid care
 
 
 // The percentage of people living in Southwark by ***ethnicity***; March 2011, March 2021
