@@ -102,7 +102,7 @@
 
 		options = res.sort((a, b) => a.LAD21NM.localeCompare(b.LAD21NM));
 		let defaultLoc = options[Math.round(331*Math.random())]['LAD21NM']
-		// defaultLoc = 'Winchester';
+		// defaultLoc = 'West Suffolk';
 
 		console.log(defaultLoc)
 		selected = options.find(d => d.LAD21NM == defaultLoc);
@@ -294,6 +294,7 @@
 			regionLU: regionLU,
 			findOne: findOne
 		})
+		console.log('res.split(`<div id="esc123"></div>`)', res.split(`<div id="esc123"></div>`))
 		return res.split(`<div id="esc123"></div>`)
 
 	}
@@ -343,6 +344,7 @@
 	}
 
 	function makeProps(i) {
+		console.log('place.stories[i]', place.stories[i])
 		let s = place.stories[i].label.split("_")
 			if (s.length>4) {
 				s[3] = s[3]+"_"+s[4]
@@ -589,22 +591,26 @@
 							<!-- {#if i<19} -->
 								{@html res}
 								<div style="width: 100%">
-									<svelte:component this="{chartType(i)}" {...makeProps(i)}/>
+									{#if i < place.stories.length}
+										<svelte:component this="{chartType(i)}" {...makeProps(i)}/>
+									{/if}
 								</div>
 							<!-- {/if} -->
 						{/each}
-						<button on:click={readMore}>
-							<div class="triangle-container">
-								<svg height="25" width="50">
-										{#if more}
-											<polygon points="25,10 15,20 25,10 35,20" class="triangle" />
-										{:else}
-											<polygon points="25,20 15,10 25,20 35,10" class="triangle" />
-										{/if}
-								</svg>
-							</div>
-							{more?'Read less':'Read more'}
-						</button>
+						{#if place.stories.length>6}
+							<button on:click={readMore}>
+								<div class="triangle-container">
+									<svg height="25" width="50">
+											{#if more}
+												<polygon points="25,10 15,20 25,10 35,20" class="triangle" />
+											{:else}
+												<polygon points="25,20 15,10 25,20 35,10" class="triangle" />
+											{/if}
+									</svg>
+								</div>
+								{more?'Read less':'Read more'}
+							</button>
+						{/if}
 						<hr/>
 						<h2 id="create">Creating this article</h2>
 						<p>This article was generated using some automation. Topics are selected based on the most notable changes seen in each local authority.</p>

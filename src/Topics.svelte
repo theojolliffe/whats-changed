@@ -82,7 +82,12 @@
 			{'label': 'Student', 'value': 'student'},
 			{'label': 'Unemployed', 'value': 'unemployed'},
 		],
-		'ethnicity_perc_change': false,
+		'ethnicity_perc_change': [
+			{'label': 'All', 'value': 'all'},
+			{'label': 'Asian', 'value': 'asian'},
+			{'label': 'Black', 'value': 'black'},
+			{'label': 'White', 'value': 'white'},
+		],
 		'health_perc_change': [
 			{'label': 'All', 'value': 'all'},
 			{'label': 'Good', 'value': 'good'},
@@ -114,7 +119,16 @@
 			{'label': 'Single', 'value': 'Single'},
 		],
 		'population_value_change': false,
-		'religion_perc_change': false,
+		'religion_perc_change': [
+			{'label': 'All', 'value': 'all'},
+			{'label': 'Buddhist', 'value': 'Buddhist'},
+			{'label': 'Sikh', 'value': 'Sikh'},
+			{'label': 'Christian', 'value': 'Christian'},
+			{'label': 'Hindu', 'value': 'Hindu'},
+			{'label': 'Jewish', 'value': 'Jewish'},
+			{'label': 'Muslim', 'value': 'Muslim'},
+			{'label': 'No religion', 'value': 'Noreligion'},
+		],
 		'tenure_perc_change': [
 			{'label': 'All', 'value': 'all'},
 			{'label': 'Homeownership', 'value': 'owned'},

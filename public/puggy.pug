@@ -741,6 +741,7 @@ mixin ppoint
         | pp
 
 mixin sent2Diff(i, chain0_01, chain0_11, chain1_01, chain1_11)
+    - function pcnoprint(x) { if (Math.abs(x)<10) { return Math.round(x*10)/10 }  else { return Math.round(x) } }
     | #[+value(topic(i, chains[s[i][3]][0]).sample)] in 
     | #[+value(place.name)]
     if (Math.round(chain0_11)==Math.round(chain0_01))
@@ -753,7 +754,7 @@ mixin sent2Diff(i, chain0_01, chain0_11, chain1_01, chain1_11)
         | #[+pc(chain0_11)]
     if (chains[s[i][3]].length>1)
         | , while #[+value(topic(i, chains[s[i][3]][1]).sample)]
-        if (Math.round(chain1_11*10)/10==Math.round(chain1_01*10)/10)
+        if (pcnoprint(chain1_11)==pcnoprint(chain1_01))
             | remained close to #[+pc((chain1_11))]
         else
             | #[+value(ud(chain1_11-chain1_01, 'increased', 'decreased'))]
@@ -1091,17 +1092,11 @@ mixin religion(i)
         - var bigAbs2 = Object.keys(objAbs).reduce((a, b) => objAbs[a] > objAbs[b] ? a : b)
         - delete objAbs[bigAbs2]
         - var bigAbs3 = Object.keys(objAbs).reduce((a, b) => objAbs[a] > objAbs[b] ? a : b)
-        - console.log('bigAbs', bigAbs1)
-        - console.log('bigAbs', bigAbs2)
-        - console.log('bigAbs', bigAbs3)
         | The amount of people in !{place.name} 
         | #[+value(topics['religion'][bigAbs1]['verb'])]
         if (data.religion.value[2001][bigAbs1].toPrecision(2) == data.religion.value[2011][bigAbs1].toPrecision(2))
             | remained close to #[+val(data.religion.value[2011][bigAbs1])] (#[+pc(data.religion.perc[2011][bigAbs1])]) between the last two censuses
         else 
-            - console.log(place.name)
-            - console.log('eh', parseFloat(data.religion.value[2001][bigAbs1].toPrecision(2)))
-            - console.log('eh', parseFloat(data.religion.value[2011][bigAbs1].toPrecision(2)))
             if (parseFloat(data.religion.value[2001][bigAbs1].toPrecision(2)) < parseFloat(data.religion.value[2011][bigAbs1].toPrecision(2)))
                 | increased
             else if (parseFloat(data.religion.value[2001][bigAbs1].toPrecision(2)) > parseFloat(data.religion.value[2011][bigAbs1].toPrecision(2)))
@@ -1209,17 +1204,11 @@ mixin ethnicity(i)
         - var bigAbs2 = Object.keys(objAbs).reduce((a, b) => objAbs[a] > objAbs[b] ? a : b)
         - delete objAbs[bigAbs2]
         - var bigAbs3 = Object.keys(objAbs).reduce((a, b) => objAbs[a] > objAbs[b] ? a : b)
-        - console.log('bigAbs', bigAbs1)
-        - console.log('bigAbs', bigAbs2)
-        - console.log('bigAbs', bigAbs3)
         | The number of people in !{place.name} 
         | #[+value(topics['ethnicity'][bigAbs1]['verb'])]
         if (data.ethnicity.value[2001][bigAbs1].toPrecision(2) == data.ethnicity.value[2011][bigAbs1].toPrecision(2))
             | remained close to #[+val(data.ethnicity.value[2011][bigAbs1])] (#[+pc(data.ethnicity.perc[2011][bigAbs1])]) between the last two censuses
         else 
-            - console.log(place.name)
-            - console.log('eh', parseFloat(data.ethnicity.value[2001][bigAbs1].toPrecision(2)))
-            - console.log('eh', parseFloat(data.ethnicity.value[2011][bigAbs1].toPrecision(2)))
             if (parseFloat(data.ethnicity.value[2001][bigAbs1].toPrecision(2)) < parseFloat(data.ethnicity.value[2011][bigAbs1].toPrecision(2)))
                 | increased
             else if (parseFloat(data.ethnicity.value[2001][bigAbs1].toPrecision(2)) > parseFloat(data.ethnicity.value[2011][bigAbs1].toPrecision(2)))
@@ -1449,62 +1438,63 @@ mixin chartTitle(i)
 -console.log("eng", eng)
 -console.log("rgn", rgn)
 -console.log("place", place)
+-console.log("s.length", s.length)
 
 // Start of th article \/
 | #[+para(0)]
 | #[+chartTitle(0)]
 div#esc123
 
-if (s.length>2)
+if (s.length>1)
     | #[+para(1)]
     | #[+chartTitle(1)]
     div#esc123
 
-if (s.length>3)
+if (s.length>2)
     | #[+para(2)]
     | #[+chartTitle(2)]
     div#esc123
 
-if (s.length>4)
+if (s.length>3)
     | #[+para(3)]
     | #[+chartTitle(3)]
     div#esc123
 
-if (s.length>5)
+if (s.length>4)
     | #[+para(4)]
     | #[+chartTitle(4)]
     div#esc123
 
-if (s.length>6)
+if (s.length>5)
     | #[+para(5)]
     | #[+chartTitle(5)]
 
 if (more==true)
-    if (s.length>7)
+    if (s.length>6)
         div#esc123
         | #[+para(6)]
         | #[+chartTitle(6)]
-    if (s.length>8)
+    if (s.length>7)
         div#esc123
         | #[+para(7)]
         | #[+chartTitle(7)]
-    if (s.length>9)
+    if (s.length>8)
         div#esc123
         | #[+para(8)]
         | #[+chartTitle(8)]
-    if (s.length>10)
+    if (s.length>9)
         div#esc123
         | #[+para(9)]
         | #[+chartTitle(9)]
-    if (s.length>11)
+    if (s.length>10)
         div#esc123
         | #[+para(10)]
         | #[+chartTitle(10)]
-    if (s.length>12)
+    if (s.length>11)
         div#esc123
         | #[+para(11)]
         | #[+chartTitle(11)]
-    if (s.length>13)
+    if (s.length>12)
         div#esc123
         | #[+para(12)]
         | #[+chartTitle(12)]
