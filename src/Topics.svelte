@@ -87,6 +87,8 @@
 			{'label': 'Asian', 'value': 'asian'},
 			{'label': 'Black', 'value': 'black'},
 			{'label': 'White', 'value': 'white'},
+			{'label': 'Mixed', 'value': 'mixed'},
+			{'label': 'Other', 'value': 'other'},
 		],
 		'health_perc_change': [
 			{'label': 'All', 'value': 'all'},
@@ -122,12 +124,14 @@
 		'religion_perc_change': [
 			{'label': 'All', 'value': 'all'},
 			{'label': 'Buddhist', 'value': 'Buddhist'},
-			{'label': 'Sikh', 'value': 'Sikh'},
 			{'label': 'Christian', 'value': 'Christian'},
 			{'label': 'Hindu', 'value': 'Hindu'},
 			{'label': 'Jewish', 'value': 'Jewish'},
 			{'label': 'Muslim', 'value': 'Muslim'},
+			{'label': 'Sikh', 'value': 'Sikh'},
+			{'label': 'Other', 'value': 'Otherreligion'},
 			{'label': 'No religion', 'value': 'Noreligion'},
+			{'label': 'Not stated', 'value': 'Religionnotstated'},
 		],
 		'tenure_perc_change': [
 			{'label': 'All', 'value': 'all'},
