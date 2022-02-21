@@ -223,6 +223,9 @@
 			
 			for (let i = 0; i < places.length; i++) {
 				let story = places[i].stories.filter(d => (d.label==code))
+				console.log('-->> places[i].stories', places[i].stories)
+				console.log('-->> code', code)
+				console.log('-->> story', story)
 				let s
 				if (story.length>0) {
 					s = story[0].label.split("_")
