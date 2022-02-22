@@ -1178,16 +1178,17 @@ mixin ethnicity(i)
         | #[+pc(data.ethnicity.perc[2001][bigChange])] 
         | to #[+pc(data.ethnicity.perc[2011][bigChange])] of the local population.
     p
+
         - var locDiff = Math.round(data.ethnicity.perc[2011][bigChange] - data.ethnicity.perc[2001][bigChange])
         - var regDiff = Math.round(rgn.data.ethnicity.perc[2011][bigChange] - rgn.data.ethnicity.perc[2001][bigChange])
         - var couDiff = Math.round(cou.data.ethnicity.perc[2011][bigChange] - cou.data.ethnicity.perc[2001][bigChange])
-        | The percentage is increasing at a
+        | The percentage increased
         if (locDiff == regDiff)
-            | similar rate to 
+            | at a similar rate to 
         else if (locDiff > regDiff)
-            | faster rate than 
+            | by more than 
         else if (locDiff < regDiff)
-            | slower rate than
+            | by less than
         | the average across !{parent} 
         - var pcbc01 = pcnoprint(data.ethnicity.perc[2001][bigChange])
         - var pcbc11 = pcnoprint(data.ethnicity.perc[2011][bigChange])
