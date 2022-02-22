@@ -50,7 +50,16 @@
 				y='{yTick}'
 				dx='{dxTick}'
 				dy='{dyTick}'
-				text-anchor='{textAnchor(i)}'>{formatTick(tick)}</text>
+				text-anchor='{textAnchor(i)}'>
+				{#if formatTick(tick).includes("/")}
+					{#each formatTick(tick).split("/") as chunk, i}
+						<tspan x="{130 - (15*tickVals.length)}" y="{11*(i+1)+5}">{chunk + ((i!=formatTick(tick).split("/").length-1)?"/":"") }</tspan>
+					{/each} 
+					<!-- 5 == 55, 4 == 70 -->
+				{:else}
+					{formatTick(tick)}
+				{/if}
+			</text>
 		</g>
 	{/each}
 	{#if baseline === true}

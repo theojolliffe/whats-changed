@@ -103,7 +103,7 @@
 
 		options = res.sort((a, b) => a.LAD21NM.localeCompare(b.LAD21NM));
 		let defaultLoc = options[Math.round(331*Math.random())]['LAD21NM']
-		defaultLoc = "Southwark"
+		// defaultLoc = "Gosport"
 
 		console.log(defaultLoc)
 		selected = options.find(d => d.LAD21NM == defaultLoc);
@@ -374,12 +374,13 @@
 			return props
 		}
 		else if (["religion", "care", "ethnicity"].includes(s[0])) {
+			let datrev = {2011: 2001, 2001: 2011}
 			let chartData = []
 			Object.keys(place.data[s[0]].perc).forEach(d => {
 				if (d != 'change') {
 					Object.keys(place.data[s[0]].perc[d]).forEach(e => {
 						if ((e != 'all') & (e != 'noCare')) {
-							if (place.data[s[0]].perc[d][e] > 1) {
+							if ((place.data[s[0]].perc[d][e] > 1)|(place.data[s[0]].perc[datrev[d]][e] > 1)) {
 								console.log('topics[s[0]]', topics[s[0]])
 								console.log('e', e)
 								console.log('topics[s[0]][e][label]', topics[s[0]][e]['label'])
@@ -390,6 +391,7 @@
 					})
 				}
 			})
+			console.log('chartData', chartData)
 
 			let props = {
 						legend: true,
