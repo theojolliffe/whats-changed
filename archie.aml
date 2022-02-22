@@ -574,11 +574,11 @@ health.good.sample: the percentage of people “in good health”
 health.fair.sample: the percentage of people “in fair health”
 health.bad.sample: the percentage of people “in bad health”
 
-ethnicity.white.sample: the proportion of people from a White ethnic group
-ethnicity.black.sample: the proportion of people from a Black, Black British, Caribbean or African ethnic group
-ethnicity.asian.sample: the proportion of people from an Asian or Asian British ethnic group
-ethnicity.mixed.sample: the proportion of people from a Mixed ethnic group (including all multiple ethnicities)
-ethnicity.other.sample: the proportion of people from an Other ethnic group (anyone who doesn't identify with any of the White, Black, Asian, or Mixed ethnic groups)
+ethnicity.white.sample: the share of people from a White ethnic group
+ethnicity.black.sample: the share of people from a Black, Black British, Caribbean or African ethnic group
+ethnicity.asian.sample: the share of people from an Asian or Asian British ethnic group
+ethnicity.mixed.sample: the share of people from a Mixed ethnic group (including all multiple ethnicities)
+ethnicity.other.sample: the share of people from an Other ethnic group (anyone who doesn't identify with any of the White, Black, Asian, or Mixed ethnic groups)
 
 economic.employee.sample: the rate of employment
 economic.inactive.sample: the proportion of people not working or actively seeking work
@@ -591,15 +591,15 @@ household.LoneParent.sample: single-parent households
 household.OnePerson.sample: single-person households
 household.Married.sample: married households
 
-religion.Christian.sample: the proportion of people who identify as Christian 
-religion.Buddhist.sample: the proportion of people who identify as Buddhist
-religion.Hindu.sample: the proportion of people who identify as Hindu
-religion.Sikh.sample: the proportion of people who identify as Sikh
-religion.Jewish.sample: the proportion of people who identify as Jewish
-religion.Muslim.sample: the proportion of people who identify as Muslim
-religion.Noreligion.sample: the proportion of people without a religion
-religion.Religionnotstated.sample: the proportion of people that did not state their religion
-religion.Otherreligion.sample: the proportion of people who identify with a religion other than Christianity, Islam, Hinduism, Judaism, Buddhism or Sikhism
+religion.Christian.sample: the share of people who identify as Christian 
+religion.Buddhist.sample: the share of people who identify as Buddhist
+religion.Hindu.sample: the share of people who identify as Hindu
+religion.Sikh.sample: the share of people who identify as Sikh
+religion.Jewish.sample: the share of people who identify as Jewish
+religion.Muslim.sample: the share of people who identify as Muslim
+religion.Noreligion.sample: the share of people without a religion
+religion.Religionnotstated.sample: the share of people that did not state their religion
+religion.Otherreligion.sample: the share of people who identify with a religion other than Christianity, Islam, Hinduism, Judaism, Buddhism or Sikhism
 
 hoursworked.Female1-15.sample: the proportion of people working less than 16 hours in a week
 hoursworked.Female49plus.sample: long hour working
@@ -721,8 +721,8 @@ care.1to19hoursWeek.label: 1 to 19 hours of unpaid care
 care.20to49hoursWeek.label: 20 to 49 hours of unpaid care
 care.40PlushoursWeek.label: 50 or more hours of unpaid care
 
-ethnicity.white.label: White ethnic groups
-ethnicity.black.label: Black ethnic groups
-ethnicity.asian.label: Asian ethnic groups
-ethnicity.mixed.label: Mixed ethnic groups
-ethnicity.other.label: Other ethnic groups
+ethnicity.white.label: White
+ethnicity.black.label: Black/Black British/Caribbean/African
+ethnicity.asian.label: Asian/Asian British
+ethnicity.mixed.label: Mixed/Multiple
+ethnicity.other.label: Other
