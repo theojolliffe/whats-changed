@@ -76,8 +76,8 @@ health.bad.clausal_modifier: {plcname} residents that describe their health as b
 ethnicity.white.clausal_modifier: {plcname} residents from one of the White ethnic groups
 ethnicity.black.clausal_modifier: {plcname} residents from one of the Black, Black British, Caribbean or African ethnic groups
 ethnicity.asian.clausal_modifier: {plcname} residents from one of the Asian or Asian British ethnic groups
-ethnicity.mixed.clausal_modifier: {plcname} residents from a Mixed ethnic group
-ethnicity.other.clausal_modifier: {plcname} residents from an Other ethnic group
+ethnicity.mixed.clausal_modifier: {plcname} residents from a Mixed ethnic group (including all multiple ethnicities)
+ethnicity.other.clausal_modifier: {plcname} residents from an Other ethnic group (anyone who doesn't identify with any of the White, Black, Asian, or Mixed ethnic groups)
 
 economic.employee.clausal_modifier: {plcname} residents that are employed
 economic.inactive.clausal_modifier: {plcname} residents that are not working or actively seeking work
@@ -133,8 +133,8 @@ health.bad.verb_past: said their health was bad
 ethnicity.white.verb_past: that said they were from a White ethnic group
 ethnicity.black.verb_past: that said they were from a Black, Black British, Caribbean or African ethnic group
 ethnicity.asian.verb_past: that said they were from an Asian or Asian British ethnic group
-ethnicity.mixed.verb_past: that said they were from a Mixed ethnic group
-ethnicity.other.verb_past: that said they were from an Other ethnic group
+ethnicity.mixed.verb_past: that said they were from a Mixed ethnic group (including all multiple ethnicities)
+ethnicity.other.verb_past: that said they were from an Other ethnic group (anyone who doesn't identify with any of the White, Black, Asian, or Mixed ethnic groups)
 
 economic.employee.verb_past: that said they were employed
 economic.inactive.verb_past: that said they were not working or actively seeking work
@@ -190,8 +190,8 @@ health.bad.verb_past_samp: said their health was bad
 ethnicity.white.verb_past_samp: said they were from a White ethnic group
 ethnicity.black.verb_past_samp: said they were from a Black, Black British, Caribbean or African ethnic group
 ethnicity.asian.verb_past_samp: said they were from an Asian or Asian British ethnic group
-ethnicity.mixed.verb_past_samp: said they were from a Mixed ethnic group
-ethnicity.other.verb_past_samp: said they were from an Other ethnic group
+ethnicity.mixed.verb_past_samp: said they were from a Mixed ethnic group (including all multiple ethnicities)
+ethnicity.other.verb_past_samp: said they were from an Other ethnic group (anyone who doesn't identify with any of the White, Black, Asian, or Mixed ethnic groups)
 
 economic.employee.verb_past_samp: said they were employed
 economic.inactive.verb_past_samp: said they were not working or actively seeking work
@@ -245,8 +245,8 @@ health.bad.adj_noun: residents who perceive their health as poor
 ethnicity.white.adj_noun: residents from a White ethnic group
 ethnicity.black.adj_noun: residents from a Black, Black British, Caribbean or African ethnic group
 ethnicity.asian.adj_noun: residents from an Asian or Asian British ethnic group
-ethnicity.mixed.adj_noun: residents from a Mixed ethnic group
-ethnicity.other.adj_noun: residents from an Other ethnic group
+ethnicity.mixed.adj_noun: residents from a Mixed ethnic group (including all multiple ethnicities)
+ethnicity.other.adj_noun: residents from an Other ethnic group (anyone who doesn't identify with any of the White, Black, Asian, or Mixed ethnic groups)
 
 economic.employee.adj_noun: employed people
 economic.inactive.adj_noun: people who are not working or actively seeking work
@@ -300,8 +300,8 @@ health.bad.verb: that perceive their health as poor
 ethnicity.white.verb: from a White ethnic group
 ethnicity.black.verb: from a Black, Black British, Caribbean or African ethnic group
 ethnicity.asian.verb: from an Asian or Asian British ethnic group
-ethnicity.mixed.verb: from a Mixed ethnic group
-ethnicity.other.verb: from an Other ethnic group
+ethnicity.mixed.verb: from a Mixed ethnic group (including all multiple ethnicities)
+ethnicity.other.verb: from an Other ethnic group (anyone who doesn't identify with any of the White, Black, Asian, or Mixed ethnic groups)
 
 economic.employee.verb: that are employed
 economic.inactive.verb: that are not working or actively seeking work
@@ -577,8 +577,8 @@ health.bad.sample: the percentage of people “in bad health”
 ethnicity.white.sample: the proportion of people from a White ethnic group
 ethnicity.black.sample: the proportion of people from a Black, Black British, Caribbean or African ethnic group
 ethnicity.asian.sample: the proportion of people from an Asian or Asian British ethnic group
-ethnicity.mixed.sample: the proportion of people from a Mixed ethnic group
-ethnicity.other.sample: the proportion of people from an Other ethnic group
+ethnicity.mixed.sample: the proportion of people from a Mixed ethnic group (including all multiple ethnicities)
+ethnicity.other.sample: the proportion of people from an Other ethnic group (anyone who doesn't identify with any of the White, Black, Asian, or Mixed ethnic groups)
 
 economic.employee.sample: the rate of employment
 economic.inactive.sample: the proportion of people not working or actively seeking work
@@ -631,8 +631,8 @@ health.bad.adj_noun_s: people describing their health as bad
 ethnicity.white.adj_noun_s: people from a White ethnic group
 ethnicity.black.adj_noun_s: people from a Black, Black British, Caribbean or African ethnic group
 ethnicity.asian.adj_noun_s: people from an Asian or Asian British ethnic group
-ethnicity.mixed.adj_noun_s: people from a Mixed ethnic group
-ethnicity.other.adj_noun_s: people from an Other ethnic group
+ethnicity.mixed.adj_noun_s: people from a Mixed ethnic group (including all multiple ethnicities)
+ethnicity.other.adj_noun_s: people from an Other ethnic group (anyone who doesn't identify with any of the White, Black, Asian, or Mixed ethnic groups)
 
 economic.employee.adj_noun_s: employed people
 economic.inactive.adj_noun_s: people who are not working or actively seeking work
@@ -704,3 +704,25 @@ hoursworked.measure_s: people aged 16 to 74 (in employment the week before the C
 marital.measure_s: people aged 16 and over
 population.measure_s: 
 agemed.measure_s: 
+
+
+
+religion.Christian.label: Christian
+religion.Buddhist.label: Buddhist
+religion.Hindu.label: Hindu
+religion.Sikh.label: Sikh
+religion.Jewish.label: Jewish
+religion.Muslim.label: Muslim
+religion.Noreligion.label: No religion
+religion.Religionnotstated.label: Religion not stated
+religion.Otherreligion.label: Other
+
+care.1to19hoursWeek.label: 1 to 19 hours of unpaid care
+care.20to49hoursWeek.label: 20 to 49 hours of unpaid care
+care.40PlushoursWeek.label: 50 or more hours of unpaid care
+
+ethnicity.white.label: White ethnic groups
+ethnicity.black.label: Black ethnic groups
+ethnicity.asian.label: Asian ethnic groups
+ethnicity.mixed.label: Mixed ethnic groups
+ethnicity.other.label: Other ethnic groups

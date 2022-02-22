@@ -1042,7 +1042,7 @@ mixin religion(i)
     - var obj = place.data.religion.perc.change
     - var bigChange = Object.keys(obj).reduce((a, b) => obj[a] > obj[b] ? a : b)
     p 
-        | The amount of people in !{place.name} 
+        | The number of people in !{place.name} 
         | #[+value(topics['religion'][bigChange]['verb'])]
         | increased from 
         | #[+val(data.religion.value[2001][bigChange])] in 2011 
@@ -1054,13 +1054,13 @@ mixin religion(i)
         - var locDiff = Math.round(data.religion.perc[2011][bigChange] - data.religion.perc[2001][bigChange])
         - var regDiff = Math.round(rgn.data.religion.perc[2011][bigChange] - rgn.data.religion.perc[2001][bigChange])
         - var couDiff = Math.round(cou.data.religion.perc[2011][bigChange] - cou.data.religion.perc[2001][bigChange])
-        | The percentage is increasing at a
+        | The percentage increased
         if (locDiff == regDiff)
-            | similar rate to 
+            | at a similar rate to 
         else if (locDiff > regDiff)
-            | faster rate than 
+            | by more than 
         else if (locDiff < regDiff)
-            | slower rate than
+            | by less than
         | the average across !{parent} 
         - var pcbc01 = pcnoprint(data.religion.perc[2001][bigChange])
         - var pcbc11 = pcnoprint(data.religion.perc[2011][bigChange])
@@ -1088,14 +1088,15 @@ mixin religion(i)
         - delete objAbs[bigChange]
         - delete objAbs['all']
         - var bigAbs1 = Object.keys(objAbs).reduce((a, b) => objAbs[a] > objAbs[b] ? a : b)
+        - var bigAbs1Cha = parseFloat(data.religion.value[2011][bigAbs1].toPrecision(2)) - parseFloat(data.religion.value[2001][bigAbs1].toPrecision(2))
         - delete objAbs[bigAbs1]
         - var bigAbs2 = Object.keys(objAbs).reduce((a, b) => objAbs[a] > objAbs[b] ? a : b)
         - delete objAbs[bigAbs2]
         - var bigAbs3 = Object.keys(objAbs).reduce((a, b) => objAbs[a] > objAbs[b] ? a : b)
-        | The amount of people in !{place.name} 
+        | The number of people in !{place.name} 
         | #[+value(topics['religion'][bigAbs1]['verb'])]
         if (data.religion.value[2001][bigAbs1].toPrecision(2) == data.religion.value[2011][bigAbs1].toPrecision(2))
-            | remained close to #[+val(data.religion.value[2011][bigAbs1])] (#[+pc(data.religion.perc[2011][bigAbs1])]) between the last two censuses
+            | remained close to #[+value(parseFloat(data.religion.value[2011][bigAbs1].toPrecision(2)))] (#[+pc(data.religion.perc[2011][bigAbs1])]) between the last two censuses
         else 
             if (parseFloat(data.religion.value[2001][bigAbs1].toPrecision(2)) < parseFloat(data.religion.value[2011][bigAbs1].toPrecision(2)))
                 | increased
@@ -1107,16 +1108,30 @@ mixin religion(i)
             | in 2021
             - var pcba101 = pcnoprint(data.religion.perc[2001][bigAbs1])
             - var pcba111 = pcnoprint(data.religion.perc[2011][bigAbs1])
-            if (pcba101 == pcba111)
-                | (#[+pc(data.religion.perc[2001][bigAbs1])])
-            else
-                | (from #[+pc(data.religion.perc[2001][bigAbs1])] 
-                | to #[+pc(data.religion.perc[2011][bigAbs1])])
-        | . 
-        | The amount of 
+            - var pcba1Cha = pcnoprint(data.religion.perc[2011][bigAbs1]) - pcnoprint(data.religion.perc[2001][bigAbs1])
+            if (Math.sign(bigAbs1Cha) == Math.sign(pcba1Cha))
+                if (pcba101 == pcba111)
+                    | (#[+pc(data.religion.perc[2001][bigAbs1])]).
+                else
+                    | (from #[+pc(data.religion.perc[2001][bigAbs1])] 
+                    | to #[+pc(data.religion.perc[2011][bigAbs1])]).
+            else 
+                if (pcba101 == pcba111)
+                    | .
+                    | Both of these figures represented about #[+pc(data.religion.perc[2001][bigAbs1])] of the total population at the time of each of their respective censuses.
+                else
+                    | . 
+                    | However, as a share of the total population this represented
+                    if ( (data.religion.perc[2011][bigAbs1] - data.religion.perc[2001][bigAbs1]) > 0 )
+                        | an increase 
+                    else
+                        | a decrease 
+                    | from #[+pc(data.religion.perc[2001][bigAbs1])] 
+                    | to #[+pc(data.religion.perc[2011][bigAbs1])].        
+        | The number of 
         | #[+value(topics['religion'][bigAbs2]['adj_noun'])]
         if (data.religion.value[2001][bigAbs2].toPrecision(2) == data.religion.value[2011][bigAbs2].toPrecision(2))
-            | remained close to #[+val(data.religion.value[2011][bigAbs2])] (#[+pc(data.religion.perc[2011][bigAbs2])])
+            | remained close to #[+value(parseFloat(data.religion.value[2011][bigAbs2].toPrecision(2)))] (#[+pc(data.religion.perc[2011][bigAbs2])])
         else 
             if (data.religion.value[2001][bigAbs2]<data.religion.value[2011][bigAbs2])
                 | increased 
@@ -1154,7 +1169,7 @@ mixin ethnicity(i)
     - var obj = place.data.ethnicity.perc.change
     - var bigChange = Object.keys(obj).reduce((a, b) => obj[a] > obj[b] ? a : b)
     p 
-        | The amount of people in !{place.name} 
+        | The number of people in !{place.name} 
         | #[+value(topics['ethnicity'][bigChange]['verb'])]
         | increased from 
         | #[+val(data.ethnicity.value[2001][bigChange])] in 2011 
@@ -1200,6 +1215,7 @@ mixin ethnicity(i)
         - delete objAbs[bigChange]
         - delete objAbs['all']
         - var bigAbs1 = Object.keys(objAbs).reduce((a, b) => objAbs[a] > objAbs[b] ? a : b)
+        - var bigAbs1Cha = parseFloat(data.ethnicity.value[2011][bigAbs1].toPrecision(2)) - parseFloat(data.ethnicity.value[2001][bigAbs1].toPrecision(2))
         - delete objAbs[bigAbs1]
         - var bigAbs2 = Object.keys(objAbs).reduce((a, b) => objAbs[a] > objAbs[b] ? a : b)
         - delete objAbs[bigAbs2]
@@ -1207,7 +1223,7 @@ mixin ethnicity(i)
         | The number of people in !{place.name} 
         | #[+value(topics['ethnicity'][bigAbs1]['verb'])]
         if (data.ethnicity.value[2001][bigAbs1].toPrecision(2) == data.ethnicity.value[2011][bigAbs1].toPrecision(2))
-            | remained close to #[+val(data.ethnicity.value[2011][bigAbs1])] (#[+pc(data.ethnicity.perc[2011][bigAbs1])]) between the last two censuses
+            | remained close to #[+value(parseFloat(data.ethnicity.value[2011][bigAbs1].toPrecision(2)))] (#[+pc(data.ethnicity.perc[2011][bigAbs1])]) between the last two censuses
         else 
             if (parseFloat(data.ethnicity.value[2001][bigAbs1].toPrecision(2)) < parseFloat(data.ethnicity.value[2011][bigAbs1].toPrecision(2)))
                 | increased
@@ -1219,16 +1235,30 @@ mixin ethnicity(i)
             | in 2021
             - var pcba101 = pcnoprint(data.ethnicity.perc[2001][bigAbs1])
             - var pcba111 = pcnoprint(data.ethnicity.perc[2011][bigAbs1])
-            if (pcba101 == pcba111)
-                | (#[+pc(data.ethnicity.perc[2001][bigAbs1])])
-            else
-                | (from #[+pc(data.ethnicity.perc[2001][bigAbs1])] 
-                | to #[+pc(data.ethnicity.perc[2011][bigAbs1])])
-        | . 
-        | The amount of 
+            - var pcba1Cha = pcnoprint(data.ethnicity.perc[2011][bigAbs1]) - pcnoprint(data.ethnicity.perc[2001][bigAbs1])
+            if (Math.sign(bigAbs1Cha) == Math.sign(pcba1Cha))
+                if (pcba101 == pcba111)
+                    | (#[+pc(data.ethnicity.perc[2001][bigAbs1])]).
+                else
+                    | (from #[+pc(data.ethnicity.perc[2001][bigAbs1])] 
+                    | to #[+pc(data.ethnicity.perc[2011][bigAbs1])]).
+            else 
+                if (pcba101 == pcba111)
+                    | .
+                    | Both of these figures represented about #[+pc(data.ethnicity.perc[2001][bigAbs1])] of the total population at the time of each of their respective censuses.
+                else
+                    | . 
+                    | However, as a share of the total population this represented
+                    if ( (data.ethnicity.perc[2011][bigAbs1] - data.ethnicity.perc[2001][bigAbs1]) > 0 )
+                        | an increase 
+                    else
+                        | a decrease 
+                    | from #[+pc(data.ethnicity.perc[2001][bigAbs1])] 
+                    | to #[+pc(data.ethnicity.perc[2011][bigAbs1])].
+        | The number of 
         | #[+value(topics['ethnicity'][bigAbs2]['adj_noun'])]
         if (data.ethnicity.value[2001][bigAbs2].toPrecision(2) == data.ethnicity.value[2011][bigAbs2].toPrecision(2))
-            | remained close to #[+val(data.ethnicity.value[2011][bigAbs2])] (#[+pc(data.ethnicity.perc[2011][bigAbs2])])
+            | remained close to #[+value(parseFloat(data.ethnicity.value[2011][bigAbs2].toPrecision(2)))] (#[+pc(data.ethnicity.perc[2011][bigAbs2])])
         else 
             if (data.ethnicity.value[2001][bigAbs2]<data.ethnicity.value[2011][bigAbs2])
                 | increased 
@@ -1404,6 +1434,17 @@ mixin chartTitleSize(i)
         h5 
             | The percentage of #[+value(topics[s[i][0]].measure)] in #[+value(place.name)], #[+value(parent)] and #[+value(country)] that #[+value(topic(i).verb_past)], March 2011, March 2021
 
+mixin chartTitleBar(i)
+    h4 
+        | #[+value(topic(i).sample)] in 
+        | #[+value(place.name)]
+        | #[+value((cha(s, place, i)<0)?"decreased":"increased")] by
+        | #[+rou(Math.abs(cha(s, place, i)))]
+        | #[+ppoint]
+    h5 
+        | The percentage of #[+value(topics[s[i][0]].measure)] in #[+value(place.name)] across variables that represent at least 1% of the local population, March 2011, March 2021
+
+
 mixin chartTitleOther(i)
     if (s[i][0]=="population")
         h4 
@@ -1429,8 +1470,10 @@ mixin chartTitleOther(i)
 
 mixin chartTitle(i)
     if !(isTopic)
-        if (stories[i].type.includes('size'))
+        if ((stories[i].type.includes('size')))
             | #[+chartTitleSize(i)]
+        else if (['care', 'ethnicity', 'religion'].includes(s[i][0]))
+            | #[+chartTitleBar(i)]
         else
             | #[+chartTitleOther(i)]
 
