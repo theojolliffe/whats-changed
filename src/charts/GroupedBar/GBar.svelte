@@ -2,7 +2,7 @@
 	import { LayerCake, Svg, flatten } from 'layercake';
 	import { scaleBand, scaleOrdinal } from 'd3-scale';
 	import { format, precisionFixed } from 'd3-format';
-	
+	import Legend from './Legend.svelte';
 	import Bar, { getGroupExtents, getStackExtents, stackOffsetSeparated } from './Bar.svelte';
 	import AxisX from './AxisX.svelte';
 	import AxisY from './AxisY.svelte';
@@ -53,6 +53,7 @@
 		</Svg>
 	</LayerCake>
 </div>
+<Legend domain={[2011, 2021]} colors={keyColors}/>
 
 <style>
 	.chart-container {
