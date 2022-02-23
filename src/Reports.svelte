@@ -8,8 +8,12 @@
 	import Fuse from 'fuse.js'
 	import { LineChart, ScatterChart, ColumnChart } from './@onsvisual/svelte-charts';
 	import AgeChart from './charts/small-multiple/AgeChart.svelte';
+	import HBarChart from './charts/HBarChart/HBarChart.svelte';
 	import GroupedBar from './charts/GroupedBar/GBar.svelte';
+	import GroupedBarHor from './charts/GroupedBarHor/GBar.svelte';
+	import HBar from './charts/HBar/HBar.svelte';
 	import DotPlotChart from './charts/DotPlotChart.svelte';
+	import BarChart from './charts/BarChart.svelte';
 
 	function fuzz(w1, w2) {
 		const options = {
@@ -103,7 +107,7 @@
 
 		options = res.sort((a, b) => a.LAD21NM.localeCompare(b.LAD21NM));
 		let defaultLoc = options[Math.round(331*Math.random())]['LAD21NM']
-		// defaultLoc = "Gosport"
+		// defaultLoc = "Windsor and Maidenhead"
 
 		console.log(defaultLoc)
 		selected = options.find(d => d.LAD21NM == defaultLoc);
@@ -317,8 +321,6 @@
 	})
 
 
-
-
 	// MAKE CHARTS
 
 	function makeChartData(place, region, england, i) {
@@ -344,7 +346,6 @@
 	}
 
 	function makeProps(i) {
-		console.log('place.stories[i]', place.stories[i])
 		let s = place.stories[i].label.split("_")
 			if (s.length>4) {
 				s[3] = s[3]+"_"+s[4]
@@ -376,23 +377,22 @@
 		else if (["religion", "care", "ethnicity"].includes(s[0])) {
 			let datrev = {2011: 2001, 2001: 2011}
 			let chartData = []
-			Object.keys(place.data[s[0]].perc).forEach(d => {
+			let dates = [2001, 2011]
+			dates.forEach(d => {
+				let tar = []
 				if (d != 'change') {
 					Object.keys(place.data[s[0]].perc[d]).forEach(e => {
 						if ((e != 'all') & (e != 'noCare')) {
-							if ((place.data[s[0]].perc[d][e] > 1)|(place.data[s[0]].perc[datrev[d]][e] > 1)) {
-								console.log('topics[s[0]]', topics[s[0]])
-								console.log('e', e)
-								console.log('topics[s[0]][e][label]', topics[s[0]][e]['label'])
-
-								chartData.push({year: +d, group: topics[s[0]][e]['label'], value: place.data[s[0]].perc[d][e]})
-							}
+							// if ((place.data[s[0]].perc[d][e] > 1)|(place.data[s[0]].perc[datrev[d]][e] > 1)) {
+								tar.push({g: +d, x: topics[s[0]][e]['label'], y: place.data[s[0]].perc[d][e]})
+							// }
 						}
 					})
+					chartData.push(tar)
 				}
 			})
-			console.log('chartData', chartData)
-
+			// chartData = chartData.sort(function(a, b) { return a[0]['g'] - b[0]['g']; })
+			console.log('chartDataaaa', chartData)
 			let props = {
 						legend: true,
 						height: 120,
@@ -518,11 +518,11 @@
 		if (s.length>4) {
 			s[3] = s[3]+"_"+s[4]
 			s.pop()
-		}		
+		}
 		if (s[0]=='agemed') {
 			return AgeChart
 		} else if (["religion", "care", "ethnicity"].includes(s[0])){
-			return GroupedBar
+			return HBarChart
 		}
 		else if (place.stories[i].type.includes('size')) {
 			return DotPlotChart

@@ -63,15 +63,15 @@ care.40PlushoursWeek.clausal_modifier: {plcname} residents that provide at least
 
 marital.Single.clausal_modifier: single people in {plcname}
 marital.Married.clausal_modifier: adults in {plcname} that are married
-marital.Seperated.clausal_modifier: adults in {plcname} that have separated from a married partner
+marital.Seperated.clausal_modifier: adults in {plcname} that have divorced or seperated from a married or civil partner 
 
-tenure.rented_private.clausal_modifier: people living in {plcname} that rent privately
-tenure.rented_social.clausal_modifier: {plcname} residents that live in social housing
-tenure.owned.clausal_modifier: {plcname} residents that own their home
+tenure.rented_private.clausal_modifier: households in {plcname} that rent privately
+tenure.rented_social.clausal_modifier: {plcname} households that rent through social housing schemes
+tenure.owned.clausal_modifier: {plcname} households that own their home
 
-health.good.clausal_modifier: {plcname} residents that describe their health as good
+health.good.clausal_modifier: {plcname} residents that describe their health as good or very good
 health.fair.clausal_modifier: {plcname} residents that describe their health as fair
-health.bad.clausal_modifier: {plcname} residents that describe their health as bad
+health.bad.clausal_modifier: {plcname} residents that describe their health as bad or very bad
 
 ethnicity.white.clausal_modifier: {plcname} residents from one of the White ethnic groups
 ethnicity.black.clausal_modifier: {plcname} residents from one of the Black, Black British, Caribbean or African ethnic groups
@@ -120,15 +120,15 @@ care.40PlushoursWeek.verb_past: that reported providing at least 50 hours of unp
 
 marital.Single.verb_past: that said they were single
 marital.Married.verb_past: that said they were married
-marital.Seperated.verb_past: that said they had divorced or broken up with their partner
+marital.Seperated.verb_past: that said they had divorced or broken up with a married or civil partner
 
 tenure.rented_private.verb_past: that rent privately
 tenure.rented_social.verb_past: that rent socially
 tenure.owned.verb_past: that own their home
 
-health.good.verb_past: that said their health was good
+health.good.verb_past: that said their health was good or very good
 health.fair.verb_past: that said their health was fair
-health.bad.verb_past: said their health was bad
+health.bad.verb_past: said their health was bad or very bad
 
 ethnicity.white.verb_past: that said they were from a White ethnic group
 ethnicity.black.verb_past: that said they were from a Black, Black British, Caribbean or African ethnic group
@@ -177,15 +177,15 @@ care.40PlushoursWeek.verb_past_samp: reported providing at least 50 hours of unp
 
 marital.Single.verb_past_samp: said they were single
 marital.Married.verb_past_samp: said they were married
-marital.Seperated.verb_past_samp: said they had divorced or broken up with their partner
+marital.Seperated.verb_past_samp: said they had divorced or broken up with a married or civil partner
 
 tenure.rented_private.verb_past_samp: rent privately
 tenure.rented_social.verb_past_samp: live in social housing
 tenure.owned.verb_past_samp: own their home
 
-health.good.verb_past_samp: said their health was good
+health.good.verb_past_samp: said their health was good or very good
 health.fair.verb_past_samp: said their health was fair
-health.bad.verb_past_samp: said their health was bad
+health.bad.verb_past_samp: said their health was bad or very bad
 
 ethnicity.white.verb_past_samp: said they were from a White ethnic group
 ethnicity.black.verb_past_samp: said they were from a Black, Black British, Caribbean or African ethnic group
@@ -230,17 +230,17 @@ care.1to19hoursWeek.adj_noun: people providing up to 19 hours of weekly unpaid c
 care.20to49hoursWeek.adj_noun: people providing between 20 and 49 hours of weekly unpaid care
 care.40PlushoursWeek.adj_noun: people providing 50 hours, or more, of weekly unpaid care
 
-marital.Single.adj_noun: single people
+marital.Single.adj_noun: people who have never been married or in a civil partnership
 marital.Married.adj_noun: married people
-marital.Seperated.adj_noun: people who have separated
+marital.Seperated.adj_noun: people who have divorced or separated from a married or civil partner
 
-tenure.rented_private.adj_noun: private renters
-tenure.rented_social.adj_noun: people living in social housing
-tenure.owned.adj_noun: home owners
+tenure.rented_private.adj_noun: privately rented homes
+tenure.rented_social.adj_noun: socially rented homes
+tenure.owned.adj_noun: households that own their home
 
-health.good.adj_noun: residents who perceive their health as good
+health.good.adj_noun: residents that perceive their health as good or very good
 health.fair.adj_noun: people that described their health as fair
-health.bad.adj_noun: residents who perceive their health as poor
+health.bad.adj_noun: residents that perceive their health as bad or very bad
 
 ethnicity.white.adj_noun: residents from a White ethnic group
 ethnicity.black.adj_noun: residents from a Black, Black British, Caribbean or African ethnic group
@@ -287,15 +287,15 @@ care.40PlushoursWeek.verb: that provide 50 hours, or more, of weekly unpaid care
 
 marital.Single.verb: that said they were single
 marital.Married.verb: that said they are married
-marital.Seperated.verb: that said they have separated
+marital.Seperated.verb: that said they have divorced or separated from a married or civil partner
 
-tenure.rented_private.verb: of private renters
-tenure.rented_social.verb: of social renters
-tenure.owned.verb: of home owners
+tenure.rented_private.verb: of privately rented homes
+tenure.rented_social.verb: of socially rented homes
+tenure.owned.verb: of households that own their home
 
-health.good.verb: that perceive their health as good
+health.good.verb: that perceive their health as good or very good
 health.fair.verb: that described their health as fair
-health.bad.verb: that perceive their health as poor
+health.bad.verb: that perceive their health as bad or very bad
 
 ethnicity.white.verb: from a White ethnic group
 ethnicity.black.verb: from a Black, Black British, Caribbean or African ethnic group
@@ -468,22 +468,22 @@ economic.student.subhead.buc: {plcname} stood out from other areas for students
 economic.student.subhead.sta: Students in {plcname}
 household.Cohabiting.subhead.pos: More people cohabiting
 household.Cohabiting.subhead.neg: Fewer people cohabiting
-household.Cohabiting.subhead.neu: New household dynamics
+household.Cohabiting.subhead.neu: Changing household dynamics
 household.Cohabiting.subhead.buc: {plcname} stood out from other areas for cohabiting
 household.Cohabiting.subhead.sta: Cohabiting in {plcname}
 household.LoneParent.subhead.pos: More single parents
 household.LoneParent.subhead.neg: Fewer single parents
-household.LoneParent.subhead.neu: New household dynamics
+household.LoneParent.subhead.neu: Changing household dynamics
 household.LoneParent.subhead.buc: {plcname} stood out from other areas for single parenting
 household.LoneParent.subhead.sta: Single parents in {plcname}
 household.OnePerson.subhead.pos: More people living alone
 household.OnePerson.subhead.neg: Fewer people living alone
-household.OnePerson.subhead.neu: New household dynamics
+household.OnePerson.subhead.neu: Changing household dynamics
 household.OnePerson.subhead.buc: {plcname} stood out from other areas for single-person households
 household.OnePerson.subhead.sta: Living alone in {plcname}
 household.Married.subhead.pos: Marriage on the up
 household.Married.subhead.neg: Marriage declining 
-household.Married.subhead.neu: New household dynamics
+household.Married.subhead.neu: Changing household dynamics
 household.Married.subhead.buc: {plcname} reverses marriage
 household.Married.subhead.sta: Marriage in {plcname}
 religion.Christian.subhead.pos: More people identifying as Christian
@@ -558,9 +558,9 @@ population.all.sample: the population
 
 welsh.SpeaksWelsh.sample: The proportion of people who can speak Welsh
 
-marital.Single.sample: the proportion of single people
+marital.Single.sample: the proportion of people who have never married or entered a civil partnership
 marital.Married.sample: the proportion of married people
-marital.Seperated.sample: the proportion of separated people
+marital.Seperated.sample: the proportion of people who have divorced or seperated from a marriage or civil partner
 
 children.Kids.sample: the proportion of homes with children
 children.NoKids.sample: the proportion of childless homes
@@ -570,9 +570,9 @@ tenure.rented_private.sample: private renting
 tenure.rented_social.sample: the rate of social housing
 tenure.owned.sample: the rate of home ownership
 
-health.good.sample: the percentage of people “in good health”
-health.fair.sample: the percentage of people “in fair health”
-health.bad.sample: the percentage of people “in bad health”
+health.good.sample: the percentage of people in "good" or "very good" health
+health.fair.sample: the percentage of people in "fair" health
+health.bad.sample: the percentage of people in "bad" or "very bad" health
 
 ethnicity.white.sample: the share of people from a White ethnic group
 ethnicity.black.sample: the share of people from a Black, Black British, Caribbean or African ethnic group
@@ -614,7 +614,7 @@ care.40PlushoursWeek.sample: the proportion of people providing 50 hours, or mor
 
 marital.Single.adj_noun_s: single people
 marital.Married.adj_noun_s: married people
-marital.Seperated.adj_noun_s: separated people
+marital.Seperated.adj_noun_s: people who have divorced or seperated
 
 children.Kids.adj_noun_s: homes with children
 children.NoKids.adj_noun_s: childless homes
@@ -624,9 +624,9 @@ tenure.rented_private.adj_noun_s: private renting
 tenure.rented_social.adj_noun_s: social housing
 tenure.owned.adj_noun_s: home ownership
 
-health.good.adj_noun_s: people describing their health as good
+health.good.adj_noun_s: people describing their health as good or very good
 health.fair.adj_noun_s: people describing their health as fair
-health.bad.adj_noun_s: people describing their health as bad
+health.bad.adj_noun_s: people describing their health as bad or very bad
 
 ethnicity.white.adj_noun_s: people from a White ethnic group
 ethnicity.black.adj_noun_s: people from a Black, Black British, Caribbean or African ethnic group

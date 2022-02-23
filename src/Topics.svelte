@@ -249,9 +249,9 @@
 				}
 			}
 			totalStories = subplacesOb.length
-			let subplacesLow = subplacesOb.sort(function(a, b) { return a['story'][0]['value'] - b['story'][0]['value'] }).slice(0,3)
-			let subplacesHigh = subplacesOb.sort(function(a, b) { return b['story'][0]['value'] - a['story'][0]['value'] }).slice(0,3)
-			let subplacesMid = subplacesOb.sort(function(a, b) { return Math.abs(a['story'][0]['value']) - Math.abs(b['story'][0]['value']) }).slice(0,3)
+			let subplacesLow = subplacesOb.sort(function(a, b) { return a['story'][0]['value'] - b['story'][0]['value'] }).slice(0,4)
+			let subplacesHigh = subplacesOb.sort(function(a, b) { return b['story'][0]['value'] - a['story'][0]['value'] }).slice(0,4)
+			let subplacesMid = subplacesOb.sort(function(a, b) { return Math.abs(a['story'][0]['value']) - Math.abs(b['story'][0]['value']) }).slice(0,4)
 			subplacesOb = subplacesHigh.concat(subplacesMid, subplacesLow)
 			// placesOb=placesOb.slice(0,6)
 			console.log('subplacesOb', subplacesOb)

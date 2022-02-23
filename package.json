@@ -28,6 +28,7 @@
     "fuse.js": "^6.5.3",
     "fuzzy-matching": "^0.4.3",
     "gh-pages": "^3.2.3",
+    "html2canvas": "^1.4.1",
     "pluralize": "^8.0.0",
     "pug-load": "^3.0.0",
     "robojournalist": "0.0.5",
