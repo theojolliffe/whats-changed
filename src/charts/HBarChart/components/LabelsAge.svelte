@@ -24,7 +24,7 @@
 		fill="#333"
 		x={10}
 		y={$yGet(ageLabel.detail.data) + ((ageLabel.detail.data.g==2021)?10:0) - 10}>
-		{Math.round(ageLabel.detail.data.y*10)/10 + "% aged " + ageLabel.detail.data.x + " in " +ageLabel.detail.data.g}
+		{ageLabel.detail.data.x +": " + Math.round(ageLabel.detail.data.y*10)/10 + "%"}
 	</text>
 </g>
 {/if}
