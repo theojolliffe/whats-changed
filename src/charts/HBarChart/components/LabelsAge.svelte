@@ -14,7 +14,7 @@
 	x={-20}
 	y={$yGet(ageLabel.detail.data) + ((ageLabel.detail.data.g==2021)?10:0) - 10}
 	transform="translate(5,-25)"
-	width="170" 
+	width="270" 
 	height="25" 
 	rx="15" />
 
