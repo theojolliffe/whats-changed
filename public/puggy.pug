@@ -1118,7 +1118,7 @@ mixin religion(i)
         | The number of people in !{place.name} 
         | #[+value(topics['religion'][bigAbs1]['verb'])]
         if (data.religion.value[2001][bigAbs1].toPrecision(2) == data.religion.value[2011][bigAbs1].toPrecision(2))
-            | remained close to #[+value(parseFloat(data.religion.value[2011][bigAbs1].toPrecision(2)))] (#[+pc(data.religion.perc[2011][bigAbs1])]) between the last two censuses
+            | remained close to #[+value(parseFloat(data.religion.value[2011][bigAbs1].toPrecision(2)))] (#[+pc(data.religion.perc[2011][bigAbs1])]) between the last two censuses.
         else 
             if (parseFloat(data.religion.value[2001][bigAbs1].toPrecision(2)) < parseFloat(data.religion.value[2011][bigAbs1].toPrecision(2)))
                 | increased
@@ -1261,7 +1261,7 @@ mixin ethnicity(i)
         | The number of people in !{place.name} 
         | #[+value(topics['ethnicity'][bigAbs1]['verb'])]
         if (data.ethnicity.value[2001][bigAbs1].toPrecision(2) == data.ethnicity.value[2011][bigAbs1].toPrecision(2))
-            | remained close to #[+value(parseFloat(data.ethnicity.value[2011][bigAbs1].toPrecision(2)))] (#[+pc(data.ethnicity.perc[2011][bigAbs1])]) between the last two censuses
+            | remained close to #[+value(parseFloat(data.ethnicity.value[2011][bigAbs1].toPrecision(2)))] (#[+pc(data.ethnicity.perc[2011][bigAbs1])]) between the last two censuses.
         else 
             if (parseFloat(data.ethnicity.value[2001][bigAbs1].toPrecision(2)) < parseFloat(data.ethnicity.value[2011][bigAbs1].toPrecision(2)))
                 | increased
