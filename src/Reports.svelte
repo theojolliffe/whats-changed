@@ -391,8 +391,6 @@
 					chartData.push(tar)
 				}
 			})
-			// chartData = chartData.sort(function(a, b) { return a[0]['g'] - b[0]['g']; })
-			console.log('chartDataaaa', chartData)
 			let props = {
 						legend: true,
 						height: 120,
