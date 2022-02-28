@@ -107,7 +107,7 @@
 
 		options = res.sort((a, b) => a.LAD21NM.localeCompare(b.LAD21NM));
 		let defaultLoc = options[Math.round(331*Math.random())]['LAD21NM']
-		defaultLoc = "Conwy"
+		defaultLoc = "Kensington and Chelsea"
 
 		console.log(defaultLoc)
 		selected = options.find(d => d.LAD21NM == defaultLoc);
@@ -200,7 +200,6 @@
 			}
 		})
 	}
-
 
 	function standfirst(place, topicsIn) {
 
@@ -351,7 +350,7 @@
 				s[3] = s[3]+"_"+s[4]
 				s.pop()
 			}
-		if (["religion", "agemed"].includes(s[0])) {
+		if (["religion", "agemed", "ethnicity"].includes(s[0])) {
 
 			function dtrans(d, g) {
 				let a = []
@@ -371,18 +370,23 @@
 				[dtrans(rgn, 2001), dtrans(rgn, 2011)],
 				[dtrans(place, 2001), dtrans(place, 2011)],
 			]
-			console.log('AGE chartData', chartData)
+			let xTickCal = Math.round((Math.max(...chartData.flat().flat().map(d => d.y))-5)/10)*10
+			let xMax = Math.round((Math.max(...chartData.flat().flat().map(d => d.y))-5)/10)*10
+			console.log('AGE chartData', xTickCal)
 			let props = {
 						legend: true,
 						height: 120,
 						chartData: chartData,
 						labels: [cou.name, rgn.name, place.name],
 						xKey: "value",
-						yKey: "year"
+						yKey: "year",
+						xTickCal: xTickCal,
+						xMax: xMax,
+						topics: topics[s[0]]
 					}
 			return props
 		}
-		else if (["care", "ethnicity"].includes(s[0])) {
+		else if (["care"].includes(s[0])) {
 			let datrev = {2011: 2001, 2001: 2011}
 			let chartData = []
 			let dates = [2001, 2011]
@@ -525,9 +529,9 @@
 			s[3] = s[3]+"_"+s[4]
 			s.pop()
 		}
-		if (["religion", "agemed"].includes(s[0])) {
+		if (["religion", "agemed", "ethnicity"].includes(s[0])) {
 			return AgeChart
-		} else if (["care", "ethnicity"].includes(s[0])) {
+		} else if (["care"].includes(s[0])) {
 			return HBarChart
 		}
 		else if (place.stories[i].type.includes('size')) {

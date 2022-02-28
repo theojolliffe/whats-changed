@@ -6,6 +6,9 @@
 
   export let chartData;
   export let labels;
+  export let xTickCal;
+  export let xMax;
+  export let topics;
 
   const extentGetters = {
     x: d => d.x,
@@ -33,6 +36,9 @@
         {extentGetters}
         nu = {i}
         {labels}
+        {xTickCal}
+        {xMax}
+        {topics}
       />
     </div>
   {/each}

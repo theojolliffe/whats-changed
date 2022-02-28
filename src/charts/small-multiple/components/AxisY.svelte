@@ -17,6 +17,7 @@
 	export let textColor = '#666';
 	export let solid = false;
 	export let nu;
+	export let topics;
 
 	$: isBandwidth = typeof $yScale.bandwidth === 'function';
 
@@ -24,6 +25,8 @@
 		isBandwidth ?
 			$yScale.domain() :
 			$yScale.ticks(ticks);
+
+	console.log('topics', topics)
 </script>
 
 {#if nu == 0}
@@ -47,11 +50,11 @@
 				fill='{textColor}'
 				style="text-anchor:{isBandwidth ? 'end' : textAnchor};"
 			>
-				{#if i == tickVals.length - 1}
+				<!-- {#if i == tickVals.length - 1}
 				{prefix}{formatTick(tick)}{suffix}
-				{:else}
-				{formatTick(tick)}
-				{/if}
+				{:else} -->
+				{topics[tick].label}
+				<!-- {/if} -->
 			</text>
 		</g>
 	{/each}

@@ -707,6 +707,17 @@ agemed.measure_s:
 
 
 
+
+agemed.0-9.label: 0-9
+agemed.10-19.label: 10-19
+agemed.20-29.label: 20-29
+agemed.30-39.label: 30-39
+agemed.40-49.label: 40-49
+agemed.50-59.label: 50-59
+agemed.60-69.label: 60-69
+agemed.70-79.label: 70-79
+agemed.80plus.label: 80 and over
+
 religion.Christian.label: Christian
 religion.Buddhist.label: Buddhist
 religion.Hindu.label: Hindu

@@ -16,6 +16,9 @@
   export let fullExtents;
   export let scale;
   export let extentGetters;
+  export let xTickCal;
+  export let topics;
+  export let xMax;
 
   let hovered = null;
   let ageLabel = true;
@@ -33,7 +36,7 @@
 		// }
 	}
   $: yDom = data[0].map(d => d.x)
-  $: if (yDom[0] == '0-9') {
+  $: if (yDom[0]) {
     yDom = yDom.reverse()
   }
 
@@ -47,17 +50,17 @@
   data={data}
   xScale={scaleLinear()}
   yScale={scaleBand().paddingInner([0.05]).round(true)}
-  xDomain={[0, Math.max(...data[0].map(d => d.y))]}
+  xDomain={[0, xMax]}
   yDomain={yDom}
   height={300}
 >
 <!-- <SetCoords/> -->
   <Svg>
     <HeadLabel {labels} {nu}/>
-    <AxisY {nu}/>
-    <AxisX/>
+    <AxisY {nu} {topics}/>
+    <AxisX {xTickCal}/>
     <Bar on:hover={doHoverAge} />
-    <LabelsAge {hovered} {ageLabel}/>
+    <LabelsAge {hovered} {ageLabel} {topics}/>
   </Svg>
 </LayerCake>
 

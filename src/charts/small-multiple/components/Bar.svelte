@@ -25,7 +25,7 @@
                 class='group-rect'
                 data-id="{i}"
                 x="{$xScale.range()[0]}"
-                y="{(j % 2 == 0)? $yGet(d) : $yGet(d) + 12 }"
+                y="{(j % 2 == 0)? $yGet(d) : $yGet(d) + (34.5 - ($data[0].length * 2.5)) }"
                 rx="{5}"
                 height={$yScale.bandwidth()/2.3}
                 width="{$xGet(d)+3}"

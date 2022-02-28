@@ -3,6 +3,7 @@
 	const { data, xScale, yScale, xDomain, y, xGet, yGet, Domain, custom } = getContext('LayerCake');
 	export let hovered = null;
 	export let ageLabel = null;
+	export let topics;
 
 </script>
 
@@ -24,7 +25,7 @@
 		fill="#333"
 		x={10}
 		y={$yGet(ageLabel.detail.data) + ((ageLabel.detail.data.g==2021)?10:0) - 10}>
-		{Math.round(ageLabel.detail.data.y*10)/10 + "% aged " + ageLabel.detail.data.x + " in " +ageLabel.detail.data.g}
+		{topics[ageLabel.detail.data.x].label  + ": " + Math.round(ageLabel.detail.data.y*10)/10 + "% in " +ageLabel.detail.data.g}
 	</text>
 </g>
 {/if}

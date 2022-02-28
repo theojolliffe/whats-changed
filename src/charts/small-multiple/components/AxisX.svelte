@@ -18,7 +18,8 @@
 	export let lineColor = '#aaa';
 	export let textColor = '#666';
 	export let solid = false;
-
+	export let xTickCal;
+	
 	$: isBandwidth = typeof $xScale.bandwidth === 'function';
 
 	$: tickVals = Array.isArray(ticks) ? ticks :
@@ -37,23 +38,23 @@
 		}
 		return 'middle';
 	}
-	$: xTickCal = Math.round((Math.max(...$data[0].map(d => d.y))-5)/10)*10
+	// $: xTickCal = Math.round((Math.max(...$data[0].map(d => d.y))-5)/10)*10
 	$: console.log('X data tick', xTickCal)
 
 	
 </script>
 
 <g class='axis x-axis'>
-<g class='tick' transform='translate({$xScale(15)},{$height})'>
+<g class='tick' transform='translate({$xScale(xTickCal)},{$height})'>
 	<line y1='{($height * -1)}' y2='{($height * -1)+$height}' x1='0' x2='0' stroke='{lineColor}' class:baseline={solid}></line>
 	<text
 		x="{xTick || isBandwidth ? $xScale.bandwidth() / 2 : 0 }"
 		y='{yTick}'
-		dx="{textAnchor(15) == 'start' ? dxTick - 2 : textAnchor(15) == 'end' ? dxTick + 2 : dxTick}"
+		dx="{textAnchor(xTickCal) == 'start' ? dxTick - 2 : textAnchor(xTickCal) == 'end' ? dxTick + 2 : dxTick}"
 		dy='{dyTick}'
-		text-anchor='{textAnchor(15)}'
+		text-anchor='{textAnchor(xTickCal)}'
 		fill='{lineColor}'>
-		15%
+		{xTickCal+"%"}
 	</text>
 </g>
 {#if baseline === true}
