@@ -351,20 +351,28 @@
 				s[3] = s[3]+"_"+s[4]
 				s.pop()
 			}
-		if (s[0]=="agemed") {
+		if (["religion", "agemed"].includes(s[0])) {
+
 			function dtrans(d, g) {
 				let a = []
-				Object.keys(d).forEach(e => {
-					a.push({'x': e, 'y': d[e], 'g': g})
+				let t
+				if (s[0]=='agemed') {
+					t = 'age10yr'
+				} else {
+					t = s[0]
+				}
+				Object.keys(d.data[t].perc[g]).forEach(e => {
+					a.push({'x': e, 'y': d.data[t].perc[g][e], 'g': g})
 				});
 				return a
 			}
 			let chartData = [
-				[dtrans(cou.data.age10yr.perc['2001'], 2001), dtrans(cou.data.age10yr.perc['2011'], 2011)],
-				[dtrans(rgn.data.age10yr.perc['2001'], 2001), dtrans(rgn.data.age10yr.perc['2011'], 2011)],
-				[dtrans(place.data.age10yr.perc['2001'], 2001), dtrans(place.data.age10yr.perc['2011'], 2011)],
+				[dtrans(cou, 2001), dtrans(cou, 2011)],
+				[dtrans(rgn, 2001), dtrans(rgn, 2011)],
+				[dtrans(place, 2001), dtrans(place, 2011)],
 			]
-			let props ={
+			console.log('AGE chartData', chartData)
+			let props = {
 						legend: true,
 						height: 120,
 						chartData: chartData,
@@ -374,7 +382,7 @@
 					}
 			return props
 		}
-		else if (["religion", "care", "ethnicity"].includes(s[0])) {
+		else if (["care", "ethnicity"].includes(s[0])) {
 			let datrev = {2011: 2001, 2001: 2011}
 			let chartData = []
 			let dates = [2001, 2011]
@@ -517,9 +525,9 @@
 			s[3] = s[3]+"_"+s[4]
 			s.pop()
 		}
-		if (s[0]=='agemed') {
+		if (["religion", "agemed"].includes(s[0])) {
 			return AgeChart
-		} else if (["religion", "care", "ethnicity"].includes(s[0])){
+		} else if (["care", "ethnicity"].includes(s[0])) {
 			return HBarChart
 		}
 		else if (place.stories[i].type.includes('size')) {

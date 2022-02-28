@@ -32,6 +32,10 @@
 		// 	placeLabel = e.detail.data.unique
 		// }
 	}
+  $: yDom = data[0].map(d => d.x)
+  $: if (yDom[0] == '0-9') {
+    yDom = yDom.reverse()
+  }
 
 </script>
 
@@ -43,8 +47,8 @@
   data={data}
   xScale={scaleLinear()}
   yScale={scaleBand().paddingInner([0.05]).round(true)}
-  xDomain={[0, 15]}
-  yDomain={['0-9', '10-19', '20-29', '30-39', '40-49', '50-59', '60-69', '70-79', '80plus'].reverse()}
+  xDomain={[0, Math.max(...data[0].map(d => d.y))]}
+  yDomain={yDom}
   height={300}
 >
 <!-- <SetCoords/> -->

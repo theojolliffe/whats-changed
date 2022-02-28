@@ -37,6 +37,8 @@
 		}
 		return 'middle';
 	}
+	$: console.log('X data tick', data)   // Math.max(...data[0].map(d => d.y)))
+
 	
 </script>
 

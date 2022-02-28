@@ -28,7 +28,7 @@
                 y="{(j % 2 == 0)? $yGet(d) : $yGet(d) + 12 }"
                 rx="{5}"
                 height={$yScale.bandwidth()/2.3}
-                width="{$xGet(d)}"
+                width="{$xGet(d)+3}"
                 fill = "{(j % 2 == 0)? '#DF0667' : '#3C388E' }"
                 stroke="{d == hov ? 'orange' : 'white' }"
                 stroke-width= "{d == hov ? '3' : '2' }"
