@@ -20,7 +20,7 @@ agemed.adj.high: oldest
 agemed.adj.low: youngest
 
 // Giving it the greatest ***headcount*** of any local authority area in the North West of England.
-// Census 2021 data also shows a shift in ***working patterns***.
+// Census 2011 data also shows a shift in ***working patterns***.
 tenure.synonym: housing shift in {plcname}
 health.synonym: shift in the local population's well-being
 ethnicity.synonym: shift in the ethnic makeup of {plcname}
@@ -105,8 +105,8 @@ hoursworked.Female49plus.clausal_modifier: employees working more than 49 hours 
 hoursworked.Male1-15.clausal_modifier: employed people in {plcname} working less than 16 hours
 hoursworked.Male49plus.clausal_modifier: employed people in {plcname} working more than 49 hours in the week before the census
 
-// Chart subtitle: The percentage of households **rented privately** across local authority areas in the East Midlands and the average across England, March 2021
-// Chart subtitle: The percentage of usual residents in Derby, the East Midlands and England **said they rent privately**, March 2011, March 2021
+// Chart subtitle: The percentage of households **rented privately** across local authority areas in the East Midlands and the average across England, March 2011
+// Chart subtitle: The percentage of usual residents in Derby, the East Midlands and England **said they rent privately**, March 2001, March 2011
 
 children.Kids.verb_past: with at least one dependent child
 children.NoKids.verb_past: without children
@@ -163,7 +163,7 @@ hoursworked.Male1-15.verb_past: that said they had worked less than 16 hours the
 hoursworked.Male49plus.verb_past: that said they had worked over 49 hours the week before completing the census
 
 
-// Just over 3 in 10 (32%) ***said they live in social housing*** in 2021, compared with about 39% in 2011
+// Just over 3 in 10 (32%) ***said they live in social housing*** in 2011, compared with about 39% in 2001
 
 children.Kids.verb_past_samp: had at least one dependent child
 children.NoKids.verb_past_samp: had no children
@@ -266,7 +266,7 @@ religion.Sikh.adj_noun: people who describe themselves as Sikh
 religion.Jewish.adj_noun: people who describe themselves as Jewish
 religion.Muslim.adj_noun: people who describe themselves as Muslim
 religion.Noreligion.adj_noun: people who describe themselves as non-religious
-religion.Religionnotstated.adj_noun: people who did not disclose their religious beliefs
+religion.Religionnotstated.adj_noun: people who did not disclose their religious affiliation
 religion.Otherreligion.adj_noun: people who identify with a religion other than Christianity, Islam, Hinduism, Judaism, Buddhism or Sikhism
 
 hoursworked.Female1-15.adj_noun: people working less than 16 hours in a week
@@ -321,7 +321,7 @@ religion.Sikh.verb: that describe themselves as Sikh
 religion.Jewish.verb: that describe themselves as Jewish
 religion.Muslim.verb: that describe themselves as Muslim
 religion.Noreligion.verb: that describe themselves as non-religious
-religion.Religionnotstated.verb: that did not disclose their religious beliefs
+religion.Religionnotstated.verb: that did not disclose their religious affiliation
 religion.Otherreligion.verb: that identify with a religion other than Christianity, Islam, Hinduism, Judaism, Buddhism or Sikhism
 
 hoursworked.Female1-15.verb: that work less than 16 hours in a week
@@ -488,37 +488,37 @@ household.Married.subhead.buc: {plcname} reverses marriage
 household.Married.subhead.sta: Marriage in {plcname}
 religion.Christian.subhead.pos: More people identifying as Christian
 religion.Christian.subhead.neg: Fewer people identifying as Christian
-religion.Christian.subhead.neu: Changing beliefs in {plcname}
+religion.Christian.subhead.neu: Religion in {plcname}
 religion.Christian.subhead.buc: {plcname} stood out from other areas for religion
 religion.Christian.subhead.sta: Religion in {plcname}
 religion.Buddhist.subhead.pos: More people identifying as Buddhist
 religion.Buddhist.subhead.neg: Fewer people identifying as Buddhist
-religion.Buddhist.subhead.neu: Changing beliefs in {plcname}
+religion.Buddhist.subhead.neu: Religion in {plcname}
 religion.Buddhist.subhead.buc: {plcname} stood out from other areas for religion
 religion.Buddhist.subhead.sta: Religion in {plcname}
 religion.Hindu.subhead.pos: More people identifying as Hindu
 religion.Hindu.subhead.neg: Fewer people identifying as Hindu
-religion.Hindu.subhead.neu: Changing beliefs in {plcname}
+religion.Hindu.subhead.neu: Religion in {plcname}
 religion.Hindu.subhead.buc: {plcname} stood out from other areas for religion
 religion.Hindu.subhead.sta: Religion in {plcname}
 religion.Sikh.subhead.pos: More people identifying as Sikh
 religion.Sikh.subhead.neg: Fewer people identifying as Sikh
-religion.Sikh.subhead.neu: Changing beliefs in {plcname}
+religion.Sikh.subhead.neu: Religion in {plcname}
 religion.Sikh.subhead.buc: {plcname} stood out from other areas for religion
 religion.Sikh.subhead.sta: Religion in {plcname}
 religion.Jewish.subhead.pos: More people identifying as Jewish
 religion.Jewish.subhead.neg: Fewer people identifying as Jewish
-religion.Jewish.subhead.neu: Changing beliefs in {plcname}
+religion.Jewish.subhead.neu: Religion in {plcname}
 religion.Jewish.subhead.buc: {plcname} stood out from other areas for religion
 religion.Jewish.subhead.sta: Religion in {plcname}
 religion.Muslim.subhead.pos: More people identifying as Muslim
 religion.Muslim.subhead.neg: Fewer people identifying as Muslim 
-religion.Muslim.subhead.neu: Changing beliefs in {plcname}
+religion.Muslim.subhead.neu: Religion in {plcname}
 religion.Muslim.subhead.buc: {plcname} stood out from other areas for religion
 religion.Muslim.subhead.sta: Religion in {plcname}
 religion.Noreligion.subhead.pos: More people without a religion in {plcname}
 religion.Noreligion.subhead.neg: Fewer people without a religion in {plcname}
-religion.Noreligion.subhead.neu: Changing beliefs in {plcname}
+religion.Noreligion.subhead.neu: Religion in {plcname}
 religion.Noreligion.subhead.buc: {plcname} stood out from other areas for religion
 religion.Noreligion.subhead.sta: Religion in {plcname}
 religion.Religionnotstated.subhead.pos: Religion in {plcname}
@@ -563,7 +563,7 @@ marital.Married.sample: the proportion of married people
 marital.Seperated.sample: the proportion of people who have divorced or seperated from a marriage or civil partner
 
 children.Kids.sample: the proportion of homes with children
-children.NoKids.sample: the proportion of childless homes
+children.NoKids.sample: the proportion of households without children
 children.NonDepKids.sample: the proportion of homes with only adult children living with their parents
 
 tenure.rented_private.sample: private renting
@@ -586,10 +586,10 @@ economic.self-employed.sample: the rate of self-employment
 economic.unemployed.sample: the rate of unemployment
 economic.student.sample: the percentage of students
 
-household.Cohabiting.sample: cohabiting households
-household.LoneParent.sample: single-parent households
-household.OnePerson.sample: single-person households
-household.Married.sample: married households
+household.Cohabiting.sample: the share of households with a cohabiting couple
+household.LoneParent.sample: the share of households with a single-parent
+household.OnePerson.sample: the share of households with only a single-person
+household.Married.sample: the share of households with a married couple
 
 religion.Christian.sample: the share of people who identify as Christian 
 religion.Buddhist.sample: the share of people who identify as Buddhist
@@ -617,7 +617,7 @@ marital.Married.adj_noun_s: married people
 marital.Seperated.adj_noun_s: people who have divorced or seperated
 
 children.Kids.adj_noun_s: homes with children
-children.NoKids.adj_noun_s: childless homes
+children.NoKids.adj_noun_s: households without children
 children.NonDepKids.adj_noun_s: homes with only adult children living with their parents
 
 tenure.rented_private.adj_noun_s: private renting
@@ -665,7 +665,7 @@ care.20to49hoursWeek.adj_noun_s: people providing between 20 and 49 hours of wee
 care.40PlushoursWeek.adj_noun_s: people providing 50 hours, or more, of weekly unpaid care
 
 
-// The percentage of people living in Southwark by ***ethnicity***; March 2011, March 2021
+// The percentage of people living in Southwark by ***ethnicity***; March 2001, March 2011
 hoursworked.subtitle: weekly hours worked
 religion.subtitle: religion
 household.subtitle: household type
@@ -686,7 +686,7 @@ household.measure: households
 religion.measure: usual residents
 care.measure: usual residents
 children.measure: households
-hoursworked.measure: usual residents aged 16 to 74 (in employment the week before the Census 2021)
+hoursworked.measure: usual residents aged 16 to 74 (in employment the week before the Census 2011)
 marital.measure: usual residents aged 16 and over
 population.measure: usual residents
 agemed.measure: usual residents
@@ -700,7 +700,7 @@ household.measure_s: households
 religion.measure_s: 
 care.measure_s: 
 children.measure_s: households
-hoursworked.measure_s: people aged 16 to 74 (in employment the week before the Census 2021)
+hoursworked.measure_s: people aged 16 to 74 (in employment the week before the Census 2011)
 marital.measure_s: people aged 16 and over
 population.measure_s: 
 agemed.measure_s: 

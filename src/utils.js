@@ -103,31 +103,36 @@ function get_word(num, dict) {
       } } }
   return [OverUnder, lowest_label]
 }
+
 function figs(x, f) {
   if (f!=3) {
     f = 2
   }
-  let sigfig = Number.parseFloat(Number.parseFloat(x).toPrecision(f))
-  let text;
-  if (x-sigfig<-x/100) {
-    text = "under "
-  }	
-  if (x-sigfig<-x/800) {
+  let sigfig;
+  if (x<1000) {
+    sigfig = Number.parseFloat(Number.parseFloat(x).toPrecision(1))
+  }
+  else {
+    sigfig = Number.parseFloat(Number.parseFloat(x).toPrecision(f))
+  }
+  let text = 'about';
+
+
+  if ( Math.abs(x) < Math.abs(sigfig) ) {
     if (Math.round(Math.random())==1) {
       text = "almost "
     } else {
       text = "just under "
     }
   }
-  else if (x-sigfig>x/100) {
-    text = " just over "
-  }
-  else if (x-sigfig>x/800) {
-    text = "just over "
-  }
   else {
-    text = "about"
+    if (Math.round(Math.random())==1) {
+      text = "about "
+    } else {
+      text = "just over "
+    }
   }
+
   return [text, sigfig];
 }
 
@@ -333,7 +338,14 @@ function uds(n, w1, w2, w3) {
 export { uds, adv, udord, sign, nuword, eq, ageBandLU, uncap1, getData, regionThe, drop, ud, otherRank, otherEst, qui, cha, cur, figs, get_word, city, ord, chains, prev };
 
 
-
+export function pcnoprint(x) { 
+  if (Math.abs(x)<10) { 
+    return Math.round(x*10)/10 
+  }
+  else { 
+    return Math.round(x) 
+  } 
+}
 
 
 export async function getPhotos(limit, page) {

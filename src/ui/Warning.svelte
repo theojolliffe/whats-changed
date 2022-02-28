@@ -1,5 +1,5 @@
 <div class="warning">
-  <strong>Warning!</strong> This prototype uses 2011 data in lieu of the latest Census 2021 data. Data are likely to contain inaccuracies.
+  <strong>Warning!</strong> This prototype looks at data from the 2001 and 2011 censuses. The published version will eventually contain 2011 and 2021 census data. Prototype data may contain inaccuracies.
 </div>
 
 <style>

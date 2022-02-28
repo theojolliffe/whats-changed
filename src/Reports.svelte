@@ -107,7 +107,7 @@
 
 		options = res.sort((a, b) => a.LAD21NM.localeCompare(b.LAD21NM));
 		let defaultLoc = options[Math.round(331*Math.random())]['LAD21NM']
-		// defaultLoc = "Manchester"
+		defaultLoc = "Kensington and Chelsea"
 
 		console.log(defaultLoc)
 		selected = options.find(d => d.LAD21NM == defaultLoc);
@@ -360,9 +360,9 @@
 				return a
 			}
 			let chartData = [
-				[dtrans(cou.data.age10yr.perc['2001'], 2011), dtrans(cou.data.age10yr.perc['2011'], 2021)],
-				[dtrans(rgn.data.age10yr.perc['2001'], 2011), dtrans(rgn.data.age10yr.perc['2011'], 2021)],
-				[dtrans(place.data.age10yr.perc['2001'], 2011), dtrans(place.data.age10yr.perc['2011'], 2021)],
+				[dtrans(cou.data.age10yr.perc['2001'], 2001), dtrans(cou.data.age10yr.perc['2011'], 2011)],
+				[dtrans(rgn.data.age10yr.perc['2001'], 2001), dtrans(rgn.data.age10yr.perc['2011'], 2011)],
+				[dtrans(place.data.age10yr.perc['2001'], 2001), dtrans(place.data.age10yr.perc['2011'], 2011)],
 			]
 			let props ={
 						legend: true,
@@ -410,18 +410,18 @@
 					return {
 						height: 120,
 						data: [
-							{label: eng.name, 2011: fbp(eng.data.density.value[2001].all), 2021: fbp(eng.data.density.value[2011].all)},
-							{label: rgn.name, 2011: fbp(rgn.data.density.value[2001].all), 2021: fbp(rgn.data.density.value[2011].all)},
-							{label: place.name, 2011: fbp(place.data.density.value[2001].all), 2021: fbp(place.data.density.value[2011].all)},
+							{label: eng.name, 2001: fbp(eng.data.density.value[2001].all), 2011: fbp(eng.data.density.value[2011].all)},
+							{label: rgn.name, 2001: fbp(rgn.data.density.value[2001].all), 2011: fbp(rgn.data.density.value[2011].all)},
+							{label: place.name, 2001: fbp(place.data.density.value[2001].all), 2011: fbp(place.data.density.value[2011].all)},
 						],
 					}
 				} else {
 					return {
 						height: 120,
 						data: [
-							{label: rgn.name, 2011: fbp(rgn.data.density.value[2001].all), 2021: fbp(rgn.data.density.value[2011].all)},
-							{label: place.nearbyArea.nearTops.name.name, 2011: fbp(place.nearbyArea.nearTops.name.data.density.value[2001].all), 2021: fbp(place.nearbyArea.nearTops.name.data.density.value[2011].all)},
-							{label: place.name, 2011: fbp(place.data.density.value[2001].all), 2021: fbp(place.data.density.value[2011].all)},
+							{label: rgn.name, 2001: fbp(rgn.data.density.value[2001].all), 2011: fbp(rgn.data.density.value[2011].all)},
+							{label: place.nearbyArea.nearTops.name.name, 2001: fbp(place.nearbyArea.nearTops.name.data.density.value[2001].all), 2011: fbp(place.nearbyArea.nearTops.name.data.density.value[2011].all)},
+							{label: place.name, 2001: fbp(place.data.density.value[2001].all), 2011: fbp(place.data.density.value[2011].all)},
 						],
 					}
 				}
@@ -434,18 +434,18 @@
 						data: [
 							{
 								label: rgn.name, 
-								2011: rgn.data[s[0]][s[1]][2001][s[3]],
-								2021: rgn.data[s[0]][s[1]][2011][s[3]]
+								2001: rgn.data[s[0]][s[1]][2001][s[3]],
+								2011: rgn.data[s[0]][s[1]][2011][s[3]]
 							},
 							{
 								label: place.nearbyArea.nearTops.name, 
-								2011: place.nearbyArea.nearTops.data[s[0]][s[1]][2001][s[3]], 
-								2021: place.nearbyArea.nearTops.data[s[0]][s[1]][2011][s[3]],
+								2001: place.nearbyArea.nearTops.data[s[0]][s[1]][2001][s[3]], 
+								2011: place.nearbyArea.nearTops.data[s[0]][s[1]][2011][s[3]],
 							},
 							{
 								label: place.name, 
-								2011: place.data[s[0]][s[1]][2001][s[3]],
-								2021: place.data[s[0]][s[1]][2011][s[3]]
+								2001: place.data[s[0]][s[1]][2001][s[3]],
+								2011: place.data[s[0]][s[1]][2011][s[3]]
 							},
 						],
 					}
@@ -456,18 +456,18 @@
 						data: [
 							{
 								label: eng.name, 
-								2011: eng.data[s[0]][s[1]][2001][s[3]], 
-								2021: eng.data[s[0]][s[1]][2011][s[3]],
+								2001: eng.data[s[0]][s[1]][2001][s[3]], 
+								2011: eng.data[s[0]][s[1]][2011][s[3]],
 							},
 							{
 								label: place.parents[0].name,
-								2011: rgn.data[s[0]][s[1]][2001][s[3]], 
-								2021: rgn.data[s[0]][s[1]][2011][s[3]]
+								2001: rgn.data[s[0]][s[1]][2001][s[3]], 
+								2011: rgn.data[s[0]][s[1]][2011][s[3]]
 							},
 							{
 								label: place.name, 
-								2011: place.data[s[0]][s[1]][2001][s[3]], 
-								2021: place.data[s[0]][s[1]][2011][s[3]]
+								2001: place.data[s[0]][s[1]][2001][s[3]], 
+								2011: place.data[s[0]][s[1]][2011][s[3]]
 							},
 						],
 					}
