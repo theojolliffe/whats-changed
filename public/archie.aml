@@ -63,7 +63,7 @@ care.40PlushoursWeek.clausal_modifier: {plcname} residents that provide at least
 
 marital.Single.clausal_modifier: single people in {plcname}
 marital.Married.clausal_modifier: adults in {plcname} that are married
-marital.Seperated.clausal_modifier: adults in {plcname} that have divorced or seperated from a married or civil partner 
+marital.Seperated.clausal_modifier: adults in {plcname} that have divorced or separated from a married or civil partner 
 
 tenure.rented_private.clausal_modifier: households in {plcname} that rent privately
 tenure.rented_social.clausal_modifier: {plcname} households that rent through social housing schemes
@@ -222,9 +222,9 @@ hoursworked.Male49plus.verb_past_samp: said they had worked over 49 hours the we
 
 // The percentage of ***healthy residents*** is increasing faster here than in any other local authority district across England.
 
-children.Kids.adj_noun: homes with children
-children.NoKids.adj_noun: homes without children
-children.NonDepKids.adj_noun: homes with adult children living with their parents
+children.Kids.adj_noun: households with children
+children.NoKids.adj_noun: households without children
+children.NonDepKids.adj_noun: households with adult children living with their parents
 
 care.1to19hoursWeek.adj_noun: people providing up to 19 hours of weekly unpaid care
 care.20to49hoursWeek.adj_noun: people providing between 20 and 49 hours of weekly unpaid care
@@ -560,11 +560,11 @@ welsh.SpeaksWelsh.sample: The proportion of people who can speak Welsh
 
 marital.Single.sample: the proportion of people who have never married or entered a civil partnership
 marital.Married.sample: the proportion of married people
-marital.Seperated.sample: the proportion of people who have divorced or seperated from a marriage or civil partner
+marital.Seperated.sample: the proportion of people who have divorced or separated from a marriage or civil partner
 
-children.Kids.sample: the proportion of homes with children
+children.Kids.sample: the proportion of households with children
 children.NoKids.sample: the proportion of households without children
-children.NonDepKids.sample: the proportion of homes with only adult children living with their parents
+children.NonDepKids.sample: the proportion of households with only adult children living with their parents
 
 tenure.rented_private.sample: private renting
 tenure.rented_social.sample: the rate of social housing
@@ -614,11 +614,11 @@ care.40PlushoursWeek.sample: the proportion of people providing 50 hours, or mor
 
 marital.Single.adj_noun_s: single people
 marital.Married.adj_noun_s: married people
-marital.Seperated.adj_noun_s: people who have divorced or seperated
+marital.Seperated.adj_noun_s: people who have divorced or separated
 
-children.Kids.adj_noun_s: homes with children
+children.Kids.adj_noun_s: households with children
 children.NoKids.adj_noun_s: households without children
-children.NonDepKids.adj_noun_s: homes with only adult children living with their parents
+children.NonDepKids.adj_noun_s: households with only adult children living with their parents
 
 tenure.rented_private.adj_noun_s: private renting
 tenure.rented_social.adj_noun_s: social housing

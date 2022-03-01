@@ -117,7 +117,7 @@
 		'marital_perc_change': [
 			{'label': 'All', 'value': 'all'},
 			{'label': 'Married', 'value': 'Married'},
-			{'label': 'Seperated', 'value': 'Seperated'},
+			{'label': 'Seperated', 'value': 'Separated'},
 			{'label': 'Single', 'value': 'Single'},
 		],
 		'population_value_change': false,
