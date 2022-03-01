@@ -96,7 +96,6 @@
 		});
 	});
 
-
 	// Data load functions
 	getData("https://raw.githubusercontent.com/theojolliffe/census-data/main/csv/lists/Local_Authority_Districts_(May_2021)_UK_BFE_V3.csv").then(res => {
 		res.forEach(d => {
@@ -107,7 +106,7 @@
 
 		options = res.sort((a, b) => a.LAD21NM.localeCompare(b.LAD21NM));
 		let defaultLoc = options[Math.round(331*Math.random())]['LAD21NM']
-		defaultLoc = "Kensington and Chelsea"
+		defaultLoc = "Tower Hamlets"
 
 		console.log(defaultLoc)
 		selected = options.find(d => d.LAD21NM == defaultLoc);

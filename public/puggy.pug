@@ -1,21 +1,23 @@
 // Population passes half a million
 mixin subheadVal(i)
+    - console.log(' - okay', (data[s[i][0]][s[i][1]]['2001'][s[i][3]]<250000) )
+    - console.log(' - okay', ( true & false ) )
     if (Math.round(data[s[i][0]][s[i][1]][2001][s[i][3]]/1000) == Math.round(data[s[i][0]][s[i][1]][2011][s[i][3]]/1000))
         | Population plateaus
     else if (cha(s, place, i)<0)
         | Population drops
-    else if ((data[s[i][0]][s[i][1]]['2001'][s[i][3]]<100000)&(data[s[i][0]][s[i][1]]['2011'][s[i][3]]>100000))
-        | Population passes #[+value(100000)]
-    else if ((data[s[i][0]][s[i][1]]['2001'][s[i][3]]<200000)&(data[s[i][0]][s[i][1]]['2011'][s[i][3]]>200000))
-        | Population passes #[+value(200000)]
-    else if ((data[s[i][0]][s[i][1]]['2001'][s[i][3]]<50000)&(data[s[i][0]][s[i][1]]['2011'][s[i][3]]>50000))
-        | Population passes #[+value(50000)]
-    else if ((data[s[i][0]][s[i][1]]['2001'][s[i][3]]<250000)&(data[s[i][0]][s[i][1]]['2011'][s[i][3]]>250000))
-        | Population passes quarter of a million
-    else if ((data[s[i][0]][s[i][1]]['2001'][s[i][3]]<500000)&(data[s[i][0]][s[i][1]]['2011'][s[i][3]]>500000))
-        | Population passes half a million
     else if ((data[s[i][0]][s[i][1]]['2001'][s[i][3]]<1000000)&(data[s[i][0]][s[i][1]]['2011'][s[i][3]]>1000000))
         | Population passes a million
+    else if ((data[s[i][0]][s[i][1]]['2001'][s[i][3]]<500000)&(data[s[i][0]][s[i][1]]['2011'][s[i][3]]>500000))
+        | Population passes half a million
+    else if ( (data[s[i][0]][s[i][1]]['2001'][s[i][3]]<250000) & (data[s[i][0]][s[i][1]]['2011'][s[i][3]]>250000) )
+        | Population passes quarter of a million
+    else if ((data[s[i][0]][s[i][1]]['2001'][s[i][3]]<200000)&(data[s[i][0]][s[i][1]]['2011'][s[i][3]]>200000))
+        | Population passes #[+value(200000)]
+    else if ((data[s[i][0]][s[i][1]]['2001'][s[i][3]]<100000)&(data[s[i][0]][s[i][1]]['2011'][s[i][3]]>100000))
+        | Population passes #[+value(100000)]
+    else if ((data[s[i][0]][s[i][1]]['2001'][s[i][3]]<50000)&(data[s[i][0]][s[i][1]]['2011'][s[i][3]]>50000))
+        | Population passes #[+value(50000)]
     else if ([250000, 500000, 1000000].includes(Number.parseFloat(Number.parseFloat(cur(s, place, i)).toPrecision(2))))
         | Population
         if (get_word(data[s[i][0]][s[i][1]]['2011'][s[i][3]], "num")[0]=="just under")
