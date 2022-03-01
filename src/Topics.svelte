@@ -42,7 +42,7 @@
 		{"label": "Hours worked", "value": "hoursworked_perc_change"},
 		{"label": "Households with children", "value": "children_perc_change"},
 		{"label": "Households by family", "value": "household_perc_change"},
-		{"label": "Marital status", "value": "marital_perc_change"},
+		{"label": "Legal partnership status", "value": "marital_perc_change"},
 		{"label": "Population", "value": "population_value_change"},
 		{"label": "Religion", "value": "religion_perc_change"},
 		{"label": "Tenure", "value": "tenure_perc_change"},
