@@ -981,10 +981,14 @@ mixin allOthers(i, r, updo)
     | to #[+pc((rgn.data[s[i][0]][s[i][1]][2011][s[i][3]]))].
 
 mixin welsh(i)
+    - function pcnoprint(x) { if (Math.abs(x)<10) { return Math.round(x*10)/10 }  else { return Math.round(x) } }
     p
         | The proportion of Welsh speakers in !{place.name} 
-        | #[+value(ud(cha(s, place, i), 'rose', 'fell'))] 
-        | from #[+pc((place.data[s[i][0]][s[i][1]][2001][s[i][3]]))]
+        if (pcnoprint(place.data[s[i][0]][s[i][1]][2001][s[i][3]]) == pcnoprint(place.data[s[i][0]][s[i][1]][2011][s[i][3]]))
+            | remained close
+        else
+            | #[+value(ud(cha(s, place, i), 'rose', 'fell'))] 
+            | from #[+pc((place.data[s[i][0]][s[i][1]][2001][s[i][3]]))]
         | to #[+pc((place.data[s[i][0]][s[i][1]][2011][s[i][3]]))]
         | in the 10 years leading up to Census 2011. 
     if (Math.abs(place.data[s[i][0]][s[i][1]+'_rank_local']['change'][s[i][3]])<4)
@@ -1394,7 +1398,7 @@ mixin percPara(i, chain0_01, chain0_11, chain1_01, chain1_11)
             h2 #[+value(topic(i).subhead.neg)]
         else if ((cha(s, place, i)>1)&(data[s[i][0]]['value'][2011][s[i][3]]>data[s[i][0]]['value'][2001][s[i][3]]))
             h2 #[+value(topic(i).subhead.pos)]
-        else if (findOne(stories[i].type, ['nearDiff', 'couDiff', 'regDiff']))
+        else if (findOne(stories[i].type, ['nearDiff', 'couDiff', 'regDiff', 'welsh']))
             h2 #[+value(topic(i).subhead.sta)]
         else 
             h2 #[+value(topic(i).subhead.neu)]
@@ -1528,7 +1532,7 @@ mixin chartTitleSize(i)
             if (cou.name=='Wales')
                 | #[+value(place.nearbyArea.nearTops.name)]
             else
-                | #[+value(parent)] 
+                | #[+value(parent)]
             | and #[+value(country)] #[+value(topic(i).verb_past)], March 2001 and March 2011
 
 mixin chartTitleBar(i)
