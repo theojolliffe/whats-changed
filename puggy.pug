@@ -993,9 +993,10 @@ mixin welsh(i)
         | in the 10 years leading up to Census 2011. 
     if (Math.abs(place.data[s[i][0]][s[i][1]+'_rank_local']['change'][s[i][3]])<4)
         p 
-            | This amounts to the 
-            | #[+value(drop(data[s[i][0]][s[i][1]+'_rank_local']['change'][s[i][3]], 'largest decline', 'largest increase'))]
-            | in the proportion of Welsh speakers of any local authority area in the country.
+            if (pcnoprint(place.data[s[i][0]][s[i][1]][2001][s[i][3]]) != pcnoprint(place.data[s[i][0]][s[i][1]][2011][s[i][3]]))
+                | This amounts to the 
+                | #[+value(drop(data[s[i][0]][s[i][1]+'_rank_local']['change'][s[i][3]], 'largest decline', 'largest increase'))]
+                | in the proportion of Welsh speakers of any local authority area in the country.
             if (data.welsh.perc_rank_local.top_bottom.SpeaksWelsh[1].name!=place.name)
                 | Of the few areas where knowledge of the Welsh language increased, !{data.welsh.perc_rank_local.top_bottom.SpeaksWelsh[1].name} saw the greatest change
                 | (from 
