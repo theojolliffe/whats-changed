@@ -1543,7 +1543,14 @@ mixin chartTitleBar(i)
         | #[+rou(Math.abs(cha(s, place, i)))]
         | percentage points
     h5 
-        | The percentage of #[+value(place.name)] #[+value(topics[s[i][0]].measure)] by !{s[i][0]}, March 2001 and March 2011
+        | The percentage of #[+value(topics[s[i][0]].measure)] in
+        | #[+value(cou.name)],
+        if (cou.name=='Wales')
+            | #[+value(place.nearbyArea.nearTops.name)]
+        else
+            | #[+value(rgn.name)]
+        | and #[+value(place.name)] 
+        | by !{s[i][0]}, March 2001 and March 2011
 
 
 mixin chartTitleOther(i)
@@ -1561,7 +1568,14 @@ mixin chartTitleOther(i)
             | of people in !{place.name} are aged
             | #[+value(ageBandLU[agegroup][1])]
         h5 
-            | The percentage of #[+value(topics[s[i][0]].measure)] in #[+value(place.name)] by 10 year age band, March 2001 and March 2011
+            | The percentage of #[+value(topics[s[i][0]].measure)] in 
+            | #[+value(cou.name)],
+            if (cou.name=='Wales')
+                | #[+value(place.nearbyArea.nearTops.name)]
+            else
+                | #[+value(rgn.name)]
+            | and #[+value(place.name)] 
+            | by 10 year age band, March 2001 and March 2011
     else
         h4 
             | #[+value(topic(i).sample)] 
