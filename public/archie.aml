@@ -331,9 +331,9 @@ hoursworked.Male49plus.verb: that work over 49 hours in a week
 
 // The percentage of ***healthy residents*** is increasing faster here than in any other local authority district across England.
 
-welsh.SpeaksWelsh.subhead.pos: Higher proportion of Welsh speakers
-welsh.SpeaksWelsh.subhead.neg: Lower proportion of Welsh speakers
-welsh.SpeaksWelsh.subhead.neu: Local shift in Welsh language skills
+welsh.SpeaksWelsh.subhead.pos: Rise in proportion of Welsh speakers
+welsh.SpeaksWelsh.subhead.neg: Fall in proportion of Welsh speakers
+welsh.SpeaksWelsh.subhead.neu: Change in number of Welsh language speakers
 welsh.SpeaksWelsh.subhead.buc: {plcname} stood out from other areas for Welsh language
 welsh.SpeaksWelsh.subhead.sta: Welsh language in {plcname}
 children.Kids.subhead.pos: More homes with children
