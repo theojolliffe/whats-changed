@@ -1524,7 +1524,12 @@ mixin chartTitleSize(i)
             | #[+rou(Math.abs(cha(s, place, i)))]
             | percentage points
         h5 
-            | The percentage of #[+value(topics[s[i][0]].measure)] in #[+value(place.name)], #[+value(parent)] and #[+value(country)] that #[+value(topic(i).verb_past)], March 2001 and March 2011
+            | The percentage of #[+value(topics[s[i][0]].measure)] in #[+value(place.name)], 
+            if (cou.name=='Wales')
+                | #[+value(place.nearbyArea.nearTops.name)]
+            else
+                | #[+value(parent)] 
+            | and #[+value(country)] #[+value(topic(i).verb_past)], March 2001 and March 2011
 
 mixin chartTitleBar(i)
     h4 
