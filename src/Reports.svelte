@@ -106,7 +106,7 @@
 
 		options = res.sort((a, b) => a.LAD21NM.localeCompare(b.LAD21NM));
 		let defaultLoc = options[Math.round(331*Math.random())]['LAD21NM']
-		defaultLoc = "Blaenau Gwent"
+		defaultLoc = "Caerphilly"
 
 		console.log(defaultLoc)
 		selected = options.find(d => d.LAD21NM == defaultLoc);
