@@ -349,7 +349,7 @@
 				s[3] = s[3]+"_"+s[4]
 				s.pop()
 			}
-		if (["religion", "agemed", "ethnicity"].includes(s[0])) {
+		if (["religion", "agemed", "ethnicity", "care"].includes(s[0])) {
 
 			function dtrans(d, g) {
 				let a = []
@@ -364,11 +364,21 @@
 				});
 				return a
 			}
-			let chartData = [
-				[dtrans(cou, 2001), dtrans(cou, 2011)],
-				[dtrans(rgn, 2001), dtrans(rgn, 2011)],
-				[dtrans(place, 2001), dtrans(place, 2011)],
-			]
+			let chartData
+			if (rgn.name == 'Wales') {
+				chartData = [
+					[dtrans(cou, 2001), dtrans(cou, 2011)],
+					[dtrans(place.nearbyArea.nearTops, 2001), dtrans(place.nearbyArea.nearTops, 2011)],
+					[dtrans(place, 2001), dtrans(place, 2011)],
+				]
+			}
+			else {
+				chartData = [
+					[dtrans(cou, 2001), dtrans(cou, 2011)],
+					[dtrans(rgn, 2001), dtrans(rgn, 2011)],
+					[dtrans(place, 2001), dtrans(place, 2011)],
+				]
+			}
 			let xTickCal = Math.round((Math.max(...chartData.flat().flat().map(d => d.y))-5)/10)*10
 			let xMax = Math.round((Math.max(...chartData.flat().flat().map(d => d.y))-5)/10)*10
 			console.log('AGE chartData', xTickCal)
@@ -376,7 +386,7 @@
 						legend: true,
 						height: 120,
 						chartData: chartData,
-						labels: [cou.name, rgn.name, place.name],
+						labels: (rgn.name == 'Wales') ? [cou.name, place.nearbyArea.nearTops.name, place.name] : [cou.name, rgn.name, place.name],
 						xKey: "value",
 						yKey: "year",
 						xTickCal: xTickCal,
@@ -415,7 +425,7 @@
 		}
 		else if (place.stories[i].type.includes('size')) {
 			if (s[0]=="population") {
-				if (rgn.name == 'Wales') {
+				if (rgn.name != 'Wales') {
 					return {
 						height: 120,
 						data: [
@@ -429,7 +439,7 @@
 						height: 120,
 						data: [
 							{label: rgn.name, 2001: fbp(rgn.data.density.value[2001].all), 2011: fbp(rgn.data.density.value[2011].all)},
-							{label: place.nearbyArea.nearTops.name.name, 2001: fbp(place.nearbyArea.nearTops.name.data.density.value[2001].all), 2011: fbp(place.nearbyArea.nearTops.name.data.density.value[2011].all)},
+							{label: place.nearbyArea.nearTops.name, 2001: fbp(place.nearbyArea.nearTops.data.density.value[2001].all), 2011: fbp(place.nearbyArea.nearTops.name.data.density.value[2011].all)},
 							{label: place.name, 2001: fbp(place.data.density.value[2001].all), 2011: fbp(place.data.density.value[2011].all)},
 						],
 					}

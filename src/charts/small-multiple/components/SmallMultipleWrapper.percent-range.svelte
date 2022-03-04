@@ -50,7 +50,7 @@
   data={data}
   xScale={scaleLinear()}
   yScale={scaleBand().paddingInner([0.05]).round(true)}
-  xDomain={[0, xMax]}
+  xDomain={[0, xMax+1]}
   yDomain={yDom}
   height={300}
 >
