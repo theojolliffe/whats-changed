@@ -1085,13 +1085,15 @@ mixin ethrel(i)
     - function pcnoprint(x) { if (Math.abs(x)<10) { return Math.round(x*10)/10 }  else { return Math.round(x) } }
     - var obj = place.data[s[i][0]].perc.change
     - var bigChange = s[i][3]
+    - var locValDiff = data[s[i][0]].value[2011][bigChange]-data[s[i][0]].value[2001][bigChange]
+    - var locDiff = data[s[i][0]].perc[2011][bigChange] - data[s[i][0]].perc[2001][bigChange]
     p 
         | The number of people in !{place.name} 
         | #[+value(topics[s[i][0]][bigChange]['verb'])]
-        | increased from 
-        | #[+val(data[s[i][0]].value[2001][bigChange])] in 2001 
+        | !{((locValDiff)>0)?'increased':'decreased'} 
+        | from #[+val(data[s[i][0]].value[2001][bigChange])] in 2001 
         | to #[+val(data[s[i][0]].value[2011][bigChange])] in 2011.
-        if (Math.sign(data[s[i][0]].value[2011][bigChange]-data[s[i][0]].value[2001][bigChange])==Math.sign(data[s[i][0]].perc[2011][bigChange]-data[s[i][0]].perc[2001][bigChange]))
+        if (Math.sign(locValDiff)==Math.sign(locDiff))
             | This represents a change from 
             | #[+pc(data[s[i][0]].perc[2001][bigChange])] 
             | to #[+pc(data[s[i][0]].perc[2011][bigChange])] of the local population.
@@ -1104,7 +1106,6 @@ mixin ethrel(i)
             | from #[+pc(data[s[i][0]].perc[2001][bigChange])]
             | to #[+pc(data[s[i][0]].perc[2011][bigChange])].
     p
-        - var locDiff = Math.round(data[s[i][0]].perc[2011][bigChange] - data[s[i][0]].perc[2001][bigChange])
         - var regDiff = Math.round(rgn.data[s[i][0]].perc[2011][bigChange] - rgn.data[s[i][0]].perc[2001][bigChange])
         - var couDiff = Math.round(cou.data[s[i][0]].perc[2011][bigChange] - cou.data[s[i][0]].perc[2001][bigChange])
         if (Math.sign(locDiff)!=Math.sign(regDiff))

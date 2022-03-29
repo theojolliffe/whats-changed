@@ -297,11 +297,11 @@ health.good.verb: that perceive their health as good or very good
 health.fair.verb: that described their health as fair
 health.bad.verb: that perceive their health as bad or very bad
 
-ethnicity.white.verb: from the White ethnic groups
-ethnicity.black.verb: from the Black, Black British, Caribbean or African ethnic groups
-ethnicity.asian.verb: from the Asian or Asian British ethnic groups
-ethnicity.mixed.verb: from the Mixed ethnic groups (such as ’Black and Asian’ or ‘European Mixed’)
-ethnicity.other.verb: from the Other ethnic groups (such as ’Arab’)
+ethnicity.white.verb: from a White ethnic group
+ethnicity.black.verb: from a Black, Black British, Caribbean or African ethnic group
+ethnicity.asian.verb: from an Asian or Asian British ethnic group
+ethnicity.mixed.verb: from a Mixed ethnic group (such as ’Black and Asian’ or ‘European Mixed’)
+ethnicity.other.verb: from an Other ethnic group (such as ’Arab’)
 
 economic.employee.verb: that are employed
 economic.inactive.verb: that are not working or actively seeking work
