@@ -1121,9 +1121,9 @@ mixin ethrel(i)
             | !{(locDiff>0)?'increased':'decreased'}
             if (locDiff == regDiff)
                 | at a similar rate to 
-            else if (locDiff > regDiff)
+            else if (Math.abs(locDiff) > Math.abs(regDiff))
                 | by more than 
-            else if (locDiff < regDiff)
+            else if (Math.abs(locDiff) < Math.abs(regDiff))
                 | by less than
             | the average across !{parent} 
             - var pcbc01 = pcnoprint(data[s[i][0]].perc[2001][bigChange])
