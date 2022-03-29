@@ -1533,7 +1533,7 @@ mixin chartTitleSize(i)
             | of people in !{place.name} are aged
             | #[+value(ageBandLU[agegroup][1])]
         h5 
-            | The percentage of #[+value(topics[s[i][0]].measure)] in #[+value(place.name)] by 10 year age band, March 2001, March 2011
+            | Percentage of #[+value(topics[s[i][0]].measure)] in #[+value(place.name)] by 10 year age band, March 2001, March 2011
     else
         h4 
             | #[+value(topic(i).sample)] in 
@@ -1542,7 +1542,7 @@ mixin chartTitleSize(i)
             | #[+rou(Math.abs(cha(s, place, i)))]
             | percentage points
         h5 
-            | The percentage of #[+value(topics[s[i][0]].measure)] in #[+value(place.name)], 
+            | Percentage of #[+value(topics[s[i][0]].measure)] in #[+value(place.name)], 
             if (cou.name=='Wales')
                 | #[+value(place.nearbyArea.nearTops.name)]
             else
@@ -1557,7 +1557,7 @@ mixin chartTitleBar(i)
         | #[+rou(Math.abs(cha(s, place, i)))]
         | percentage points
     h5 
-        | The percentage of #[+value(topics[s[i][0]].measure)] in
+        | Percentage of #[+value(topics[s[i][0]].measure)] in
         | #[+value(cou.name)],
         if (cou.name=='Wales')
             | #[+value(place.nearbyArea.nearTops.name)]
@@ -1582,7 +1582,7 @@ mixin chartTitleOther(i)
             | of people in !{place.name} are aged
             | #[+value(ageBandLU[agegroup][1])]
         h5 
-            | The percentage of #[+value(topics[s[i][0]].measure)] in 
+            | Percentage of #[+value(topics[s[i][0]].measure)] in 
             | #[+value(cou.name)],
             if (cou.name=='Wales')
                 | #[+value(place.nearbyArea.nearTops.name)]
@@ -1595,7 +1595,7 @@ mixin chartTitleOther(i)
             | #[+value(topic(i).sample)] 
             | #[+value((cur(s, place, i)-cur(s, rgn, i)<0)?"is lower than":"is higher than")] across #[+value(parent)]
         h5 
-            | The percentage of #[+value(topics[s[i][0]].measure)] that #[+value(topic(i).verb_past)] 
+            | Percentage of #[+value(topics[s[i][0]].measure)] that #[+value(topic(i).verb_past)] 
             | across local authority areas in #[+value(parent)] and the average across #[+value(cou.name)], March 2011
 
 mixin chartTitle(i)

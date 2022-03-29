@@ -28,7 +28,8 @@ mixin standfirst1
     p
         | #[+value(topics[sf[0][0]].profile)]         
         | #[+tenYears].
-        | #[+coincide]
+    p
+        | Here are some of the most notable changes in this area, including in
         eachz sfi in sf.slice(1,) with { separator: ',', last_separator: 'and' }
             | #[+value(topics[sfi[0]].general)]
         | .

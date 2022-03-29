@@ -1,8 +1,8 @@
 // This coincided with a remarkable transformation of the city’s health, housing and ethnic makeup.
-tenure.general: housing
+tenure.general: housing tenure
 welsh.general: knowledge of the Welsh language
 health.general: health
-ethnicity.general: ethnic makeup
+ethnicity.general: ethnicity
 economic.general: jobs
 household.general: relationships
 religion.general: religion
@@ -21,9 +21,9 @@ agemed.adj.low: youngest
 
 // Giving it the greatest ***headcount*** of any local authority area in the North West of England.
 // Census 2011 data also shows a shift in ***working patterns***.
-tenure.synonym: housing shift in {plcname}
+tenure.synonym: housing tenure shift in {plcname}
 health.synonym: shift in the local population's well-being
-ethnicity.synonym: shift in the ethnic makeup of {plcname}
+ethnicity.synonym: shift in the ethnicity of {plcname}
 economic.synonym: shift in the employment status of many here
 household.synonym: shift in family life for many in {plcname}
 religion.synonym: shift in the local population's religion
@@ -36,9 +36,9 @@ agemed.synonym: shift in the local population's average age
 
 // The religious profile of Torbay changed considerably in the 10 years leading up to the last census
 // ***Health improved considerably in Torbay*** in the 10 years leading up to the last census
-tenure.profile: housing in {plcname} changed substantially
+tenure.profile: housing tenure in {plcname} changed substantially
 health.profile: health {health} substantially in {plcname}
-ethnicity.profile: ethnic makeup of {plcname} changed substantially 
+ethnicity.profile: ethnicity of {plcname} changed substantially 
 economic.profile: work life changed for many in {plcname}
 household.profile: housing in {plcname} changed substantially
 religion.profile: the religious profile of {plcname} changed substantially
@@ -76,8 +76,8 @@ health.bad.clausal_modifier: {plcname} residents that describe their health as b
 ethnicity.white.clausal_modifier: {plcname} residents from one of the White ethnic groups
 ethnicity.black.clausal_modifier: {plcname} residents from one of the Black, Black British, Caribbean or African ethnic groups
 ethnicity.asian.clausal_modifier: {plcname} residents from one of the Asian or Asian British ethnic groups
-ethnicity.mixed.clausal_modifier: {plcname} residents from a Mixed ethnic group (such as ’Black and Asian’ or ‘European Mixed’)
-ethnicity.other.clausal_modifier: {plcname} residents from an Other ethnic group (such as ’Arab’)
+ethnicity.mixed.clausal_modifier: {plcname} residents from the Mixed ethnic groups (such as ’Black and Asian’ or ‘European Mixed’)
+ethnicity.other.clausal_modifier: {plcname} residents from the Other ethnic groups (such as ’Arab’)
 
 economic.employee.clausal_modifier: {plcname} residents that are employed
 economic.inactive.clausal_modifier: {plcname} residents that are not working or actively seeking work
@@ -130,11 +130,11 @@ health.good.verb_past: that said their health was good or very good
 health.fair.verb_past: that said their health was fair
 health.bad.verb_past: said their health was bad or very bad
 
-ethnicity.white.verb_past: that said they were from a White ethnic group
-ethnicity.black.verb_past: that said they were from a Black, Black British, Caribbean or African ethnic group
-ethnicity.asian.verb_past: that said they were from an Asian or Asian British ethnic group
-ethnicity.mixed.verb_past: that said they were from a Mixed ethnic group (such as ’Black and Asian’ or ‘European Mixed’)
-ethnicity.other.verb_past: that said they were from an Other ethnic group (such as ’Arab’)
+ethnicity.white.verb_past: that said they were from the White ethnic groups
+ethnicity.black.verb_past: that said they were from the Black, Black British, Caribbean or African ethnic groups
+ethnicity.asian.verb_past: that said they were from the Asian or Asian British ethnic groups
+ethnicity.mixed.verb_past: that said they were from the Mixed ethnic groups (such as ’Black and Asian’ or ‘European Mixed’)
+ethnicity.other.verb_past: that said they were from the Other ethnic groups (such as ’Arab’)
 
 economic.employee.verb_past: that said they were employed
 economic.inactive.verb_past: that said they were not working or actively seeking work
@@ -187,11 +187,11 @@ health.good.verb_past_samp: said their health was good or very good
 health.fair.verb_past_samp: said their health was fair
 health.bad.verb_past_samp: said their health was bad or very bad
 
-ethnicity.white.verb_past_samp: said they were from a White ethnic group
-ethnicity.black.verb_past_samp: said they were from a Black, Black British, Caribbean or African ethnic group
-ethnicity.asian.verb_past_samp: said they were from an Asian or Asian British ethnic group
-ethnicity.mixed.verb_past_samp: said they were from a Mixed ethnic group (such as ’Black and Asian’ or ‘European Mixed’)
-ethnicity.other.verb_past_samp: said they were from an Other ethnic group (such as ’Arab’)
+ethnicity.white.verb_past_samp: said they were from the White ethnic group
+ethnicity.black.verb_past_samp: said they were from the Black, Black British, Caribbean or African ethnic group
+ethnicity.asian.verb_past_samp: said they were from the Asian or Asian British ethnic group
+ethnicity.mixed.verb_past_samp: said they were from the Mixed ethnic group (such as ’Black and Asian’ or ‘European Mixed’)
+ethnicity.other.verb_past_samp: said they were from the Other ethnic group (such as ’Arab’)
 
 economic.employee.verb_past_samp: said they were employed
 economic.inactive.verb_past_samp: said they were not working or actively seeking work
@@ -242,11 +242,11 @@ health.good.adj_noun: residents that perceive their health as good or very good
 health.fair.adj_noun: people that described their health as fair
 health.bad.adj_noun: residents that perceive their health as bad or very bad
 
-ethnicity.white.adj_noun: residents from a White ethnic group
-ethnicity.black.adj_noun: residents from a Black, Black British, Caribbean or African ethnic group
-ethnicity.asian.adj_noun: residents from an Asian or Asian British ethnic group
-ethnicity.mixed.adj_noun: residents from a Mixed ethnic group (such as ’Black and Asian’ or ‘European Mixed’)
-ethnicity.other.adj_noun: residents from an Other ethnic group (such as ’Arab’)
+ethnicity.white.adj_noun: residents from the White ethnic groups
+ethnicity.black.adj_noun: residents from the Black, Black British, Caribbean or African ethnic groups
+ethnicity.asian.adj_noun: residents from the Asian or Asian British ethnic groups
+ethnicity.mixed.adj_noun: residents from the Mixed ethnic groups (such as ’Black and Asian’ or ‘European Mixed’)
+ethnicity.other.adj_noun: residents from the Other ethnic groups (such as ’Arab’)
 
 economic.employee.adj_noun: employed people
 economic.inactive.adj_noun: people who are not working or actively seeking work
@@ -297,11 +297,11 @@ health.good.verb: that perceive their health as good or very good
 health.fair.verb: that described their health as fair
 health.bad.verb: that perceive their health as bad or very bad
 
-ethnicity.white.verb: from a White ethnic group
-ethnicity.black.verb: from a Black, Black British, Caribbean or African ethnic group
-ethnicity.asian.verb: from an Asian or Asian British ethnic group
-ethnicity.mixed.verb: from a Mixed ethnic group (such as ’Black and Asian’ or ‘European Mixed’)
-ethnicity.other.verb: from an Other ethnic group (such as ’Arab’)
+ethnicity.white.verb: from the White ethnic groups
+ethnicity.black.verb: from the Black, Black British, Caribbean or African ethnic groups
+ethnicity.asian.verb: from the Asian or Asian British ethnic groups
+ethnicity.mixed.verb: from the Mixed ethnic groups (such as ’Black and Asian’ or ‘European Mixed’)
+ethnicity.other.verb: from the Other ethnic groups (such as ’Arab’)
 
 economic.employee.verb: that are employed
 economic.inactive.verb: that are not working or actively seeking work
@@ -574,11 +574,11 @@ health.good.sample: the percentage of people in ’good’ or ’very good’ he
 health.fair.sample: the percentage of people in ’fair’ health
 health.bad.sample: the percentage of people in ’bad’ or ’very bad’ health
 
-ethnicity.white.sample: the share of people from a White ethnic group
-ethnicity.black.sample: the share of people from a Black, Black British, Caribbean or African ethnic group
-ethnicity.asian.sample: the share of people from an Asian or Asian British ethnic group
-ethnicity.mixed.sample: the share of people from a Mixed ethnic group (such as ’Black and Asian’ or ‘European Mixed’)
-ethnicity.other.sample: the share of people from an Other ethnic group (such as ’Arab’)
+ethnicity.white.sample: the percentage of people from the White ethnic groups
+ethnicity.black.sample: the percentage of people from the Black, Black British, Caribbean or African ethnic groups
+ethnicity.asian.sample: the percentage of people from the Asian or Asian British ethnic groups
+ethnicity.mixed.sample: the percentage of people from the Mixed ethnic groups (such as ’Black and Asian’ or ‘European Mixed’)
+ethnicity.other.sample: the percentage of people from the Other ethnic groups (such as ’Arab’)
 
 economic.employee.sample: the rate of employment
 economic.inactive.sample: the proportion of people not working or actively seeking work
@@ -586,20 +586,20 @@ economic.self-employed.sample: the rate of self-employment
 economic.unemployed.sample: the rate of unemployment
 economic.student.sample: the percentage of students
 
-household.Cohabiting.sample: the share of households with a cohabiting couple
-household.LoneParent.sample: the share of households with a single-parent
-household.OnePerson.sample: the share of households with only a single-person
-household.Married.sample: the share of households with a married couple
+household.Cohabiting.sample: the percentage of households with a cohabiting couple
+household.LoneParent.sample: the percentage of households with a single-parent
+household.OnePerson.sample: the percentage of households with only a single-person
+household.Married.sample: the percentage of households with a married couple
 
-religion.Christian.sample: the share of people who identify as Christian 
-religion.Buddhist.sample: the share of people who identify as Buddhist
-religion.Hindu.sample: the share of people who identify as Hindu
-religion.Sikh.sample: the share of people who identify as Sikh
-religion.Jewish.sample: the share of people who identify as Jewish
-religion.Muslim.sample: the share of people who identify as Muslim
-religion.Noreligion.sample: the share of people without a religion
-religion.Religionnotstated.sample: the share of people that did not state their religion
-religion.Otherreligion.sample: the share of people who identify with a religion other than Christianity, Islam, Hinduism, Judaism, Buddhism or Sikhism
+religion.Christian.sample: the percentage of people who identify as Christian 
+religion.Buddhist.sample: the percentage of people who identify as Buddhist
+religion.Hindu.sample: the percentage of people who identify as Hindu
+religion.Sikh.sample: the percentage of people who identify as Sikh
+religion.Jewish.sample: the percentage of people who identify as Jewish
+religion.Muslim.sample: the percentage of people who identify as Muslim
+religion.Noreligion.sample: the percentage of people without a religion
+religion.Religionnotstated.sample: the percentage of people that did not state their religion
+religion.Otherreligion.sample: the percentage of people who identify with a religion other than Christianity, Islam, Hinduism, Judaism, Buddhism or Sikhism
 
 hoursworked.Female1-15.sample: the proportion of people working less than 16 hours in a week
 hoursworked.Female49plus.sample: long hour working
@@ -628,11 +628,11 @@ health.good.adj_noun_s: people describing their health as good or very good
 health.fair.adj_noun_s: people describing their health as fair
 health.bad.adj_noun_s: people describing their health as bad or very bad
 
-ethnicity.white.adj_noun_s: people from a White ethnic group
-ethnicity.black.adj_noun_s: people from a Black, Black British, Caribbean or African ethnic group
-ethnicity.asian.adj_noun_s: people from an Asian or Asian British ethnic group
-ethnicity.mixed.adj_noun_s: people from a Mixed ethnic group (such as ’Black and Asian’ or ‘European Mixed’)
-ethnicity.other.adj_noun_s: people from an Other ethnic group (such as ’Arab’)
+ethnicity.white.adj_noun_s: people from the White ethnic groups
+ethnicity.black.adj_noun_s: people from the Black, Black British, Caribbean or African ethnic groups
+ethnicity.asian.adj_noun_s: people from the Asian or Asian British ethnic groups
+ethnicity.mixed.adj_noun_s: people from the Mixed ethnic groups (such as ’Black and Asian’ or ‘European Mixed’)
+ethnicity.other.adj_noun_s: people from the Other ethnic groups (such as ’Arab’)
 
 economic.employee.adj_noun_s: employed people
 economic.inactive.adj_noun_s: people who are not working or actively seeking work
