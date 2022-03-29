@@ -187,11 +187,11 @@ health.good.verb_past_samp: said their health was good or very good
 health.fair.verb_past_samp: said their health was fair
 health.bad.verb_past_samp: said their health was bad or very bad
 
-ethnicity.white.verb_past_samp: said they were from the White ethnic group
-ethnicity.black.verb_past_samp: said they were from the Black, Black British, Caribbean or African ethnic group
-ethnicity.asian.verb_past_samp: said they were from the Asian or Asian British ethnic group
-ethnicity.mixed.verb_past_samp: said they were from the Mixed ethnic group (such as ’Black and Asian’ or ‘European Mixed’)
-ethnicity.other.verb_past_samp: said they were from the Other ethnic group (such as ’Arab’)
+ethnicity.white.verb_past_samp: said they were from the White ethnic groups
+ethnicity.black.verb_past_samp: said they were from the Black, Black British, Caribbean or African ethnic groups
+ethnicity.asian.verb_past_samp: said they were from the Asian or Asian British ethnic groups
+ethnicity.mixed.verb_past_samp: said they were from the Mixed ethnic groups (such as ’Black and Asian’ or ‘European Mixed’)
+ethnicity.other.verb_past_samp: said they were from the Other ethnic groups (such as ’Arab’)
 
 economic.employee.verb_past_samp: said they were employed
 economic.inactive.verb_past_samp: said they were not working or actively seeking work
