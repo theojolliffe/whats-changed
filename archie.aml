@@ -26,7 +26,7 @@ health.synonym: shift in the local population's well-being
 ethnicity.synonym: shift in the ethnic makeup of {plcname}
 economic.synonym: shift in the employment status of many here
 household.synonym: shift in family life for many in {plcname}
-religion.synonym: shift in the local population's religious beliefs
+religion.synonym: shift in the local population's religion
 care.synonym: shift in the amount of unpaid care provided here
 children.synonym: shift in family life for many in {plcname} 
 hoursworked.synonym: shift in the working patterns of many in {plcname}
@@ -76,8 +76,8 @@ health.bad.clausal_modifier: {plcname} residents that describe their health as b
 ethnicity.white.clausal_modifier: {plcname} residents from one of the White ethnic groups
 ethnicity.black.clausal_modifier: {plcname} residents from one of the Black, Black British, Caribbean or African ethnic groups
 ethnicity.asian.clausal_modifier: {plcname} residents from one of the Asian or Asian British ethnic groups
-ethnicity.mixed.clausal_modifier: {plcname} residents from a Mixed ethnic group (such as 'Black and Asian’ or ‘European Mixed')
-ethnicity.other.clausal_modifier: {plcname} residents from an Other ethnic group (such as 'Arab')
+ethnicity.mixed.clausal_modifier: {plcname} residents from a Mixed ethnic group (such as ’Black and Asian’ or ‘European Mixed’)
+ethnicity.other.clausal_modifier: {plcname} residents from an Other ethnic group (such as ’Arab’)
 
 economic.employee.clausal_modifier: {plcname} residents that are employed
 economic.inactive.clausal_modifier: {plcname} residents that are not working or actively seeking work
@@ -133,8 +133,8 @@ health.bad.verb_past: said their health was bad or very bad
 ethnicity.white.verb_past: that said they were from a White ethnic group
 ethnicity.black.verb_past: that said they were from a Black, Black British, Caribbean or African ethnic group
 ethnicity.asian.verb_past: that said they were from an Asian or Asian British ethnic group
-ethnicity.mixed.verb_past: that said they were from a Mixed ethnic group (such as 'Black and Asian’ or ‘European Mixed')
-ethnicity.other.verb_past: that said they were from an Other ethnic group (such as 'Arab')
+ethnicity.mixed.verb_past: that said they were from a Mixed ethnic group (such as ’Black and Asian’ or ‘European Mixed’)
+ethnicity.other.verb_past: that said they were from an Other ethnic group (such as ’Arab’)
 
 economic.employee.verb_past: that said they were employed
 economic.inactive.verb_past: that said they were not working or actively seeking work
@@ -190,8 +190,8 @@ health.bad.verb_past_samp: said their health was bad or very bad
 ethnicity.white.verb_past_samp: said they were from a White ethnic group
 ethnicity.black.verb_past_samp: said they were from a Black, Black British, Caribbean or African ethnic group
 ethnicity.asian.verb_past_samp: said they were from an Asian or Asian British ethnic group
-ethnicity.mixed.verb_past_samp: said they were from a Mixed ethnic group (such as 'Black and Asian’ or ‘European Mixed')
-ethnicity.other.verb_past_samp: said they were from an Other ethnic group (such as 'Arab')
+ethnicity.mixed.verb_past_samp: said they were from a Mixed ethnic group (such as ’Black and Asian’ or ‘European Mixed’)
+ethnicity.other.verb_past_samp: said they were from an Other ethnic group (such as ’Arab’)
 
 economic.employee.verb_past_samp: said they were employed
 economic.inactive.verb_past_samp: said they were not working or actively seeking work
@@ -245,8 +245,8 @@ health.bad.adj_noun: residents that perceive their health as bad or very bad
 ethnicity.white.adj_noun: residents from a White ethnic group
 ethnicity.black.adj_noun: residents from a Black, Black British, Caribbean or African ethnic group
 ethnicity.asian.adj_noun: residents from an Asian or Asian British ethnic group
-ethnicity.mixed.adj_noun: residents from a Mixed ethnic group (such as 'Black and Asian’ or ‘European Mixed')
-ethnicity.other.adj_noun: residents from an Other ethnic group (such as 'Arab')
+ethnicity.mixed.adj_noun: residents from a Mixed ethnic group (such as ’Black and Asian’ or ‘European Mixed’)
+ethnicity.other.adj_noun: residents from an Other ethnic group (such as ’Arab’)
 
 economic.employee.adj_noun: employed people
 economic.inactive.adj_noun: people who are not working or actively seeking work
@@ -265,7 +265,7 @@ religion.Hindu.adj_noun: people who describe themselves as Hindu
 religion.Sikh.adj_noun: people who describe themselves as Sikh
 religion.Jewish.adj_noun: people who describe themselves as Jewish
 religion.Muslim.adj_noun: people who describe themselves as Muslim
-religion.Noreligion.adj_noun: people who describe themselves as non-religious
+religion.Noreligion.adj_noun: people who describe themselves as having no religion
 religion.Religionnotstated.adj_noun: people who did not disclose their religious affiliation
 religion.Otherreligion.adj_noun: people who identify with a religion other than Christianity, Islam, Hinduism, Judaism, Buddhism or Sikhism
 
@@ -300,8 +300,8 @@ health.bad.verb: that perceive their health as bad or very bad
 ethnicity.white.verb: from a White ethnic group
 ethnicity.black.verb: from a Black, Black British, Caribbean or African ethnic group
 ethnicity.asian.verb: from an Asian or Asian British ethnic group
-ethnicity.mixed.verb: from a Mixed ethnic group (such as 'Black and Asian’ or ‘European Mixed')
-ethnicity.other.verb: from an Other ethnic group (such as 'Arab')
+ethnicity.mixed.verb: from a Mixed ethnic group (such as ’Black and Asian’ or ‘European Mixed’)
+ethnicity.other.verb: from an Other ethnic group (such as ’Arab’)
 
 economic.employee.verb: that are employed
 economic.inactive.verb: that are not working or actively seeking work
@@ -320,7 +320,7 @@ religion.Hindu.verb: that describe themselves as Hindu
 religion.Sikh.verb: that describe themselves as Sikh
 religion.Jewish.verb: that describe themselves as Jewish
 religion.Muslim.verb: that describe themselves as Muslim
-religion.Noreligion.verb: that describe themselves as non-religious
+religion.Noreligion.verb: that describe themselves as having no religion
 religion.Religionnotstated.verb: that did not disclose their religious affiliation
 religion.Otherreligion.verb: that identify with a religion other than Christianity, Islam, Hinduism, Judaism, Buddhism or Sikhism
 
@@ -416,30 +416,30 @@ health.bad.subhead.neg: Health improves
 health.bad.subhead.neu: Change in health
 health.bad.subhead.buc: {plcname} stood out from other areas for health
 health.bad.subhead.sta: Health in {plcname}
-ethnicity.white.subhead.pos: More residents from a White ethnic group
-ethnicity.white.subhead.neg: Fewer residents from a White ethnic group
-ethnicity.white.subhead.neu: Change in ethnic makeup
-ethnicity.white.subhead.buc: {plcname} stood out from other areas for ethnicity
+ethnicity.white.subhead.pos: Ethnicity in {plcname}
+ethnicity.white.subhead.neg: Ethnicity in {plcname}
+ethnicity.white.subhead.neu: Ethnicity in {plcname}
+ethnicity.white.subhead.buc: Ethnicity in {plcname}
 ethnicity.white.subhead.sta: Ethnicity in {plcname}
-ethnicity.black.subhead.pos: More residents report being from a Black, Black British, Caribbean or African ethnic group
-ethnicity.black.subhead.neg: Fewer residents report being from a Black, Black British, Caribbean or African ethnic group
-ethnicity.black.subhead.neu: Change in ethnic makeup
-ethnicity.black.subhead.buc: {plcname} stood out from other areas for ethnicity
+ethnicity.black.subhead.pos: Ethnicity in {plcname}
+ethnicity.black.subhead.neg: Ethnicity in {plcname}
+ethnicity.black.subhead.neu: Ethnicity in {plcname}
+ethnicity.black.subhead.buc: Ethnicity in {plcname}
 ethnicity.black.subhead.sta: Ethnicity in {plcname}
-ethnicity.asian.subhead.pos: More residents report being from an Asian or Asian British ethnic group
-ethnicity.asian.subhead.neg: Fewer residents report being from an Asian or Asian British ethnic group
-ethnicity.asian.subhead.neu: Change in ethnic makeup
-ethnicity.asian.subhead.buc: {plcname} stood out from other areas for ethnicity
+ethnicity.asian.subhead.pos: Ethnicity in {plcname}
+ethnicity.asian.subhead.neg: Ethnicity in {plcname}
+ethnicity.asian.subhead.neu: Ethnicity in {plcname}
+ethnicity.asian.subhead.buc: Ethnicity in {plcname}
 ethnicity.asian.subhead.sta: Ethnicity in {plcname}
-ethnicity.mixed.subhead.pos: More residents from a Mixed ethnic group
-ethnicity.mixed.subhead.neg: More residents from a Mixed ethnic group
-ethnicity.mixed.subhead.neu: Change in ethnic makeup
-ethnicity.mixed.subhead.buc: {plcname} stood out from other areas for ethnicity
+ethnicity.mixed.subhead.pos: Ethnicity in {plcname}
+ethnicity.mixed.subhead.neg: Ethnicity in {plcname}
+ethnicity.mixed.subhead.neu: Ethnicity in {plcname}
+ethnicity.mixed.subhead.buc: Ethnicity in {plcname}
 ethnicity.mixed.subhead.sta: Ethnicity in {plcname}
-ethnicity.other.subhead.pos: More residents from an Other ethnic group
-ethnicity.other.subhead.neg: Fewer residents from an Other ethnic group
-ethnicity.other.subhead.neu: Change in ethnic makeup
-ethnicity.other.subhead.buc: {plcname} stood out from other areas for ethnicity
+ethnicity.other.subhead.pos: Ethnicity in {plcname}
+ethnicity.other.subhead.neg: Ethnicity in {plcname}
+ethnicity.other.subhead.neu: Ethnicity in {plcname}
+ethnicity.other.subhead.buc: Ethnicity in {plcname}
 ethnicity.other.subhead.sta: Ethnicity in {plcname}
 economic.employee.subhead.pos: Rise in rate of employment
 economic.employee.subhead.neg: Fall in rate of employment
@@ -486,40 +486,40 @@ household.Married.subhead.neg: Marriage declining
 household.Married.subhead.neu: Changing household dynamics
 household.Married.subhead.buc: {plcname} reverses marriage
 household.Married.subhead.sta: Marriage in {plcname}
-religion.Christian.subhead.pos: More people identifying as Christian
-religion.Christian.subhead.neg: Fewer people identifying as Christian
+religion.Christian.subhead.pos: Religion in {plcname}
+religion.Christian.subhead.neg: Religion in {plcname}
 religion.Christian.subhead.neu: Religion in {plcname}
-religion.Christian.subhead.buc: {plcname} stood out from other areas for religion
+religion.Christian.subhead.buc: Religion in {plcname}
 religion.Christian.subhead.sta: Religion in {plcname}
-religion.Buddhist.subhead.pos: More people identifying as Buddhist
-religion.Buddhist.subhead.neg: Fewer people identifying as Buddhist
+religion.Buddhist.subhead.pos: Religion in {plcname}
+religion.Buddhist.subhead.neg: Religion in {plcname}
 religion.Buddhist.subhead.neu: Religion in {plcname}
-religion.Buddhist.subhead.buc: {plcname} stood out from other areas for religion
+religion.Buddhist.subhead.buc: Religion in {plcname}
 religion.Buddhist.subhead.sta: Religion in {plcname}
-religion.Hindu.subhead.pos: More people identifying as Hindu
-religion.Hindu.subhead.neg: Fewer people identifying as Hindu
+religion.Hindu.subhead.pos: Religion in {plcname}
+religion.Hindu.subhead.neg: Religion in {plcname}
 religion.Hindu.subhead.neu: Religion in {plcname}
-religion.Hindu.subhead.buc: {plcname} stood out from other areas for religion
+religion.Hindu.subhead.buc: Religion in {plcname}
 religion.Hindu.subhead.sta: Religion in {plcname}
-religion.Sikh.subhead.pos: More people identifying as Sikh
-religion.Sikh.subhead.neg: Fewer people identifying as Sikh
+religion.Sikh.subhead.pos: Religion in {plcname}
+religion.Sikh.subhead.neg: Religion in {plcname}
 religion.Sikh.subhead.neu: Religion in {plcname}
-religion.Sikh.subhead.buc: {plcname} stood out from other areas for religion
+religion.Sikh.subhead.buc: Religion in {plcname}
 religion.Sikh.subhead.sta: Religion in {plcname}
-religion.Jewish.subhead.pos: More people identifying as Jewish
-religion.Jewish.subhead.neg: Fewer people identifying as Jewish
+religion.Jewish.subhead.pos: Religion in {plcname}
+religion.Jewish.subhead.neg: Religion in {plcname}
 religion.Jewish.subhead.neu: Religion in {plcname}
-religion.Jewish.subhead.buc: {plcname} stood out from other areas for religion
+religion.Jewish.subhead.buc: Religion in {plcname}
 religion.Jewish.subhead.sta: Religion in {plcname}
-religion.Muslim.subhead.pos: More people identifying as Muslim
-religion.Muslim.subhead.neg: Fewer people identifying as Muslim 
+religion.Muslim.subhead.pos: Religion in {plcname}
+religion.Muslim.subhead.neg: Religion in {plcname}
 religion.Muslim.subhead.neu: Religion in {plcname}
-religion.Muslim.subhead.buc: {plcname} stood out from other areas for religion
+religion.Muslim.subhead.buc: Religion in {plcname}
 religion.Muslim.subhead.sta: Religion in {plcname}
-religion.Noreligion.subhead.pos: More people without a religion in {plcname}
-religion.Noreligion.subhead.neg: Fewer people without a religion in {plcname}
+religion.Noreligion.subhead.pos: Religion in {plcname}
+religion.Noreligion.subhead.neg: Religion in {plcname}
 religion.Noreligion.subhead.neu: Religion in {plcname}
-religion.Noreligion.subhead.buc: {plcname} stood out from other areas for religion
+religion.Noreligion.subhead.buc: Religion in {plcname}
 religion.Noreligion.subhead.sta: Religion in {plcname}
 religion.Religionnotstated.subhead.pos: Religion in {plcname}
 religion.Religionnotstated.subhead.neg: Religion in {plcname}
@@ -570,15 +570,15 @@ tenure.rented_private.sample: private renting
 tenure.rented_social.sample: the rate of social housing
 tenure.owned.sample: the rate of home ownership
 
-health.good.sample: the percentage of people in "good" or "very good" health
-health.fair.sample: the percentage of people in "fair" health
-health.bad.sample: the percentage of people in "bad" or "very bad" health
+health.good.sample: the percentage of people in ’good’ or ’very good’ health
+health.fair.sample: the percentage of people in ’fair’ health
+health.bad.sample: the percentage of people in ’bad’ or ’very bad’ health
 
 ethnicity.white.sample: the share of people from a White ethnic group
 ethnicity.black.sample: the share of people from a Black, Black British, Caribbean or African ethnic group
 ethnicity.asian.sample: the share of people from an Asian or Asian British ethnic group
-ethnicity.mixed.sample: the share of people from a Mixed ethnic group (such as 'Black and Asian’ or ‘European Mixed')
-ethnicity.other.sample: the share of people from an Other ethnic group (such as 'Arab')
+ethnicity.mixed.sample: the share of people from a Mixed ethnic group (such as ’Black and Asian’ or ‘European Mixed’)
+ethnicity.other.sample: the share of people from an Other ethnic group (such as ’Arab’)
 
 economic.employee.sample: the rate of employment
 economic.inactive.sample: the proportion of people not working or actively seeking work
@@ -631,8 +631,8 @@ health.bad.adj_noun_s: people describing their health as bad or very bad
 ethnicity.white.adj_noun_s: people from a White ethnic group
 ethnicity.black.adj_noun_s: people from a Black, Black British, Caribbean or African ethnic group
 ethnicity.asian.adj_noun_s: people from an Asian or Asian British ethnic group
-ethnicity.mixed.adj_noun_s: people from a Mixed ethnic group (such as 'Black and Asian’ or ‘European Mixed')
-ethnicity.other.adj_noun_s: people from an Other ethnic group (such as 'Arab')
+ethnicity.mixed.adj_noun_s: people from a Mixed ethnic group (such as ’Black and Asian’ or ‘European Mixed’)
+ethnicity.other.adj_noun_s: people from an Other ethnic group (such as ’Arab’)
 
 economic.employee.adj_noun_s: employed people
 economic.inactive.adj_noun_s: people who are not working or actively seeking work
